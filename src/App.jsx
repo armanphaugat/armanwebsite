@@ -725,7 +725,7 @@ function SkillRadar() {
 /* ─────────────── PROJECT CATEGORY STATS BAR ─────────────── */
 function ProjectStatsBar() {
   const cats = [
-    { label:"Backend",  count:2, col:"#7C3AED" },
+    { label:"Backend",  count:3, col:"#7C3AED" },
     { label:"AI / ML",  count:5, col:"#0EA5E9" },
     { label:"Frontend", count:2, col:"#10B981" },
     { label:"Game",     count:1, col:"#F59E0B" },
@@ -1327,7 +1327,7 @@ function Hero() {
         <div className="rv hero-stats" style={{ display:"flex", gap:"0", borderTop:"1px solid rgba(124,58,237,0.1)", paddingTop:"2.5rem", flexWrap:"wrap" }}>
           <AnimatedStat value="9.05" label="CGPA — Dean's Award" />
           <AnimatedStat value="900+" label="DSA Problems" />
-          <AnimatedStat value="10+" label="Projects Built" />
+          <AnimatedStat value="11+" label="Projects Built" />
           <div style={{ padding:"0 2.5rem 0 0", marginRight:"2.5rem", marginBottom:"1rem" }}>
             <div className="serif" style={{ fontSize:"1.9rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px" }}>Top 0.3%</div>
             <div className="mono" style={{ fontSize:"0.62rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:"1.5px", marginTop:"0.2rem", lineHeight:1.4 }}>LeetCode Global</div>
@@ -1851,22 +1851,25 @@ const PROJECTS = [
   { num:"04", name:"RAG Bot Website", tagline:"React showcase for the Discord RAG bot with interactive demos", category:"Frontend",
     highlights:["Scroll-triggered animations via IntersectionObserver","Interactive feature tabs — PDF / web scraping / Q&A modes","Zero CSS framework · pure React inline styling architecture","Vite + React · modular component structure"],
     tech:["React","Vite","JavaScript","CSS","Lucide Icons"] },
-  { num:"05", name:"Cricket Score Predictor", tagline:"Live IPL · T20 · ODI score prediction via XGBoost models", category:"AI/ML",
+  { num:"05", name:"Gamezo — Discord Economy Bot", tagline:"180+ user multi-game bot · gambling games · stock market · live leaderboards", category:"Backend",
+    highlights:["15+ commands: coin flip, airplane crash, rock-paper-scissors, rollover games","Real-time stock trading engine with live price updates via APIs","Dual-currency economy: coins + portfolio-based wealth tracking","Leaderboard system with ranking persistence in SQLite database"],
+    tech:["Python","Discord.py","SQLite","Economy System","Game Mechanics","Async/Await"] },
+  { num:"06", name:"Cricket Score Predictor", tagline:"Live IPL · T20 · ODI score prediction via XGBoost models", category:"AI/ML",
     highlights:["3 pre-trained XGBoost models for IPL, T20, and ODI formats","CricAPI integration for live match data","Streamlit UI with team + overs input for instant predictions","Format-specific feature engineering pipelines"],
     tech:["Python","Streamlit","XGBoost","Scikit-learn","Pandas","CricAPI","Pickle"] },
-  { num:"06", name:"IPL Win Predictor", tagline:"Real-time IPL win probability via ML on historical data", category:"AI/ML",
+  { num:"07", name:"IPL Win Predictor", tagline:"Real-time IPL win probability via ML on historical data", category:"AI/ML",
     highlights:["Logistic Regression / Random Forest on seasons of IPL records","Dynamic win % via CRR, RRR, wickets, overs remaining","Feature engineering on 4500+ raw CSV match rows","Streamlit web app for in-match probability visualization"],
     tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Matplotlib"] },
-  { num:"07", name:"Book Recommender System", tagline:"Dual-mode engine — popularity-based & collaborative filtering", category:"AI/ML",
+  { num:"08", name:"Book Recommender System", tagline:"Dual-mode engine — popularity-based & collaborative filtering", category:"AI/ML",
     highlights:["Popularity: top 50 books filtered by 250+ ratings + avg score","Collaborative filtering with cosine similarity on pivot matrix","Filters to users with 200+ ratings for higher signal quality","Streamlit UI with covers, authors, top-N recommendations"],
     tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Cosine Similarity"] },
-  { num:"08", name:"WhatsApp Chat Analyser", tagline:"Upload any export · visualize conversation trends instantly", category:"AI/ML",
+  { num:"09", name:"WhatsApp Chat Analyser", tagline:"Upload any export · visualize conversation trends instantly", category:"AI/ML",
     highlights:["Timeline analysis · daily, weekly, monthly message frequency","Top emoji breakdown with pie chart visualizations","Most active user leaderboard for group chats","WordCloud + Matplotlib interactive charts"],
     tech:["Python","Streamlit","Pandas","Matplotlib","WordCloud","Regex","Emoji"] },
-  { num:"09", name:"Cuntrex — 2D Shooter Game", tagline:"Two-player 2D shooter built from scratch with Pygame", category:"Game",
+  { num:"10", name:"Cuntrex — 2D Shooter Game", tagline:"Two-player 2D shooter built from scratch with Pygame", category:"Game",
     highlights:["Full game loop · frame control · event handling · collision detection","Health bar system with real-time ratio-based rendering","Menu / play / retry screens with image-based hit detection","Background music + jump SFX via Pygame mixer"],
     tech:["Python","Pygame","OOP","Game Loop","Sprite Animation"] },
-  { num:"10", name:"SalesForce UI Clone", tagline:"Pixel-accurate frontend clone of the Salesforce homepage", category:"Frontend",
+  { num:"11", name:"SalesForce UI Clone", tagline:"Pixel-accurate frontend clone of the Salesforce homepage", category:"Frontend",
     highlights:["Full layout: nav, hero, content strips — no frameworks","CSS-only responsive grid and flexbox layout","Faithfully replicated brand typography and spacing","A focused exercise in CSS precision and layout mastery"],
     tech:["HTML","CSS","Flexbox","Responsive Design"] },
 ];
@@ -1929,7 +1932,7 @@ function Projects() {
         <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
           Things I've <span className="grad">built</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"2rem", lineHeight:1.8 }}>10 projects spanning backends · ML models · AI bots · games · frontend clones</p>
+        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"2rem", lineHeight:1.8 }}>11 projects spanning backends · ML models · AI bots · games · Discord bots · frontend clones</p>
         <ProjectStatsBar />
         <div className="rv d3" style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginBottom:"2.5rem" }}>
           {CATEGORIES.map(cat => (
