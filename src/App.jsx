@@ -12,11 +12,11 @@ const C = {
   paper:  "var(--paper)",
   ink:    "var(--ink)",
   inkMid: "var(--inkMid)",
-  v:      "#7C3AED",
-  vLight: "#A78BFA",
+  v:      "#2563EB",
+  vLight: "#60A5FA",
   vPale:  "var(--vPale)",
-  vDeep:  "#4C1D95",
-  accent: "#E879F9",
+  vDeep:  "#1E40AF",
+  accent: "#0EA5E9",
   muted:  "var(--muted)",
   gold:   "#F59E0B",
 };
@@ -31,7 +31,7 @@ const G = `
     --paper:  #FFFFFF;
     --ink:    #160D28;
     --inkMid: #2E1A50;
-    --vPale:  #EDE9FF;
+    --vPale:  #DBEAFE;
     --muted:  #9284AD;
   }
   [data-theme="dark"] {
@@ -65,14 +65,14 @@ const G = `
   .sec-transition.visible { opacity:1; transform:translateY(0); }
 
   .progress-dot { width:8px; height:8px; border-radius:50%; background:rgba(124,58,237,0.2); border:1.5px solid rgba(124,58,237,0.3); transition:all 0.3s; cursor:pointer; }
-  .progress-dot.active { background:#7C3AED; border-color:#7C3AED; transform:scale(1.4); box-shadow:0 0 8px rgba(124,58,237,0.5); }
+  .progress-dot.active { background:#2563EB; border-color:#2563EB; transform:scale(1.4); box-shadow:0 0 8px rgba(124,58,237,0.5); }
   .progress-dot:hover:not(.active) { background:rgba(124,58,237,0.45); }
 
-  .btt-btn { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#7C3AED,#E879F9); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:800; box-shadow:0 4px 20px rgba(124,58,237,0.4); transition:transform 0.2s, box-shadow 0.2s; }
+  .btt-btn { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#2563EB,#0EA5E9); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:800; box-shadow:0 4px 20px rgba(124,58,237,0.4); transition:transform 0.2s, box-shadow 0.2s; }
   .btt-btn:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(124,58,237,0.55); }
 
   /* Scroll progress bar */
-  .scroll-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#7C3AED,#E879F9,#A78BFA); z-index:9999; transition:width 0.05s linear; border-radius:0 2px 2px 0; }
+  .scroll-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#2563EB,#0EA5E9,#60A5FA); z-index:9999; transition:width 0.05s linear; border-radius:0 2px 2px 0; }
 
   /* Spotlight glow */
   .spotlight { position:fixed; pointer-events:none; z-index:1; border-radius:50%; background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 65%); transition:opacity 0.3s; }
@@ -82,7 +82,7 @@ const G = `
 
   /* Toast */
   .toast-wrap { position:fixed; bottom:5.5rem; right:1.5rem; z-index:9000; display:flex; flex-direction:column; gap:0.5rem; pointer-events:none; }
-  .toast { background:var(--paper); border:1px solid rgba(124,58,237,0.2); border-left:3px solid #7C3AED; border-radius:10px; padding:0.75rem 1.1rem; font-size:0.82rem; font-family:'Syne',sans-serif; color:var(--ink); box-shadow:0 4px 24px rgba(0,0,0,0.12); display:flex; align-items:center; gap:0.6rem; pointer-events:all; animation:toastIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+  .toast { background:var(--paper); border:1px solid rgba(124,58,237,0.2); border-left:3px solid #2563EB; border-radius:10px; padding:0.75rem 1.1rem; font-size:0.82rem; font-family:'Syne',sans-serif; color:var(--ink); box-shadow:0 4px 24px rgba(0,0,0,0.12); display:flex; align-items:center; gap:0.6rem; pointer-events:all; animation:toastIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
   .toast.out { animation:toastOut 0.3s ease both; }
 
   /* Float connect CTA */
@@ -92,14 +92,14 @@ const G = `
   .mag-btn { transition: transform 0.2s cubic-bezier(0.16,1,0.3,1); }
 
   /* Accent theme vars */
-  [data-accent="purple"] { --acc:#7C3AED; --acc2:#E879F9; --accP:#EDE9FF; }
+  [data-accent="purple"] { --acc:#2563EB; --acc2:#0EA5E9; --accP:#DBEAFE; }
   [data-accent="blue"]   { --acc:#2563EB; --acc2:#06B6D4; --accP:#EFF6FF; }
   [data-accent="green"]  { --acc:#059669; --acc2:#34D399; --accP:#ECFDF5; }
   [data-accent="rose"]   { --acc:#E11D48; --acc2:#FB7185; --accP:#FFF1F2; }
 
   /* Kbd shortcut hint */
   .kbd-hint { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); z-index:799; background:var(--paper); border:1px solid rgba(124,58,237,0.18); border-radius:100px; padding:0.45rem 1.2rem; font-size:0.72rem; font-family:'JetBrains Mono',monospace; color:var(--muted); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; gap:0.6rem; animation:kbdIn 0.3s ease both; pointer-events:none; }
-  .kbd-key { background:var(--vPale); color:#7C3AED; border:1px solid rgba(124,58,237,0.2); border-radius:4px; padding:0.1rem 0.45rem; font-size:0.68rem; font-weight:700; }
+  .kbd-key { background:var(--vPale); color:#2563EB; border:1px solid rgba(124,58,237,0.2); border-radius:4px; padding:0.1rem 0.45rem; font-size:0.68rem; font-weight:700; }
 
   /* Status badge */
   .status-available { display:inline-flex; align-items:center; gap:0.5rem; padding:0.35rem 0.9rem; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); border-radius:100px; }
@@ -125,7 +125,7 @@ const G = `
   }
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: linear-gradient(#7C3AED, #E879F9); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(#2563EB, #0EA5E9); border-radius: 2px; }
 
   .serif { font-family: 'Instrument Serif', serif; }
   .mono  { font-family: 'JetBrains Mono', monospace; }
@@ -158,13 +158,13 @@ const G = `
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem; padding: 0.22rem 0.65rem; border-radius: 5px;
-    background: var(--vPale); color: #7C3AED; border: 1px solid rgba(124,58,237,0.18);
+    background: var(--vPale); color: #2563EB; border: 1px solid rgba(124,58,237,0.18);
     transition: background 0.2s, color 0.2s;
   }
-  .chip:hover { background: #7C3AED; color: #fff; }
+  .chip:hover { background: #2563EB; color: #fff; }
 
   .nav-link { position: relative; text-decoration: none; }
-  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #7C3AED; transition: width 0.25s; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #2563EB; transition: width 0.25s; }
   .nav-link:hover::after { width: 100%; }
 
   /* ── Mobile menu ── */
@@ -192,7 +192,7 @@ const G = `
     text-decoration: none;
     transition: color 0.2s;
   }
-  .mob-menu a:hover { color: #7C3AED; }
+  .mob-menu a:hover { color: #2563EB; }
 
   /* ── Hide/show helpers ── */
   .hide-mob { display: flex; }
@@ -310,7 +310,7 @@ function SpotlightGlow() {
 /* ─────────────── MOUSE TRAIL SPARKLES ─────────────── */
 function MouseTrail() {
   useEffect(() => {
-    const COLORS = ["#7C3AED","#E879F9","#A78BFA","#F59E0B"];
+    const COLORS = ["#2563EB","#0EA5E9","#60A5FA","#F59E0B"];
     let count = 0;
     const fn = (e) => {
       if (count++ % 3 !== 0) return; // throttle
@@ -340,7 +340,7 @@ function KonamiConfetti() {
     const fn = (e) => {
       seq.current = [...seq.current, e.keyCode].slice(-10);
       if (seq.current.join(",") === CODE.join(",")) {
-        const COLORS = ["#7C3AED","#E879F9","#F59E0B","#10B981","#0EA5E9","#EF4444","#A78BFA"];
+        const COLORS = ["#2563EB","#0EA5E9","#F59E0B","#10B981","#0EA5E9","#EF4444","#60A5FA"];
         for (let i = 0; i < 80; i++) {
           const el = document.createElement("div");
           const size = Math.random() * 10 + 5;
@@ -447,7 +447,7 @@ function FloatingConnectCTA() {
         <div style={{ fontSize:"0.75rem", color:"var(--muted)", marginBottom:"0.9rem", lineHeight:1.5 }}>Backend · AI/ML · Full Stack</div>
         <a href="mailto:armanphaugat20@gmail.com" style={{
           display:"block", textAlign:"center", padding:"0.55rem",
-          background:"linear-gradient(135deg,#7C3AED,#E879F9)",
+          background:"linear-gradient(135deg,#2563EB,#0EA5E9)",
           color:"#fff", borderRadius:8, textDecoration:"none",
           fontSize:"0.78rem", fontWeight:700,
         }} onClick={() => setDismissed(true)}>Let's talk →</a>
@@ -461,7 +461,7 @@ function ThemeAccentPicker() {
   const [open, setOpen] = useState(false);
   const [accent, setAccent] = useState("purple");
   const ACCENTS = [
-    { key:"purple", col:"#7C3AED", label:"Purple" },
+    { key:"purple", col:"#2563EB", label:"Purple" },
     { key:"blue",   col:"#2563EB", label:"Blue"   },
     { key:"green",  col:"#059669", label:"Green"  },
     { key:"rose",   col:"#E11D48", label:"Rose"   },
@@ -638,7 +638,7 @@ function AvailabilityWidget() {
             {slots[d].length > 0 ? slots[d].map(t => (
               <div key={t} style={{
                 fontSize:"0.58rem", padding:"0.2rem 0.2rem", borderRadius:4, marginBottom:"0.2rem",
-                background:"rgba(124,58,237,0.12)", color:"#7C3AED",
+                background:"rgba(124,58,237,0.12)", color:"#2563EB",
                 fontFamily:"'JetBrains Mono',monospace", fontWeight:600,
               }}>{t}</div>
             )) : (
@@ -651,7 +651,7 @@ function AvailabilityWidget() {
         display:"block", textAlign:"center", marginTop:"1rem",
         padding:"0.55rem", background:"rgba(124,58,237,0.1)",
         border:"1px solid rgba(124,58,237,0.2)", borderRadius:8,
-        fontSize:"0.78rem", fontWeight:700, color:"#7C3AED",
+        fontSize:"0.78rem", fontWeight:700, color:"#2563EB",
         textDecoration:"none", transition:"background 0.2s",
       }}
         onMouseEnter={e=>e.currentTarget.style.background="rgba(124,58,237,0.2)"}
@@ -692,10 +692,10 @@ function SkillRadar() {
           <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(124,58,237,0.15)" strokeWidth="1"/>
         );})}
         {/* Data polygon */}
-        <polygon points={poly} fill="rgba(124,58,237,0.18)" stroke="#7C3AED" strokeWidth="2" strokeLinejoin="round"/>
+        <polygon points={poly} fill="rgba(124,58,237,0.18)" stroke="#2563EB" strokeWidth="2" strokeLinejoin="round"/>
         {/* Data dots */}
         {dataPoints.map((p,i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="5" fill="#7C3AED" stroke="#fff" strokeWidth="2"/>
+          <circle key={i} cx={p.x} cy={p.y} r="5" fill="#2563EB" stroke="#fff" strokeWidth="2"/>
         ))}
         {/* Labels */}
         {skills.map((s, i) => {
@@ -712,7 +712,7 @@ function SkillRadar() {
           const p = polarToXY(i, (s.val / 100) * R - 14);
           return (
             <text key={`v${i}`} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle"
-              fill="#7C3AED" fontSize="9" fontFamily="'JetBrains Mono',monospace" fontWeight="700">
+              fill="#2563EB" fontSize="9" fontFamily="'JetBrains Mono',monospace" fontWeight="700">
               {s.val}%
             </text>
           );
@@ -725,7 +725,7 @@ function SkillRadar() {
 /* ─────────────── PROJECT CATEGORY STATS BAR ─────────────── */
 function ProjectStatsBar() {
   const cats = [
-    { label:"Backend",  count:3, col:"#7C3AED" },
+    { label:"Backend",  count:2, col:"#2563EB" },
     { label:"AI / ML",  count:5, col:"#0EA5E9" },
     { label:"Frontend", count:2, col:"#10B981" },
     { label:"Game",     count:1, col:"#F59E0B" },
@@ -1074,7 +1074,7 @@ function SectionProgress() {
               background:"var(--paper)", border:"1px solid rgba(124,58,237,0.2)",
               borderRadius:6, padding:"0.2rem 0.55rem",
               fontSize:"0.6rem", fontFamily:"'JetBrains Mono',monospace",
-              color:"#7C3AED", whiteSpace:"nowrap", fontWeight:700,
+              color:"#2563EB", whiteSpace:"nowrap", fontWeight:700,
               animation:"backTopIn 0.2s ease both",
               boxShadow:"0 2px 12px rgba(124,58,237,0.12)",
             }}>{SECTION_LABELS[i]}</div>
@@ -1123,7 +1123,7 @@ function ParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const COLORS = ["#7C3AED","#A78BFA","#E879F9","#C4B5FD"];
+    const COLORS = ["#2563EB","#60A5FA","#0EA5E9","#C4B5FD"];
     const pts = Array.from({ length: 70 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -1327,7 +1327,7 @@ function Hero() {
         <div className="rv hero-stats" style={{ display:"flex", gap:"0", borderTop:"1px solid rgba(124,58,237,0.1)", paddingTop:"2.5rem", flexWrap:"wrap" }}>
           <AnimatedStat value="9.05" label="CGPA — Dean's Award" />
           <AnimatedStat value="900+" label="DSA Problems" />
-          <AnimatedStat value="11+" label="Projects Built" />
+          <AnimatedStat value="10+" label="Projects Built" />
           <div style={{ padding:"0 2.5rem 0 0", marginRight:"2.5rem", marginBottom:"1rem" }}>
             <div className="serif" style={{ fontSize:"1.9rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px" }}>Top 0.3%</div>
             <div className="mono" style={{ fontSize:"0.62rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:"1.5px", marginTop:"0.2rem", lineHeight:1.4 }}>LeetCode Global</div>
@@ -1531,11 +1531,11 @@ function Resume() {
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Summary</div>
               </div>
               <p style={{ fontSize:"0.88rem", color:C.muted, lineHeight:1.9, position:"relative", zIndex:1 }}>
-                Passionate <strong style={{color:C.ink}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at Manipal University Jaipur, maintaining a <strong style={{color:"#7C3AED"}}>9.05 CGPA</strong> with the Dean's Excellence Award. I build high-performance distributed systems with <strong style={{color:"#7C3AED"}}>Node.js, Redis, and MySQL</strong>, and AI-powered applications using <strong style={{color:"#7C3AED"}}>LangChain, FAISS, and Groq</strong>. Ranked in the <strong style={{color:"#7C3AED"}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved — I combine strong algorithmic thinking with real-world engineering to ship fast, scalable, production-ready systems. Actively seeking internship and full-time opportunities in backend, AI/ML, or full-stack engineering.
+                Passionate <strong style={{color:C.ink}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at Manipal University Jaipur, maintaining a <strong style={{color:"#2563EB"}}>9.05 CGPA</strong> with the Dean's Excellence Award. I build high-performance distributed systems with <strong style={{color:"#2563EB"}}>Node.js, Redis, and MySQL</strong>, and AI-powered applications using <strong style={{color:"#2563EB"}}>LangChain, FAISS, and Groq</strong>. Ranked in the <strong style={{color:"#2563EB"}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved — I combine strong algorithmic thinking with real-world engineering to ship fast, scalable, production-ready systems. Actively seeking internship and full-time opportunities in backend, AI/ML, or full-stack engineering.
               </p>
               <div style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginTop:"1.2rem" }}>
                 {["Backend Engineering","AI / ML","System Design","Open to Internships","Available 2026"].map(t => (
-                  <span key={t} style={{ padding:"0.28rem 0.8rem", background:C.vPale, border:"1px solid rgba(124,58,237,0.15)", borderRadius:100, fontSize:"0.7rem", color:"#7C3AED", fontWeight:600 }}>{t}</span>
+                  <span key={t} style={{ padding:"0.28rem 0.8rem", background:C.vPale, border:"1px solid rgba(124,58,237,0.15)", borderRadius:100, fontSize:"0.7rem", color:"#2563EB", fontWeight:600 }}>{t}</span>
                 ))}
               </div>
             </div>
@@ -1851,25 +1851,22 @@ const PROJECTS = [
   { num:"04", name:"RAG Bot Website", tagline:"React showcase for the Discord RAG bot with interactive demos", category:"Frontend",
     highlights:["Scroll-triggered animations via IntersectionObserver","Interactive feature tabs — PDF / web scraping / Q&A modes","Zero CSS framework · pure React inline styling architecture","Vite + React · modular component structure"],
     tech:["React","Vite","JavaScript","CSS","Lucide Icons"] },
-  { num:"05", name:"Gamezo — Discord Economy Bot", tagline:"180+ user multi-game bot · gambling games · stock market · live leaderboards", category:"Backend",
-    highlights:["15+ commands: coin flip, airplane crash, rock-paper-scissors, rollover games","Real-time stock trading engine with live price updates via APIs","Dual-currency economy: coins + portfolio-based wealth tracking","Leaderboard system with ranking persistence in SQLite database"],
-    tech:["Python","Discord.py","SQLite","Economy System","Game Mechanics","Async/Await"] },
-  { num:"06", name:"Cricket Score Predictor", tagline:"Live IPL · T20 · ODI score prediction via XGBoost models", category:"AI/ML",
+  { num:"05", name:"Cricket Score Predictor", tagline:"Live IPL · T20 · ODI score prediction via XGBoost models", category:"AI/ML",
     highlights:["3 pre-trained XGBoost models for IPL, T20, and ODI formats","CricAPI integration for live match data","Streamlit UI with team + overs input for instant predictions","Format-specific feature engineering pipelines"],
     tech:["Python","Streamlit","XGBoost","Scikit-learn","Pandas","CricAPI","Pickle"] },
-  { num:"07", name:"IPL Win Predictor", tagline:"Real-time IPL win probability via ML on historical data", category:"AI/ML",
+  { num:"06", name:"IPL Win Predictor", tagline:"Real-time IPL win probability via ML on historical data", category:"AI/ML",
     highlights:["Logistic Regression / Random Forest on seasons of IPL records","Dynamic win % via CRR, RRR, wickets, overs remaining","Feature engineering on 4500+ raw CSV match rows","Streamlit web app for in-match probability visualization"],
     tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Matplotlib"] },
-  { num:"08", name:"Book Recommender System", tagline:"Dual-mode engine — popularity-based & collaborative filtering", category:"AI/ML",
+  { num:"07", name:"Book Recommender System", tagline:"Dual-mode engine — popularity-based & collaborative filtering", category:"AI/ML",
     highlights:["Popularity: top 50 books filtered by 250+ ratings + avg score","Collaborative filtering with cosine similarity on pivot matrix","Filters to users with 200+ ratings for higher signal quality","Streamlit UI with covers, authors, top-N recommendations"],
     tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Cosine Similarity"] },
-  { num:"09", name:"WhatsApp Chat Analyser", tagline:"Upload any export · visualize conversation trends instantly", category:"AI/ML",
+  { num:"08", name:"WhatsApp Chat Analyser", tagline:"Upload any export · visualize conversation trends instantly", category:"AI/ML",
     highlights:["Timeline analysis · daily, weekly, monthly message frequency","Top emoji breakdown with pie chart visualizations","Most active user leaderboard for group chats","WordCloud + Matplotlib interactive charts"],
     tech:["Python","Streamlit","Pandas","Matplotlib","WordCloud","Regex","Emoji"] },
-  { num:"10", name:"Cuntrex — 2D Shooter Game", tagline:"Two-player 2D shooter built from scratch with Pygame", category:"Game",
+  { num:"09", name:"Cuntrex — 2D Shooter Game", tagline:"Two-player 2D shooter built from scratch with Pygame", category:"Game",
     highlights:["Full game loop · frame control · event handling · collision detection","Health bar system with real-time ratio-based rendering","Menu / play / retry screens with image-based hit detection","Background music + jump SFX via Pygame mixer"],
     tech:["Python","Pygame","OOP","Game Loop","Sprite Animation"] },
-  { num:"11", name:"SalesForce UI Clone", tagline:"Pixel-accurate frontend clone of the Salesforce homepage", category:"Frontend",
+  { num:"10", name:"SalesForce UI Clone", tagline:"Pixel-accurate frontend clone of the Salesforce homepage", category:"Frontend",
     highlights:["Full layout: nav, hero, content strips — no frameworks","CSS-only responsive grid and flexbox layout","Faithfully replicated brand typography and spacing","A focused exercise in CSS precision and layout mastery"],
     tech:["HTML","CSS","Flexbox","Responsive Design"] },
 ];
@@ -1932,7 +1929,7 @@ function Projects() {
         <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
           Things I've <span className="grad">built</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"2rem", lineHeight:1.8 }}>11 projects spanning backends · ML models · AI bots · games · Discord bots · frontend clones</p>
+        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"2rem", lineHeight:1.8 }}>10 projects spanning backends · ML models · AI bots · games · frontend clones</p>
         <ProjectStatsBar />
         <div className="rv d3" style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginBottom:"2.5rem" }}>
           {CATEGORIES.map(cat => (
@@ -2074,8 +2071,8 @@ function Skills() {
             <SkillRadar />
             <div>
               {[
-                { label:"Backend",  val:90, col:"#7C3AED" },
-                { label:"DSA / CP", val:92, col:"#E879F9" },
+                { label:"Backend",  val:90, col:"#2563EB" },
+                { label:"DSA / CP", val:92, col:"#0EA5E9" },
                 { label:"AI / ML",  val:80, col:"#0EA5E9" },
                 { label:"Databases",val:85, col:"#10B981" },
                 { label:"DevOps",   val:75, col:"#F59E0B" },
@@ -2168,7 +2165,7 @@ const BLOGS = [
     tags: ["Node.js", "Redis", "BullMQ", "System Design"],
     date: "Jan 2025",
     readTime: "8 min read",
-    col: "#7C3AED",
+    col: "#2563EB",
     href: "#",
   },
   {
@@ -2237,14 +2234,14 @@ function Blog() {
 
 /* ─────────────── TIMELINE ─────────────── */
 const TIMELINE_EVENTS = [
-  { year:"2023", month:"Aug", icon:"🎓", title:"Started B.Tech CSE", sub:"Manipal University Jaipur", desc:"Began Computer Science degree. Immediately dove into DSA and competitive programming.", col:"#7C3AED" },
-  { year:"2023", month:"Dec", icon:"🏆", title:"TLE Eliminators — CP Level 1", sub:"Competitive Programming", desc:"Completed Level 1 of TLE Eliminators' competitive programming course. Foundation in C++ and algorithmic thinking.", col:"#E879F9" },
+  { year:"2023", month:"Aug", icon:"🎓", title:"Started B.Tech CSE", sub:"Manipal University Jaipur", desc:"Began Computer Science degree. Immediately dove into DSA and competitive programming.", col:"#2563EB" },
+  { year:"2023", month:"Dec", icon:"🏆", title:"TLE Eliminators — CP Level 1", sub:"Competitive Programming", desc:"Completed Level 1 of TLE Eliminators' competitive programming course. Foundation in C++ and algorithmic thinking.", col:"#0EA5E9" },
   { year:"2024", month:"Mar", icon:"⭐", title:"Dean's Excellence Award — Sem 1", sub:"9.05 CGPA", desc:"Awarded Dean's Excellence for outstanding academic performance in the first semester.", col:"#F59E0B" },
   { year:"2024", month:"Jun", icon:"📜", title:"Oracle DB & GeeksforGeeks OOP", sub:"Certifications", desc:"Completed Oracle Database Design & Foundations and OOP in Java from GeeksforGeeks.", col:"#0EA5E9" },
   { year:"2024", month:"Aug", icon:"🔥", title:"500+ DSA Problems Solved", sub:"LeetCode · Codeforces", desc:"Hit the 500 problem milestone. Moved into medium-hard difficulty consistently.", col:"#10B981" },
-  { year:"2024", month:"Nov", icon:"🥋", title:"TLE Eliminators — CP Level 2 & 3", sub:"Advanced Algorithms", desc:"Completed Levels 2 & 3 covering advanced graph theory, segment trees, and DP optimizations.", col:"#7C3AED" },
+  { year:"2024", month:"Nov", icon:"🥋", title:"TLE Eliminators — CP Level 2 & 3", sub:"Advanced Algorithms", desc:"Completed Levels 2 & 3 covering advanced graph theory, segment trees, and DP optimizations.", col:"#2563EB" },
   { year:"2025", month:"Jan", icon:"🎩", title:"Red Hat Sysadmin I & II + NPTEL DAA", sub:"Dual Certifications", desc:"Earned Red Hat System Administration I & II and NPTEL's Design and Analysis of Algorithms certificate.", col:"#C53030" },
-  { year:"2025", month:"Feb", icon:"🚀", title:"MUJHackX Round 2 Qualifier", sub:"1300+ participants", desc:"Qualified for Round 2 at MUJHackX, competing among 1300+ participants from across the university.", col:"#E879F9" },
+  { year:"2025", month:"Feb", icon:"🚀", title:"MUJHackX Round 2 Qualifier", sub:"1300+ participants", desc:"Qualified for Round 2 at MUJHackX, competing among 1300+ participants from across the university.", col:"#0EA5E9" },
   { year:"2025", month:"Mar", icon:"⚡", title:"LeetCode Top 0.3% Globally", sub:"Beats 99.7%", desc:"Surpassed 900+ problems. Ranked in the top 0.3% of all LeetCode users worldwide.", col:"#FFA116" },
   { year:"2025", month:"Jun", icon:"💼", title:"Web Dev Intern — Indavis Lifesciences", sub:"Haridwar · On-site", desc:"First professional internship. Maintained and updated the company website under real business constraints.", col:"#0EA5E9" },
 ];
@@ -2556,7 +2553,7 @@ function Footer() {
           <div style={{ fontSize:"0.7rem", fontWeight:700, color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"2px", fontFamily:"'JetBrains Mono',monospace", marginBottom:"1rem" }}>Navigate</div>
           {["About","Experience","Projects","Skills","Blog","Timeline","Contact"].map(s => (
             <a key={s} href={`#${s.toLowerCase()}`} style={{ display:"block", fontSize:"0.82rem", color:"rgba(255,255,255,0.45)", textDecoration:"none", marginBottom:"0.55rem", transition:"color 0.2s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#A78BFA"}
+              onMouseEnter={e=>e.currentTarget.style.color="#60A5FA"}
               onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,0.45)"}
             >{s}</a>
           ))}
