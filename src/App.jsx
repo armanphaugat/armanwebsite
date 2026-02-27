@@ -35,13 +35,85 @@ const G = `
     --muted:  #64748B;
   }
   [data-theme="dark"] {
-    --bg:     #060C1A;
-    --bg2:    #0A1628;
-    --paper:  #0F1E3A;
-    --ink:    #F0F6FF;
-    --inkMid: #BFDBFE;
-    --vPale:  #0F2350;
-    --muted:  #64748B;
+    --bg:      #0d0d0d;
+    --bg2:     #141414;
+    --paper:   #1c1c1c;
+    --ink:     #f0f0f0;
+    --inkMid:  #a0a0a0;
+    --vPale:   #1e2a3a;
+    --muted:   #7a7a7a;
+  }
+
+  /* ── Dark mode comprehensive overrides ── */
+  [data-theme="dark"] body { background: #0d0d0d; color: #f0f0f0; }
+  [data-theme="dark"] ::-webkit-scrollbar-thumb { background: linear-gradient(#3b82f6,#60a5fa); }
+
+  /* Progress sidebar */
+  [data-theme="dark"] .progress-dot { background:rgba(59,130,246,0.15); border-color:rgba(59,130,246,0.3); }
+  [data-theme="dark"] .progress-dot.active { background:#3b82f6; border-color:#3b82f6; box-shadow:0 0 8px rgba(59,130,246,0.6); }
+  [data-theme="dark"] .progress-dot:hover:not(.active) { background:rgba(59,130,246,0.4); }
+
+  /* Scroll bar */
+  [data-theme="dark"] .scroll-bar { background:linear-gradient(90deg,#3b82f6,#60a5fa,#93c5fd); }
+
+  /* Back to top */
+  [data-theme="dark"] .btt-btn { background:linear-gradient(135deg,#3b82f6,#60a5fa); box-shadow:0 4px 20px rgba(59,130,246,0.4); }
+  [data-theme="dark"] .btt-btn:hover { box-shadow:0 8px 28px rgba(59,130,246,0.6); }
+
+  /* Chips */
+  [data-theme="dark"] .chip { background:#1e2a3a; color:#93c5fd; border-color:rgba(59,130,246,0.25); }
+  [data-theme="dark"] .chip:hover { background:#3b82f6; color:#fff; }
+
+  /* Nav underline */
+  [data-theme="dark"] .nav-link::after { background:#60a5fa; }
+
+  /* Toast */
+  [data-theme="dark"] .toast { background:#1c1c1c; border-color:rgba(59,130,246,0.25); border-left-color:#3b82f6; color:#f0f0f0; box-shadow:0 4px 24px rgba(0,0,0,0.5); }
+
+  /* Keyboard hint */
+  [data-theme="dark"] .kbd-hint { background:#1c1c1c; border-color:rgba(59,130,246,0.2); color:#7a7a7a; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
+  [data-theme="dark"] .kbd-key { background:#1e2a3a; color:#93c5fd; border-color:rgba(59,130,246,0.25); }
+
+  /* Status available */
+  [data-theme="dark"] .status-available { background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); }
+
+  /* Mobile menu */
+  [data-theme="dark"] .mob-menu { background:#0d0d0d; }
+  [data-theme="dark"] .mob-menu a { color:#f0f0f0; }
+  [data-theme="dark"] .mob-menu a:hover { color:#60a5fa; }
+
+  /* Gradient text - works in both modes */
+  [data-theme="dark"] .grad { background: linear-gradient(135deg,#60a5fa,#93c5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+  /* Spotlight glow - subtle in dark */
+  [data-theme="dark"] .spotlight { background:radial-gradient(circle,rgba(59,130,246,0.06) 0%,transparent 65%); }
+
+  /* Section transitions */
+  [data-theme="dark"] .sec-transition { opacity:0; }
+  [data-theme="dark"] .sec-transition.visible { opacity:1; }
+
+  /* ── CSS vars extended ── */
+  :root {
+    --card-hover: #0F172A;
+    --filter-active-bg: #0F172A;
+    --filter-active-color: #ffffff;
+    --section-divider: rgba(37,99,235,0.1);
+  }
+  [data-theme="dark"] {
+    --card-hover: #252525;
+    --filter-active-bg: #3b82f6;
+    --filter-active-color: #ffffff;
+    --section-divider: rgba(59,130,246,0.15);
+  }
+
+  /* Dark mode: fix any remaining contrast issues */
+  [data-theme="dark"] nav { background: transparent; }
+  [data-theme="dark"] select,
+  [data-theme="dark"] input,
+  [data-theme="dark"] textarea {
+    background: #1c1c1c;
+    color: #f0f0f0;
+    border-color: rgba(255,255,255,0.15);
   }
 
   @keyframes darkToggle    { from{transform:rotate(-30deg) scale(0.7);opacity:0} to{transform:rotate(0deg) scale(1);opacity:1} }
@@ -997,8 +1069,8 @@ function Nav({ dark, setDark }) {
           {/* Dark mode toggle */}
           <button onClick={() => setDark(d => !d)} title={dark ? "Switch to light mode" : "Switch to dark mode"} style={{
             width:34, height:34, borderRadius:6,
-            background: dark ? "rgba(167,139,250,0.15)" : "rgba(37,99,235,0.08)",
-            border: `1.5px solid ${dark ? "rgba(167,139,250,0.3)" : "rgba(37,99,235,0.2)"}`,
+            background: dark ? "rgba(255,255,255,0.1)" : "rgba(37,99,235,0.08)",
+            border: `1.5px solid ${dark ? "rgba(255,255,255,0.25)" : "rgba(37,99,235,0.2)"}`,
             cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
             transition:"background 0.2s, border-color 0.2s, transform 0.2s", flexShrink:0,
           }}
@@ -1343,12 +1415,12 @@ function Hero() {
             onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(37,99,235,0.25)";e.currentTarget.style.background="transparent";e.currentTarget.style.transform="";}}
           >Let's Talk</a>
           <a href="https://github.com/armanphaugat" target="_blank" rel="noreferrer" style={{
-            padding:"0.95rem 1.6rem", background:C.ink, color:"#fff", borderRadius:8,
+            padding:"0.95rem 1.6rem", background:"#1e293b", color:"#fff", borderRadius:8,
             textDecoration:"none", fontSize:"0.88rem", fontWeight:700,
             transition:"background 0.2s, transform 0.2s", display:"flex", alignItems:"center", gap:"0.5rem",
           }}
             onMouseEnter={e=>{e.currentTarget.style.background=C.vDeep;e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background=C.ink;e.currentTarget.style.transform="";}}
+            onMouseLeave={e=>{e.currentTarget.style.background="#1e293b";e.currentTarget.style.transform="";}}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
             GitHub
@@ -1414,7 +1486,7 @@ function Marquee() {
   const items = ["Node.js","Redis","MySQL","BullMQ","Python","FastAPI","LangChain","FAISS","MongoDB","Docker","XGBoost","Streamlit","Pygame","React","Scikit-learn","RAG","HuggingFace","JWT","Pandas","Groq","System Design","ACID Transactions"];
   const doubled = [...items, ...items];
   return (
-    <div style={{ background:C.ink, padding:"1rem 0", overflow:"hidden", borderTop:`1px solid rgba(37,99,235,0.3)`, borderBottom:`1px solid rgba(37,99,235,0.3)` }}>
+    <div style={{ background:"#0F172A", padding:"1rem 0", overflow:"hidden", borderTop:`1px solid rgba(37,99,235,0.3)`, borderBottom:`1px solid rgba(37,99,235,0.3)` }}>
       <div style={{ display:"flex", animation:"marquee 30s linear infinite", width:"max-content" }}>
         {doubled.map((item,i) => (
           <span key={i} className="mono" style={{ color:C.vLight, fontSize:"0.72rem", letterSpacing:"2px", textTransform:"uppercase", padding:"0 2rem", display:"flex", alignItems:"center", gap:"2rem" }}>
@@ -1511,7 +1583,7 @@ function Experience() {
         >
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:"1rem", marginBottom:"1.5rem" }}>
             <div style={{ display:"flex", gap:"1.2rem", alignItems:"center" }}>
-              <div style={{ width:52, height:52, borderRadius:14, background:C.ink, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.5rem", flexShrink:0 }}>🏥</div>
+              <div style={{ width:52, height:52, borderRadius:14, background:"#1e293b", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.5rem", flexShrink:0 }}>🏥</div>
               <div>
                 <div style={{ fontSize:"1.1rem", fontWeight:800, color:C.ink }}>Web Development Intern</div>
                 <div style={{ fontSize:"0.9rem", color:C.v, fontWeight:600 }}>Indavis Lifesciences, Haridwar</div>
@@ -1869,7 +1941,7 @@ function Resume() {
         </div>
 
         {/* Bottom download CTA bar */}
-        <div className="rv d4" style={{ marginTop:"2.5rem", background:C.ink, borderRadius:16, padding:"2rem 2.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1.5rem" }}>
+        <div className="rv d4" style={{ marginTop:"2.5rem", background:"var(--card-hover)", borderRadius:16, padding:"2rem 2.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1.5rem" }}>
           <div>
             <div className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.4)", letterSpacing:"2px", textTransform:"uppercase", marginBottom:"0.4rem" }}>Ready to hire?</div>
             <div style={{ fontSize:"1.1rem", fontWeight:800, color:"#fff" }}>Download the full PDF resume</div>
@@ -1961,7 +2033,7 @@ function ProjectCard({ p }) {
   const cc = CAT_COLORS[p.category] || C.v;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{
-      background: hov ? C.ink : C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16,
+      background: hov ? "var(--card-hover)" : C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16,
       padding:"1.9rem", transition:"background 0.35s, transform 0.25s, box-shadow 0.25s",
       transform: hov ? "translateY(-8px)" : "translateY(0)",
       boxShadow: hov ? "0 24px 64px rgba(22,13,40,0.22)" : "0 2px 20px rgba(37,99,235,0.05)",
@@ -2018,8 +2090,8 @@ function Projects() {
             <button key={cat} onClick={()=>setActive(cat)} style={{
               padding:"0.45rem 1.2rem", borderRadius:100, cursor:"pointer",
               border: active === cat ? "none" : `1px solid rgba(37,99,235,0.18)`,
-              background: active === cat ? C.ink : "transparent",
-              color: active === cat ? "#fff" : C.muted,
+              background: active === cat ? "var(--filter-active-bg)" : "transparent",
+              color: active === cat ? "var(--filter-active-color)" : C.muted,
               fontSize:"0.78rem", fontWeight:600, fontFamily:"'Syne',sans-serif", transition:"all 0.2s",
             }}>
               {cat} <span style={{opacity:.6, fontSize:"0.68rem"}}>({cat==="All" ? PROJECTS.length : PROJECTS.filter(p=>p.category===cat).length})</span>
@@ -2331,7 +2403,7 @@ function Achievements() {
         </div>
 
         {/* LeetCode stat card */}
-        <div className="rv d5" style={{ marginTop:"2rem", background:C.ink, borderRadius:18, padding:"2.5rem", display:"flex", alignItems:"center", gap:"3rem", flexWrap:"wrap" }}>
+        <div className="rv d5" style={{ marginTop:"2rem", background:"#0F172A", borderRadius:18, padding:"2.5rem", display:"flex", alignItems:"center", gap:"3rem", flexWrap:"wrap" }}>
           <div>
             <div className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.4)", letterSpacing:"2px", textTransform:"uppercase", marginBottom:"0.6rem" }}>LeetCode Stats</div>
             <div className="serif" style={{ fontSize:"3.5rem", fontWeight:400, color:"#fff", letterSpacing:"-2px", fontStyle:"italic" }}>Top <span style={{color:C.vLight}}>0.3%</span></div>
