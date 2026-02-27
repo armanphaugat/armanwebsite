@@ -133,6 +133,29 @@ const G = `
   @keyframes kbdIn         { from{opacity:0;transform:translateY(8px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
   @keyframes factSlide     { 0%{opacity:0;transform:translateY(10px)} 15%,85%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-10px)} }
 
+  /* ── Page Loader ── */
+  @keyframes loaderFadeOut { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.04)} }
+  @keyframes loaderBarFill { 0%{width:0%} 100%{width:100%} }
+  @keyframes loaderGlitch  {
+    0%,100%{clip-path:inset(0 0 100% 0);transform:translateX(0)}
+    10%{clip-path:inset(10% 0 60% 0);transform:translateX(-4px)}
+    20%{clip-path:inset(40% 0 30% 0);transform:translateX(4px)}
+    30%{clip-path:inset(60% 0 10% 0);transform:translateX(-2px)}
+    40%{clip-path:inset(0 0 0 0);transform:translateX(0)}
+  }
+  @keyframes loaderScan {
+    0%{top:-100%} 100%{top:200%}
+  }
+  @keyframes loaderDotPulse {
+    0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)}
+  }
+  @keyframes loaderCountUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes terminalSlideIn { from{opacity:0;transform:translateY(32px) scale(0.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+  @keyframes terminalSlideOut { from{opacity:1;transform:translateY(0) scale(1)} to{opacity:0;transform:translateY(32px) scale(0.96)} }
+  @keyframes termCursor { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes termTyping { from{width:0} to{width:100%} }
+  @keyframes termLineIn { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
+
   .sec-transition { opacity:0; transform:translateY(28px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
   .sec-transition.visible { opacity:1; transform:translateY(0); }
 
@@ -323,6 +346,488 @@ const G = `
   }
 `;
 
+/* ─────────────── PAGE LOADER ─────────────── */
+function PageLoader({ onDone }) {
+  const [progress, setProgress] = useState(0);
+  const [phase, setPhase]       = useState(0); // 0=booting 1=loading 2=done
+  const [lines, setLines]       = useState([]);
+  const [exit, setExit]         = useState(false);
+
+  const BOOT_LINES = [
+    { text: "initializing portfolio.dev...",        delay: 0   },
+    { text: "loading design tokens ✓",              delay: 320 },
+    { text: "mounting react components ✓",          delay: 560 },
+    { text: "injecting personality ✓",              delay: 820 },
+    { text: "compiling 900+ DSA problems ✓",        delay: 1050},
+    { text: "connecting to arman.brain ✓",          delay: 1250},
+    { text: "ready.",                               delay: 1480},
+  ];
+
+  useEffect(() => {
+    // Print boot lines one-by-one
+    BOOT_LINES.forEach(({ text, delay }) => {
+      setTimeout(() => {
+        setLines(p => [...p, text]);
+      }, delay + 200);
+    });
+
+    // Progress bar: fill over ~2.4s
+    const start = performance.now();
+    const duration = 2400;
+    const tick = () => {
+      const elapsed = performance.now() - start;
+      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+      setProgress(pct);
+      if (pct < 100) requestAnimationFrame(tick);
+      else {
+        setPhase(1);
+        setTimeout(() => {
+          setExit(true);
+          setTimeout(onDone, 520);
+        }, 400);
+      }
+    };
+    requestAnimationFrame(tick);
+  }, []);
+
+  return (
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 99999,
+      background: "#060C1A",
+      display: "flex", flexDirection: "column",
+      alignItems: "center", justifyContent: "center",
+      overflow: "hidden",
+      animation: exit ? "loaderFadeOut 0.52s cubic-bezier(0.4,0,1,1) both" : "none",
+    }}>
+      {/* Scanline */}
+      <div style={{
+        position: "absolute", left: 0, right: 0, height: "2px",
+        background: "linear-gradient(90deg,transparent,rgba(37,99,235,0.5),transparent)",
+        animation: "loaderScan 2s linear infinite",
+        pointerEvents: "none",
+      }}/>
+
+      {/* Grid overlay */}
+      <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.04, pointerEvents:"none" }}>
+        {Array.from({length:16}).map((_,i)=>(
+          <line key={`v${i}`} x1={`${(i+1)*6.25}%`} y1="0" x2={`${(i+1)*6.25}%`} y2="100%" stroke="#2563EB" strokeWidth="1"/>
+        ))}
+        {Array.from({length:10}).map((_,i)=>(
+          <line key={`h${i}`} x1="0" y1={`${(i+1)*10}%`} x2="100%" y2={`${(i+1)*10}%`} stroke="#2563EB" strokeWidth="1"/>
+        ))}
+      </svg>
+
+      {/* Glow orb */}
+      <div style={{
+        position:"absolute", width:500, height:500, borderRadius:"50%",
+        background:"radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%)",
+        pointerEvents:"none",
+      }}/>
+
+      {/* Main content */}
+      <div style={{ position:"relative", zIndex:1, width:"min(520px,90vw)" }}>
+
+        {/* Logo */}
+        <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"2.5rem" }}>
+          <div style={{
+            width:48, height:48, borderRadius:12,
+            background:"linear-gradient(135deg,#2563EB,#38BDF8)",
+            display:"flex", alignItems:"center", justifyContent:"center",
+            boxShadow:"0 0 32px rgba(37,99,235,0.4)",
+          }}>
+            <span style={{ color:"#fff", fontSize:"1rem", fontWeight:800, fontFamily:"'Syne',sans-serif" }}>AP</span>
+          </div>
+          <div>
+            <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.1rem", fontWeight:800, color:"#fff", letterSpacing:"-0.3px" }}>
+              Arman Phaugat
+            </div>
+            <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.65rem", color:"#2563EB", letterSpacing:"2px", textTransform:"uppercase" }}>
+              portfolio.dev
+            </div>
+          </div>
+        </div>
+
+        {/* Terminal boot lines */}
+        <div style={{
+          background:"rgba(255,255,255,0.03)", border:"1px solid rgba(37,99,235,0.18)",
+          borderRadius:10, padding:"1.2rem 1.4rem", marginBottom:"2rem",
+          minHeight:140,
+          fontFamily:"'JetBrains Mono',monospace",
+        }}>
+          {/* Terminal header dots */}
+          <div style={{ display:"flex", gap:"0.4rem", marginBottom:"0.9rem" }}>
+            {["#EF4444","#F59E0B","#10B981"].map(c=>(
+              <div key={c} style={{ width:10, height:10, borderRadius:"50%", background:c, opacity:0.7 }}/>
+            ))}
+          </div>
+          {lines.map((line, i) => (
+            <div key={i} style={{
+              fontSize:"0.72rem", color: i === lines.length - 1 ? "#10B981" : "rgba(255,255,255,0.55)",
+              marginBottom:"0.28rem", lineHeight:1.5,
+              animation:"termLineIn 0.25s ease both",
+            }}>
+              <span style={{ color:"#2563EB", marginRight:"0.6rem" }}>›</span>
+              {line}
+            </div>
+          ))}
+          {/* Blinking cursor on last line */}
+          {lines.length < BOOT_LINES.length && (
+            <span style={{
+              display:"inline-block", width:"7px", height:"13px",
+              background:"#2563EB", verticalAlign:"middle",
+              animation:"termCursor 0.8s step-end infinite",
+            }}/>
+          )}
+        </div>
+
+        {/* Progress bar */}
+        <div>
+          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"0.5rem" }}>
+            <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.62rem", color:"rgba(255,255,255,0.3)", letterSpacing:"2px", textTransform:"uppercase" }}>
+              {phase === 0 ? "loading assets" : "launching ✓"}
+            </span>
+            <span style={{
+              fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem",
+              fontWeight:700, color:"#2563EB",
+              animation:"loaderCountUp 0.2s ease both",
+            }}>{progress}%</span>
+          </div>
+          <div style={{ height:3, background:"rgba(255,255,255,0.06)", borderRadius:2, overflow:"hidden" }}>
+            <div style={{
+              height:"100%", borderRadius:2,
+              background:"linear-gradient(90deg,#2563EB,#38BDF8,#93C5FD)",
+              width:`${progress}%`,
+              transition:"width 0.08s linear",
+              boxShadow:"0 0 8px rgba(37,99,235,0.6)",
+            }}/>
+          </div>
+          {/* Dots indicator */}
+          <div style={{ display:"flex", gap:"0.4rem", marginTop:"1.2rem", justifyContent:"center" }}>
+            {[0,1,2].map(i=>(
+              <div key={i} style={{
+                width:5, height:5, borderRadius:"50%", background:"#2563EB",
+                animation:`loaderDotPulse 1.2s ease-in-out ${i*0.2}s infinite`,
+              }}/>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────── TERMINAL EASTER EGG ─────────────── */
+const TERM_COMMANDS = {
+  help: {
+    output: [
+      { text:"Available commands:", col:"#93C5FD" },
+      { text:"  whoami         — who is this guy?",     col:"rgba(255,255,255,0.7)" },
+      { text:"  skills         — tech stack overview",   col:"rgba(255,255,255,0.7)" },
+      { text:"  projects       — list all projects",     col:"rgba(255,255,255,0.7)" },
+      { text:"  contact        — get in touch",          col:"rgba(255,255,255,0.7)" },
+      { text:"  leetcode       — CP stats",              col:"rgba(255,255,255,0.7)" },
+      { text:"  hire           — why you should hire me",col:"rgba(255,255,255,0.7)" },
+      { text:"  socials        — all my links",          col:"rgba(255,255,255,0.7)" },
+      { text:"  clear          — clear terminal",        col:"rgba(255,255,255,0.7)" },
+      { text:"  exit           — close terminal",        col:"rgba(255,255,255,0.7)" },
+    ]
+  },
+  whoami: {
+    output: [
+      { text:"Arman Phaugat", col:"#38BDF8", bold:true },
+      { text:"3rd Year B.Tech CSE · Manipal University Jaipur", col:"rgba(255,255,255,0.7)" },
+      { text:"CGPA: 9.05 · Dean's Excellence Award", col:"#10B981" },
+      { text:"Backend Engineer · AI/ML Builder · Competitive Programmer", col:"rgba(255,255,255,0.7)" },
+      { text:"Location: Jaipur, Rajasthan, India 🇮🇳", col:"rgba(255,255,255,0.5)" },
+    ]
+  },
+  skills: {
+    output: [
+      { text:"── Core Stack ──────────────────────", col:"#2563EB" },
+      { text:"  Languages  : Python · JS · C · C++ · Java", col:"rgba(255,255,255,0.7)" },
+      { text:"  Backend    : Node.js · Express · FastAPI", col:"rgba(255,255,255,0.7)" },
+      { text:"  Databases  : MySQL · MongoDB · Redis · FAISS", col:"rgba(255,255,255,0.7)" },
+      { text:"  AI / ML    : LangChain · HuggingFace · RAG · XGBoost", col:"rgba(255,255,255,0.7)" },
+      { text:"  DevOps     : Docker · Git · BullMQ", col:"rgba(255,255,255,0.7)" },
+      { text:"  Concepts   : System Design · ACID · DSA · Auth", col:"rgba(255,255,255,0.7)" },
+    ]
+  },
+  projects: {
+    output: [
+      { text:"── Projects (10 total) ─────────────", col:"#2563EB" },
+      { text:"  01  Real Time Stock Trading Backend  [Backend]", col:"rgba(255,255,255,0.7)" },
+      { text:"  02  Video Streaming & User Mgmt      [Backend]", col:"rgba(255,255,255,0.7)" },
+      { text:"  03  RAG Discord Bot                  [AI/ML]",   col:"rgba(255,255,255,0.7)" },
+      { text:"  04  RAG Bot Website                  [Frontend]",col:"rgba(255,255,255,0.7)" },
+      { text:"  05  Cricket Score Predictor          [AI/ML]",   col:"rgba(255,255,255,0.7)" },
+      { text:"  06  IPL Win Predictor                [AI/ML]",   col:"rgba(255,255,255,0.7)" },
+      { text:"  07  Book Recommender System          [AI/ML]",   col:"rgba(255,255,255,0.7)" },
+      { text:"  08  WhatsApp Chat Analyser           [AI/ML]",   col:"rgba(255,255,255,0.7)" },
+      { text:"  09  Cuntrex 2D Shooter Game          [Game]",    col:"rgba(255,255,255,0.7)" },
+      { text:"  10  SalesForce UI Clone              [Frontend]",col:"rgba(255,255,255,0.7)" },
+      { text:"→ Scroll to #projects to explore", col:"#10B981" },
+    ]
+  },
+  contact: {
+    output: [
+      { text:"── Contact ─────────────────────────", col:"#2563EB" },
+      { text:"  Email    : armanphaugat20@gmail.com", col:"rgba(255,255,255,0.7)" },
+      { text:"  Phone    : +91-9306115772",            col:"rgba(255,255,255,0.7)" },
+      { text:"  LinkedIn : linkedin.com/in/armanphaugat05", col:"#38BDF8" },
+      { text:"  GitHub   : github.com/armanphaugat",   col:"#38BDF8" },
+      { text:"  LeetCode : leetcode.com/u/armanphaugat20", col:"#FFA116" },
+    ]
+  },
+  leetcode: {
+    output: [
+      { text:"── LeetCode Stats ──────────────────", col:"#FFA116" },
+      { text:"  Handle   : armanphaugat20",             col:"rgba(255,255,255,0.7)" },
+      { text:"  Problems : 900+",                       col:"rgba(255,255,255,0.7)" },
+      { text:"  Rank     : Top 0.3% globally",          col:"#10B981", bold:true },
+      { text:"  Streak   : 120+ days max",              col:"rgba(255,255,255,0.7)" },
+      { text:"  Badges   : 9+",                         col:"rgba(255,255,255,0.7)" },
+      { text:"  Beats 99.7% of all users 🔥",           col:"#FFA116", bold:true },
+    ]
+  },
+  hire: {
+    output: [
+      { text:"── Why hire Arman? ─────────────────", col:"#10B981" },
+      { text:"  ✓  Top 0.3% LeetCode — thinks algorithmically", col:"rgba(255,255,255,0.7)" },
+      { text:"  ✓  Ships real systems (Redis, BullMQ, Docker)", col:"rgba(255,255,255,0.7)" },
+      { text:"  ✓  Builds AI/ML apps from scratch with LangChain", col:"rgba(255,255,255,0.7)" },
+      { text:"  ✓  9.05 CGPA — academically rigorous",           col:"rgba(255,255,255,0.7)" },
+      { text:"  ✓  Internship experience at Indavis Lifesciences",col:"rgba(255,255,255,0.7)" },
+      { text:"  ✓  Fast learner — currently doing Go + K8s",     col:"rgba(255,255,255,0.7)" },
+      { text:"",                                                  col:"" },
+      { text:"  → armanphaugat20@gmail.com", col:"#38BDF8", bold:true },
+    ]
+  },
+  socials: {
+    output: [
+      { text:"── Socials ─────────────────────────", col:"#2563EB" },
+      { text:"  🐙  github.com/armanphaugat",               col:"rgba(255,255,255,0.7)" },
+      { text:"  💼  linkedin.com/in/armanphaugat05",        col:"rgba(255,255,255,0.7)" },
+      { text:"  🧩  leetcode.com/u/armanphaugat20",         col:"#FFA116" },
+      { text:"  ✉️  armanphaugat20@gmail.com",              col:"rgba(255,255,255,0.7)" },
+    ]
+  },
+};
+
+function TerminalEasterEgg({ onClose }) {
+  const [history, setHistory]   = useState([
+    { type:"system", lines:[
+      { text:"Arman's Portfolio Terminal v1.0.0", col:"#38BDF8", bold:true },
+      { text:"Type 'help' to see available commands.", col:"rgba(255,255,255,0.5)" },
+    ]},
+  ]);
+  const [input, setInput]       = useState("");
+  const [cmdHistory, setCmdHistory] = useState([]);
+  const [histIdx, setHistIdx]   = useState(-1);
+  const [visible, setVisible]   = useState(true);
+  const inputRef = useRef(null);
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior:"smooth" });
+  }, [history]);
+
+  const runCommand = (raw) => {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+    setCmdHistory(p => [cmd, ...p]);
+    setHistIdx(-1);
+
+    if (cmd === "clear") {
+      setHistory([]);
+      return;
+    }
+    if (cmd === "exit") {
+      setVisible(false);
+      setTimeout(onClose, 380);
+      return;
+    }
+    if (cmd === "sudo rm -rf /") {
+      setHistory(p => [...p,
+        { type:"cmd", text: raw },
+        { type:"output", lines:[{ text:"Nice try. 😄 Permission denied.", col:"#EF4444" }] },
+      ]);
+      return;
+    }
+
+    const result = TERM_COMMANDS[cmd];
+    if (result) {
+      setHistory(p => [...p,
+        { type:"cmd", text: raw },
+        { type:"output", lines: result.output },
+      ]);
+    } else {
+      setHistory(p => [...p,
+        { type:"cmd", text: raw },
+        { type:"output", lines:[
+          { text:`command not found: ${cmd}`, col:"#EF4444" },
+          { text:"Type 'help' to see available commands.", col:"rgba(255,255,255,0.4)" },
+        ]},
+      ]);
+    }
+  };
+
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      runCommand(input);
+      setInput("");
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const next = Math.min(histIdx + 1, cmdHistory.length - 1);
+      setHistIdx(next);
+      setInput(cmdHistory[next] || "");
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = Math.max(histIdx - 1, -1);
+      setHistIdx(next);
+      setInput(next === -1 ? "" : cmdHistory[next]);
+    } else if (e.key === "Escape") {
+      setVisible(false);
+      setTimeout(onClose, 380);
+    }
+  };
+
+  return (
+    <div
+      onClick={e => { if (e.target === e.currentTarget) { setVisible(false); setTimeout(onClose, 380); }}}
+      style={{
+        position:"fixed", inset:0, zIndex:9990,
+        background:"rgba(0,0,0,0.75)",
+        backdropFilter:"blur(6px)",
+        display:"flex", alignItems:"center", justifyContent:"center",
+        padding:"1rem",
+      }}
+    >
+      <div style={{
+        width:"min(700px,96vw)",
+        maxHeight:"80vh",
+        background:"#0d1117",
+        border:"1px solid rgba(37,99,235,0.3)",
+        borderRadius:14,
+        overflow:"hidden",
+        display:"flex",
+        flexDirection:"column",
+        boxShadow:"0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(37,99,235,0.1)",
+        animation: visible ? "terminalSlideIn 0.35s cubic-bezier(0.16,1,0.3,1) both"
+                           : "terminalSlideOut 0.32s cubic-bezier(0.4,0,1,1) both",
+      }}>
+
+        {/* Title bar */}
+        <div style={{
+          display:"flex", alignItems:"center", justifyContent:"space-between",
+          padding:"0.75rem 1.1rem",
+          background:"rgba(255,255,255,0.04)",
+          borderBottom:"1px solid rgba(255,255,255,0.07)",
+          flexShrink:0,
+        }}>
+          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}>
+            {["#EF4444","#F59E0B","#10B981"].map(c=>(
+              <div key={c} style={{ width:11, height:11, borderRadius:"50%", background:c, opacity:0.85 }}/>
+            ))}
+            <span style={{
+              fontFamily:"'JetBrains Mono',monospace",
+              fontSize:"0.7rem", color:"rgba(255,255,255,0.4)",
+              marginLeft:"0.5rem",
+            }}>arman@portfolio: ~</span>
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}>
+            <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.62rem", color:"rgba(255,255,255,0.2)", letterSpacing:"1px" }}>
+              ESC to close
+            </span>
+            <button
+              onClick={() => { setVisible(false); setTimeout(onClose, 380); }}
+              style={{
+                background:"none", border:"none", cursor:"pointer",
+                color:"rgba(255,255,255,0.3)", fontSize:"1rem", lineHeight:1,
+                padding:"0.1rem 0.3rem", borderRadius:4,
+                transition:"color 0.15s, background 0.15s",
+              }}
+              onMouseEnter={e=>{e.currentTarget.style.color="#EF4444"; e.currentTarget.style.background="rgba(239,68,68,0.12)";}}
+              onMouseLeave={e=>{e.currentTarget.style.color="rgba(255,255,255,0.3)"; e.currentTarget.style.background="none";}}
+            >✕</button>
+          </div>
+        </div>
+
+        {/* Output area */}
+        <div
+          onClick={() => inputRef.current?.focus()}
+          style={{
+            flex:1, overflowY:"auto", padding:"1rem 1.3rem",
+            fontFamily:"'JetBrains Mono',monospace",
+            fontSize:"0.78rem", lineHeight:1.7,
+            cursor:"text",
+          }}
+        >
+          {history.map((entry, ei) => (
+            <div key={ei} style={{ marginBottom:"0.6rem", animation:"termLineIn 0.2s ease both" }}>
+              {entry.type === "cmd" && (
+                <div style={{ display:"flex", gap:"0.5rem", color:"rgba(255,255,255,0.85)" }}>
+                  <span style={{ color:"#10B981", userSelect:"none" }}>arman@portfolio</span>
+                  <span style={{ color:"rgba(255,255,255,0.3)", userSelect:"none" }}>:~$</span>
+                  <span>{entry.text}</span>
+                </div>
+              )}
+              {(entry.type === "output" || entry.type === "system") && (
+                <div style={{ paddingLeft: entry.type === "output" ? "1rem" : 0 }}>
+                  {entry.lines.map((l, li) => (
+                    <div key={li} style={{
+                      color: l.col || "rgba(255,255,255,0.6)",
+                      fontWeight: l.bold ? 700 : 400,
+                      whiteSpace:"pre",
+                    }}>{l.text}</div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+          <div ref={bottomRef}/>
+        </div>
+
+        {/* Input row */}
+        <div style={{
+          display:"flex", alignItems:"center", gap:"0.6rem",
+          padding:"0.75rem 1.3rem",
+          borderTop:"1px solid rgba(255,255,255,0.07)",
+          background:"rgba(255,255,255,0.02)",
+          flexShrink:0,
+        }}>
+          <span style={{ color:"#10B981", fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem", userSelect:"none" }}>arman@portfolio</span>
+          <span style={{ color:"rgba(255,255,255,0.3)", fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem", userSelect:"none" }}>:~$</span>
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            onKeyDown={handleKey}
+            autoComplete="off"
+            spellCheck={false}
+            placeholder="type a command…"
+            style={{
+              flex:1, background:"none", border:"none", outline:"none",
+              fontFamily:"'JetBrains Mono',monospace",
+              fontSize:"0.78rem", color:"rgba(255,255,255,0.88)",
+              caretColor:"#2563EB",
+            }}
+          />
+          {/* blinking caret indicator */}
+          <div style={{
+            width:7, height:14, background:"#2563EB", borderRadius:1,
+            animation:"termCursor 0.9s step-end infinite",
+            flexShrink:0,
+          }}/>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─────────────── TOAST SYSTEM ─────────────── */
 const toastListeners = [];
 function showToast(msg, icon = "✓") {
@@ -475,12 +980,12 @@ function KeyboardShortcuts() {
 
   if (!hint) return (
     <div className="kbd-hint" style={{ opacity:0.6 }}>
-      Press <span className="kbd-key">?</span> for keyboard shortcuts
+      Press <span className="kbd-key">?</span> for shortcuts · <span className="kbd-key">`</span> for terminal
     </div>
   );
   return (
     <div className="kbd-hint" style={{ gap:"1.2rem", opacity:1, borderRadius:14, padding:"0.8rem 1.5rem" }}>
-      {[["G","GitHub"],["L","LeetCode"],["K","LinkedIn"],["R","Resume"],["1-5","Sections"]].map(([k,v]) => (
+      {[["G","GitHub"],["L","LeetCode"],["K","LinkedIn"],["R","Resume"],["1-5","Sections"],["` ","Terminal"]].map(([k,v]) => (
         <span key={k} style={{ display:"flex", alignItems:"center", gap:"0.3rem" }}>
           <span className="kbd-key">{k}</span>
           <span style={{ fontSize:"0.65rem" }}>{v}</span>
@@ -2844,7 +3349,7 @@ function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop:"1px solid rgba(255,255,255,0.05)", padding:"1.2rem 2rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"0.5rem", maxWidth:1060, margin:"0 auto" }}>
         <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>© 2025 Arman Phaugat · All rights reserved</span>
-        <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>Built with React · Press <span style={{color:"rgba(37,99,235,0.7)"}}>?</span> for keyboard shortcuts</span>
+        <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>Built with React · Press <span style={{color:"rgba(37,99,235,0.7)"}}>?</span> for shortcuts · <span style={{color:"rgba(37,99,235,0.7)"}}>` </span>for terminal</span>
       </div>
     </footer>
   );
@@ -2852,15 +3357,44 @@ function Footer() {
 
 /* ─────────────── APP ─────────────── */
 export default function App() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark]           = useState(false);
+  const [loading, setLoading]     = useState(true);
+  const [showTerminal, setShowTerminal] = useState(false);
+
   useReveal();
   useSectionTransitions();
+
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
   }, [dark]);
+
+  // Lock scroll while loader is visible
+  useEffect(() => {
+    document.body.style.overflow = loading ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [loading]);
+
+  // Keyboard shortcut: backtick ` opens terminal
+  useEffect(() => {
+    const fn = (e) => {
+      if (e.key === "`" && !loading) {
+        setShowTerminal(p => !p);
+      }
+    };
+    window.addEventListener("keydown", fn);
+    return () => window.removeEventListener("keydown", fn);
+  }, [loading]);
+
   return (
     <>
       <style>{G}</style>
+
+      {/* ── Page Loader ── */}
+      {loading && <PageLoader onDone={() => setLoading(false)} />}
+
+      {/* ── Terminal Easter Egg ── */}
+      {showTerminal && <TerminalEasterEgg onClose={() => setShowTerminal(false)} />}
+
       {/* Global overlays & utilities */}
       <ScrollProgressBar />
       <SpotlightGlow />
@@ -2872,6 +3406,38 @@ export default function App() {
       <Cursor />
       <SectionProgress />
       <BackToTop />
+
+      {/* Terminal trigger button (bottom-left, visible after load) */}
+      {!loading && (
+        <button
+          onClick={() => setShowTerminal(p => !p)}
+          title="Open terminal (` key)"
+          style={{
+            position:"fixed", bottom:"2rem", left:"2rem",
+            width:44, height:44, borderRadius:12, zIndex:800,
+            background: showTerminal
+              ? "linear-gradient(135deg,#2563EB,#38BDF8)"
+              : "var(--paper)",
+            border: showTerminal
+              ? "none"
+              : "1.5px solid rgba(37,99,235,0.25)",
+            cursor:"pointer",
+            display:"flex", alignItems:"center", justifyContent:"center",
+            boxShadow: showTerminal
+              ? "0 4px 24px rgba(37,99,235,0.45)"
+              : "0 2px 16px rgba(0,0,0,0.08)",
+            transition:"all 0.25s cubic-bezier(0.16,1,0.3,1)",
+          }}
+          onMouseEnter={e => { if (!showTerminal) { e.currentTarget.style.background="linear-gradient(135deg,#2563EB,#38BDF8)"; e.currentTarget.style.border="none"; e.currentTarget.style.boxShadow="0 4px 24px rgba(37,99,235,0.45)"; }}}
+          onMouseLeave={e => { if (!showTerminal) { e.currentTarget.style.background="var(--paper)"; e.currentTarget.style.border="1.5px solid rgba(37,99,235,0.25)"; e.currentTarget.style.boxShadow="0 2px 16px rgba(0,0,0,0.08)"; }}}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke={showTerminal ? "#fff" : "#2563EB"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+        </button>
+      )}
+
       <Nav dark={dark} setDark={setDark} />
       <main>
         <Hero />
