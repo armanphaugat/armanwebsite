@@ -2489,7 +2489,8 @@ const PROJECTS = [
   { num:"01", name:"Real Time Stock Trading Backend", tagline:"High-perf system · live leaderboards · ACID-safe concurrency", category:"Backend",
     complexity:3, complexityNote:"Distributed systems · ACID transactions · Redis concurrency · Docker",
     highlights:["Redis Sorted Sets + pipeline opt → <50ms leaderboard queries","BullMQ price engine · 30-min repeatable jobs · ±25% variation","JWT auth + Token Bucket rate limiter at 5 req/sec/user","MySQL row-level locking for concurrent buy/sell workflows"],
-    tech:["Node.js","Express","MySQL","Redis","BullMQ","JWT","Docker","Argon2"] },
+    tech:["Node.js","Express","MySQL","Redis","BullMQ","JWT","Docker","Argon2"],
+    youtube:"https://www.youtube.com/watch?v=IcetVmIat-w" },
   { num:"02", name:"Video Streaming & User Management", tagline:"YouTube-like backend · HLS adaptive streaming · real-time analytics", category:"Backend",
     complexity:3, complexityNote:"HLS video pipeline · MongoDB aggregation · auth lifecycle management",
     highlights:["HLS transcoding via ffmpeg · 360p/720p on Cloudinary","JWT access + refresh token flow · secure auth lifecycle","MongoDB query opt — ~200ms → ~120ms response time","Aggregation pipelines for watch history & subscriptions"],
@@ -2497,11 +2498,14 @@ const PROJECTS = [
   { num:"03", name:"RAG Discord Bot", tagline:"AI bot ingesting PDFs & web pages · answers via Llama 3.3", category:"AI/ML",
     complexity:3, complexityNote:"LLM pipeline · vector DBs · multi-server isolation · RAG architecture",
     highlights:["LangChain: web scrape · PDF parse · recursive chunking → FAISS","HuggingFace embeddings · per-guild persistent vector stores","LCEL chain feeds context chunks to Groq Llama 3.3 LLM","FastAPI · multi-server isolation · permission-gated uploads"],
-    tech:["Python","FastAPI","LangChain","FAISS","Discord.py","Groq","HuggingFace"] },
+    tech:["Python","FastAPI","LangChain","FAISS","Discord.py","Groq","HuggingFace"],
+    discord:"https://discord.com/oauth2/authorize?client_id=1463510548808208415&permissions=8&integration_type=0&scope=bot" },
   { num:"04", name:"RAG Bot Website", tagline:"React showcase for the Discord RAG bot with interactive demos", category:"Frontend",
     complexity:1, complexityNote:"Pure React · zero CSS frameworks · IntersectionObserver animations",
     highlights:["Scroll-triggered animations via IntersectionObserver","Interactive feature tabs — PDF / web scraping / Q&A modes","Zero CSS framework · pure React inline styling architecture","Vite + React · modular component structure"],
-    tech:["React","Vite","JavaScript","CSS","Lucide Icons"] },
+    tech:["React","Vite","JavaScript","CSS","Lucide Icons"],
+    webapp:"https://gamezobot.netlify.app/",
+    website:"https://armanphaugat.github.io/ragwebsite/" },
   { num:"05", name:"Cricket Score Predictor", tagline:"Live IPL · T20 · ODI score prediction via XGBoost models", category:"AI/ML",
     complexity:2, complexityNote:"3 XGBoost models · live API · format-specific feature engineering",
     highlights:["3 pre-trained XGBoost models for IPL, T20, and ODI formats","CricAPI integration for live match data","Streamlit UI with team + overs input for instant predictions","Format-specific feature engineering pipelines"],
@@ -2562,7 +2566,7 @@ function ProjectCard({ p }) {
           </div>
         ))}
       </div>
-      <div style={{ display:"flex", flexWrap:"wrap", gap:"0.35rem" }}>
+      <div style={{ display:"flex", flexWrap:"wrap", gap:"0.35rem", marginBottom:"1rem" }}>
         {p.tech.map(t => (
           <span key={t} className="mono" style={{
             fontSize:"0.62rem", padding:"0.2rem 0.6rem", borderRadius:5,
@@ -2572,6 +2576,46 @@ function ProjectCard({ p }) {
           }}>{t}</span>
         ))}
       </div>
+      {(p.youtube || p.webapp || p.website || p.discord) && (
+        <div style={{ display:"flex", flexWrap:"wrap", gap:"0.5rem", paddingTop:"0.9rem", borderTop:`1px solid ${hov ? "rgba(255,255,255,0.08)" : "rgba(37,99,235,0.08)"}` }}>
+          {p.youtube && (
+            <a href={p.youtube} target="_blank" rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#dc2626", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#b91c1c";e.currentTarget.style.transform="translateY(-1px)";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#dc2626";e.currentTarget.style.transform="";}}>
+              ▶ Demo
+            </a>
+          )}
+          {p.webapp && (
+            <a href={p.webapp} target="_blank" rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#7c3aed", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#6d28d9";e.currentTarget.style.transform="translateY(-1px)";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#7c3aed";e.currentTarget.style.transform="";}}>
+              🌐 Live
+            </a>
+          )}
+          {p.website && (
+            <a href={p.website} target="_blank" rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#0ea5e9", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#0284c7";e.currentTarget.style.transform="translateY(-1px)";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#0ea5e9";e.currentTarget.style.transform="";}}>
+              🔗 Website
+            </a>
+          )}
+          {p.discord && (
+            <a href={p.discord} target="_blank" rel="noopener noreferrer"
+              onClick={e => e.stopPropagation()}
+              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#5865f2", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#4752c4";e.currentTarget.style.transform="translateY(-1px)";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#5865f2";e.currentTarget.style.transform="";}}>
+              + Add Bot
+            </a>
+          )}
+        </div>
+      )}
     </div>
   );
 }
