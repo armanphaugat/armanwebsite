@@ -2494,7 +2494,8 @@ const PROJECTS = [
   { num:"02", name:"Video Streaming & User Management", tagline:"YouTube-like backend · HLS adaptive streaming · real-time analytics", category:"Backend",
     complexity:3, complexityNote:"HLS video pipeline · MongoDB aggregation · auth lifecycle management",
     highlights:["HLS transcoding via ffmpeg · 360p/720p on Cloudinary","JWT access + refresh token flow · secure auth lifecycle","MongoDB query opt — ~200ms → ~120ms response time","Aggregation pipelines for watch history & subscriptions"],
-    tech:["Node.js","MongoDB","Express","Cloudinary","JWT","ffmpeg","Bcrypt"] },
+    tech:["Node.js","MongoDB","Express","Cloudinary","JWT","ffmpeg","Bcrypt"],
+    youtube:"https://youtu.be/w6980_4fVSQ" },
   { num:"03", name:"RAG Discord Bot", tagline:"AI bot ingesting PDFs & web pages · answers via Llama 3.3", category:"AI/ML",
     complexity:3, complexityNote:"LLM pipeline · vector DBs · multi-server isolation · RAG architecture",
     highlights:["LangChain: web scrape · PDF parse · recursive chunking → FAISS","HuggingFace embeddings · per-guild persistent vector stores","LCEL chain feeds context chunks to Groq Llama 3.3 LLM","FastAPI · multi-server isolation · permission-gated uploads"],
@@ -3402,7 +3403,7 @@ function Footer() {
 /* ─────────────── APP ─────────────── */
 export default function App() {
   const [dark, setDark]           = useState(false);
-  const [loading, setLoading]     = useState(true);
+  const [loading, setLoading]     = useState(false);
   const [showTerminal, setShowTerminal] = useState(false);
 
   useReveal();
@@ -3411,12 +3412,6 @@ export default function App() {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
   }, [dark]);
-
-  // Lock scroll while loader is visible
-  useEffect(() => {
-    document.body.style.overflow = loading ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [loading]);
 
   // Keyboard shortcut: backtick ` opens terminal
   useEffect(() => {
@@ -3433,9 +3428,6 @@ export default function App() {
     <>
       <style>{G}</style>
 
-      {/* ── Page Loader ── */}
-      {loading && <PageLoader onDone={() => setLoading(false)} />}
-
       {/* ── Terminal Easter Egg ── */}
       {showTerminal && <TerminalEasterEgg onClose={() => setShowTerminal(false)} />}
 
@@ -3451,9 +3443,8 @@ export default function App() {
       <SectionProgress />
       <BackToTop />
 
-      {/* Terminal trigger button (bottom-left, visible after load) */}
-      {!loading && (
-        <button
+      {/* Terminal trigger button (bottom-left) */}
+      <button
           onClick={() => setShowTerminal(p => !p)}
           title="Open terminal (` key)"
           style={{
@@ -3480,7 +3471,6 @@ export default function App() {
             <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
           </svg>
         </button>
-      )}
 
       <Nav dark={dark} setDark={setDark} />
       <main>
