@@ -12,10 +12,10 @@ const C = {
   paper:  "var(--paper)",
   ink:    "var(--ink)",
   inkMid: "var(--inkMid)",
-  v:      "#2563EB",
-  vLight: "#93C5FD",
+  v:      "#0D9488",
+  vLight: "#5EEAD4",
   vPale:  "var(--vPale)",
-  vDeep:  "#1E3A8A",
+  vDeep:  "#134E4A",
   accent: "#38BDF8",
   muted:  "var(--muted)",
   gold:   "#F59E0B",
@@ -26,12 +26,12 @@ const G = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
   :root {
-    --bg:     #F8F9FC;
-    --bg2:    #EEF2FB;
+    --bg:     #F0FDFA;
+    --bg2:    #CCFBF1;
     --paper:  #FFFFFF;
     --ink:    #0F172A;
-    --inkMid: #1E3A8A;
-    --vPale:  #EFF6FF;
+    --inkMid: #134E4A;
+    --vPale:  #CCFBF1;
     --muted:  #64748B;
   }
   [data-theme="dark"] {
@@ -40,39 +40,39 @@ const G = `
     --paper:   #1c1c1c;
     --ink:     #f0f0f0;
     --inkMid:  #a0a0a0;
-    --vPale:   #1e2a3a;
+    --vPale:   #0d2a27;
     --muted:   #7a7a7a;
   }
 
   /* ── Dark mode comprehensive overrides ── */
   [data-theme="dark"] body { background: #0d0d0d; color: #f0f0f0; }
-  [data-theme="dark"] ::-webkit-scrollbar-thumb { background: linear-gradient(#3b82f6,#60a5fa); }
+  [data-theme="dark"] ::-webkit-scrollbar-thumb { background: linear-gradient(#0d9488,#5eead4); }
 
   /* Progress sidebar */
-  [data-theme="dark"] .progress-dot { background:rgba(59,130,246,0.15); border-color:rgba(59,130,246,0.3); }
-  [data-theme="dark"] .progress-dot.active { background:#3b82f6; border-color:#3b82f6; box-shadow:0 0 8px rgba(59,130,246,0.6); }
-  [data-theme="dark"] .progress-dot:hover:not(.active) { background:rgba(59,130,246,0.4); }
+  [data-theme="dark"] .progress-dot { background:rgba(13,148,136,0.15); border-color:rgba(13,148,136,0.3); }
+  [data-theme="dark"] .progress-dot.active { background:#0d9488; border-color:#0d9488; box-shadow:0 0 8px rgba(13,148,136,0.6); }
+  [data-theme="dark"] .progress-dot:hover:not(.active) { background:rgba(13,148,136,0.4); }
 
   /* Scroll bar */
-  [data-theme="dark"] .scroll-bar { background:linear-gradient(90deg,#3b82f6,#60a5fa,#93c5fd); }
+  [data-theme="dark"] .scroll-bar { background:linear-gradient(90deg,#0d9488,#5eead4,#5eead4); }
 
   /* Back to top */
-  [data-theme="dark"] .btt-btn { background:linear-gradient(135deg,#3b82f6,#60a5fa); box-shadow:0 4px 20px rgba(59,130,246,0.4); }
-  [data-theme="dark"] .btt-btn:hover { box-shadow:0 8px 28px rgba(59,130,246,0.6); }
+  [data-theme="dark"] .btt-btn { background:linear-gradient(135deg,#0d9488,#5eead4); box-shadow:0 4px 20px rgba(13,148,136,0.4); }
+  [data-theme="dark"] .btt-btn:hover { box-shadow:0 8px 28px rgba(13,148,136,0.6); }
 
   /* Chips */
-  [data-theme="dark"] .chip { background:#1e2a3a; color:#93c5fd; border-color:rgba(59,130,246,0.25); }
-  [data-theme="dark"] .chip:hover { background:#3b82f6; color:#fff; }
+  [data-theme="dark"] .chip { background:#0d2a27; color:#5eead4; border-color:rgba(13,148,136,0.25); }
+  [data-theme="dark"] .chip:hover { background:#0d9488; color:#fff; }
 
   /* Nav underline */
-  [data-theme="dark"] .nav-link::after { background:#60a5fa; }
+  [data-theme="dark"] .nav-link::after { background:#5eead4; }
 
   /* Toast */
-  [data-theme="dark"] .toast { background:#1c1c1c; border-color:rgba(59,130,246,0.25); border-left-color:#3b82f6; color:#f0f0f0; box-shadow:0 4px 24px rgba(0,0,0,0.5); }
+  [data-theme="dark"] .toast { background:#1c1c1c; border-color:rgba(13,148,136,0.25); border-left-color:#0d9488; color:#f0f0f0; box-shadow:0 4px 24px rgba(0,0,0,0.5); }
 
   /* Keyboard hint */
-  [data-theme="dark"] .kbd-hint { background:#1c1c1c; border-color:rgba(59,130,246,0.2); color:#7a7a7a; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
-  [data-theme="dark"] .kbd-key { background:#1e2a3a; color:#93c5fd; border-color:rgba(59,130,246,0.25); }
+  [data-theme="dark"] .kbd-hint { background:#1c1c1c; border-color:rgba(13,148,136,0.2); color:#7a7a7a; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
+  [data-theme="dark"] .kbd-key { background:#0d2a27; color:#5eead4; border-color:rgba(13,148,136,0.25); }
 
   /* Status available */
   [data-theme="dark"] .status-available { background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); }
@@ -80,13 +80,13 @@ const G = `
   /* Mobile menu */
   [data-theme="dark"] .mob-menu { background:#0d0d0d; }
   [data-theme="dark"] .mob-menu a { color:#f0f0f0; }
-  [data-theme="dark"] .mob-menu a:hover { color:#60a5fa; }
+  [data-theme="dark"] .mob-menu a:hover { color:#5eead4; }
 
   /* Gradient text - works in both modes */
-  [data-theme="dark"] .grad { background: linear-gradient(135deg,#60a5fa,#93c5fd); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  [data-theme="dark"] .grad { background: linear-gradient(135deg,#5eead4,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
 
   /* Spotlight glow - subtle in dark */
-  [data-theme="dark"] .spotlight { background:radial-gradient(circle,rgba(59,130,246,0.06) 0%,transparent 65%); }
+  [data-theme="dark"] .spotlight { background:radial-gradient(circle,rgba(13,148,136,0.06) 0%,transparent 65%); }
 
   /* Section transitions */
   [data-theme="dark"] .sec-transition { opacity:0; }
@@ -97,13 +97,13 @@ const G = `
     --card-hover: #0F172A;
     --filter-active-bg: #0F172A;
     --filter-active-color: #ffffff;
-    --section-divider: rgba(37,99,235,0.1);
+    --section-divider: rgba(13,148,136,0.1);
   }
   [data-theme="dark"] {
     --card-hover: #252525;
-    --filter-active-bg: #3b82f6;
+    --filter-active-bg: #0d9488;
     --filter-active-color: #ffffff;
-    --section-divider: rgba(59,130,246,0.15);
+    --section-divider: rgba(13,148,136,0.15);
   }
 
   /* Dark mode: fix any remaining contrast issues */
@@ -120,7 +120,7 @@ const G = `
   @keyframes particleDrift { 0%{opacity:0.7} 100%{transform:translate(var(--px),var(--py));opacity:0} }
   @keyframes pulse2        { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.25);opacity:0.7} }
   @keyframes backTopIn     { from{opacity:0;transform:translateY(12px) scale(0.8)} to{opacity:1;transform:translateY(0) scale(1)} }
-  @keyframes learnPulse    { 0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.25)} 50%{box-shadow:0 0 0 6px rgba(37,99,235,0)} }
+  @keyframes learnPulse    { 0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.25)} 50%{box-shadow:0 0 0 6px rgba(13,148,136,0)} }
   @keyframes connLine      { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
   @keyframes confettiFall  { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
   @keyframes toastIn       { from{opacity:0;transform:translateX(120%)} to{opacity:1;transform:translateX(0)} }
@@ -159,25 +159,25 @@ const G = `
   .sec-transition { opacity:0; transform:translateY(28px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
   .sec-transition.visible { opacity:1; transform:translateY(0); }
 
-  .progress-dot { width:8px; height:8px; border-radius:50%; background:rgba(37,99,235,0.2); border:1.5px solid rgba(37,99,235,0.3); transition:all 0.3s; cursor:pointer; }
-  .progress-dot.active { background:#2563EB; border-color:#2563EB; transform:scale(1.4); box-shadow:0 0 8px rgba(37,99,235,0.5); }
-  .progress-dot:hover:not(.active) { background:rgba(37,99,235,0.45); }
+  .progress-dot { width:8px; height:8px; border-radius:50%; background:rgba(13,148,136,0.2); border:1.5px solid rgba(13,148,136,0.3); transition:all 0.3s; cursor:pointer; }
+  .progress-dot.active { background:#0D9488; border-color:#0D9488; transform:scale(1.4); box-shadow:0 0 8px rgba(13,148,136,0.5); }
+  .progress-dot:hover:not(.active) { background:rgba(13,148,136,0.45); }
 
-  .btt-btn { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#2563EB,#38BDF8); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:800; box-shadow:0 4px 20px rgba(37,99,235,0.4); transition:transform 0.2s, box-shadow 0.2s; }
-  .btt-btn:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(37,99,235,0.55); }
+  .btt-btn { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#0D9488,#38BDF8); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:800; box-shadow:0 4px 20px rgba(13,148,136,0.4); transition:transform 0.2s, box-shadow 0.2s; }
+  .btt-btn:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(13,148,136,0.55); }
 
   /* Scroll progress bar */
-  .scroll-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#2563EB,#38BDF8,#93C5FD); z-index:9999; transition:width 0.05s linear; border-radius:0 2px 2px 0; }
+  .scroll-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#0D9488,#38BDF8,#5EEAD4); z-index:9999; transition:width 0.05s linear; border-radius:0 2px 2px 0; }
 
   /* Spotlight glow */
-  .spotlight { position:fixed; pointer-events:none; z-index:1; border-radius:50%; background:radial-gradient(circle,rgba(37,99,235,0.08) 0%,transparent 65%); transition:opacity 0.3s; }
+  .spotlight { position:fixed; pointer-events:none; z-index:1; border-radius:50%; background:radial-gradient(circle,rgba(13,148,136,0.08) 0%,transparent 65%); transition:opacity 0.3s; }
 
   /* Noise texture */
   .noise-overlay { position:absolute; inset:0; pointer-events:none; opacity:0.035; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 180px; }
 
   /* Toast */
   .toast-wrap { position:fixed; bottom:5.5rem; right:1.5rem; z-index:9000; display:flex; flex-direction:column; gap:0.5rem; pointer-events:none; }
-  .toast { background:var(--paper); border:1px solid rgba(37,99,235,0.2); border-left:3px solid #2563EB; border-radius:10px; padding:0.75rem 1.1rem; font-size:0.82rem; font-family:'Syne',sans-serif; color:var(--ink); box-shadow:0 4px 24px rgba(0,0,0,0.12); display:flex; align-items:center; gap:0.6rem; pointer-events:all; animation:toastIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+  .toast { background:var(--paper); border:1px solid rgba(13,148,136,0.2); border-left:3px solid #0D9488; border-radius:10px; padding:0.75rem 1.1rem; font-size:0.82rem; font-family:'Syne',sans-serif; color:var(--ink); box-shadow:0 4px 24px rgba(0,0,0,0.12); display:flex; align-items:center; gap:0.6rem; pointer-events:all; animation:toastIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
   .toast.out { animation:toastOut 0.3s ease both; }
 
   /* Float connect CTA */
@@ -187,14 +187,14 @@ const G = `
   .mag-btn { transition: transform 0.2s cubic-bezier(0.16,1,0.3,1); }
 
   /* Accent theme vars */
-  [data-accent="purple"] { --acc:#2563EB; --acc2:#38BDF8; --accP:#EFF6FF; }
-  [data-accent="blue"]   { --acc:#2563EB; --acc2:#06B6D4; --accP:#EFF6FF; }
+  [data-accent="purple"] { --acc:#0D9488; --acc2:#38BDF8; --accP:#F0FDFA; }
+  [data-accent="blue"]   { --acc:#0D9488; --acc2:#06B6D4; --accP:#F0FDFA; }
   [data-accent="green"]  { --acc:#059669; --acc2:#34D399; --accP:#ECFDF5; }
   [data-accent="rose"]   { --acc:#E11D48; --acc2:#FB7185; --accP:#FFF1F2; }
 
   /* Kbd shortcut hint */
-  .kbd-hint { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); z-index:799; background:var(--paper); border:1px solid rgba(37,99,235,0.18); border-radius:100px; padding:0.45rem 1.2rem; font-size:0.72rem; font-family:'JetBrains Mono',monospace; color:var(--muted); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; gap:0.6rem; animation:kbdIn 0.3s ease both; pointer-events:none; }
-  .kbd-key { background:var(--vPale); color:#2563EB; border:1px solid rgba(37,99,235,0.2); border-radius:4px; padding:0.1rem 0.45rem; font-size:0.68rem; font-weight:700; }
+  .kbd-hint { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); z-index:799; background:var(--paper); border:1px solid rgba(13,148,136,0.18); border-radius:100px; padding:0.45rem 1.2rem; font-size:0.72rem; font-family:'JetBrains Mono',monospace; color:var(--muted); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; gap:0.6rem; animation:kbdIn 0.3s ease both; pointer-events:none; }
+  .kbd-key { background:var(--vPale); color:#0D9488; border:1px solid rgba(13,148,136,0.2); border-radius:4px; padding:0.1rem 0.45rem; font-size:0.68rem; font-weight:700; }
 
   /* Status badge */
   .status-available { display:inline-flex; align-items:center; gap:0.5rem; padding:0.35rem 0.9rem; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); border-radius:100px; }
@@ -220,7 +220,7 @@ const G = `
   }
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: linear-gradient(#2563EB, #38BDF8); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(#0D9488, #38BDF8); border-radius: 2px; }
 
   .serif { font-family: 'Instrument Serif', serif; }
   .mono  { font-family: 'JetBrains Mono', monospace; }
@@ -241,7 +241,7 @@ const G = `
   @keyframes iconDriftB { 0%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(-14px,-22px) rotate(-9deg)} 100%{transform:translate(0,0) rotate(0deg)} }
   @keyframes iconDriftC { 0%{transform:translate(0,0) rotate(0deg)} 40%{transform:translate(12px,10px) rotate(12deg)} 100%{transform:translate(0,0) rotate(0deg)} }
   @keyframes iconDriftD { 0%{transform:translate(0,0) rotate(0deg)} 60%{transform:translate(-8px,-18px) rotate(-7deg)} 100%{transform:translate(0,0) rotate(0deg)} }
-  @keyframes resumePulse{ 0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,0.35)} 50%{box-shadow:0 0 0 8px rgba(37,99,235,0)} }
+  @keyframes resumePulse{ 0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.35)} 50%{box-shadow:0 0 0 8px rgba(13,148,136,0)} }
   @keyframes menuSlide  { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
   @keyframes hamburgerTop    { to{transform:translateY(8px) rotate(45deg)} }
   @keyframes hamburgerMid    { to{opacity:0;transform:scaleX(0)} }
@@ -253,13 +253,13 @@ const G = `
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem; padding: 0.22rem 0.65rem; border-radius: 5px;
-    background: var(--vPale); color: #2563EB; border: 1px solid rgba(37,99,235,0.18);
+    background: var(--vPale); color: #0D9488; border: 1px solid rgba(13,148,136,0.18);
     transition: background 0.2s, color 0.2s;
   }
-  .chip:hover { background: #2563EB; color: #fff; }
+  .chip:hover { background: #0D9488; color: #fff; }
 
   .nav-link { position: relative; text-decoration: none; }
-  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #2563EB; transition: width 0.25s; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #0D9488; transition: width 0.25s; }
   .nav-link:hover::after { width: 100%; }
 
   /* ── Mobile menu ── */
@@ -287,7 +287,7 @@ const G = `
     text-decoration: none;
     transition: color 0.2s;
   }
-  .mob-menu a:hover { color: #2563EB; }
+  .mob-menu a:hover { color: #0D9488; }
 
   /* ── Hide/show helpers ── */
   .hide-mob { display: flex; }
@@ -402,7 +402,7 @@ function PageLoader({ onDone }) {
       {/* Scanline */}
       <div style={{
         position: "absolute", left: 0, right: 0, height: "2px",
-        background: "linear-gradient(90deg,transparent,rgba(37,99,235,0.5),transparent)",
+        background: "linear-gradient(90deg,transparent,rgba(13,148,136,0.5),transparent)",
         animation: "loaderScan 2s linear infinite",
         pointerEvents: "none",
       }}/>
@@ -410,17 +410,17 @@ function PageLoader({ onDone }) {
       {/* Grid overlay */}
       <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.04, pointerEvents:"none" }}>
         {Array.from({length:16}).map((_,i)=>(
-          <line key={`v${i}`} x1={`${(i+1)*6.25}%`} y1="0" x2={`${(i+1)*6.25}%`} y2="100%" stroke="#2563EB" strokeWidth="1"/>
+          <line key={`v${i}`} x1={`${(i+1)*6.25}%`} y1="0" x2={`${(i+1)*6.25}%`} y2="100%" stroke="#0D9488" strokeWidth="1"/>
         ))}
         {Array.from({length:10}).map((_,i)=>(
-          <line key={`h${i}`} x1="0" y1={`${(i+1)*10}%`} x2="100%" y2={`${(i+1)*10}%`} stroke="#2563EB" strokeWidth="1"/>
+          <line key={`h${i}`} x1="0" y1={`${(i+1)*10}%`} x2="100%" y2={`${(i+1)*10}%`} stroke="#0D9488" strokeWidth="1"/>
         ))}
       </svg>
 
       {/* Glow orb */}
       <div style={{
         position:"absolute", width:500, height:500, borderRadius:"50%",
-        background:"radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%)",
+        background:"radial-gradient(circle,rgba(13,148,136,0.12) 0%,transparent 70%)",
         pointerEvents:"none",
       }}/>
 
@@ -431,9 +431,9 @@ function PageLoader({ onDone }) {
         <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"2.5rem" }}>
           <div style={{
             width:48, height:48, borderRadius:12,
-            background:"linear-gradient(135deg,#2563EB,#38BDF8)",
+            background:"linear-gradient(135deg,#0D9488,#38BDF8)",
             display:"flex", alignItems:"center", justifyContent:"center",
-            boxShadow:"0 0 32px rgba(37,99,235,0.4)",
+            boxShadow:"0 0 32px rgba(13,148,136,0.4)",
           }}>
             <span style={{ color:"#fff", fontSize:"1rem", fontWeight:800, fontFamily:"'Syne',sans-serif" }}>AP</span>
           </div>
@@ -441,7 +441,7 @@ function PageLoader({ onDone }) {
             <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.1rem", fontWeight:800, color:"#fff", letterSpacing:"-0.3px" }}>
               Arman Phaugat
             </div>
-            <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.65rem", color:"#2563EB", letterSpacing:"2px", textTransform:"uppercase" }}>
+            <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.65rem", color:"#0D9488", letterSpacing:"2px", textTransform:"uppercase" }}>
               portfolio.dev
             </div>
           </div>
@@ -449,7 +449,7 @@ function PageLoader({ onDone }) {
 
         {/* Terminal boot lines */}
         <div style={{
-          background:"rgba(255,255,255,0.03)", border:"1px solid rgba(37,99,235,0.18)",
+          background:"rgba(255,255,255,0.03)", border:"1px solid rgba(13,148,136,0.18)",
           borderRadius:10, padding:"1.2rem 1.4rem", marginBottom:"2rem",
           minHeight:140,
           fontFamily:"'JetBrains Mono',monospace",
@@ -466,7 +466,7 @@ function PageLoader({ onDone }) {
               marginBottom:"0.28rem", lineHeight:1.5,
               animation:"termLineIn 0.25s ease both",
             }}>
-              <span style={{ color:"#2563EB", marginRight:"0.6rem" }}>›</span>
+              <span style={{ color:"#0D9488", marginRight:"0.6rem" }}>›</span>
               {line}
             </div>
           ))}
@@ -474,7 +474,7 @@ function PageLoader({ onDone }) {
           {lines.length < BOOT_LINES.length && (
             <span style={{
               display:"inline-block", width:"7px", height:"13px",
-              background:"#2563EB", verticalAlign:"middle",
+              background:"#0D9488", verticalAlign:"middle",
               animation:"termCursor 0.8s step-end infinite",
             }}/>
           )}
@@ -488,24 +488,24 @@ function PageLoader({ onDone }) {
             </span>
             <span style={{
               fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem",
-              fontWeight:700, color:"#2563EB",
+              fontWeight:700, color:"#0D9488",
               animation:"loaderCountUp 0.2s ease both",
             }}>{progress}%</span>
           </div>
           <div style={{ height:3, background:"rgba(255,255,255,0.06)", borderRadius:2, overflow:"hidden" }}>
             <div style={{
               height:"100%", borderRadius:2,
-              background:"linear-gradient(90deg,#2563EB,#38BDF8,#93C5FD)",
+              background:"linear-gradient(90deg,#0D9488,#38BDF8,#5EEAD4)",
               width:`${progress}%`,
               transition:"width 0.08s linear",
-              boxShadow:"0 0 8px rgba(37,99,235,0.6)",
+              boxShadow:"0 0 8px rgba(13,148,136,0.6)",
             }}/>
           </div>
           {/* Dots indicator */}
           <div style={{ display:"flex", gap:"0.4rem", marginTop:"1.2rem", justifyContent:"center" }}>
             {[0,1,2].map(i=>(
               <div key={i} style={{
-                width:5, height:5, borderRadius:"50%", background:"#2563EB",
+                width:5, height:5, borderRadius:"50%", background:"#0D9488",
                 animation:`loaderDotPulse 1.2s ease-in-out ${i*0.2}s infinite`,
               }}/>
             ))}
@@ -520,7 +520,7 @@ function PageLoader({ onDone }) {
 const TERM_COMMANDS = {
   help: {
     output: [
-      { text:"Available commands:", col:"#93C5FD" },
+      { text:"Available commands:", col:"#5EEAD4" },
       { text:"  whoami         — who is this guy?",     col:"rgba(255,255,255,0.7)" },
       { text:"  skills         — tech stack overview",   col:"rgba(255,255,255,0.7)" },
       { text:"  projects       — list all projects",     col:"rgba(255,255,255,0.7)" },
@@ -543,7 +543,7 @@ const TERM_COMMANDS = {
   },
   skills: {
     output: [
-      { text:"── Core Stack ──────────────────────", col:"#2563EB" },
+      { text:"── Core Stack ──────────────────────", col:"#0D9488" },
       { text:"  Languages  : Python · JS · C · C++ · Java", col:"rgba(255,255,255,0.7)" },
       { text:"  Backend    : Node.js · Express · FastAPI", col:"rgba(255,255,255,0.7)" },
       { text:"  Databases  : MySQL · MongoDB · Redis · FAISS", col:"rgba(255,255,255,0.7)" },
@@ -554,7 +554,7 @@ const TERM_COMMANDS = {
   },
   projects: {
     output: [
-      { text:"── Projects (10 total) ─────────────", col:"#2563EB" },
+      { text:"── Projects (10 total) ─────────────", col:"#0D9488" },
       { text:"  01  Real Time Stock Trading Backend  [Backend]", col:"rgba(255,255,255,0.7)" },
       { text:"  02  Video Streaming & User Mgmt      [Backend]", col:"rgba(255,255,255,0.7)" },
       { text:"  03  RAG Discord Bot                  [AI/ML]",   col:"rgba(255,255,255,0.7)" },
@@ -570,7 +570,7 @@ const TERM_COMMANDS = {
   },
   contact: {
     output: [
-      { text:"── Contact ─────────────────────────", col:"#2563EB" },
+      { text:"── Contact ─────────────────────────", col:"#0D9488" },
       { text:"  Email    : armanphaugat20@gmail.com", col:"rgba(255,255,255,0.7)" },
       { text:"  Phone    : +91-9306115772",            col:"rgba(255,255,255,0.7)" },
       { text:"  LinkedIn : linkedin.com/in/armanphaugat05", col:"#38BDF8" },
@@ -604,7 +604,7 @@ const TERM_COMMANDS = {
   },
   socials: {
     output: [
-      { text:"── Socials ─────────────────────────", col:"#2563EB" },
+      { text:"── Socials ─────────────────────────", col:"#0D9488" },
       { text:"  🐙  github.com/armanphaugat",               col:"rgba(255,255,255,0.7)" },
       { text:"  💼  linkedin.com/in/armanphaugat05",        col:"rgba(255,255,255,0.7)" },
       { text:"  🧩  leetcode.com/u/armanphaugat20",         col:"#FFA116" },
@@ -710,12 +710,12 @@ function TerminalEasterEgg({ onClose }) {
         width:"min(700px,96vw)",
         maxHeight:"80vh",
         background:"#0d1117",
-        border:"1px solid rgba(37,99,235,0.3)",
+        border:"1px solid rgba(13,148,136,0.3)",
         borderRadius:14,
         overflow:"hidden",
         display:"flex",
         flexDirection:"column",
-        boxShadow:"0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(37,99,235,0.1)",
+        boxShadow:"0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(13,148,136,0.1)",
         animation: visible ? "terminalSlideIn 0.35s cubic-bezier(0.16,1,0.3,1) both"
                            : "terminalSlideOut 0.32s cubic-bezier(0.4,0,1,1) both",
       }}>
@@ -813,12 +813,12 @@ function TerminalEasterEgg({ onClose }) {
               flex:1, background:"none", border:"none", outline:"none",
               fontFamily:"'JetBrains Mono',monospace",
               fontSize:"0.78rem", color:"rgba(255,255,255,0.88)",
-              caretColor:"#2563EB",
+              caretColor:"#0D9488",
             }}
           />
           {/* blinking caret indicator */}
           <div style={{
-            width:7, height:14, background:"#2563EB", borderRadius:1,
+            width:7, height:14, background:"#0D9488", borderRadius:1,
             animation:"termCursor 0.9s step-end infinite",
             flexShrink:0,
           }}/>
@@ -887,7 +887,7 @@ function SpotlightGlow() {
 /* ─────────────── MOUSE TRAIL SPARKLES ─────────────── */
 function MouseTrail() {
   useEffect(() => {
-    const COLORS = ["#2563EB","#38BDF8","#93C5FD","#F59E0B"];
+    const COLORS = ["#0D9488","#38BDF8","#5EEAD4","#EAB308"];
     let count = 0;
     const fn = (e) => {
       if (count++ % 3 !== 0) return; // throttle
@@ -917,7 +917,7 @@ function KonamiConfetti() {
     const fn = (e) => {
       seq.current = [...seq.current, e.keyCode].slice(-10);
       if (seq.current.join(",") === CODE.join(",")) {
-        const COLORS = ["#2563EB","#38BDF8","#F59E0B","#10B981","#0EA5E9","#EF4444","#93C5FD"];
+        const COLORS = ["#0D9488","#5EEAD4","#38BDF8","#EAB308","#10B981","#0EA5E9","#CCFBF1"];
         for (let i = 0; i < 80; i++) {
           const el = document.createElement("div");
           const size = Math.random() * 10 + 5;
@@ -1007,8 +1007,8 @@ function FloatingConnectCTA() {
   return (
     <div className="float-cta">
       <div style={{
-        background:"var(--paper)", border:"1px solid rgba(37,99,235,0.2)",
-        borderRadius:14, padding:"1rem 1.3rem", boxShadow:"0 8px 40px rgba(37,99,235,0.18)",
+        background:"var(--paper)", border:"1px solid rgba(13,148,136,0.2)",
+        borderRadius:14, padding:"1rem 1.3rem", boxShadow:"0 8px 40px rgba(13,148,136,0.18)",
         maxWidth:220, position:"relative",
       }}>
         <button onClick={() => setDismissed(true)} style={{
@@ -1024,7 +1024,7 @@ function FloatingConnectCTA() {
         <div style={{ fontSize:"0.75rem", color:"var(--muted)", marginBottom:"0.9rem", lineHeight:1.5 }}>Backend · AI/ML · Full Stack</div>
         <a href="mailto:armanphaugat20@gmail.com" style={{
           display:"block", textAlign:"center", padding:"0.55rem",
-          background:"linear-gradient(135deg,#2563EB,#38BDF8)",
+          background:"linear-gradient(135deg,#0D9488,#38BDF8)",
           color:"#fff", borderRadius:8, textDecoration:"none",
           fontSize:"0.78rem", fontWeight:700,
         }} onClick={() => setDismissed(true)}>Let's talk →</a>
@@ -1038,8 +1038,8 @@ function ThemeAccentPicker() {
   const [open, setOpen] = useState(false);
   const [accent, setAccent] = useState("purple");
   const ACCENTS = [
-    { key:"purple", col:"#2563EB", label:"Purple" },
-    { key:"blue",   col:"#2563EB", label:"Blue"   },
+    { key:"purple", col:"#0D9488", label:"Purple" },
+    { key:"blue",   col:"#0D9488", label:"Blue"   },
     { key:"green",  col:"#059669", label:"Green"  },
     { key:"rose",   col:"#E11D48", label:"Rose"   },
   ];
@@ -1067,7 +1067,7 @@ function ThemeAccentPicker() {
       {open && (
         <div style={{
           position:"absolute", top:"calc(100% + 0.5rem)", right:0,
-          background:"var(--paper)", border:"1px solid rgba(37,99,235,0.15)",
+          background:"var(--paper)", border:"1px solid rgba(13,148,136,0.15)",
           borderRadius:10, padding:"0.6rem", boxShadow:"0 8px 32px rgba(0,0,0,0.12)",
           display:"flex", gap:"0.4rem", zIndex:900, animation:"backTopIn 0.2s ease both",
         }}>
@@ -1212,8 +1212,8 @@ function LiveISTClock() {
     <div style={{
       display:"flex", alignItems:"center", gap:"0.8rem",
       padding:"0.7rem 1.1rem",
-      background:"rgba(37,99,235,0.06)",
-      border:"1px solid rgba(37,99,235,0.12)",
+      background:"rgba(13,148,136,0.06)",
+      border:"1px solid rgba(13,148,136,0.12)",
       borderRadius:10, marginBottom:"1rem",
     }}>
       <div style={{ fontSize:"1.2rem" }}>🕐</div>
@@ -1262,7 +1262,7 @@ function AvailabilityWidget() {
     Sun: [],
   };
   return (
-    <div style={{ background:"var(--paper)", border:"1px solid rgba(37,99,235,0.1)", borderRadius:14, padding:"1.5rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+    <div style={{ background:"var(--paper)", border:"1px solid rgba(13,148,136,0.1)", borderRadius:14, padding:"1.5rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
       <LiveISTClock />
       <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.2rem" }}>
         <span style={{ fontSize:"1.1rem" }}>📅</span>
@@ -1282,7 +1282,7 @@ function AvailabilityWidget() {
             {slots[d].length > 0 ? slots[d].map(t => (
               <div key={t} style={{
                 fontSize:"0.58rem", padding:"0.2rem 0.2rem", borderRadius:4, marginBottom:"0.2rem",
-                background:"rgba(37,99,235,0.12)", color:"#2563EB",
+                background:"rgba(13,148,136,0.12)", color:"#0D9488",
                 fontFamily:"'JetBrains Mono',monospace", fontWeight:600,
               }}>{t}</div>
             )) : (
@@ -1293,13 +1293,13 @@ function AvailabilityWidget() {
       </div>
       <a href="mailto:armanphaugat20@gmail.com?subject=Meeting Request" style={{
         display:"block", textAlign:"center", marginTop:"1rem",
-        padding:"0.55rem", background:"rgba(37,99,235,0.1)",
-        border:"1px solid rgba(37,99,235,0.2)", borderRadius:8,
-        fontSize:"0.78rem", fontWeight:700, color:"#2563EB",
+        padding:"0.55rem", background:"rgba(13,148,136,0.1)",
+        border:"1px solid rgba(13,148,136,0.2)", borderRadius:8,
+        fontSize:"0.78rem", fontWeight:700, color:"#0D9488",
         textDecoration:"none", transition:"background 0.2s",
       }}
-        onMouseEnter={e=>e.currentTarget.style.background="rgba(37,99,235,0.2)"}
-        onMouseLeave={e=>e.currentTarget.style.background="rgba(37,99,235,0.1)"}
+        onMouseEnter={e=>e.currentTarget.style.background="rgba(13,148,136,0.2)"}
+        onMouseLeave={e=>e.currentTarget.style.background="rgba(13,148,136,0.1)"}
       >Book a call →</a>
     </div>
   );
@@ -1329,17 +1329,17 @@ function SkillRadar() {
         {/* Rings */}
         {rings.map(r => (
           <polygon key={r} points={skills.map((_,i) => { const p = polarToXY(i, r*R); return `${p.x},${p.y}`; }).join(" ")}
-            fill="none" stroke="rgba(37,99,235,0.15)" strokeWidth="1"/>
+            fill="none" stroke="rgba(13,148,136,0.15)" strokeWidth="1"/>
         ))}
         {/* Axes */}
         {skills.map((_,i) => { const p = polarToXY(i, R); return (
-          <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(37,99,235,0.15)" strokeWidth="1"/>
+          <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(13,148,136,0.15)" strokeWidth="1"/>
         );})}
         {/* Data polygon */}
-        <polygon points={poly} fill="rgba(37,99,235,0.18)" stroke="#2563EB" strokeWidth="2" strokeLinejoin="round"/>
+        <polygon points={poly} fill="rgba(13,148,136,0.18)" stroke="#0D9488" strokeWidth="2" strokeLinejoin="round"/>
         {/* Data dots */}
         {dataPoints.map((p,i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="5" fill="#2563EB" stroke="#fff" strokeWidth="2"/>
+          <circle key={i} cx={p.x} cy={p.y} r="5" fill="#0D9488" stroke="#fff" strokeWidth="2"/>
         ))}
         {/* Labels */}
         {skills.map((s, i) => {
@@ -1356,7 +1356,7 @@ function SkillRadar() {
           const p = polarToXY(i, (s.val / 100) * R - 14);
           return (
             <text key={`v${i}`} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle"
-              fill="#2563EB" fontSize="9" fontFamily="'JetBrains Mono',monospace" fontWeight="700">
+              fill="#0D9488" fontSize="9" fontFamily="'JetBrains Mono',monospace" fontWeight="700">
               {s.val}%
             </text>
           );
@@ -1369,7 +1369,7 @@ function SkillRadar() {
 /* ─────────────── PROJECT CATEGORY STATS BAR ─────────────── */
 function ProjectStatsBar() {
   const cats = [
-    { label:"Backend",  count:2, col:"#2563EB" },
+    { label:"Backend",  count:2, col:"#0D9488" },
     { label:"AI / ML",  count:5, col:"#0EA5E9" },
     { label:"Frontend", count:2, col:"#10B981" },
     { label:"Game",     count:1, col:"#F59E0B" },
@@ -1461,7 +1461,7 @@ function useTilt(ref) {
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top)  / r.height - 0.5;
       el.style.transform = `perspective(700px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.02)`;
-      el.style.boxShadow = `${-x * 20}px ${y * 20}px 48px rgba(37,99,235,0.14)`;
+      el.style.boxShadow = `${-x * 20}px ${y * 20}px 48px rgba(13,148,136,0.14)`;
     };
     const onLeave = () => { el.style.transform = ""; el.style.boxShadow = ""; };
     el.addEventListener("mousemove", onMove);
@@ -1502,7 +1502,7 @@ function Nav({ dark, setDark }) {
           <a key={l} href={`#${l.toLowerCase()}`} onClick={closeMenu}>{l}</a>
         ))}
         <button onClick={() => setDark(d => !d)} style={{
-          background:"none", border:`1.5px solid rgba(37,99,235,0.3)`, borderRadius:100,
+          background:"none", border:`1.5px solid rgba(13,148,136,0.3)`, borderRadius:100,
           padding:"0.6rem 1.6rem", cursor:"pointer", fontSize:"1rem",
           display:"flex", alignItems:"center", gap:"0.6rem",
           fontFamily:"'Syne',sans-serif", fontWeight:700, color:"var(--ink)",
@@ -1545,7 +1545,7 @@ function Nav({ dark, setDark }) {
         padding: scrolled ? "0.85rem 2rem" : "1.3rem 2rem",
         background: scrolled || menuOpen ? "var(--bg)" : "transparent",
         backdropFilter: scrolled || menuOpen ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(37,99,235,0.1)" : "1px solid transparent",
+        borderBottom: scrolled ? "1px solid rgba(13,148,136,0.15)" : "1px solid transparent",
         transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)",
       }}>
         {/* Logo */}
@@ -1574,8 +1574,8 @@ function Nav({ dark, setDark }) {
           {/* Dark mode toggle */}
           <button onClick={() => setDark(d => !d)} title={dark ? "Switch to light mode" : "Switch to dark mode"} style={{
             width:34, height:34, borderRadius:6,
-            background: dark ? "rgba(255,255,255,0.1)" : "rgba(37,99,235,0.08)",
-            border: `1.5px solid ${dark ? "rgba(255,255,255,0.25)" : "rgba(37,99,235,0.2)"}`,
+            background: dark ? "rgba(255,255,255,0.1)" : "rgba(13,148,136,0.08)",
+            border: `1.5px solid ${dark ? "rgba(255,255,255,0.25)" : "rgba(13,148,136,0.2)"}`,
             cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
             transition:"background 0.2s, border-color 0.2s, transform 0.2s", flexShrink:0,
           }}
@@ -1677,7 +1677,7 @@ function AnimatedStat({ value, label, suffix = "" }) {
   const sfx     = value.match(/[^0-9.]+$/)?.[0] || suffix;
   const { ref, count } = useCounter(numeric);
   return (
-    <div ref={ref} style={{ padding:"0 2.5rem 0 0", marginRight:"2.5rem", borderRight:"1px solid rgba(37,99,235,0.1)", marginBottom:"1rem" }}>
+    <div ref={ref} style={{ padding:"0 2.5rem 0 0", marginRight:"2.5rem", borderRight:"1px solid rgba(13,148,136,0.1)", marginBottom:"1rem" }}>
       <div className="serif" style={{ fontSize:"1.9rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px" }}>
         {prefix}{count}{sfx}
       </div>
@@ -1709,18 +1709,18 @@ function SectionProgress() {
       position:"fixed", right:"1.4rem", top:"50%", transform:"translateY(-50%)",
       zIndex:700, display:"flex", flexDirection:"column", alignItems:"center", gap:"0.55rem",
     }}>
-      <div style={{ position:"absolute", top:0, bottom:0, left:"50%", width:1, background:"rgba(37,99,235,0.12)", transform:"translateX(-50%)", zIndex:-1 }}/>
+      <div style={{ position:"absolute", top:0, bottom:0, left:"50%", width:1, background:"rgba(13,148,136,0.12)", transform:"translateX(-50%)", zIndex:-1 }}/>
       {SECTIONS.map((id, i) => (
         <div key={id} style={{ position:"relative", display:"flex", alignItems:"center", gap:"0.5rem" }}>
           {active === i && (
             <div style={{
               position:"absolute", right:"calc(100% + 0.6rem)",
-              background:"var(--paper)", border:"1px solid rgba(37,99,235,0.2)",
+              background:"var(--paper)", border:"1px solid rgba(13,148,136,0.2)",
               borderRadius:6, padding:"0.2rem 0.55rem",
               fontSize:"0.6rem", fontFamily:"'JetBrains Mono',monospace",
-              color:"#2563EB", whiteSpace:"nowrap", fontWeight:700,
+              color:"#0D9488", whiteSpace:"nowrap", fontWeight:700,
               animation:"backTopIn 0.2s ease both",
-              boxShadow:"0 2px 12px rgba(37,99,235,0.12)",
+              boxShadow:"0 2px 12px rgba(13,148,136,0.12)",
             }}>{SECTION_LABELS[i]}</div>
           )}
           <div
@@ -1767,7 +1767,7 @@ function ParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const COLORS = ["#2563EB","#93C5FD","#38BDF8","#C4B5FD"];
+    const COLORS = ["#0D9488","#5EEAD4","#38BDF8","#C4B5FD"];
     const pts = Array.from({ length: 70 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
@@ -1799,7 +1799,7 @@ function ParticleCanvas() {
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
             ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = `rgba(37,99,235,${0.12 * (1 - dist / 110)})`;
+            ctx.strokeStyle = `rgba(13,148,136,${0.12 * (1 - dist / 110)})`;
             ctx.lineWidth = 0.6;
             ctx.stroke();
           }
@@ -1835,14 +1835,14 @@ function Hero() {
         <div className="noise-overlay" />
         <ParticleCanvas />
         {/* Gradient orbs */}
-        <div style={{ position:"absolute", top:"-10%", right:"-5%", width:600, height:600, borderRadius:"50%", background:`radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%)`, animation:"floatUp 10s ease-in-out infinite" }} />
+        <div style={{ position:"absolute", top:"-10%", right:"-5%", width:600, height:600, borderRadius:"50%", background:`radial-gradient(circle,rgba(13,148,136,0.1) 0%,transparent 70%)`, animation:"floatUp 10s ease-in-out infinite" }} />
         <div style={{ position:"absolute", bottom:"-5%", left:"-8%", width:400, height:400, borderRadius:"50%", background:`radial-gradient(circle,rgba(232,121,249,0.08) 0%,transparent 70%)`, animation:"floatUp 13s ease-in-out infinite reverse" }} />
         {/* Grid lines */}
         <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.035 }}>
           {Array.from({length:12}).map((_,i) => <line key={i} x1={`${(i+1)*8.33}%`} y1="0" x2={`${(i+1)*8.33}%`} y2="100%" stroke={C.v} strokeWidth="1"/>)}
         </svg>
         {/* Rings */}
-        <div style={{ position:"absolute", top:"20%", right:"12%", width:160, height:160, border:`1px solid rgba(37,99,235,0.15)`, borderRadius:"50%", animation:"spinSlow 25s linear infinite" }} />
+        <div style={{ position:"absolute", top:"20%", right:"12%", width:160, height:160, border:`1px solid rgba(13,148,136,0.15)`, borderRadius:"50%", animation:"spinSlow 25s linear infinite" }} />
         <div style={{ position:"absolute", top:"22%", right:"14%", width:120, height:120, border:`1px dashed rgba(232,121,249,0.12)`, borderRadius:"50%", animation:"spinSlow 18s linear infinite reverse" }} />
         {/* Floating Lucide tech icons */}
         {[
@@ -1906,18 +1906,18 @@ function Hero() {
           <a href="#projects" style={{
             padding:"0.95rem 2.2rem", background:`linear-gradient(135deg,${C.v},${C.accent})`,
             color:"#fff", borderRadius:8, textDecoration:"none", fontSize:"0.88rem", fontWeight:700,
-            boxShadow:`0 8px 32px rgba(37,99,235,0.35)`, transition:"transform 0.2s, box-shadow 0.2s",
+            boxShadow:`0 8px 32px rgba(13,148,136,0.35)`, transition:"transform 0.2s, box-shadow 0.2s",
           }}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow=`0 14px 40px rgba(37,99,235,0.5)`;}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`0 8px 32px rgba(37,99,235,0.35)`;}}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow=`0 14px 40px rgba(13,148,136,0.5)`;}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`0 8px 32px rgba(13,148,136,0.35)`;}}
           >View Projects ↗</a>
           <a href="#contact" style={{
             padding:"0.95rem 2.2rem", background:"transparent", color:C.ink,
-            border:`1.5px solid rgba(37,99,235,0.25)`, borderRadius:8, textDecoration:"none",
+            border:`1.5px solid rgba(13,148,136,0.25)`, borderRadius:8, textDecoration:"none",
             fontSize:"0.88rem", fontWeight:700, transition:"border-color 0.2s, background 0.2s, transform 0.2s",
           }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor=C.v;e.currentTarget.style.background=C.vPale;e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(37,99,235,0.25)";e.currentTarget.style.background="transparent";e.currentTarget.style.transform="";}}
+            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(13,148,136,0.25)";e.currentTarget.style.background="transparent";e.currentTarget.style.transform="";}}
           >Let's Talk</a>
           <a href="https://github.com/armanphaugat" target="_blank" rel="noreferrer" style={{
             padding:"0.95rem 1.6rem", background:"#1e293b", color:"#fff", borderRadius:8,
@@ -1968,7 +1968,7 @@ function Hero() {
         </div>
 
         {/* Stats row — animated counters */}
-        <div className="rv hero-stats" style={{ display:"flex", gap:"0", borderTop:"1px solid rgba(37,99,235,0.1)", paddingTop:"2.5rem", flexWrap:"wrap" }}>
+        <div className="rv hero-stats" style={{ display:"flex", gap:"0", borderTop:"1px solid rgba(13,148,136,0.1)", paddingTop:"2.5rem", flexWrap:"wrap" }}>
           <AnimatedStat value="9.05" label="CGPA — Dean's Award" />
           <AnimatedStat value="900+" label="DSA Problems" />
           <AnimatedStat value="10+" label="Projects Built" />
@@ -1991,7 +1991,7 @@ function Marquee() {
   const items = ["Node.js","Redis","MySQL","BullMQ","Python","FastAPI","LangChain","FAISS","MongoDB","Docker","XGBoost","Streamlit","Pygame","React","Scikit-learn","RAG","HuggingFace","JWT","Pandas","Groq","System Design","ACID Transactions"];
   const doubled = [...items, ...items];
   return (
-    <div style={{ background:"#0F172A", padding:"1rem 0", overflow:"hidden", borderTop:`1px solid rgba(37,99,235,0.3)`, borderBottom:`1px solid rgba(37,99,235,0.3)` }}>
+    <div style={{ background:"#0F172A", padding:"1rem 0", overflow:"hidden", borderTop:`1px solid rgba(13,148,136,0.3)`, borderBottom:`1px solid rgba(13,148,136,0.3)` }}>
       <div style={{ display:"flex", animation:"marquee 30s linear infinite", width:"max-content" }}>
         {doubled.map((item,i) => (
           <span key={i} className="mono" style={{ color:C.vLight, fontSize:"0.72rem", letterSpacing:"2px", textTransform:"uppercase", padding:"0 2rem", display:"flex", alignItems:"center", gap:"2rem" }}>
@@ -2036,12 +2036,12 @@ function About() {
           </div>
           <div className="rv d3" style={{ display:"flex", gap:"0.7rem", marginTop:"2rem", flexWrap:"wrap" }}>
             {["Open to Internships","Available for Projects","LeetCode Top 0.3%"].map(t => (
-              <span key={t} style={{ padding:"0.4rem 1rem", border:`1px solid rgba(37,99,235,0.2)`, borderRadius:100, fontSize:"0.75rem", color:C.v, fontWeight:600, background:C.vPale }}>{t}</span>
+              <span key={t} style={{ padding:"0.4rem 1rem", border:`1px solid rgba(13,148,136,0.2)`, borderRadius:100, fontSize:"0.75rem", color:C.v, fontWeight:600, background:C.vPale }}>{t}</span>
             ))}
           </div>
         </div>
 
-        <div ref={cardRef} className="rv d2" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:20, padding:"2.5rem", boxShadow:"0 4px 40px rgba(37,99,235,0.06)", willChange:"transform", transition:"transform 0.15s ease, box-shadow 0.15s ease" }}>
+        <div ref={cardRef} className="rv d2" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:20, padding:"2.5rem", boxShadow:"0 4px 40px rgba(13,148,136,0.06)", willChange:"transform", transition:"transform 0.15s ease, box-shadow 0.15s ease" }}>
           {[
             ["🎓","Education","B.Tech CSE · 3rd Year","Manipal University Jaipur · 2023–2027"],
             ["📍","Location","Jaipur, Rajasthan","India"],
@@ -2050,7 +2050,7 @@ function About() {
             ["🧩","Competitive","LeetCode Top 0.3%","900+ problems · Global Rank"],
             ["🚀","Hackathon","MUJHackX Round 2","Among 1300+ participants"],
           ].map(([ico,label,val,sub],i) => (
-            <div key={label} style={{ display:"flex", gap:"1.1rem", alignItems:"flex-start", padding:"1rem 0", borderBottom: i < 5 ? `1px solid rgba(37,99,235,0.06)` : "none" }}>
+            <div key={label} style={{ display:"flex", gap:"1.1rem", alignItems:"flex-start", padding:"1rem 0", borderBottom: i < 5 ? `1px solid rgba(13,148,136,0.06)` : "none" }}>
               <div style={{ width:36, height:36, borderRadius:10, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", flexShrink:0 }}>{ico}</div>
               <div>
                 <div className="mono" style={{ fontSize:"0.6rem", color:C.muted, textTransform:"uppercase", letterSpacing:"1.5px", marginBottom:"0.1rem" }}>{label}</div>
@@ -2082,9 +2082,9 @@ function Experience() {
         </h2>
         <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"3rem", lineHeight:1.8 }}>Real-world experience shipping under professional deadlines.</p>
 
-        <div className="rv d3" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:18, padding:"2.5rem", boxShadow:"0 4px 40px rgba(37,99,235,0.06)", transition:"transform 0.25s, box-shadow 0.25s" }}
-          onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-5px)";e.currentTarget.style.boxShadow="0 16px 56px rgba(37,99,235,0.13)";}}
-          onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 4px 40px rgba(37,99,235,0.06)";}}
+        <div className="rv d3" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:18, padding:"2.5rem", boxShadow:"0 4px 40px rgba(13,148,136,0.06)", transition:"transform 0.25s, box-shadow 0.25s" }}
+          onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-5px)";e.currentTarget.style.boxShadow="0 16px 56px rgba(13,148,136,0.13)";}}
+          onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 4px 40px rgba(13,148,136,0.06)";}}
         >
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:"1rem", marginBottom:"1.5rem" }}>
             <div style={{ display:"flex", gap:"1.2rem", alignItems:"center" }}>
@@ -2150,12 +2150,12 @@ function Resume() {
             padding:"0.85rem 2rem", background:`linear-gradient(135deg,${C.v},${C.accent})`,
             color:"#fff", borderRadius:8, textDecoration:"none", fontSize:"0.85rem", fontWeight:700,
             display:"flex", alignItems:"center", gap:"0.6rem",
-            boxShadow:`0 8px 28px rgba(37,99,235,0.35)`,
+            boxShadow:`0 8px 28px rgba(13,148,136,0.35)`,
             transition:"transform 0.2s, box-shadow 0.2s",
             animation:"resumePulse 2.5s ease-in-out infinite",
           }}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow=`0 14px 40px rgba(37,99,235,0.5)`;}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`0 8px 28px rgba(37,99,235,0.35)`;}}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow=`0 14px 40px rgba(13,148,136,0.5)`;}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`0 8px 28px rgba(13,148,136,0.35)`;}}
           >
             <Download size={16} strokeWidth={2.5} />
             Download Resume (PDF)
@@ -2168,24 +2168,24 @@ function Resume() {
           <div style={{ display:"flex", flexDirection:"column", gap:"2rem" }}>
 
             {/* Summary */}
-            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)", position:"relative", overflow:"hidden" }}>
-              <div style={{ position:"absolute", top:-30, right:-30, width:120, height:120, borderRadius:"50%", background:`linear-gradient(135deg,rgba(37,99,235,0.08),rgba(232,121,249,0.06))`, pointerEvents:"none" }}/>
+            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)", position:"relative", overflow:"hidden" }}>
+              <div style={{ position:"absolute", top:-30, right:-30, width:120, height:120, borderRadius:"50%", background:`linear-gradient(135deg,rgba(13,148,136,0.08),rgba(232,121,249,0.06))`, pointerEvents:"none" }}/>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.2rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>👤</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Summary</div>
               </div>
               <p style={{ fontSize:"0.88rem", color:C.muted, lineHeight:1.9, position:"relative", zIndex:1 }}>
-                Passionate <strong style={{color:C.ink}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at Manipal University Jaipur, maintaining a <strong style={{color:"#2563EB"}}>9.05 CGPA</strong> with the Dean's Excellence Award. I build high-performance distributed systems with <strong style={{color:"#2563EB"}}>Node.js, Redis, and MySQL</strong>, and AI-powered applications using <strong style={{color:"#2563EB"}}>LangChain, FAISS, and Groq</strong>. Ranked in the <strong style={{color:"#2563EB"}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved — I combine strong algorithmic thinking with real-world engineering to ship fast, scalable, production-ready systems. Actively seeking internship and full-time opportunities in backend, AI/ML, or full-stack engineering.
+                Passionate <strong style={{color:C.ink}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at Manipal University Jaipur, maintaining a <strong style={{color:"#0D9488"}}>9.05 CGPA</strong> with the Dean's Excellence Award. I build high-performance distributed systems with <strong style={{color:"#0D9488"}}>Node.js, Redis, and MySQL</strong>, and AI-powered applications using <strong style={{color:"#0D9488"}}>LangChain, FAISS, and Groq</strong>. Ranked in the <strong style={{color:"#0D9488"}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved — I combine strong algorithmic thinking with real-world engineering to ship fast, scalable, production-ready systems. Actively seeking internship and full-time opportunities in backend, AI/ML, or full-stack engineering.
               </p>
               <div style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginTop:"1.2rem" }}>
                 {["Backend Engineering","AI / ML","System Design","Open to Internships","Available 2026"].map(t => (
-                  <span key={t} style={{ padding:"0.28rem 0.8rem", background:C.vPale, border:"1px solid rgba(37,99,235,0.15)", borderRadius:100, fontSize:"0.7rem", color:"#2563EB", fontWeight:600 }}>{t}</span>
+                  <span key={t} style={{ padding:"0.28rem 0.8rem", background:C.vPale, border:"1px solid rgba(13,148,136,0.15)", borderRadius:100, fontSize:"0.7rem", color:"#0D9488", fontWeight:600 }}>{t}</span>
                 ))}
               </div>
             </div>
 
             {/* Contact Info */}
-            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:40, height:40, borderRadius:10, background:`linear-gradient(135deg,${C.v},${C.accent})`, display:"flex", alignItems:"center", justifyContent:"center" }}>
                   <span style={{ color:"#fff", fontSize:"0.85rem", fontWeight:800 }}>AP</span>
@@ -2203,7 +2203,7 @@ function Resume() {
                 ["🧩", "leetcode.com/u/armanphaugat20",  "https://leetcode.com/u/armanphaugat20"],
                 ["📍", "Jaipur, Rajasthan, India",  null],
               ].map(([icon, label, href]) => (
-                <div key={label} style={{ display:"flex", gap:"0.8rem", alignItems:"center", padding:"0.55rem 0", borderBottom:"1px solid rgba(37,99,235,0.05)" }}>
+                <div key={label} style={{ display:"flex", gap:"0.8rem", alignItems:"center", padding:"0.55rem 0", borderBottom:"1px solid rgba(13,148,136,0.05)" }}>
                   <span style={{ fontSize:"0.9rem", flexShrink:0 }}>{icon}</span>
                   {href
                     ? <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
@@ -2218,7 +2218,7 @@ function Resume() {
             </div>
 
             {/* Education */}
-            <div className="rv d1" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv d1" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🎓</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Education</div>
@@ -2238,7 +2238,7 @@ function Resume() {
             </div>
 
             {/* Competitive Programming */}
-            <div className="rv d2" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv d2" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🏆</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Competitive Programming</div>
@@ -2247,7 +2247,7 @@ function Resume() {
                 { platform:"LeetCode", handle:"armanphaugat20", stat:"Beats 99.7% · 900+ problems solved", col:"#FFA116", badge:"Top 0.3%" },
                 { platform:"Codeforces", handle:"Active participant", stat:"Regular contest participation", col:"#1890FF", badge:"Rated" },
               ].map(({ platform, handle, stat, col, badge }) => (
-                <div key={platform} style={{ display:"flex", gap:"1rem", alignItems:"flex-start", padding:"0.8rem 0", borderBottom:"1px solid rgba(37,99,235,0.05)" }}>
+                <div key={platform} style={{ display:"flex", gap:"1rem", alignItems:"flex-start", padding:"0.8rem 0", borderBottom:"1px solid rgba(13,148,136,0.05)" }}>
                   <div style={{ width:10, height:10, borderRadius:"50%", background:col, marginTop:"0.35rem", flexShrink:0 }}/>
                   <div>
                     <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
@@ -2262,7 +2262,7 @@ function Resume() {
             </div>
 
             {/* Achievements */}
-            <div className="rv d3" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv d3" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>⭐</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Achievements</div>
@@ -2273,7 +2273,7 @@ function Resume() {
                 { icon:"🚀", text:"MUJHackX Round 2 Qualifier — Top performers among 1300+ participants" },
                 { icon:"💡", text:"900+ DSA problems solved across LeetCode, Codeforces & more" },
               ].map(({ icon, text }) => (
-                <div key={text} style={{ display:"flex", gap:"0.8rem", alignItems:"flex-start", padding:"0.6rem 0", borderBottom:"1px solid rgba(37,99,235,0.05)" }}>
+                <div key={text} style={{ display:"flex", gap:"0.8rem", alignItems:"flex-start", padding:"0.6rem 0", borderBottom:"1px solid rgba(13,148,136,0.05)" }}>
                   <span style={{ fontSize:"1rem", flexShrink:0 }}>{icon}</span>
                   <span style={{ fontSize:"0.82rem", color:C.muted, lineHeight:1.6 }}>{text}</span>
                 </div>
@@ -2281,7 +2281,7 @@ function Resume() {
             </div>
 
             {/* Certifications */}
-            <div className="rv d4" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv d4" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>📜</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Licenses & Certifications</div>
@@ -2327,7 +2327,7 @@ function Resume() {
                 <div key={name} style={{
                   display:"flex", gap:"1rem", alignItems:"flex-start",
                   padding:"1rem 0",
-                  borderBottom: i < 5 ? "1px solid rgba(37,99,235,0.06)" : "none",
+                  borderBottom: i < 5 ? "1px solid rgba(13,148,136,0.06)" : "none",
                 }}>
                   {/* Org avatar */}
                   <div style={{
@@ -2353,7 +2353,7 @@ function Resume() {
                         <span key={s} style={{
                           fontSize:"0.62rem", padding:"0.15rem 0.5rem", borderRadius:4,
                           background:C.vPale, color:C.v,
-                          border:"1px solid rgba(37,99,235,0.15)",
+                          border:"1px solid rgba(13,148,136,0.15)",
                           fontFamily:"'JetBrains Mono',monospace",
                         }}>{s}</span>
                       ))}
@@ -2368,7 +2368,7 @@ function Resume() {
           <div style={{ display:"flex", flexDirection:"column", gap:"2rem" }}>
 
             {/* Experience */}
-            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>💼</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Work Experience</div>
@@ -2396,7 +2396,7 @@ function Resume() {
             </div>
 
             {/* Technical Skills */}
-            <div className="rv d1" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv d1" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🛠️</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Technical Skills</div>
@@ -2419,7 +2419,7 @@ function Resume() {
             </div>
 
             {/* Key Projects (condensed) */}
-            <div className="rv d2" style={{ background:C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(37,99,235,0.05)" }}>
+            <div className="rv d2" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
               <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
                 <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🚀</div>
                 <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Key Projects</div>
@@ -2430,7 +2430,7 @@ function Resume() {
                 { name:"Video Streaming & User Management", tech:"Node.js · MongoDB · Cloudinary · ffmpeg", points:["HLS transcoding (360p/720p) via ffmpeg + Cloudinary","JWT access/refresh token lifecycle management","MongoDB aggregation pipelines for watch history"] },
                 { name:"Cricket Score & IPL Win Predictor", tech:"Python · XGBoost · Streamlit · CricAPI", points:["XGBoost models for IPL, T20, and ODI formats","Live CricAPI integration for real-time predictions","Logistic Regression for in-match win probability"] },
               ].map(({ name, tech, points }, i) => (
-                <div key={name} style={{ padding:"1rem 0", borderBottom: i < 3 ? "1px solid rgba(37,99,235,0.06)" : "none" }}>
+                <div key={name} style={{ padding:"1rem 0", borderBottom: i < 3 ? "1px solid rgba(13,148,136,0.06)" : "none" }}>
                   <div style={{ fontSize:"0.88rem", fontWeight:700, color:C.ink, marginBottom:"0.2rem" }}>{name}</div>
                   <div className="mono" style={{ fontSize:"0.63rem", color:C.v, marginBottom:"0.5rem" }}>{tech}</div>
                   {points.map((p,j) => (
@@ -2459,7 +2459,7 @@ function Resume() {
               display:"flex", alignItems:"center", gap:"0.6rem", whiteSpace:"nowrap",
               transition:"transform 0.2s, box-shadow 0.2s",
             }}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow=`0 10px 30px rgba(37,99,235,0.4)`;}}
+              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow=`0 10px 30px rgba(13,148,136,0.4)`;}}
               onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="";}}
             >
               <Download size={15} strokeWidth={2.5}/>
@@ -2543,10 +2543,10 @@ function ProjectCard({ p }) {
   const cc = CAT_COLORS[p.category] || C.v;
   return (
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{
-      background: hov ? "var(--card-hover)" : C.paper, border:`1px solid rgba(37,99,235,0.1)`, borderRadius:16,
+      background: hov ? "var(--card-hover)" : C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16,
       padding:"1.9rem", transition:"background 0.35s, transform 0.25s, box-shadow 0.25s",
       transform: hov ? "translateY(-8px)" : "translateY(0)",
-      boxShadow: hov ? "0 24px 64px rgba(22,13,40,0.22)" : "0 2px 20px rgba(37,99,235,0.05)",
+      boxShadow: hov ? "0 24px 64px rgba(22,13,40,0.22)" : "0 2px 20px rgba(13,148,136,0.05)",
       display:"flex", flexDirection:"column", cursor:"default",
     }}>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"1rem" }}>
@@ -2554,7 +2554,7 @@ function ProjectCard({ p }) {
           <span className="mono" style={{ fontSize:"0.65rem", color: hov ? "rgba(255,255,255,0.3)" : C.muted }}>/{p.num}</span>
           <span style={{ fontSize:"0.6rem", fontWeight:700, padding:"0.18rem 0.6rem", borderRadius:100, background:`${cc}18`, color:cc, border:`1px solid ${cc}44`, fontFamily:"'JetBrains Mono',monospace" }}>{p.category}</span>
         </div>
-        <div style={{ width:28, height:28, borderRadius:7, background: hov ? "rgba(37,99,235,0.3)" : C.vPale, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.3s" }}>
+        <div style={{ width:28, height:28, borderRadius:7, background: hov ? "rgba(13,148,136,0.3)" : C.vPale, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.3s" }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={hov ? C.vLight : C.v} strokeWidth="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
         </div>
       </div>
@@ -2571,14 +2571,14 @@ function ProjectCard({ p }) {
         {p.tech.map(t => (
           <span key={t} className="mono" style={{
             fontSize:"0.62rem", padding:"0.2rem 0.6rem", borderRadius:5,
-            background: hov ? "rgba(37,99,235,0.2)" : C.vPale,
-            color: hov ? C.vLight : C.v, border:`1px solid ${hov ? "rgba(37,99,235,0.3)" : "rgba(37,99,235,0.15)"}`,
+            background: hov ? "rgba(13,148,136,0.2)" : C.vPale,
+            color: hov ? C.vLight : C.v, border:`1px solid ${hov ? "rgba(13,148,136,0.3)" : "rgba(13,148,136,0.15)"}`,
             transition:"background 0.3s, color 0.3s",
           }}>{t}</span>
         ))}
       </div>
       {(p.youtube || p.webapp || p.website || p.discord) && (
-        <div style={{ display:"flex", flexWrap:"wrap", gap:"0.5rem", paddingTop:"0.9rem", borderTop:`1px solid ${hov ? "rgba(255,255,255,0.08)" : "rgba(37,99,235,0.08)"}` }}>
+        <div style={{ display:"flex", flexWrap:"wrap", gap:"0.5rem", paddingTop:"0.9rem", borderTop:`1px solid ${hov ? "rgba(255,255,255,0.08)" : "rgba(13,148,136,0.08)"}` }}>
           {p.youtube && (
             <a href={p.youtube} target="_blank" rel="noopener noreferrer"
               onClick={e => e.stopPropagation()}
@@ -2639,7 +2639,7 @@ function Projects() {
           {CATEGORIES.map(cat => (
             <button key={cat} onClick={()=>setActive(cat)} style={{
               padding:"0.45rem 1.2rem", borderRadius:100, cursor:"pointer",
-              border: active === cat ? "none" : `1px solid rgba(37,99,235,0.18)`,
+              border: active === cat ? "none" : `1px solid rgba(13,148,136,0.18)`,
               background: active === cat ? "var(--filter-active-bg)" : "transparent",
               color: active === cat ? "var(--filter-active-color)" : C.muted,
               fontSize:"0.78rem", fontWeight:600, fontFamily:"'Syne',sans-serif", transition:"all 0.2s",
@@ -2698,7 +2698,7 @@ function SkillBar({ name, pct, cat }) {
           <span className="mono" style={{ fontSize:"0.72rem", color:C.muted }}>{pct}%</span>
         </div>
       </div>
-      <div style={{ height:6, background:"rgba(37,99,235,0.08)", borderRadius:3, overflow:"hidden" }}>
+      <div style={{ height:6, background:"rgba(13,148,136,0.08)", borderRadius:3, overflow:"hidden" }}>
         <div style={{
           height:"100%", borderRadius:3,
           background:`linear-gradient(90deg,${col},${col}99)`,
@@ -2722,7 +2722,7 @@ function SkillRings() {
   }, []);
 
   const rings = [
-    { name:"DSA / CP",    pct:92, col:"#2563EB", r:110 },
+    { name:"DSA / CP",    pct:92, col:"#0D9488", r:110 },
     { name:"Node.js",     pct:90, col:"#38BDF8", r:92  },
     { name:"Python",      pct:88, col:"#0EA5E9", r:74  },
     { name:"MySQL/ACID",  pct:85, col:"#10B981", r:56  },
@@ -2742,7 +2742,7 @@ function SkillRings() {
           {/* Background rings */}
           {rings.map(({ r }) => (
             <circle key={`bg-${r}`} cx={cx} cy={cy} r={r}
-              fill="none" stroke="rgba(37,99,235,0.08)" strokeWidth="8"
+              fill="none" stroke="rgba(13,148,136,0.08)" strokeWidth="8"
             />
           ))}
           {/* Animated foreground rings */}
@@ -2779,7 +2779,7 @@ function SkillRings() {
             display:"flex", alignItems:"center", gap:"1rem",
             padding:"0.65rem 0.9rem",
             background:"var(--paper)",
-            border:"1px solid rgba(37,99,235,0.08)",
+            border:"1px solid rgba(13,148,136,0.08)",
             borderLeft:`3px solid ${col}`,
             borderRadius:10,
             transition:"transform 0.2s, box-shadow 0.2s",
@@ -2790,7 +2790,7 @@ function SkillRings() {
           >
             {/* Mini ring */}
             <svg width="32" height="32" viewBox="0 0 32 32" style={{ flexShrink:0 }}>
-              <circle cx="16" cy="16" r="12" fill="none" stroke="rgba(37,99,235,0.1)" strokeWidth="3"/>
+              <circle cx="16" cy="16" r="12" fill="none" stroke="rgba(13,148,136,0.1)" strokeWidth="3"/>
               <circle cx="16" cy="16" r="12" fill="none" stroke={col} strokeWidth="3"
                 strokeLinecap="round"
                 strokeDasharray={`${vis ? (pct/100)*75.4 : 0} 75.4`}
@@ -2803,7 +2803,7 @@ function SkillRings() {
             </svg>
             <div style={{ flex:1 }}>
               <div style={{ fontSize:"0.85rem", fontWeight:700, color:"var(--ink)" }}>{name}</div>
-              <div style={{ height:3, background:"rgba(37,99,235,0.08)", borderRadius:2, marginTop:"0.3rem" }}>
+              <div style={{ height:3, background:"rgba(13,148,136,0.08)", borderRadius:2, marginTop:"0.3rem" }}>
                 <div style={{
                   height:"100%", width: vis ? `${pct}%` : "0%",
                   background:`linear-gradient(90deg,${col},${col}88)`,
@@ -2853,7 +2853,7 @@ function Skills() {
             <button key={k} onClick={()=>setTab(k)} style={{
               padding:"0.45rem 1.3rem", borderRadius:100, cursor:"pointer",
               fontSize:"0.78rem", fontWeight:600, fontFamily:"'Syne',sans-serif",
-              border: tab===k ? "none" : `1px solid rgba(37,99,235,0.18)`,
+              border: tab===k ? "none" : `1px solid rgba(13,148,136,0.18)`,
               background: tab===k ? C.v : "transparent",
               color: tab===k ? "#fff" : C.muted, transition:"all 0.2s",
             }}>{l}</button>
@@ -2868,7 +2868,7 @@ function Skills() {
           <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:"1.2rem" }}>
             {SKILL_GROUPS.map((s, i) => (
               <div key={s.label} style={{
-                background:C.paper, border:`1px solid rgba(37,99,235,0.08)`, borderRadius:14, padding:"1.5rem",
+                background:C.paper, border:`1px solid rgba(13,148,136,0.08)`, borderRadius:14, padding:"1.5rem",
                 animation:`tagIn 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s both`,
               }}>
                 <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", marginBottom:"1rem" }}>
@@ -2887,7 +2887,7 @@ function Skills() {
             <SkillRadar />
             <div>
               {[
-                { label:"Backend",  val:90, col:"#2563EB" },
+                { label:"Backend",  val:90, col:"#0D9488" },
                 { label:"DSA / CP", val:92, col:"#38BDF8" },
                 { label:"AI / ML",  val:80, col:"#0EA5E9" },
                 { label:"Databases",val:85, col:"#10B981" },
@@ -2899,7 +2899,7 @@ function Skills() {
                     <span style={{ fontSize:"0.82rem", fontWeight:700, color:C.ink }}>{s.label}</span>
                     <span className="mono" style={{ fontSize:"0.72rem", color:s.col, fontWeight:700 }}>{s.val}%</span>
                   </div>
-                  <div style={{ height:6, background:"rgba(37,99,235,0.08)", borderRadius:3 }}>
+                  <div style={{ height:6, background:"rgba(13,148,136,0.08)", borderRadius:3 }}>
                     <div style={{ height:"100%", width:`${s.val}%`, background:`linear-gradient(90deg,${s.col},${s.col}88)`, borderRadius:3, transition:"width 1s ease" }}/>
                   </div>
                 </div>
@@ -2938,7 +2938,7 @@ function Achievements() {
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))", gap:"1.3rem" }}>
           {ACHIEVEMENTS.map((a,i) => (
             <div key={a.title} className={`rv d${i+1}`} style={{
-              background:C.paper, border:`1px solid rgba(37,99,235,0.08)`, borderRadius:16, padding:"2rem",
+              background:C.paper, border:`1px solid rgba(13,148,136,0.08)`, borderRadius:16, padding:"2rem",
               position:"relative", overflow:"hidden", transition:"transform 0.25s, box-shadow 0.25s",
             }}
               onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-6px)";e.currentTarget.style.boxShadow=`0 20px 56px ${a.col}22`;}}
@@ -2982,7 +2982,7 @@ const BLOGS = [
     tags: ["Node.js", "Redis", "BullMQ", "System Design"],
     date: "Jan 2025",
     readTime: "8 min read",
-    col: "#2563EB",
+    col: "#0D9488",
     href: "#",
   },
   {
@@ -3014,13 +3014,13 @@ function Blog() {
           {BLOGS.map((b, i) => (
             <a key={b.num} href={b.href} className={`rv d${i+1}`} style={{
               display:"block", textDecoration:"none",
-              background:C.paper, border:`1px solid rgba(37,99,235,0.1)`,
+              background:C.paper, border:`1px solid rgba(13,148,136,0.1)`,
               borderRadius:16, padding:"2rem", position:"relative", overflow:"hidden",
               transition:"transform 0.25s, box-shadow 0.25s",
-              boxShadow:"0 2px 20px rgba(37,99,235,0.05)",
+              boxShadow:"0 2px 20px rgba(13,148,136,0.05)",
             }}
               onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-6px)";e.currentTarget.style.boxShadow=`0 20px 56px ${b.col}22`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 20px rgba(37,99,235,0.05)";}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 20px rgba(13,148,136,0.05)";}}
             >
               {/* Top accent line */}
               <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${b.col},${b.col}88)`, borderRadius:"16px 16px 0 0" }}/>
@@ -3051,12 +3051,12 @@ function Blog() {
 
 /* ─────────────── TIMELINE ─────────────── */
 const TIMELINE_EVENTS = [
-  { year:"2023", month:"Aug", icon:"🎓", title:"Started B.Tech CSE", sub:"Manipal University Jaipur", desc:"Began Computer Science degree. Immediately dove into DSA and competitive programming.", col:"#2563EB" },
+  { year:"2023", month:"Aug", icon:"🎓", title:"Started B.Tech CSE", sub:"Manipal University Jaipur", desc:"Began Computer Science degree. Immediately dove into DSA and competitive programming.", col:"#0D9488" },
   { year:"2023", month:"Dec", icon:"🏆", title:"TLE Eliminators — CP Level 1", sub:"Competitive Programming", desc:"Completed Level 1 of TLE Eliminators' competitive programming course. Foundation in C++ and algorithmic thinking.", col:"#38BDF8" },
   { year:"2024", month:"Mar", icon:"⭐", title:"Dean's Excellence Award — Sem 1", sub:"9.05 CGPA", desc:"Awarded Dean's Excellence for outstanding academic performance in the first semester.", col:"#F59E0B" },
   { year:"2024", month:"Jun", icon:"📜", title:"Oracle DB & GeeksforGeeks OOP", sub:"Certifications", desc:"Completed Oracle Database Design & Foundations and OOP in Java from GeeksforGeeks.", col:"#0EA5E9" },
   { year:"2024", month:"Aug", icon:"🔥", title:"500+ DSA Problems Solved", sub:"LeetCode · Codeforces", desc:"Hit the 500 problem milestone. Moved into medium-hard difficulty consistently.", col:"#10B981" },
-  { year:"2024", month:"Nov", icon:"🥋", title:"TLE Eliminators — CP Level 2 & 3", sub:"Advanced Algorithms", desc:"Completed Levels 2 & 3 covering advanced graph theory, segment trees, and DP optimizations.", col:"#2563EB" },
+  { year:"2024", month:"Nov", icon:"🥋", title:"TLE Eliminators — CP Level 2 & 3", sub:"Advanced Algorithms", desc:"Completed Levels 2 & 3 covering advanced graph theory, segment trees, and DP optimizations.", col:"#0D9488" },
   { year:"2025", month:"Jan", icon:"🎩", title:"Red Hat Sysadmin I & II + NPTEL DAA", sub:"Dual Certifications", desc:"Earned Red Hat System Administration I & II and NPTEL's Design and Analysis of Algorithms certificate.", col:"#C53030" },
   { year:"2025", month:"Feb", icon:"🚀", title:"MUJHackX Round 2 Qualifier", sub:"1300+ participants", desc:"Qualified for Round 2 at MUJHackX, competing among 1300+ participants from across the university.", col:"#38BDF8" },
   { year:"2025", month:"Mar", icon:"⚡", title:"LeetCode Top 0.3% Globally", sub:"Beats 99.7%", desc:"Surpassed 900+ problems. Ranked in the top 0.3% of all LeetCode users worldwide.", col:"#FFA116" },
@@ -3079,9 +3079,9 @@ function Timeline() {
 
         <div style={{ position:"relative" }}>
           {/* Central line */}
-          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:2, background:"linear-gradient(to bottom, transparent, rgba(37,99,235,0.3) 5%, rgba(37,99,235,0.3) 95%, transparent)", transform:"translateX(-50%)" }} className="hide-mob"/>
+          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:2, background:"linear-gradient(to bottom, transparent, rgba(13,148,136,0.3) 5%, rgba(13,148,136,0.3) 95%, transparent)", transform:"translateX(-50%)" }} className="hide-mob"/>
           {/* Mobile line */}
-          <div style={{ position:"absolute", left:20, top:0, bottom:0, width:2, background:"rgba(37,99,235,0.2)" }} className="show-mob"/>
+          <div style={{ position:"absolute", left:20, top:0, bottom:0, width:2, background:"rgba(13,148,136,0.2)" }} className="show-mob"/>
 
           {TIMELINE_EVENTS.map((ev, i) => {
             const isLeft = i % 2 === 0;
@@ -3112,16 +3112,16 @@ function Timeline() {
                 {/* Card */}
                 <div style={{
                   width:"45%", background:C.paper,
-                  border:`1px solid rgba(37,99,235,0.1)`,
+                  border:`1px solid rgba(13,148,136,0.1)`,
                   borderRadius:14, padding:"1.3rem 1.5rem",
-                  boxShadow:"0 2px 16px rgba(37,99,235,0.06)",
+                  boxShadow:"0 2px 16px rgba(13,148,136,0.06)",
                   marginLeft: isLeft ? "0" : "auto",
-                  borderLeft: isLeft ? `3px solid ${ev.col}` : "1px solid rgba(37,99,235,0.1)",
-                  borderRight: !isLeft ? `3px solid ${ev.col}` : "1px solid rgba(37,99,235,0.1)",
+                  borderLeft: isLeft ? `3px solid ${ev.col}` : "1px solid rgba(13,148,136,0.1)",
+                  borderRight: !isLeft ? `3px solid ${ev.col}` : "1px solid rgba(13,148,136,0.1)",
                   transition:"transform 0.25s, box-shadow 0.25s",
                 }}
                   onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.02)";e.currentTarget.style.boxShadow=`0 8px 32px ${ev.col}22`;}}
-                  onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 16px rgba(37,99,235,0.06)";}}
+                  onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 16px rgba(13,148,136,0.06)";}}
                   className="hide-mob"
                 >
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"0.5rem" }}>
@@ -3135,10 +3135,10 @@ function Timeline() {
                 {/* Mobile card */}
                 <div style={{
                   marginLeft:"2.8rem", flex:1,
-                  background:C.paper, border:`1px solid rgba(37,99,235,0.1)`,
+                  background:C.paper, border:`1px solid rgba(13,148,136,0.1)`,
                   borderLeft:`3px solid ${ev.col}`,
                   borderRadius:12, padding:"1rem 1.2rem",
-                  boxShadow:"0 2px 12px rgba(37,99,235,0.05)",
+                  boxShadow:"0 2px 12px rgba(13,148,136,0.05)",
                 }} className="show-mob">
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"0.3rem" }}>
                     <div style={{ fontSize:"0.85rem", fontWeight:800, color:C.ink }}>{ev.title}</div>
@@ -3170,7 +3170,7 @@ function CurrentlyLearning() {
   return (
     <section id="learning" className="sec-pad sec-transition" style={{ padding:"8rem 4rem", background:C.bg2, position:"relative", overflow:"hidden" }}>
       {/* Subtle animated bg orb */}
-      <div style={{ position:"absolute", top:"-10%", right:"-5%", width:400, height:400, borderRadius:"50%", background:`radial-gradient(circle,rgba(37,99,235,0.07) 0%,transparent 70%)`, pointerEvents:"none", animation:"floatUp 12s ease-in-out infinite" }}/>
+      <div style={{ position:"absolute", top:"-10%", right:"-5%", width:400, height:400, borderRadius:"50%", background:`radial-gradient(circle,rgba(13,148,136,0.07) 0%,transparent 70%)`, pointerEvents:"none", animation:"floatUp 12s ease-in-out infinite" }}/>
       <div style={{ maxWidth:1060, margin:"0 auto", position:"relative", zIndex:1 }}>
         <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
           <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Currently Learning
@@ -3179,7 +3179,7 @@ function CurrentlyLearning() {
           <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink }}>
             What I'm <span className="grad">exploring</span> now
           </h2>
-          <div className="rv d2" style={{ display:"flex", alignItems:"center", gap:"0.5rem", padding:"0.4rem 1rem", background:C.vPale, border:"1px solid rgba(37,99,235,0.2)", borderRadius:100, animation:"learnPulse 2.5s ease-in-out infinite" }}>
+          <div className="rv d2" style={{ display:"flex", alignItems:"center", gap:"0.5rem", padding:"0.4rem 1rem", background:C.vPale, border:"1px solid rgba(13,148,136,0.2)", borderRadius:100, animation:"learnPulse 2.5s ease-in-out infinite" }}>
             <div style={{ width:7, height:7, borderRadius:"50%", background:"#10B981", animation:"pulse2 1.5s ease-in-out infinite" }}/>
             <span className="mono" style={{ fontSize:"0.65rem", color:C.v, fontWeight:700, letterSpacing:"1px" }}>LEARNING IN PROGRESS</span>
           </div>
@@ -3191,14 +3191,14 @@ function CurrentlyLearning() {
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:"1.3rem" }}>
           {LEARNING.map((item, i) => (
             <div key={item.name} className={`rv d${(i % 4) + 1}`} style={{
-              background:C.paper, border:`1px solid rgba(37,99,235,0.1)`,
+              background:C.paper, border:`1px solid rgba(13,148,136,0.1)`,
               borderRadius:16, padding:"1.6rem",
-              boxShadow:"0 2px 20px rgba(37,99,235,0.05)",
+              boxShadow:"0 2px 20px rgba(13,148,136,0.05)",
               transition:"transform 0.25s, box-shadow 0.25s",
               position:"relative", overflow:"hidden",
             }}
               onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-5px)";e.currentTarget.style.boxShadow=`0 16px 48px ${item.col}18`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 20px rgba(37,99,235,0.05)";}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 20px rgba(13,148,136,0.05)";}}
             >
               {/* Status badge */}
               <div style={{
@@ -3230,7 +3230,7 @@ function CurrentlyLearning() {
                   <span style={{ fontSize:"0.68rem", color:C.muted, fontFamily:"'JetBrains Mono',monospace" }}>Progress</span>
                   <span style={{ fontSize:"0.68rem", color:item.col, fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>{item.progress}%</span>
                 </div>
-                <div style={{ height:5, background:"rgba(37,99,235,0.08)", borderRadius:3, overflow:"hidden" }}>
+                <div style={{ height:5, background:"rgba(13,148,136,0.08)", borderRadius:3, overflow:"hidden" }}>
                   <div style={{
                     height:"100%", borderRadius:3,
                     background:`linear-gradient(90deg,${item.col},${item.col}aa)`,
@@ -3244,7 +3244,7 @@ function CurrentlyLearning() {
         </div>
 
         {/* Bottom note */}
-        <div className="rv d5" style={{ marginTop:"2.5rem", padding:"1.2rem 1.8rem", background:C.vPale, border:"1px solid rgba(37,99,235,0.15)", borderRadius:12, display:"flex", alignItems:"center", gap:"1rem" }}>
+        <div className="rv d5" style={{ marginTop:"2.5rem", padding:"1.2rem 1.8rem", background:C.vPale, border:"1px solid rgba(13,148,136,0.15)", borderRadius:12, display:"flex", alignItems:"center", gap:"1rem" }}>
           <span style={{ fontSize:"1.3rem" }}>💡</span>
           <span style={{ fontSize:"0.85rem", color:C.inkMid, lineHeight:1.6 }}>
             <strong>Goal for 2025–26:</strong> Ship production-grade services in Go, get comfortable with Kubernetes deployments, and contribute to an open-source backend project.
@@ -3271,9 +3271,9 @@ function Contact() {
     { icon:"🧩", label:"LeetCode", value:"Top 0.3% · armanphaugat20",     href:"https://leetcode.com/u/armanphaugat20" },
   ];
   return (
-    <section id="contact" style={{ padding:"9rem 4rem", background:`linear-gradient(160deg,${C.vDeep} 0%,#0c2a6e 50%,#060C1A 100%)`, position:"relative", overflow:"hidden" }}>
+    <section id="contact" style={{ padding:"9rem 4rem", background:`linear-gradient(160deg,${C.vDeep} 0%,#083a35 50%,#020e0c 100%)`, position:"relative", overflow:"hidden" }}>
       <div style={{ position:"absolute", top:-150, right:-150, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(232,121,249,0.15) 0%,transparent 70%)", pointerEvents:"none" }}/>
-      <div style={{ position:"absolute", bottom:-100, left:-100, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(37,99,235,0.2) 0%,transparent 70%)", pointerEvents:"none" }}/>
+      <div style={{ position:"absolute", bottom:-100, left:-100, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(13,148,136,0.2) 0%,transparent 70%)", pointerEvents:"none" }}/>
       <div style={{ maxWidth:1060, margin:"0 auto", position:"relative", zIndex:1 }}>
         <div className="rv mono" style={{ fontSize:"0.68rem", color:C.vLight, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
           <span style={{ width:22, height:1, background:C.vLight, display:"inline-block" }}/>Get In Touch
@@ -3309,7 +3309,7 @@ function Contact() {
             <a key={l.label} href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
               className={`rv d${i+1}`}
               style={{ display:"flex", alignItems:"center", gap:"1rem", padding:"1.2rem 1.4rem", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff", transition:"background 0.2s, border-color 0.2s, transform 0.2s" }}
-              onMouseEnter={e=>{e.currentTarget.style.background="rgba(37,99,235,0.2)";e.currentTarget.style.borderColor="rgba(37,99,235,0.4)";e.currentTarget.style.transform="translateY(-3px)";}}
+              onMouseEnter={e=>{e.currentTarget.style.background="rgba(13,148,136,0.2)";e.currentTarget.style.borderColor="rgba(13,148,136,0.4)";e.currentTarget.style.transform="translateY(-3px)";}}
               onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.04)";e.currentTarget.style.borderColor="rgba(255,255,255,0.08)";e.currentTarget.style.transform="";}}
             >
               <div style={{ fontSize:"1.3rem", flexShrink:0 }}>{l.icon}</div>
@@ -3332,7 +3332,7 @@ function Contact() {
 /* ─────────────── FOOTER ─────────────── */
 function Footer() {
   return (
-    <footer style={{ background:"#080414", borderTop:"1px solid rgba(37,99,235,0.12)" }}>
+    <footer style={{ background:"#020e0c", borderTop:"1px solid rgba(13,148,136,0.12)" }}>
       {/* Main footer body */}
       <div style={{ maxWidth:1060, margin:"0 auto", padding:"3rem 2rem 2rem", display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:"3rem" }} className="footer-grid">
         {/* Brand col */}
@@ -3358,7 +3358,7 @@ function Footer() {
                 display:"flex", alignItems:"center", justifyContent:"center",
                 transition:"background 0.2s, transform 0.2s",
               }}
-                onMouseEnter={e=>{e.currentTarget.style.background="rgba(37,99,235,0.3)";e.currentTarget.style.transform="translateY(-2px)";}}
+                onMouseEnter={e=>{e.currentTarget.style.background="rgba(13,148,136,0.3)";e.currentTarget.style.transform="translateY(-2px)";}}
                 onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.06)";e.currentTarget.style.transform="";}}
               >{s.svg}</a>
             ))}
@@ -3370,7 +3370,7 @@ function Footer() {
           <div style={{ fontSize:"0.7rem", fontWeight:700, color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"2px", fontFamily:"'JetBrains Mono',monospace", marginBottom:"1rem" }}>Navigate</div>
           {["About","Experience","Projects","Skills","Blog","Timeline","Contact"].map(s => (
             <a key={s} href={`#${s.toLowerCase()}`} style={{ display:"block", fontSize:"0.82rem", color:"rgba(255,255,255,0.45)", textDecoration:"none", marginBottom:"0.55rem", transition:"color 0.2s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#93C5FD"}
+              onMouseEnter={e=>e.currentTarget.style.color="#5EEAD4"}
               onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,0.45)"}
             >{s}</a>
           ))}
@@ -3394,7 +3394,7 @@ function Footer() {
       {/* Bottom bar */}
       <div style={{ borderTop:"1px solid rgba(255,255,255,0.05)", padding:"1.2rem 2rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"0.5rem", maxWidth:1060, margin:"0 auto" }}>
         <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>© 2025 Arman Phaugat · All rights reserved</span>
-        <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>Built with React · Press <span style={{color:"rgba(37,99,235,0.7)"}}>?</span> for shortcuts · <span style={{color:"rgba(37,99,235,0.7)"}}>` </span>for terminal</span>
+        <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>Built with React · Press <span style={{color:"rgba(13,148,136,0.7)"}}>?</span> for shortcuts · <span style={{color:"rgba(13,148,136,0.7)"}}>` </span>for terminal</span>
       </div>
     </footer>
   );
@@ -3451,23 +3451,23 @@ export default function App() {
             position:"fixed", bottom:"2rem", left:"2rem",
             width:44, height:44, borderRadius:12, zIndex:800,
             background: showTerminal
-              ? "linear-gradient(135deg,#2563EB,#38BDF8)"
+              ? "linear-gradient(135deg,#0D9488,#38BDF8)"
               : "var(--paper)",
             border: showTerminal
               ? "none"
-              : "1.5px solid rgba(37,99,235,0.25)",
+              : "1.5px solid rgba(13,148,136,0.25)",
             cursor:"pointer",
             display:"flex", alignItems:"center", justifyContent:"center",
             boxShadow: showTerminal
-              ? "0 4px 24px rgba(37,99,235,0.45)"
+              ? "0 4px 24px rgba(13,148,136,0.45)"
               : "0 2px 16px rgba(0,0,0,0.08)",
             transition:"all 0.25s cubic-bezier(0.16,1,0.3,1)",
           }}
-          onMouseEnter={e => { if (!showTerminal) { e.currentTarget.style.background="linear-gradient(135deg,#2563EB,#38BDF8)"; e.currentTarget.style.border="none"; e.currentTarget.style.boxShadow="0 4px 24px rgba(37,99,235,0.45)"; }}}
-          onMouseLeave={e => { if (!showTerminal) { e.currentTarget.style.background="var(--paper)"; e.currentTarget.style.border="1.5px solid rgba(37,99,235,0.25)"; e.currentTarget.style.boxShadow="0 2px 16px rgba(0,0,0,0.08)"; }}}
+          onMouseEnter={e => { if (!showTerminal) { e.currentTarget.style.background="linear-gradient(135deg,#0D9488,#38BDF8)"; e.currentTarget.style.border="none"; e.currentTarget.style.boxShadow="0 4px 24px rgba(13,148,136,0.45)"; }}}
+          onMouseLeave={e => { if (!showTerminal) { e.currentTarget.style.background="var(--paper)"; e.currentTarget.style.border="1.5px solid rgba(13,148,136,0.25)"; e.currentTarget.style.boxShadow="0 2px 16px rgba(0,0,0,0.08)"; }}}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke={showTerminal ? "#fff" : "#2563EB"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            stroke={showTerminal ? "#fff" : "#0D9488"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
           </svg>
         </button>
