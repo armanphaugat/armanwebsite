@@ -53,7 +53,7 @@ const G = `
     --grid-col: rgba(167,139,250,0.07);
   }
 
-  [data-theme="dark"] body { background: #0a0010; color: #f0e6ff; }
+  [data-theme="dark"] body { background: #06000f; color: #fdf8ff; }
 
   :root {
     --card-hover: #1a0a2e;
@@ -220,7 +220,8 @@ const G = `
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  p, li, span, div { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   body {
     background: var(--bg);
     font-family: 'Space Mono', 'Share Tech Mono', monospace;
@@ -326,7 +327,7 @@ const G = `
   [data-theme="dark"] .status-available { border-color: #10B981; box-shadow: 2px 2px 0 #10B981; }
   [data-theme="dark"] .scroll-bar { background: repeating-linear-gradient(90deg,#A78BFA 0,#A78BFA 8px,#67E8F9 8px,#67E8F9 16px,#FCD34D 16px,#FCD34D 24px,#FCA5A5 24px,#FCA5A5 32px); }
   [data-theme="dark"] nav { background: rgba(6,0,15,0.88) !important; backdrop-filter:blur(12px) saturate(1.5); -webkit-backdrop-filter:blur(12px) saturate(1.5); }
-  [data-theme="dark"] select, [data-theme="dark"] input, [data-theme="dark"] textarea { background: #1a0a2e; color: #f0e6ff; border-color: rgba(167,139,250,0.4); }
+  [data-theme="dark"] select, [data-theme="dark"] input, [data-theme="dark"] textarea { background: #1a0a2e; color: #fdf8ff; border-color: rgba(167,139,250,0.5); }
   [data-theme="dark"] .mob-menu { background: #0a0010; }
   [data-theme="dark"] .mob-menu a { color: #f0e6ff; }
   [data-theme="dark"] .mob-menu a:hover { color: #A78BFA; }
@@ -583,7 +584,7 @@ function TerminalEasterEgg({ onClose }) {
           {history.map((entry, ei) => (
             <div key={ei} style={{ marginBottom:"0.5rem", animation:"termLineIn 0.2s ease both" }}>
               {entry.type==="cmd" && (
-                <div style={{ display:"flex", gap:"0.5rem", color:"rgba(255,255,255,0.85)" }}>
+                <div style={{ display:"flex", gap:"0.5rem", color:"rgba(255,255,255,0.95)" }}>
                   <span style={{ color:"#7C3AED", userSelect:"none" }}>ARMAN@PORTFOLIO</span>
                   <span style={{ color:"rgba(255,255,255,0.3)", userSelect:"none" }}>:~$</span>
                   <span>{entry.text}</span>
@@ -591,7 +592,7 @@ function TerminalEasterEgg({ onClose }) {
               )}
               {(entry.type==="output"||entry.type==="system") && (
                 <div style={{ paddingLeft:entry.type==="output"?"1rem":0 }}>
-                  {entry.lines.map((l,li) => <div key={li} style={{ color:l.col||"rgba(255,255,255,0.6)", fontWeight:l.bold?700:400, whiteSpace:"pre" }}>{l.text}</div>)}
+                  {entry.lines.map((l,li) => <div key={li} style={{ color:l.col||"rgba(255,255,255,0.82)", fontWeight:l.bold?700:400, whiteSpace:"pre" }}>{l.text}</div>)}
                 </div>
               )}
             </div>
@@ -799,7 +800,7 @@ function GitHubStatsCard() {
       </div>
       {/* Fake contribution grid */}
       <div>
-        <div style={{fontSize:"0.82rem",color:"rgba(255,255,255,0.3)",marginBottom:"0.4rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>ACTIVITY</div>
+        <div style={{fontSize:"0.85rem",color:"rgba(255,255,255,0.6)",marginBottom:"0.4rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>ACTIVITY</div>
         <div style={{display:"flex",gap:"2px",flexWrap:"wrap"}}>
           {Array.from({length:52*7}).map((_,i) => {
             const intensity = Math.random();
@@ -874,7 +875,7 @@ function LiveISTClock() {
         <div style={{ fontSize:"0.78rem", fontWeight:700, fontFamily:"'Pixelify Sans','Press Start 2P',monospace", color:time.isWorkHour?"#059669":"#B45309", background:time.isWorkHour?"rgba(16,185,129,0.1)":"rgba(245,158,11,0.1)", border:`2px solid ${time.isWorkHour?"#10B981":"#F59E0B"}`, padding:"0.2rem 0.5rem", boxShadow:`2px 2px 0 ${time.isWorkHour?"#10B981":"#F59E0B"}` }}>
           {time.isWorkHour?"[AWAKE]":"[ZZZ...]"}
         </div>
-        <div style={{fontSize:"0.78rem",color:"var(--muted)",marginTop:"0.2rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{time.isWorkHour?"likely at desk":"replies AM"}</div>
+        <div style={{fontSize:"0.85rem",color:"var(--inkMid)",marginTop:"0.2rem",fontWeight:600,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{time.isWorkHour?"likely at desk":"replies AM"}</div>
       </div>
     </div>
   );
@@ -1388,10 +1389,10 @@ function Experience() {
         <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>EXPERIENCE
         </div>
-        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:800,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.25,letterSpacing:"1px"}}>
           WHERE I'VE <span className="grad">WORKED</span>
         </h2>
-        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Real-world experience shipping under professional deadlines.</p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--inkMid)",marginBottom:"2.5rem",lineHeight:1.855,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Real-world experience shipping under professional deadlines.</p>
 
         <div className="rv d3 px-card" style={{background:"var(--paper)",padding:"2rem",transition:"transform 0.1s,box-shadow 0.1s"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:"1rem",marginBottom:"1.2rem"}}>
@@ -1404,7 +1405,7 @@ function Experience() {
             </div>
             <div style={{textAlign:"right"}}>
               <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",background:"var(--vPale)",padding:"0.3rem 0.8rem",display:"inline-block",border:"2px solid #7C3AED",boxShadow:"2px 2px 0 #7C3AED"}}>JUN-JUL 2025</span>
-              <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)",marginTop:"0.3rem",letterSpacing:"1px"}}>FULL-TIME · ON-SITE</div>
+              <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:"var(--inkMid)",marginTop:"0.3rem",letterSpacing:"1px"}}>FULL-TIME · ON-SITE</div>
             </div>
           </div>
           {["Maintained and updated the company website ensuring smooth performance and content accuracy.","Collaborated with cross-functional teams to align website updates with brand guidelines and business objectives."].map((b,i)=>(
@@ -1419,9 +1420,9 @@ function Experience() {
 
         <div className="rv d4 otw-banner" style={{marginTop:"1.5rem",background:"linear-gradient(135deg,#1a0a2e 0%,#0d0030 100%)",border:"3px solid #7C3AED",padding:"2rem",boxShadow:"8px 8px 0 #7C3AED, 0 0 30px rgba(124,58,237,0.2)",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem"}}>
           <div>
-            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"rgba(255,255,255,0.5)",letterSpacing:"2px",marginBottom:"0.4rem"}}>CURRENTLY SEEKING</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.85rem",color:"rgba(255,255,255,0.7)",letterSpacing:"2px",marginBottom:"0.5rem"}}>CURRENTLY SEEKING</div>
             <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"1rem",fontWeight:800,color:"#fff",marginBottom:"0.35rem",lineHeight:1.5}}>SUMMER INTERNSHIP 2026</div>
-            <div style={{fontSize:"0.9rem",color:"rgba(255,255,255,0.7)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Backend · AI/ML · Full Stack</div>
+            <div style={{fontSize:"0.95rem",color:"rgba(255,255,255,0.82)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Backend · AI/ML · Full Stack</div>
           </div>
           <a href="mailto:armanphaugat20@gmail.com" className="px-btn" style={{padding:"0.8rem 1.5rem",background:"rgba(255,255,255,0.1)",color:"#fff",border:"2px solid rgba(255,255,255,0.3)",textDecoration:"none",fontWeight:700,fontSize:"0.82rem",whiteSpace:"nowrap",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"3px 3px 0 rgba(255,255,255,0.2)"}}>REACH OUT &gt;&gt;</a>
         </div>
@@ -1501,7 +1502,7 @@ function Resume() {
               <div style={{borderLeft:"3px solid #7C3AED",paddingLeft:"1rem"}}>
                 <div style={{fontSize:"0.85rem",fontWeight:700,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>B.Tech in Computer Science</div>
                 <div style={{fontSize:"0.8rem",color:"#7C3AED",fontWeight:600,marginTop:"0.2rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Manipal University Jaipur</div>
-                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"var(--muted)",marginTop:"0.2rem"}}>2023-2027 · Jaipur</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"var(--muted)",fontWeight:700,marginTop:"0.2rem"}}>2023-2027 · Jaipur</div>
                 <div style={{marginTop:"0.6rem",display:"flex",gap:"0.4rem",flexWrap:"wrap"}}>
                   <span style={{padding:"0.3rem 0.75rem",background:"var(--vPale)",color:"#7C3AED",fontSize:"0.78rem",fontWeight:700,border:"2px solid #7C3AED",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"2px 2px 0 #7C3AED"}}>9.05 CGPA</span>
                   <span style={{padding:"0.3rem 0.75rem",background:"rgba(245,158,11,0.1)",color:"#92400E",fontSize:"0.78rem",fontWeight:700,border:"2px solid #F59E0B",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"2px 2px 0 #F59E0B"}}>DEANS AWARD</span>
@@ -1552,7 +1553,7 @@ function Resume() {
                       </div>
                       <span style={{fontSize:"0.75rem",padding:"0.15rem 0.4rem",background:`${col}15`,color:col,fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",flexShrink:0,whiteSpace:"nowrap",border:`1px solid ${col}`,boxShadow:`1px 1px 0 ${col}`}}>{badge}</span>
                     </div>
-                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)",marginTop:"0.2rem"}}>ISSUED {issued}</div>
+                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:"var(--inkMid)",marginTop:"0.2rem"}}>ISSUED {issued}</div>
                     <div style={{display:"flex",flexWrap:"wrap",gap:"0.25rem",marginTop:"0.4rem"}}>
                       {skills.map(s=><span key={s} style={{fontSize:"0.82rem",padding:"0.12rem 0.4rem",background:"var(--vPale)",color:"#7C3AED",border:"1px solid #7C3AED",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{s}</span>)}
                     </div>
@@ -1680,8 +1681,8 @@ function ProjectCard({ p }) {
     <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ background:hov?"#1a0a2e":"var(--paper)", border:`3px solid ${cc}`, boxShadow:hov?`8px 8px 0 ${cc}`:`4px 4px 0 ${cc}`, padding:"1.6rem", transition:"all 0.1s", transform:hov?"translate(-4px,-4px)":"translate(0,0)", display:"flex", flexDirection:"column", cursor:"default" }}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"0.8rem"}}>
         <div style={{display:"flex",gap:"0.4rem",alignItems:"center"}}>
-          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:hov?"rgba(255,255,255,0.4)":"var(--muted)"}}>#{p.num}</span>
-          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",fontWeight:700,padding:"0.15rem 0.5rem",background:`${cc}18`,color:cc,border:`1px solid ${cc}`}}>{p.category}</span>
+          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:hov?"rgba(255,255,255,0.7)":"var(--inkMid)"}}>#{p.num}</span>
+          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",fontWeight:700,padding:"0.2rem 0.6rem",background:`${cc}18`,color:cc,border:`1px solid ${cc}`}}>{p.category}</span>
         </div>
         <div style={{width:24,height:24,background:hov?`${cc}33`:"var(--vPale)",border:`2px solid ${cc}`,display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.1s"}}>
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={cc} strokeWidth="3"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
@@ -1723,10 +1724,10 @@ function Projects() {
         <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>PROJECTS
         </div>
-        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:800,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.25,letterSpacing:"1px"}}>
           THINGS I'VE <span className="grad">BUILT</span>
         </h2>
-        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"1.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>10 projects: backends · ML models · AI bots · games · frontend clones</p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"1.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace",fontWeight:500}}>10 projects: backends · ML models · AI bots · games · frontend clones</p>
         <ProjectStatsBar/>
         <div className="rv d3" style={{display:"flex",gap:"0.5rem",flexWrap:"wrap",marginBottom:"2rem"}}>
           {CATEGORIES.map(cat=>{
@@ -1854,7 +1855,7 @@ function Skills() {
         <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>SKILLS
         </div>
-        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:800,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.25,letterSpacing:"1px"}}>
           MY <span className="grad">TOOLKIT</span>
         </h2>
         <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"1.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Technologies I reach for every day.</p>
@@ -1926,10 +1927,10 @@ function Achievements() {
         <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>ACHIEVEMENTS
         </div>
-        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:800,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.25,letterSpacing:"1px"}}>
           MILESTONES & <span className="grad">RECOGNITION</span>
         </h2>
-        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Consistent performance across academics, CP, and hackathons.</p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--inkMid)",marginBottom:"2.5rem",lineHeight:1.855,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Consistent performance across academics, CP, and hackathons.</p>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:"1.2rem"}}>
           {ACHIEVEMENTS.map((a,i)=>(
             <div key={a.title} className={`rv d${i+1}`} style={{background:"var(--paper)",border:`3px solid ${a.col}`,padding:"1.8rem",boxShadow:`5px 5px 0 ${a.col}`,position:"relative",overflow:"hidden",transition:"transform 0.1s,box-shadow 0.1s"}}
@@ -1976,10 +1977,10 @@ function Blog() {
         <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>WRITING
         </div>
-        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:800,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.25,letterSpacing:"1px"}}>
           BLOG & <span className="grad">ARTICLES</span>
         </h2>
-        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Writing about what I build — problems, design decisions, learnings.</p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--inkMid)",marginBottom:"2.5rem",lineHeight:1.855,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Writing about what I build — problems, design decisions, learnings.</p>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1.2rem"}} className="grid2">
           {BLOGS.map((b,i)=>(
             <a key={b.num} href={b.href} className={`rv d${i+1} shimmer-hover`} style={{display:"block",textDecoration:"none",background:"var(--paper)",border:`3px solid ${b.col}`,padding:"1.8rem",position:"relative",overflow:"hidden",boxShadow:`5px 5px 0 ${b.col}`,transition:"all 0.1s"}}
@@ -1987,9 +1988,9 @@ function Blog() {
               onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`5px 5px 0 ${b.col}`;}}
             >
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"1rem"}}>
-                <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"var(--muted)"}}>#{b.num}</span>
+                <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"var(--muted)",fontWeight:700}}>#{b.num}</span>
                 <div style={{display:"flex",gap:"0.5rem",alignItems:"center"}}>
-                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)"}}>{b.date}</span>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:"var(--inkMid)"}}>{b.date}</span>
                   <span style={{width:4,height:4,background:"var(--muted)",display:"inline-block"}}/>
                   <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:b.col,fontWeight:700}}>{b.readTime}</span>
                 </div>
@@ -2031,7 +2032,7 @@ function Timeline() {
         <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>JOURNEY
         </div>
-        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:800,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.25,letterSpacing:"1px"}}>
           MY <span className="grad">TIMELINE</span>
         </h2>
         <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"3rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>From day one at MUJ to where I am now.</p>
@@ -2055,7 +2056,7 @@ function Timeline() {
                   className="hide-mob"
                 >
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"0.3rem"}}>
-                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",fontWeight:800,color:"var(--ink)",lineHeight:1.5}}>{ev.title}</div>
+                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.95rem",fontWeight:800,color:"var(--ink)",lineHeight:1.45}}>{ev.title}</div>
                     <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:ev.col,background:`${ev.col}15`,padding:"0.15rem 0.4rem",fontWeight:700,whiteSpace:"nowrap",marginLeft:"0.4rem",flexShrink:0,border:`1px solid ${ev.col}`,boxShadow:`1px 1px 0 ${ev.col}`}}>{ev.month} {ev.year}</span>
                   </div>
                   <div style={{fontSize:"0.7rem",color:ev.col,fontWeight:600,marginBottom:"0.4rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{ev.sub}</div>
@@ -2106,7 +2107,7 @@ function CurrentlyLearning() {
             <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"#7C3AED",fontWeight:700,letterSpacing:"1px"}}>IN PROGRESS</span>
           </div>
         </div>
-        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Going deeper into infra, systems programming, and advanced AI.</p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--inkMid)",marginBottom:"2.5rem",lineHeight:1.855,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Going deeper into infra, systems programming, and advanced AI.</p>
 
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(290px,1fr))",gap:"1.1rem"}}>
           {LEARNING.map((item,i)=>(
@@ -2128,7 +2129,7 @@ function CurrentlyLearning() {
 
               <div>
                 <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
-                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)"}}>PROGRESS</span>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:"var(--inkMid)"}}>PROGRESS</span>
                   <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:item.col,fontWeight:700}}>{item.progress}%</span>
                 </div>
                 <div style={{height:8,background:"rgba(124,58,237,0.08)",border:`2px solid ${item.col}`}}>
@@ -2141,7 +2142,7 @@ function CurrentlyLearning() {
 
         <div className="rv d5" style={{marginTop:"2rem",padding:"1rem 1.5rem",background:"var(--vPale)",border:"2px solid #7C3AED",boxShadow:"3px 3px 0 #7C3AED",display:"flex",alignItems:"center",gap:"0.8rem"}}>
           <span style={{fontSize:"1.2rem"}}>💡</span>
-          <span style={{fontFamily:"'Space Mono','Share Tech Mono',monospace",fontSize:"0.82rem",color:"var(--inkMid)",lineHeight:1.6}}>
+          <span style={{fontFamily:"'Space Mono','Share Tech Mono',monospace",fontSize:"0.92rem",color:"var(--ink)",lineHeight:1.65}}>
             <strong style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"#7C3AED"}}>GOAL 2025-26:</strong> Ship prod-grade services in Go, get comfortable with K8s, contribute to open-source.
           </span>
         </div>
@@ -2178,7 +2179,7 @@ function Contact() {
         {/* Email CTA */}
         <div className="rv d3 contact-email-row" style={{display:"flex",gap:"0.8rem",alignItems:"center",marginBottom:"2.5rem",flexWrap:"wrap"}}>
           <div style={{background:"rgba(255,255,255,0.05)",border:"2px solid rgba(255,255,255,0.15)",padding:"0.9rem 1.3rem",flex:1,minWidth:260}}>
-            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"rgba(255,255,255,0.35)",letterSpacing:"1.5px",marginBottom:"0.2rem"}}>PRIMARY EMAIL</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"rgba(255,255,255,0.6)",letterSpacing:"1.5px",marginBottom:"0.3rem",fontWeight:600}}>PRIMARY EMAIL</div>
             <div style={{fontSize:"0.9rem",color:"#fff",fontWeight:600,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>armanphaugat20@gmail.com</div>
           </div>
           <button onClick={copy} className="px-btn" style={{padding:"0.9rem 1.5rem",background:copied?"#10B981":"#7C3AED",color:"#fff",border:"none",cursor:"pointer",fontSize:"0.82rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",transition:"background 0.2s",boxShadow:"3px 3px 0 #4C1D95",whiteSpace:"nowrap"}}>{copied?"COPIED!":"COPY EMAIL"}</button>
@@ -2252,7 +2253,7 @@ function Footer() {
             <div className="status-ping"/>
             <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"#10B981",fontWeight:700}}>OPEN TO WORK</span>
           </div>
-          <div style={{fontSize:"0.72rem",color:"rgba(255,255,255,0.3)",lineHeight:1.7,marginBottom:"1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+          <div style={{fontSize:"0.88rem",color:"rgba(255,255,255,0.62)",lineHeight:1.8,marginBottom:"1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
             Available for internships & projects.<br/>Backend · AI/ML · Full Stack
           </div>
           <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",fontWeight:700,color:"rgba(255,255,255,0.3)",marginBottom:"0.5rem"}}>DEV THOUGHT</div>
