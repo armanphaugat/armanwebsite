@@ -12,366 +12,371 @@ const C = {
   paper:  "var(--paper)",
   ink:    "var(--ink)",
   inkMid: "var(--inkMid)",
-  v:      "#0D9488",
-  vLight: "#5EEAD4",
+  v:      "#7C3AED",
+  vLight: "#A78BFA",
   vPale:  "var(--vPale)",
-  vDeep:  "#134E4A",
-  accent: "#38BDF8",
+  vDeep:  "#4C1D95",
+  accent: "#06B6D4",
+  accent2:"#F59E0B",
+  accent3:"#EF4444",
+  accent4:"#10B981",
   muted:  "var(--muted)",
   gold:   "#F59E0B",
 };
 
 /* ─────────────── GLOBAL STYLES ─────────────── */
 const G = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&family=Pixelify+Sans:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
   :root {
-    --bg:     #F0FDFA;
-    --bg2:    #CCFBF1;
-    --paper:  #FFFFFF;
-    --ink:    #0F172A;
-    --inkMid: #134E4A;
-    --vPale:  #CCFBF1;
-    --muted:  #64748B;
+    --bg:       #FAFAFA;
+    --bg2:      #F3EEFF;
+    --paper:    #FFFFFF;
+    --ink:      #12001f;
+    --inkMid:   #3b1e6e;
+    --vPale:    #EDE9FE;
+    --muted:    #5B21B6;
+    --glow-v:   rgba(124,58,237,0.18);
+    --glow-c:   rgba(6,182,212,0.15);
+    --grid-col: rgba(124,58,237,0.05);
   }
   [data-theme="dark"] {
-    --bg:      #0d0d0d;
-    --bg2:     #141414;
-    --paper:   #1c1c1c;
-    --ink:     #f0f0f0;
-    --inkMid:  #a0a0a0;
-    --vPale:   #0d2a27;
-    --muted:   #7a7a7a;
+    --bg:       #06000f;
+    --bg2:      #0d0020;
+    --paper:    #130028;
+    --ink:      #f8f2ff;
+    --inkMid:   #ddd6fe;
+    --vPale:    #1e0842;
+    --muted:    #c4b5fd;
+    --glow-v:   rgba(167,139,250,0.2);
+    --glow-c:   rgba(103,232,249,0.15);
+    --grid-col: rgba(167,139,250,0.07);
   }
 
-  /* ── Dark mode comprehensive overrides ── */
-  [data-theme="dark"] body { background: #0d0d0d; color: #f0f0f0; }
-  [data-theme="dark"] ::-webkit-scrollbar-thumb { background: linear-gradient(#0d9488,#5eead4); }
+  [data-theme="dark"] body { background: #0a0010; color: #f0e6ff; }
 
-  /* Progress sidebar */
-  [data-theme="dark"] .progress-dot { background:rgba(13,148,136,0.15); border-color:rgba(13,148,136,0.3); }
-  [data-theme="dark"] .progress-dot.active { background:#0d9488; border-color:#0d9488; box-shadow:0 0 8px rgba(13,148,136,0.6); }
-  [data-theme="dark"] .progress-dot:hover:not(.active) { background:rgba(13,148,136,0.4); }
-
-  /* Scroll bar */
-  [data-theme="dark"] .scroll-bar { background:linear-gradient(90deg,#0d9488,#5eead4,#5eead4); }
-
-  /* Back to top */
-  [data-theme="dark"] .btt-btn { background:linear-gradient(135deg,#0d9488,#5eead4); box-shadow:0 4px 20px rgba(13,148,136,0.4); }
-  [data-theme="dark"] .btt-btn:hover { box-shadow:0 8px 28px rgba(13,148,136,0.6); }
-
-  /* Chips */
-  [data-theme="dark"] .chip { background:#0d2a27; color:#5eead4; border-color:rgba(13,148,136,0.25); }
-  [data-theme="dark"] .chip:hover { background:#0d9488; color:#fff; }
-
-  /* Nav underline */
-  [data-theme="dark"] .nav-link::after { background:#5eead4; }
-
-  /* Toast */
-  [data-theme="dark"] .toast { background:#1c1c1c; border-color:rgba(13,148,136,0.25); border-left-color:#0d9488; color:#f0f0f0; box-shadow:0 4px 24px rgba(0,0,0,0.5); }
-
-  /* Keyboard hint */
-  [data-theme="dark"] .kbd-hint { background:#1c1c1c; border-color:rgba(13,148,136,0.2); color:#7a7a7a; box-shadow:0 4px 20px rgba(0,0,0,0.4); }
-  [data-theme="dark"] .kbd-key { background:#0d2a27; color:#5eead4; border-color:rgba(13,148,136,0.25); }
-
-  /* Status available */
-  [data-theme="dark"] .status-available { background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.3); }
-
-  /* Mobile menu */
-  [data-theme="dark"] .mob-menu { background:#0d0d0d; }
-  [data-theme="dark"] .mob-menu a { color:#f0f0f0; }
-  [data-theme="dark"] .mob-menu a:hover { color:#5eead4; }
-
-  /* Gradient text - works in both modes */
-  [data-theme="dark"] .grad { background: linear-gradient(135deg,#5eead4,#5eead4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-
-  /* Spotlight glow - subtle in dark */
-  [data-theme="dark"] .spotlight { background:radial-gradient(circle,rgba(13,148,136,0.06) 0%,transparent 65%); }
-
-  /* Section transitions */
-  [data-theme="dark"] .sec-transition { opacity:0; }
-  [data-theme="dark"] .sec-transition.visible { opacity:1; }
-
-  /* ── CSS vars extended ── */
   :root {
-    --card-hover: #0F172A;
-    --filter-active-bg: #0F172A;
+    --card-hover: #1a0a2e;
+    --filter-active-bg: #7C3AED;
     --filter-active-color: #ffffff;
-    --section-divider: rgba(13,148,136,0.1);
+    --section-divider: rgba(124,58,237,0.15);
+    --pixel-border: 3px solid;
   }
   [data-theme="dark"] {
-    --card-hover: #252525;
-    --filter-active-bg: #0d9488;
+    --card-hover: #2e1065;
+    --filter-active-bg: #7C3AED;
     --filter-active-color: #ffffff;
-    --section-divider: rgba(13,148,136,0.15);
-  }
-
-  /* Dark mode: fix any remaining contrast issues */
-  [data-theme="dark"] nav { background: transparent; }
-  [data-theme="dark"] select,
-  [data-theme="dark"] input,
-  [data-theme="dark"] textarea {
-    background: #1c1c1c;
-    color: #f0f0f0;
-    border-color: rgba(255,255,255,0.15);
+    --section-divider: rgba(167,139,250,0.2);
   }
 
   @keyframes darkToggle    { from{transform:rotate(-30deg) scale(0.7);opacity:0} to{transform:rotate(0deg) scale(1);opacity:1} }
   @keyframes particleDrift { 0%{opacity:0.7} 100%{transform:translate(var(--px),var(--py));opacity:0} }
   @keyframes pulse2        { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.25);opacity:0.7} }
   @keyframes backTopIn     { from{opacity:0;transform:translateY(12px) scale(0.8)} to{opacity:1;transform:translateY(0) scale(1)} }
-  @keyframes learnPulse    { 0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.25)} 50%{box-shadow:0 0 0 6px rgba(13,148,136,0)} }
-  @keyframes connLine      { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
+  @keyframes learnPulse    { 0%,100%{box-shadow:0 0 0 0 rgba(124,58,237,0.3)} 50%{box-shadow:0 0 0 6px rgba(124,58,237,0)} }
   @keyframes confettiFall  { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
   @keyframes toastIn       { from{opacity:0;transform:translateX(120%)} to{opacity:1;transform:translateX(0)} }
   @keyframes toastOut      { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(120%)} }
   @keyframes floatCTA      { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
   @keyframes sparkle       { 0%{transform:scale(0) rotate(0deg);opacity:1} 100%{transform:scale(1.5) rotate(180deg);opacity:0} }
-  @keyframes radarIn       { from{stroke-dashoffset:500;opacity:0} to{stroke-dashoffset:0;opacity:1} }
-  @keyframes gradShift     { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
   @keyframes statusPing    { 0%{transform:scale(1);opacity:1} 75%,100%{transform:scale(2.2);opacity:0} }
   @keyframes kbdIn         { from{opacity:0;transform:translateY(8px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
   @keyframes factSlide     { 0%{opacity:0;transform:translateY(10px)} 15%,85%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-10px)} }
-
-  /* ── Page Loader ── */
-  @keyframes loaderFadeOut { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.04)} }
-  @keyframes loaderBarFill { 0%{width:0%} 100%{width:100%} }
-  @keyframes loaderGlitch  {
-    0%,100%{clip-path:inset(0 0 100% 0);transform:translateX(0)}
-    10%{clip-path:inset(10% 0 60% 0);transform:translateX(-4px)}
-    20%{clip-path:inset(40% 0 30% 0);transform:translateX(4px)}
-    30%{clip-path:inset(60% 0 10% 0);transform:translateX(-2px)}
-    40%{clip-path:inset(0 0 0 0);transform:translateX(0)}
-  }
-  @keyframes loaderScan {
-    0%{top:-100%} 100%{top:200%}
-  }
-  @keyframes loaderDotPulse {
-    0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)}
-  }
-  @keyframes loaderCountUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes loaderFadeOut { 0%{opacity:1} 100%{opacity:0} }
+  @keyframes loaderScan    { 0%{top:-100%} 100%{top:200%} }
+  @keyframes loaderDotPulse{ 0%,100%{opacity:0.2;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)} }
   @keyframes terminalSlideIn { from{opacity:0;transform:translateY(32px) scale(0.96)} to{opacity:1;transform:translateY(0) scale(1)} }
   @keyframes terminalSlideOut { from{opacity:1;transform:translateY(0) scale(1)} to{opacity:0;transform:translateY(32px) scale(0.96)} }
-  @keyframes termCursor { 0%,100%{opacity:1} 50%{opacity:0} }
-  @keyframes termTyping { from{width:0} to{width:100%} }
-  @keyframes termLineIn { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes termCursor    { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes termLineIn    { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes pixelBlink    { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes scanline      { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+  @keyframes marquee       { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes tagIn         { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes floatUp       { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-12px)} }
+  @keyframes resumePulse   { 0%,100%{box-shadow:4px 4px 0 #4C1D95} 50%{box-shadow:6px 6px 0 #4C1D95} }
+  @keyframes menuSlide     { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes iconDrift     { 0%,100%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(8px,-16px) rotate(6deg)} }
+  @keyframes iconDriftB    { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-14px,-22px)} }
+  @keyframes iconDriftC    { 0%,100%{transform:translate(0,0)} 40%{transform:translate(12px,10px) rotate(12deg)} }
+  @keyframes iconDriftD    { 0%,100%{transform:translate(0,0)} 60%{transform:translate(-8px,-18px)} }
+  @keyframes blink         { 0%,100%{opacity:1} 50%{opacity:0} }
+  @keyframes neonFlicker   { 0%,100%{opacity:1;text-shadow:0 0 8px rgba(124,58,237,0.8)} 92%{opacity:1} 93%{opacity:0.6} 94%{opacity:1} }
+  @keyframes pixelPop      { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
+  @keyframes confettiFall  { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
+  @keyframes gridPulse    { 0%,100%{opacity:0.6} 50%{opacity:1} }
+  @keyframes borderMarch  { 0%{background-position:0 0,100% 0,100% 100%,0 100%} 100%{background-position:300px 0,100% 300px,calc(100% - 300px) 100%,0 calc(100% - 300px)} }
+  @keyframes shimmer      { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+  @keyframes cardRise     { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+  @keyframes glowPulse    { 0%,100%{box-shadow:0 0 8px rgba(124,58,237,0.3),4px 4px 0 #7C3AED} 50%{box-shadow:0 0 20px rgba(124,58,237,0.5),4px 4px 0 #7C3AED} }
+  @keyframes rgbShift     { 0%{filter:hue-rotate(0deg)} 100%{filter:hue-rotate(360deg)} }
+  @keyframes scanlineMove { 0%{transform:translateY(-100vh)} 100%{transform:translateY(100vh)} }
+  @keyframes heroGlow     { 0%,100%{text-shadow:5px 5px 0 rgba(124,58,237,0.18),0 0 40px rgba(124,58,237,0.1)} 50%{text-shadow:5px 5px 0 rgba(124,58,237,0.25),0 0 60px rgba(124,58,237,0.2)} }
+  @keyframes dotMatrix    { 0%{opacity:0.3} 50%{opacity:1} 100%{opacity:0.3} }
 
-  .sec-transition { opacity:0; transform:translateY(28px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+  .sec-transition { opacity:0; transform:translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
   .sec-transition.visible { opacity:1; transform:translateY(0); }
 
-  .progress-dot { width:8px; height:8px; border-radius:50%; background:rgba(13,148,136,0.2); border:1.5px solid rgba(13,148,136,0.3); transition:all 0.3s; cursor:pointer; }
-  .progress-dot.active { background:#0D9488; border-color:#0D9488; transform:scale(1.4); box-shadow:0 0 8px rgba(13,148,136,0.5); }
-  .progress-dot:hover:not(.active) { background:rgba(13,148,136,0.45); }
+  .progress-dot { width:12px; height:12px; background:rgba(124,58,237,0.2); border:2px solid rgba(124,58,237,0.4); image-rendering:pixelated; transition:all 0.2s; cursor:pointer; }
+  .progress-dot.active { background:#7C3AED; border-color:#A78BFA; transform:scale(1.4); box-shadow:3px 3px 0 #4C1D95, 0 0 8px rgba(124,58,237,0.6); }
+  .progress-dot:hover:not(.active) { background:rgba(124,58,237,0.4); }
 
-  .btt-btn { position:fixed; bottom:2rem; right:2rem; width:44px; height:44px; border-radius:12px; background:linear-gradient(135deg,#0D9488,#38BDF8); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:800; box-shadow:0 4px 20px rgba(13,148,136,0.4); transition:transform 0.2s, box-shadow 0.2s; }
-  .btt-btn:hover { transform:translateY(-3px); box-shadow:0 8px 28px rgba(13,148,136,0.55); }
+  .btt-btn { position:fixed; bottom:2rem; right:2rem; width:46px; height:46px; background:linear-gradient(135deg,#7C3AED,#5B21B6); border:3px solid #4C1D95; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:800; box-shadow:4px 4px 0 #4C1D95, 0 0 12px rgba(124,58,237,0.4); transition:transform 0.1s, box-shadow 0.1s; image-rendering:pixelated; }
+  .btt-btn:hover { transform:translate(-3px,-3px); box-shadow:7px 7px 0 #4C1D95, 0 0 20px rgba(124,58,237,0.6); }
+  .btt-btn:active { transform:translate(2px,2px); box-shadow:2px 2px 0 #4C1D95; }
 
-  /* Scroll progress bar */
-  .scroll-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#0D9488,#38BDF8,#5EEAD4); z-index:9999; transition:width 0.05s linear; border-radius:0 2px 2px 0; }
+  .scroll-bar { position:fixed; top:0; left:0; height:5px; background:repeating-linear-gradient(90deg,#7C3AED 0px,#7C3AED 8px,#06B6D4 8px,#06B6D4 16px,#F59E0B 16px,#F59E0B 24px,#EF4444 24px,#EF4444 32px); z-index:9999; transition:width 0.05s linear; image-rendering:pixelated; box-shadow:0 1px 8px rgba(124,58,237,0.5); }
 
-  /* Spotlight glow */
-  .spotlight { position:fixed; pointer-events:none; z-index:1; border-radius:50%; background:radial-gradient(circle,rgba(13,148,136,0.08) 0%,transparent 65%); transition:opacity 0.3s; }
+  .spotlight { display:none; }
 
-  /* Noise texture */
-  .noise-overlay { position:absolute; inset:0; pointer-events:none; opacity:0.035; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 180px; }
-
-  /* Toast */
   .toast-wrap { position:fixed; bottom:5.5rem; right:1.5rem; z-index:9000; display:flex; flex-direction:column; gap:0.5rem; pointer-events:none; }
-  .toast { background:var(--paper); border:1px solid rgba(13,148,136,0.2); border-left:3px solid #0D9488; border-radius:10px; padding:0.75rem 1.1rem; font-size:0.82rem; font-family:'Syne',sans-serif; color:var(--ink); box-shadow:0 4px 24px rgba(0,0,0,0.12); display:flex; align-items:center; gap:0.6rem; pointer-events:all; animation:toastIn 0.35s cubic-bezier(0.16,1,0.3,1) both; }
+  .toast { background:var(--paper); border:3px solid #7C3AED; border-radius:0; padding:0.75rem 1.1rem; font-size:0.82rem; font-family:'Space Mono','Share Tech Mono',monospace; color:var(--ink); box-shadow:4px 4px 0 #7C3AED; display:flex; align-items:center; gap:0.6rem; pointer-events:all; animation:toastIn 0.35s ease both; image-rendering:pixelated; }
   .toast.out { animation:toastOut 0.3s ease both; }
 
-  /* Float connect CTA */
-  .float-cta { position:fixed; bottom:6rem; left:2rem; z-index:799; animation:floatCTA 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+  .float-cta { position:fixed; bottom:6rem; left:2rem; z-index:799; animation:floatCTA 0.5s ease both; }
 
-  /* Magnetic btn */
-  .mag-btn { transition: transform 0.2s cubic-bezier(0.16,1,0.3,1); }
+  .kbd-hint { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); z-index:799; background:var(--paper); border:3px solid #7C3AED; border-radius:0; padding:0.45rem 1.2rem; font-size:0.78rem; font-family:'Space Mono','Share Tech Mono',monospace; color:var(--muted); box-shadow:3px 3px 0 #7C3AED; display:flex; align-items:center; gap:0.6rem; animation:kbdIn 0.3s ease both; pointer-events:none; }
+  .kbd-key { background:var(--vPale); color:#7C3AED; border:2px solid #7C3AED; border-radius:0; padding:0.1rem 0.45rem; font-size:0.75rem; font-weight:700; box-shadow:2px 2px 0 #7C3AED; }
 
-  /* Accent theme vars */
-  [data-accent="purple"] { --acc:#0D9488; --acc2:#38BDF8; --accP:#F0FDFA; }
-  [data-accent="blue"]   { --acc:#0D9488; --acc2:#06B6D4; --accP:#F0FDFA; }
-  [data-accent="green"]  { --acc:#059669; --acc2:#34D399; --accP:#ECFDF5; }
-  [data-accent="rose"]   { --acc:#E11D48; --acc2:#FB7185; --accP:#FFF1F2; }
+  .status-available { display:inline-flex; align-items:center; gap:0.5rem; padding:0.35rem 1rem; background:rgba(16,185,129,0.12); border:2px solid #10B981; border-radius:0; box-shadow:2px 2px 0 #10B981, 0 0 12px rgba(16,185,129,0.15); }
+  .status-ping { width:9px; height:9px; background:#10B981; position:relative; box-shadow:0 0 6px rgba(16,185,129,0.6); }
+  .status-ping::before { content:''; position:absolute; inset:0; background:#10B981; animation:statusPing 1.5s ease infinite; }
 
-  /* Kbd shortcut hint */
-  .kbd-hint { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%); z-index:799; background:var(--paper); border:1px solid rgba(13,148,136,0.18); border-radius:100px; padding:0.45rem 1.2rem; font-size:0.72rem; font-family:'JetBrains Mono',monospace; color:var(--muted); box-shadow:0 4px 20px rgba(0,0,0,0.08); display:flex; align-items:center; gap:0.6rem; animation:kbdIn 0.3s ease both; pointer-events:none; }
-  .kbd-key { background:var(--vPale); color:#0D9488; border:1px solid rgba(13,148,136,0.2); border-radius:4px; padding:0.1rem 0.45rem; font-size:0.68rem; font-weight:700; }
+  .chip {
+    display: inline-block;
+    font-family: 'Space Mono', 'Share Tech Mono', monospace;
+    font-size: 0.74rem; padding: 0.3rem 0.8rem; border-radius: 0;
+    background: var(--vPale); color: #7C3AED; border: 2px solid #7C3AED;
+    box-shadow: 3px 3px 0 #7C3AED;
+    transition: all 0.12s;
+    image-rendering: pixelated;
+    letter-spacing: 0.04em;
+    cursor: default;
+  }
+  .chip:hover {
+    background: #7C3AED; color: #fff;
+    transform: translate(-2px,-2px);
+    box-shadow: 4px 4px 0 #4C1D95, 0 0 10px rgba(124,58,237,0.3);
+  }
 
-  /* Status badge */
-  .status-available { display:inline-flex; align-items:center; gap:0.5rem; padding:0.35rem 0.9rem; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); border-radius:100px; }
-  .status-ping { width:8px; height:8px; border-radius:50%; background:#10B981; position:relative; }
-  .status-ping::before { content:''; position:absolute; inset:0; border-radius:50%; background:#10B981; animation:statusPing 1.5s cubic-bezier(0,0,0.2,1) infinite; }
+  .nav-link { position: relative; text-decoration: none; }
+  .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 3px; background: linear-gradient(90deg,#7C3AED,#06B6D4); transition: width 0.25s steps(8); box-shadow: 0 0 6px rgba(124,58,237,0.5); }
+  .nav-link:hover::after { width: 100%; }
 
-  @media(max-width:768px) {
-    .progress-sidebar { display:none !important; }
-    .btt-btn { bottom:1.2rem; right:1.2rem; width:38px; height:38px; border-radius:10px; }
-    .float-cta { display:none !important; }
-    .kbd-hint { display:none !important; }
+  .mob-menu {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg);
+    z-index: 590;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    animation: menuSlide 0.3s ease both;
+  }
+  .mob-menu.open { display: flex; }
+  .mob-menu a {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.1s;
+    text-shadow: 3px 3px 0 rgba(124,58,237,0.2);
+  }
+  .mob-menu a:hover { color: #7C3AED; }
+
+  .hide-mob { display: flex; }
+  .show-mob { display: none; }
+
+  @media(max-width: 768px) {
+    body { cursor: auto; }
+    .hide-mob { display: none !important; }
+    .show-mob { display: flex !important; }
+    .sec-pad { padding: 4rem 1.4rem !important; }
+    .grid2   { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .grid3   { grid-template-columns: 1fr !important; }
+    .grid-auto { grid-template-columns: 1fr !important; }
+    .hero-sec { padding: 7rem 1.4rem 3rem !important; }
+    .hero-stats { gap: 1.2rem !important; flex-wrap: wrap !important; }
+    .hero-ctarow { flex-direction: column !important; }
+    .hero-ctarow a, .hero-ctarow button { width: 100% !important; justify-content: center !important; }
+    .progress-sidebar { display: none !important; }
+    .btt-btn { bottom:1.2rem; right:1.2rem; width:38px; height:38px; }
+    .float-cta { display: none !important; }
+    .kbd-hint { display: none !important; }
     .footer-grid { grid-template-columns:1fr !important; gap:2rem !important; }
+    .float-bg { display: none !important; }
+    .skill-bar-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+    .otw-banner { flex-direction: column !important; align-items: flex-start !important; }
+    .contact-email-row { flex-direction: column !important; }
+    .contact-email-row > div, .contact-email-row > a, .contact-email-row > button { width: 100% !important; }
+    .footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 0.5rem !important; }
+  }
+
+  @media(max-width: 480px) {
+    .hero-sec { padding: 6rem 1rem 2.5rem !important; }
+    .sec-pad  { padding: 3.5rem 1rem !important; }
+    .chip { font-size: 0.55rem !important; padding: 0.15rem 0.4rem !important; }
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Space Mono', 'Share Tech Mono', monospace;
     color: var(--ink);
     overflow-x: hidden;
     cursor: none;
+    image-rendering: pixelated;
   }
-  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar { width: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: linear-gradient(#0D9488, #38BDF8); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb { background: repeating-linear-gradient(180deg,#7C3AED 0,#7C3AED 6px,#06B6D4 6px,#06B6D4 12px); border-left: 2px solid var(--bg); }
 
-  .serif { font-family: 'Instrument Serif', serif; }
-  .mono  { font-family: 'JetBrains Mono', monospace; }
-  .sans  { font-family: 'Syne', sans-serif; }
+  .pixel { font-family: 'Pixelify Sans', 'Press Start 2P', monospace; }
+  .vt    { font-family: 'VT323', monospace; }
+  .mono  { font-family: 'Space Mono', 'Share Tech Mono', monospace; }
 
-  .rv { opacity: 0; transform: translateY(36px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+  .rv { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .rv.on { opacity: 1; transform: translateY(0); }
   .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; }
   .d3 { transition-delay: 0.24s; } .d4 { transition-delay: 0.32s; }
   .d5 { transition-delay: 0.40s; }
 
-  @keyframes floatUp    { 0%,100%{transform:translateY(0px) rotate(0deg)} 50%{transform:translateY(-18px) rotate(3deg)} }
-  @keyframes spinSlow   { to{transform:rotate(360deg)} }
-  @keyframes blink      { 0%,100%{opacity:1} 50%{opacity:0} }
-  @keyframes marquee    { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-  @keyframes tagIn      { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes iconDrift  { 0%{transform:translate(0,0) rotate(0deg)} 33%{transform:translate(8px,-16px) rotate(6deg)} 66%{transform:translate(-5px,-8px) rotate(-4deg)} 100%{transform:translate(0,0) rotate(0deg)} }
-  @keyframes iconDriftB { 0%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(-14px,-22px) rotate(-9deg)} 100%{transform:translate(0,0) rotate(0deg)} }
-  @keyframes iconDriftC { 0%{transform:translate(0,0) rotate(0deg)} 40%{transform:translate(12px,10px) rotate(12deg)} 100%{transform:translate(0,0) rotate(0deg)} }
-  @keyframes iconDriftD { 0%{transform:translate(0,0) rotate(0deg)} 60%{transform:translate(-8px,-18px) rotate(-7deg)} 100%{transform:translate(0,0) rotate(0deg)} }
-  @keyframes resumePulse{ 0%,100%{box-shadow:0 0 0 0 rgba(13,148,136,0.35)} 50%{box-shadow:0 0 0 8px rgba(13,148,136,0)} }
-  @keyframes menuSlide  { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes hamburgerTop    { to{transform:translateY(8px) rotate(45deg)} }
-  @keyframes hamburgerMid    { to{opacity:0;transform:scaleX(0)} }
-  @keyframes hamburgerBot    { to{transform:translateY(-8px) rotate(-45deg)} }
+  .grad { background: linear-gradient(135deg, #7C3AED 0%, #9D5FF5 40%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-  .grad { background: linear-gradient(135deg, ${C.v}, ${C.accent}); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-  .chip {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem; padding: 0.22rem 0.65rem; border-radius: 5px;
-    background: var(--vPale); color: #0D9488; border: 1px solid rgba(13,148,136,0.18);
-    transition: background 0.2s, color 0.2s;
+  /* Pixel card style */
+  .px-card {
+    border: 3px solid #7C3AED;
+    box-shadow: 6px 6px 0 #7C3AED;
+    border-radius: 0;
+    image-rendering: pixelated;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    position: relative;
   }
-  .chip:hover { background: #0D9488; color: #fff; }
+  .px-card:hover {
+    transform: translate(-4px,-4px);
+    box-shadow: 10px 10px 0 #7C3AED, 0 0 30px rgba(124,58,237,0.18), inset 0 0 0 1px rgba(124,58,237,0.08);
+    border-color: #9D5FF5;
+  }
 
-  .nav-link { position: relative; text-decoration: none; }
-  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #0D9488; transition: width 0.25s; }
-  .nav-link:hover::after { width: 100%; }
+  /* Pixel button */
+  .px-btn {
+    border-radius: 0 !important;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    transition: transform 0.1s, box-shadow 0.12s, filter 0.1s;
+    image-rendering: pixelated;
+    letter-spacing: 0.03em;
+  }
+  .px-btn:hover {
+    transform: translate(-3px,-3px);
+    box-shadow: 7px 7px 0 rgba(0,0,0,0.4);
+    filter: brightness(1.1);
+  }
+  .px-btn:active {
+    transform: translate(2px,2px);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+    filter: brightness(0.9);
+  }
 
-  /* ── Mobile menu ── */
-  .mob-menu {
-    display: none;
+  /* Scanline overlay */
+  .scanlines {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.02);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    background: var(--bg);
-    z-index: 590;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    animation: menuSlide 0.3s ease both;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9996;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.018) 3px, rgba(0,0,0,0.018) 4px);
   }
-  .mob-menu.open { display: flex; }
-  .mob-menu a {
-    font-family: 'Instrument Serif', serif;
-    font-size: 2.2rem;
-    font-style: italic;
-    color: var(--ink);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .mob-menu a:hover { color: #0D9488; }
-
-  /* ── Hide/show helpers ── */
-  .hide-mob { display: flex; }
-  .show-mob { display: none; }
-
-  /* ── Global mobile breakpoints ── */
-  @media(max-width: 768px) {
-    body { cursor: auto; }
-
-    .hide-mob { display: none !important; }
-    .show-mob { display: flex !important; }
-
-    /* Section padding */
-    .sec-pad { padding: 5rem 1.4rem !important; }
-
-    /* Grids */
-    .grid2   { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-    .grid3   { grid-template-columns: 1fr !important; }
-    .grid-auto { grid-template-columns: 1fr !important; }
-
-    /* Hero */
-    .hero-sec { padding: 7rem 1.4rem 3rem !important; }
-    .hero-stats { gap: 1.2rem !important; flex-wrap: wrap !important; }
-    .hero-stats > div { padding-right: 1.2rem !important; margin-right: 1.2rem !important; }
-    .hero-ctarow { flex-direction: column !important; }
-    .hero-ctarow a, .hero-ctarow button { width: 100% !important; justify-content: center !important; }
-
-    /* Marquee */
-    .marquee-track { animation-duration: 18s !important; }
-
-    /* Cards */
-    .exp-card-inner { flex-direction: column !important; gap: 1rem !important; }
-    .exp-date-col { text-align: left !important; }
-
-    /* Contact */
-    .contact-email-row { flex-direction: column !important; }
-    .contact-email-row > div, .contact-email-row > a, .contact-email-row > button { width: 100% !important; }
-
-    /* Footer */
-    .footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 0.5rem !important; }
-
-    /* Float icons — hide on mobile for performance */
-    .float-bg { display: none !important; }
-
-    /* Skill bars */
-    .skill-bar-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
-
-    /* Open-to-work banner */
-    .otw-banner { flex-direction: column !important; align-items: flex-start !important; }
+  /* Moving scanline */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(124,58,237,0.04), transparent);
+    animation: scanlineMove 6s linear infinite;
+    pointer-events: none;
   }
 
-  @media(max-width: 480px) {
-    .hero-sec { padding: 6rem 1rem 2.5rem !important; }
-    .sec-pad  { padding: 4rem 1rem !important; }
-    .chip { font-size: 0.6rem !important; padding: 0.18rem 0.5rem !important; }
+  /* Pixel divider */
+  .px-divider {
+    height: 6px;
+    background: repeating-linear-gradient(90deg,
+      #7C3AED 0,#7C3AED 10px,
+      #9D5FF5 10px,#9D5FF5 16px,
+      #06B6D4 16px,#06B6D4 26px,
+      #67E8F9 26px,#67E8F9 32px,
+      #F59E0B 32px,#F59E0B 42px,
+      #EF4444 42px,#EF4444 52px,
+      #10B981 52px,#10B981 62px,
+      transparent 62px,transparent 72px);
+    width: 100%;
+    image-rendering: pixelated;
+    box-shadow: 0 2px 8px rgba(124,58,237,0.2);
   }
+
+  [data-theme="dark"] .px-card { box-shadow: 6px 6px 0 #A78BFA, 0 0 16px rgba(167,139,250,0.12); border-color: #A78BFA; }
+  [data-theme="dark"] .px-card:hover { box-shadow: 10px 10px 0 #A78BFA, 0 0 30px rgba(167,139,250,0.25); border-color: #C4B5FD; }
+  [data-theme="dark"] .chip { border-color: #A78BFA; box-shadow: 2px 2px 0 #A78BFA; }
+  [data-theme="dark"] .chip:hover { background: #A78BFA; }
+  [data-theme="dark"] .btt-btn { border-color: #A78BFA; box-shadow: 4px 4px 0 #A78BFA; }
+  [data-theme="dark"] .toast { border-color: #A78BFA; box-shadow: 4px 4px 0 #A78BFA; }
+  [data-theme="dark"] .kbd-hint { border-color: #A78BFA; box-shadow: 3px 3px 0 #A78BFA; }
+  [data-theme="dark"] .kbd-key { border-color: #A78BFA; box-shadow: 2px 2px 0 #A78BFA; }
+  [data-theme="dark"] .status-available { border-color: #10B981; box-shadow: 2px 2px 0 #10B981; }
+  [data-theme="dark"] .scroll-bar { background: repeating-linear-gradient(90deg,#A78BFA 0,#A78BFA 8px,#67E8F9 8px,#67E8F9 16px,#FCD34D 16px,#FCD34D 24px,#FCA5A5 24px,#FCA5A5 32px); }
+  [data-theme="dark"] nav { background: rgba(6,0,15,0.88) !important; backdrop-filter:blur(12px) saturate(1.5); -webkit-backdrop-filter:blur(12px) saturate(1.5); }
+  [data-theme="dark"] select, [data-theme="dark"] input, [data-theme="dark"] textarea { background: #1a0a2e; color: #f0e6ff; border-color: rgba(167,139,250,0.4); }
+  [data-theme="dark"] .mob-menu { background: #0a0010; }
+  [data-theme="dark"] .mob-menu a { color: #f0e6ff; }
+  [data-theme="dark"] .mob-menu a:hover { color: #A78BFA; }
+  [data-theme="dark"] .grad { background: linear-gradient(135deg,#A78BFA 0%,#C4B5FD 40%,#67E8F9 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  [data-theme="dark"] .nav-link::after { background: linear-gradient(90deg,#A78BFA,#67E8F9); }
+
+  /* Shimmer highlight on interactive elements */
+  .shimmer-hover {
+    position: relative; overflow: hidden;
+  }
+  .shimmer-hover::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    transition: left 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .shimmer-hover:hover::before { left: 150%; }
+
+  /* Pixel corner decoration */
+  .px-corner::before, .px-corner::after {
+    content: ''; position: absolute;
+    width: 8px; height: 8px;
+    background: #7C3AED;
+  }
+  .px-corner::before { top: -3px; left: -3px; }
+  .px-corner::after  { bottom: -3px; right: -3px; }
 `;
 
 /* ─────────────── PAGE LOADER ─────────────── */
 function PageLoader({ onDone }) {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase]       = useState(0); // 0=booting 1=loading 2=done
   const [lines, setLines]       = useState([]);
   const [exit, setExit]         = useState(false);
 
   const BOOT_LINES = [
-    { text: "initializing portfolio.dev...",        delay: 0   },
-    { text: "loading design tokens ✓",              delay: 320 },
-    { text: "mounting react components ✓",          delay: 560 },
-    { text: "injecting personality ✓",              delay: 820 },
-    { text: "compiling 900+ DSA problems ✓",        delay: 1050},
-    { text: "connecting to arman.brain ✓",          delay: 1250},
-    { text: "ready.",                               delay: 1480},
+    { text: "> BOOT SEQUENCE INITIATED...",   delay: 0   },
+    { text: "> LOADING PIXEL ENGINE... OK",   delay: 280 },
+    { text: "> MOUNTING REACT CORE... OK",    delay: 520 },
+    { text: "> INJECTING PERSONALITY... OK",  delay: 760 },
+    { text: "> 900+ DSA PROBLEMS LOADED",     delay: 980 },
+    { text: "> CONNECTING TO BRAIN.EXE... OK",delay: 1200},
+    { text: "> SYSTEM READY. PRESS START",    delay: 1420},
   ];
 
   useEffect(() => {
-    // Print boot lines one-by-one
     BOOT_LINES.forEach(({ text, delay }) => {
-      setTimeout(() => {
-        setLines(p => [...p, text]);
-      }, delay + 200);
+      setTimeout(() => setLines(p => [...p, text]), delay + 200);
     });
-
-    // Progress bar: fill over ~2.4s
     const start = performance.now();
     const duration = 2400;
     const tick = () => {
@@ -380,11 +385,7 @@ function PageLoader({ onDone }) {
       setProgress(pct);
       if (pct < 100) requestAnimationFrame(tick);
       else {
-        setPhase(1);
-        setTimeout(() => {
-          setExit(true);
-          setTimeout(onDone, 520);
-        }, 400);
+        setTimeout(() => { setExit(true); setTimeout(onDone, 400); }, 350);
       }
     };
     requestAnimationFrame(tick);
@@ -393,123 +394,48 @@ function PageLoader({ onDone }) {
   return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 99999,
-      background: "#060C1A",
+      background: "#0a0010",
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       overflow: "hidden",
-      animation: exit ? "loaderFadeOut 0.52s cubic-bezier(0.4,0,1,1) both" : "none",
+      animation: exit ? "loaderFadeOut 0.4s ease both" : "none",
+      fontFamily: "'Press Start 2P', monospace",
     }}>
-      {/* Scanline */}
-      <div style={{
-        position: "absolute", left: 0, right: 0, height: "2px",
-        background: "linear-gradient(90deg,transparent,rgba(13,148,136,0.5),transparent)",
-        animation: "loaderScan 2s linear infinite",
-        pointerEvents: "none",
-      }}/>
-
-      {/* Grid overlay */}
-      <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.04, pointerEvents:"none" }}>
-        {Array.from({length:16}).map((_,i)=>(
-          <line key={`v${i}`} x1={`${(i+1)*6.25}%`} y1="0" x2={`${(i+1)*6.25}%`} y2="100%" stroke="#0D9488" strokeWidth="1"/>
-        ))}
-        {Array.from({length:10}).map((_,i)=>(
-          <line key={`h${i}`} x1="0" y1={`${(i+1)*10}%`} x2="100%" y2={`${(i+1)*10}%`} stroke="#0D9488" strokeWidth="1"/>
-        ))}
-      </svg>
-
-      {/* Glow orb */}
-      <div style={{
-        position:"absolute", width:500, height:500, borderRadius:"50%",
-        background:"radial-gradient(circle,rgba(13,148,136,0.12) 0%,transparent 70%)",
-        pointerEvents:"none",
-      }}/>
-
-      {/* Main content */}
-      <div style={{ position:"relative", zIndex:1, width:"min(520px,90vw)" }}>
-
+      {/* Pixel grid bg */}
+      <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(124,58,237,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.05) 1px,transparent 1px)", backgroundSize:"32px 32px", pointerEvents:"none" }}/>
+      
+      <div style={{ position:"relative", zIndex:1, width:"min(480px,90vw)" }}>
         {/* Logo */}
-        <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"2.5rem" }}>
-          <div style={{
-            width:48, height:48, borderRadius:12,
-            background:"linear-gradient(135deg,#0D9488,#38BDF8)",
-            display:"flex", alignItems:"center", justifyContent:"center",
-            boxShadow:"0 0 32px rgba(13,148,136,0.4)",
-          }}>
-            <span style={{ color:"#fff", fontSize:"1rem", fontWeight:800, fontFamily:"'Syne',sans-serif" }}>AP</span>
+        <div style={{ textAlign:"center", marginBottom:"2rem" }}>
+          <div style={{ display:"inline-block", padding:"1rem 2rem", border:"4px solid #7C3AED", boxShadow:"6px 6px 0 #7C3AED", marginBottom:"1rem", background:"#1a0a2e" }}>
+            <span style={{ fontSize:"1.5rem", color:"#A78BFA", letterSpacing:"4px" }}>AP.EXE</span>
           </div>
-          <div>
-            <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.1rem", fontWeight:800, color:"#fff", letterSpacing:"-0.3px" }}>
-              Arman Phaugat
-            </div>
-            <div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.65rem", color:"#0D9488", letterSpacing:"2px", textTransform:"uppercase" }}>
-              portfolio.dev
-            </div>
-          </div>
+          <div style={{ fontSize:"0.75rem", color:"#7C3AED", letterSpacing:"3px" }}>PORTFOLIO.SYSTEM v2.0.25</div>
         </div>
 
-        {/* Terminal boot lines */}
-        <div style={{
-          background:"rgba(255,255,255,0.03)", border:"1px solid rgba(13,148,136,0.18)",
-          borderRadius:10, padding:"1.2rem 1.4rem", marginBottom:"2rem",
-          minHeight:140,
-          fontFamily:"'JetBrains Mono',monospace",
-        }}>
-          {/* Terminal header dots */}
-          <div style={{ display:"flex", gap:"0.4rem", marginBottom:"0.9rem" }}>
-            {["#EF4444","#F59E0B","#10B981"].map(c=>(
-              <div key={c} style={{ width:10, height:10, borderRadius:"50%", background:c, opacity:0.7 }}/>
-            ))}
+        {/* Terminal */}
+        <div style={{ background:"linear-gradient(135deg,#050010 0%,#0a0020 100%)", border:"3px solid #7C3AED", boxShadow:"8px 8px 0 #7C3AED, 0 0 20px rgba(124,58,237,0.15)", padding:"1.2rem", marginBottom:"1.5rem", minHeight:160 }}>
+          <div style={{ display:"flex", gap:"0.4rem", marginBottom:"0.8rem" }}>
+            {["#EF4444","#F59E0B","#10B981"].map(c => <div key={c} style={{ width:10, height:10, background:c }}/>)}
           </div>
           {lines.map((line, i) => (
-            <div key={i} style={{
-              fontSize:"0.72rem", color: i === lines.length - 1 ? "#10B981" : "rgba(255,255,255,0.55)",
-              marginBottom:"0.28rem", lineHeight:1.5,
-              animation:"termLineIn 0.25s ease both",
-            }}>
-              <span style={{ color:"#0D9488", marginRight:"0.6rem" }}>›</span>
-              {line}
-            </div>
+            <div key={i} style={{ fontSize:"0.82rem", color: i === lines.length-1 ? "#10B981" : "rgba(255,255,255,0.6)", marginBottom:"0.3rem", animation:"termLineIn 0.2s ease both" }}>{line}</div>
           ))}
-          {/* Blinking cursor on last line */}
           {lines.length < BOOT_LINES.length && (
-            <span style={{
-              display:"inline-block", width:"7px", height:"13px",
-              background:"#0D9488", verticalAlign:"middle",
-              animation:"termCursor 0.8s step-end infinite",
-            }}/>
+            <span style={{ display:"inline-block", width:8, height:13, background:"#7C3AED", animation:"termCursor 0.8s step-end infinite" }}/>
           )}
         </div>
 
-        {/* Progress bar */}
-        <div>
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"0.5rem" }}>
-            <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.62rem", color:"rgba(255,255,255,0.3)", letterSpacing:"2px", textTransform:"uppercase" }}>
-              {phase === 0 ? "loading assets" : "launching ✓"}
-            </span>
-            <span style={{
-              fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem",
-              fontWeight:700, color:"#0D9488",
-              animation:"loaderCountUp 0.2s ease both",
-            }}>{progress}%</span>
-          </div>
-          <div style={{ height:3, background:"rgba(255,255,255,0.06)", borderRadius:2, overflow:"hidden" }}>
-            <div style={{
-              height:"100%", borderRadius:2,
-              background:"linear-gradient(90deg,#0D9488,#38BDF8,#5EEAD4)",
-              width:`${progress}%`,
-              transition:"width 0.08s linear",
-              boxShadow:"0 0 8px rgba(13,148,136,0.6)",
-            }}/>
-          </div>
-          {/* Dots indicator */}
-          <div style={{ display:"flex", gap:"0.4rem", marginTop:"1.2rem", justifyContent:"center" }}>
-            {[0,1,2].map(i=>(
-              <div key={i} style={{
-                width:5, height:5, borderRadius:"50%", background:"#0D9488",
-                animation:`loaderDotPulse 1.2s ease-in-out ${i*0.2}s infinite`,
-              }}/>
-            ))}
-          </div>
+        {/* Progress */}
+        <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"0.5rem" }}>
+          <span style={{ fontSize:"0.75rem", color:"rgba(255,255,255,0.4)", letterSpacing:"2px" }}>LOADING</span>
+          <span style={{ fontSize:"0.6rem", color:"#7C3AED", fontWeight:700 }}>{progress}%</span>
+        </div>
+        <div style={{ height:12, background:"rgba(255,255,255,0.05)", border:"2px solid #7C3AED", overflow:"hidden" }}>
+          <div style={{ height:"100%", width:`${progress}%`, background:"repeating-linear-gradient(90deg,#7C3AED 0,#7C3AED 8px,#A78BFA 8px,#A78BFA 12px)", transition:"width 0.08s linear" }}/>
+        </div>
+        <div style={{ display:"flex", gap:"0.4rem", marginTop:"1rem", justifyContent:"center" }}>
+          {[0,1,2,3].map(i => <div key={i} style={{ width:8, height:8, background:"#7C3AED", animation:`loaderDotPulse 1.2s ease ${i*0.2}s infinite` }}/>)}
         </div>
       </div>
     </div>
@@ -518,108 +444,87 @@ function PageLoader({ onDone }) {
 
 /* ─────────────── TERMINAL EASTER EGG ─────────────── */
 const TERM_COMMANDS = {
-  help: {
-    output: [
-      { text:"Available commands:", col:"#5EEAD4" },
-      { text:"  whoami         — who is this guy?",     col:"rgba(255,255,255,0.7)" },
-      { text:"  skills         — tech stack overview",   col:"rgba(255,255,255,0.7)" },
-      { text:"  projects       — list all projects",     col:"rgba(255,255,255,0.7)" },
-      { text:"  contact        — get in touch",          col:"rgba(255,255,255,0.7)" },
-      { text:"  leetcode       — CP stats",              col:"rgba(255,255,255,0.7)" },
-      { text:"  hire           — why you should hire me",col:"rgba(255,255,255,0.7)" },
-      { text:"  socials        — all my links",          col:"rgba(255,255,255,0.7)" },
-      { text:"  clear          — clear terminal",        col:"rgba(255,255,255,0.7)" },
-      { text:"  exit           — close terminal",        col:"rgba(255,255,255,0.7)" },
-    ]
-  },
-  whoami: {
-    output: [
-      { text:"Arman Phaugat", col:"#38BDF8", bold:true },
-      { text:"3rd Year B.Tech CSE · Manipal University Jaipur", col:"rgba(255,255,255,0.7)" },
-      { text:"CGPA: 9.05 · Dean's Excellence Award", col:"#10B981" },
-      { text:"Backend Engineer · AI/ML Builder · Competitive Programmer", col:"rgba(255,255,255,0.7)" },
-      { text:"Location: Jaipur, Rajasthan, India 🇮🇳", col:"rgba(255,255,255,0.5)" },
-    ]
-  },
-  skills: {
-    output: [
-      { text:"── Core Stack ──────────────────────", col:"#0D9488" },
-      { text:"  Languages  : Python · JS · C · C++ · Java", col:"rgba(255,255,255,0.7)" },
-      { text:"  Backend    : Node.js · Express · FastAPI", col:"rgba(255,255,255,0.7)" },
-      { text:"  Databases  : MySQL · MongoDB · Redis · FAISS", col:"rgba(255,255,255,0.7)" },
-      { text:"  AI / ML    : LangChain · HuggingFace · RAG · XGBoost", col:"rgba(255,255,255,0.7)" },
-      { text:"  DevOps     : Docker · Git · BullMQ", col:"rgba(255,255,255,0.7)" },
-      { text:"  Concepts   : System Design · ACID · DSA · Auth", col:"rgba(255,255,255,0.7)" },
-    ]
-  },
-  projects: {
-    output: [
-      { text:"── Projects (10 total) ─────────────", col:"#0D9488" },
-      { text:"  01  Real Time Stock Trading Backend  [Backend]", col:"rgba(255,255,255,0.7)" },
-      { text:"  02  Video Streaming & User Mgmt      [Backend]", col:"rgba(255,255,255,0.7)" },
-      { text:"  03  RAG Discord Bot                  [AI/ML]",   col:"rgba(255,255,255,0.7)" },
-      { text:"  04  RAG Bot Website                  [Frontend]",col:"rgba(255,255,255,0.7)" },
-      { text:"  05  Cricket Score Predictor          [AI/ML]",   col:"rgba(255,255,255,0.7)" },
-      { text:"  06  IPL Win Predictor                [AI/ML]",   col:"rgba(255,255,255,0.7)" },
-      { text:"  07  Book Recommender System          [AI/ML]",   col:"rgba(255,255,255,0.7)" },
-      { text:"  08  WhatsApp Chat Analyser           [AI/ML]",   col:"rgba(255,255,255,0.7)" },
-      { text:"  09  Cuntrex 2D Shooter Game          [Game]",    col:"rgba(255,255,255,0.7)" },
-      { text:"  10  SalesForce UI Clone              [Frontend]",col:"rgba(255,255,255,0.7)" },
-      { text:"→ Scroll to #projects to explore", col:"#10B981" },
-    ]
-  },
-  contact: {
-    output: [
-      { text:"── Contact ─────────────────────────", col:"#0D9488" },
-      { text:"  Email    : armanphaugat20@gmail.com", col:"rgba(255,255,255,0.7)" },
-      { text:"  Phone    : +91-9306115772",            col:"rgba(255,255,255,0.7)" },
-      { text:"  LinkedIn : linkedin.com/in/armanphaugat05", col:"#38BDF8" },
-      { text:"  GitHub   : github.com/armanphaugat",   col:"#38BDF8" },
-      { text:"  LeetCode : leetcode.com/u/armanphaugat20", col:"#FFA116" },
-    ]
-  },
-  leetcode: {
-    output: [
-      { text:"── LeetCode Stats ──────────────────", col:"#FFA116" },
-      { text:"  Handle   : armanphaugat20",             col:"rgba(255,255,255,0.7)" },
-      { text:"  Problems : 900+",                       col:"rgba(255,255,255,0.7)" },
-      { text:"  Rank     : Top 0.3% globally",          col:"#10B981", bold:true },
-      { text:"  Streak   : 120+ days max",              col:"rgba(255,255,255,0.7)" },
-      { text:"  Badges   : 9+",                         col:"rgba(255,255,255,0.7)" },
-      { text:"  Beats 99.7% of all users 🔥",           col:"#FFA116", bold:true },
-    ]
-  },
-  hire: {
-    output: [
-      { text:"── Why hire Arman? ─────────────────", col:"#10B981" },
-      { text:"  ✓  Top 0.3% LeetCode — thinks algorithmically", col:"rgba(255,255,255,0.7)" },
-      { text:"  ✓  Ships real systems (Redis, BullMQ, Docker)", col:"rgba(255,255,255,0.7)" },
-      { text:"  ✓  Builds AI/ML apps from scratch with LangChain", col:"rgba(255,255,255,0.7)" },
-      { text:"  ✓  9.05 CGPA — academically rigorous",           col:"rgba(255,255,255,0.7)" },
-      { text:"  ✓  Internship experience at Indavis Lifesciences",col:"rgba(255,255,255,0.7)" },
-      { text:"  ✓  Fast learner — currently doing Go + K8s",     col:"rgba(255,255,255,0.7)" },
-      { text:"",                                                  col:"" },
-      { text:"  → armanphaugat20@gmail.com", col:"#38BDF8", bold:true },
-    ]
-  },
-  socials: {
-    output: [
-      { text:"── Socials ─────────────────────────", col:"#0D9488" },
-      { text:"  🐙  github.com/armanphaugat",               col:"rgba(255,255,255,0.7)" },
-      { text:"  💼  linkedin.com/in/armanphaugat05",        col:"rgba(255,255,255,0.7)" },
-      { text:"  🧩  leetcode.com/u/armanphaugat20",         col:"#FFA116" },
-      { text:"  ✉️  armanphaugat20@gmail.com",              col:"rgba(255,255,255,0.7)" },
-    ]
-  },
+  help: { output: [
+    { text:"AVAILABLE COMMANDS:", col:"#A78BFA" },
+    { text:"  whoami   — who is this guy?",       col:"rgba(255,255,255,0.7)" },
+    { text:"  skills   — tech stack",             col:"rgba(255,255,255,0.7)" },
+    { text:"  projects — list projects",          col:"rgba(255,255,255,0.7)" },
+    { text:"  contact  — get in touch",           col:"rgba(255,255,255,0.7)" },
+    { text:"  leetcode — CP stats",               col:"rgba(255,255,255,0.7)" },
+    { text:"  hire     — why hire me",            col:"rgba(255,255,255,0.7)" },
+    { text:"  socials  — all links",              col:"rgba(255,255,255,0.7)" },
+    { text:"  clear    — clear screen",           col:"rgba(255,255,255,0.7)" },
+    { text:"  exit     — close terminal",         col:"rgba(255,255,255,0.7)" },
+  ]},
+  whoami: { output: [
+    { text:"ARMAN PHAUGAT", col:"#67E8F9", bold:true },
+    { text:"3rd Year B.Tech CSE @ MUJ", col:"rgba(255,255,255,0.7)" },
+    { text:"CGPA: 9.05 | DEAN'S EXCELLENCE AWARD", col:"#10B981" },
+    { text:"Backend | AI/ML | Competitive Programmer", col:"rgba(255,255,255,0.7)" },
+    { text:"Jaipur, Rajasthan, India", col:"rgba(255,255,255,0.4)" },
+  ]},
+  skills: { output: [
+    { text:"=== CORE STACK ===", col:"#7C3AED" },
+    { text:"  Languages : Python | JS | C | C++ | Java", col:"rgba(255,255,255,0.7)" },
+    { text:"  Backend   : Node.js | Express | FastAPI",  col:"rgba(255,255,255,0.7)" },
+    { text:"  Databases : MySQL | MongoDB | Redis | FAISS", col:"rgba(255,255,255,0.7)" },
+    { text:"  AI / ML   : LangChain | HuggingFace | RAG", col:"rgba(255,255,255,0.7)" },
+    { text:"  DevOps    : Docker | Git | BullMQ",        col:"rgba(255,255,255,0.7)" },
+  ]},
+  projects: { output: [
+    { text:"=== 10 PROJECTS ===", col:"#7C3AED" },
+    { text:"  01  Real Time Stock Trading Backend [Backend]", col:"rgba(255,255,255,0.7)" },
+    { text:"  02  Video Streaming & User Mgmt     [Backend]", col:"rgba(255,255,255,0.7)" },
+    { text:"  03  RAG Discord Bot                 [AI/ML]",  col:"rgba(255,255,255,0.7)" },
+    { text:"  04  RAG Bot Website                 [Frontend]",col:"rgba(255,255,255,0.7)" },
+    { text:"  05  Cricket Score Predictor         [AI/ML]",  col:"rgba(255,255,255,0.7)" },
+    { text:"  06  IPL Win Predictor               [AI/ML]",  col:"rgba(255,255,255,0.7)" },
+    { text:"  07  Book Recommender System         [AI/ML]",  col:"rgba(255,255,255,0.7)" },
+    { text:"  08  WhatsApp Chat Analyser          [AI/ML]",  col:"rgba(255,255,255,0.7)" },
+    { text:"  09  Cuntrex 2D Shooter Game         [Game]",   col:"rgba(255,255,255,0.7)" },
+    { text:"  10  SalesForce UI Clone             [Frontend]",col:"rgba(255,255,255,0.7)"},
+    { text:"-> scroll to #projects", col:"#10B981" },
+  ]},
+  contact: { output: [
+    { text:"=== CONTACT ===", col:"#7C3AED" },
+    { text:"  Email    : armanphaugat20@gmail.com", col:"rgba(255,255,255,0.7)" },
+    { text:"  Phone    : +91-9306115772",           col:"rgba(255,255,255,0.7)" },
+    { text:"  LinkedIn : linkedin.com/in/armanphaugat05", col:"#67E8F9" },
+    { text:"  GitHub   : github.com/armanphaugat",  col:"#67E8F9" },
+    { text:"  LeetCode : leetcode.com/u/armanphaugat20", col:"#FCD34D" },
+  ]},
+  leetcode: { output: [
+    { text:"=== LEETCODE STATS ===", col:"#F59E0B" },
+    { text:"  Handle   : armanphaugat20",    col:"rgba(255,255,255,0.7)" },
+    { text:"  Problems : 900+",              col:"rgba(255,255,255,0.7)" },
+    { text:"  Rank     : TOP 0.3% GLOBALLY", col:"#10B981", bold:true },
+    { text:"  Streak   : 120+ days max",     col:"rgba(255,255,255,0.7)" },
+    { text:"  BEATS 99.7% OF ALL USERS !!!", col:"#F59E0B", bold:true },
+  ]},
+  hire: { output: [
+    { text:"=== WHY HIRE ARMAN? ===", col:"#10B981" },
+    { text:"  [X] Top 0.3% LeetCode — algorithmic thinker", col:"rgba(255,255,255,0.7)" },
+    { text:"  [X] Ships real systems (Redis, BullMQ, Docker)", col:"rgba(255,255,255,0.7)" },
+    { text:"  [X] Builds AI apps from scratch with LangChain", col:"rgba(255,255,255,0.7)" },
+    { text:"  [X] 9.05 CGPA — academically rigorous",         col:"rgba(255,255,255,0.7)" },
+    { text:"  [X] Internship @ Indavis Lifesciences",          col:"rgba(255,255,255,0.7)" },
+    { text:"  [X] Learning Go + K8s right now",                col:"rgba(255,255,255,0.7)" },
+    { text:"  -> armanphaugat20@gmail.com", col:"#67E8F9", bold:true },
+  ]},
+  socials: { output: [
+    { text:"=== SOCIALS ===", col:"#7C3AED" },
+    { text:"  [G] github.com/armanphaugat",            col:"rgba(255,255,255,0.7)" },
+    { text:"  [L] linkedin.com/in/armanphaugat05",     col:"rgba(255,255,255,0.7)" },
+    { text:"  [LC] leetcode.com/u/armanphaugat20",     col:"#F59E0B" },
+    { text:"  [M] armanphaugat20@gmail.com",           col:"rgba(255,255,255,0.7)" },
+  ]},
 };
 
 function TerminalEasterEgg({ onClose }) {
-  const [history, setHistory]   = useState([
-    { type:"system", lines:[
-      { text:"Arman's Portfolio Terminal v1.0.0", col:"#38BDF8", bold:true },
-      { text:"Type 'help' to see available commands.", col:"rgba(255,255,255,0.5)" },
-    ]},
-  ]);
+  const [history, setHistory]   = useState([{ type:"system", lines:[
+    { text:"ARMAN'S PORTFOLIO TERMINAL v1.0.0", col:"#67E8F9", bold:true },
+    { text:"Type 'help' to see commands.", col:"rgba(255,255,255,0.4)" },
+  ]}]);
   const [input, setInput]       = useState("");
   const [cmdHistory, setCmdHistory] = useState([]);
   const [histIdx, setHistIdx]   = useState(-1);
@@ -627,201 +532,78 @@ function TerminalEasterEgg({ onClose }) {
   const inputRef = useRef(null);
   const bottomRef = useRef(null);
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior:"smooth" });
-  }, [history]);
+  useEffect(() => { inputRef.current?.focus(); }, []);
+  useEffect(() => { bottomRef.current?.scrollIntoView({ behavior:"smooth" }); }, [history]);
 
   const runCommand = (raw) => {
     const cmd = raw.trim().toLowerCase();
     if (!cmd) return;
     setCmdHistory(p => [cmd, ...p]);
     setHistIdx(-1);
-
-    if (cmd === "clear") {
-      setHistory([]);
-      return;
-    }
-    if (cmd === "exit") {
-      setVisible(false);
-      setTimeout(onClose, 380);
-      return;
-    }
+    if (cmd === "clear") { setHistory([]); return; }
+    if (cmd === "exit") { setVisible(false); setTimeout(onClose, 380); return; }
     if (cmd === "sudo rm -rf /") {
-      setHistory(p => [...p,
-        { type:"cmd", text: raw },
-        { type:"output", lines:[{ text:"Nice try. 😄 Permission denied.", col:"#EF4444" }] },
-      ]);
+      setHistory(p => [...p, { type:"cmd", text:raw }, { type:"output", lines:[{ text:"PERMISSION DENIED. NICE TRY. :)", col:"#EF4444" }] }]);
       return;
     }
-
     const result = TERM_COMMANDS[cmd];
     if (result) {
-      setHistory(p => [...p,
-        { type:"cmd", text: raw },
-        { type:"output", lines: result.output },
-      ]);
+      setHistory(p => [...p, { type:"cmd", text:raw }, { type:"output", lines:result.output }]);
     } else {
-      setHistory(p => [...p,
-        { type:"cmd", text: raw },
-        { type:"output", lines:[
-          { text:`command not found: ${cmd}`, col:"#EF4444" },
-          { text:"Type 'help' to see available commands.", col:"rgba(255,255,255,0.4)" },
-        ]},
-      ]);
+      setHistory(p => [...p, { type:"cmd", text:raw }, { type:"output", lines:[
+        { text:`COMMAND NOT FOUND: ${cmd}`, col:"#EF4444" },
+        { text:"type 'help' for commands.", col:"rgba(255,255,255,0.4)" },
+      ]}]);
     }
   };
 
   const handleKey = (e) => {
-    if (e.key === "Enter") {
-      runCommand(input);
-      setInput("");
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      const next = Math.min(histIdx + 1, cmdHistory.length - 1);
-      setHistIdx(next);
-      setInput(cmdHistory[next] || "");
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const next = Math.max(histIdx - 1, -1);
-      setHistIdx(next);
-      setInput(next === -1 ? "" : cmdHistory[next]);
-    } else if (e.key === "Escape") {
-      setVisible(false);
-      setTimeout(onClose, 380);
-    }
+    if (e.key === "Enter") { runCommand(input); setInput(""); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); const next = Math.min(histIdx+1, cmdHistory.length-1); setHistIdx(next); setInput(cmdHistory[next]||""); }
+    else if (e.key === "ArrowDown") { e.preventDefault(); const next = Math.max(histIdx-1, -1); setHistIdx(next); setInput(next===-1?"":cmdHistory[next]); }
+    else if (e.key === "Escape") { setVisible(false); setTimeout(onClose, 380); }
   };
 
   return (
-    <div
-      onClick={e => { if (e.target === e.currentTarget) { setVisible(false); setTimeout(onClose, 380); }}}
-      style={{
-        position:"fixed", inset:0, zIndex:9990,
-        background:"rgba(0,0,0,0.75)",
-        backdropFilter:"blur(6px)",
-        display:"flex", alignItems:"center", justifyContent:"center",
-        padding:"1rem",
-      }}
-    >
-      <div style={{
-        width:"min(700px,96vw)",
-        maxHeight:"80vh",
-        background:"#0d1117",
-        border:"1px solid rgba(13,148,136,0.3)",
-        borderRadius:14,
-        overflow:"hidden",
-        display:"flex",
-        flexDirection:"column",
-        boxShadow:"0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(13,148,136,0.1)",
-        animation: visible ? "terminalSlideIn 0.35s cubic-bezier(0.16,1,0.3,1) both"
-                           : "terminalSlideOut 0.32s cubic-bezier(0.4,0,1,1) both",
-      }}>
-
+    <div onClick={e=>{ if(e.target===e.currentTarget){setVisible(false);setTimeout(onClose,380);}}} style={{ position:"fixed", inset:0, zIndex:9990, background:"rgba(0,0,0,0.85)", display:"flex", alignItems:"center", justifyContent:"center", padding:"1rem" }}>
+      <div style={{ width:"min(700px,96vw)", maxHeight:"80vh", background:"#000", border:"4px solid #7C3AED", boxShadow:"8px 8px 0 #7C3AED", overflow:"hidden", display:"flex", flexDirection:"column", animation: visible?"terminalSlideIn 0.35s ease both":"terminalSlideOut 0.32s ease both", fontFamily:"'Space Mono','Share Tech Mono',monospace" }}>
         {/* Title bar */}
-        <div style={{
-          display:"flex", alignItems:"center", justifyContent:"space-between",
-          padding:"0.75rem 1.1rem",
-          background:"rgba(255,255,255,0.04)",
-          borderBottom:"1px solid rgba(255,255,255,0.07)",
-          flexShrink:0,
-        }}>
-          <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}>
-            {["#EF4444","#F59E0B","#10B981"].map(c=>(
-              <div key={c} style={{ width:11, height:11, borderRadius:"50%", background:c, opacity:0.85 }}/>
-            ))}
-            <span style={{
-              fontFamily:"'JetBrains Mono',monospace",
-              fontSize:"0.7rem", color:"rgba(255,255,255,0.4)",
-              marginLeft:"0.5rem",
-            }}>arman@portfolio: ~</span>
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0.7rem 1rem", background:"linear-gradient(135deg,#7C3AED,#5B21B6)", flexShrink:0 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
+            {["#EF4444","#F59E0B","#10B981"].map(c => <div key={c} style={{ width:12,height:12,background:c,border:"2px solid rgba(0,0,0,0.3)" }}/>)}
+            <span style={{ fontSize:"0.88rem", color:"rgba(255,255,255,0.9)", marginLeft:"0.5rem", fontFamily:"'Pixelify Sans','Press Start 2P',monospace" }}>TERMINAL.EXE</span>
           </div>
           <div style={{ display:"flex", alignItems:"center", gap:"1rem" }}>
-            <span style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:"0.62rem", color:"rgba(255,255,255,0.2)", letterSpacing:"1px" }}>
-              ESC to close
-            </span>
-            <button
-              onClick={() => { setVisible(false); setTimeout(onClose, 380); }}
-              style={{
-                background:"none", border:"none", cursor:"pointer",
-                color:"rgba(255,255,255,0.3)", fontSize:"1rem", lineHeight:1,
-                padding:"0.1rem 0.3rem", borderRadius:4,
-                transition:"color 0.15s, background 0.15s",
-              }}
-              onMouseEnter={e=>{e.currentTarget.style.color="#EF4444"; e.currentTarget.style.background="rgba(239,68,68,0.12)";}}
-              onMouseLeave={e=>{e.currentTarget.style.color="rgba(255,255,255,0.3)"; e.currentTarget.style.background="none";}}
-            >✕</button>
+            <span style={{ fontSize:"0.88rem", color:"rgba(255,255,255,0.7)", fontFamily:"'Pixelify Sans','Press Start 2P',monospace" }}>ESC=CLOSE</span>
+            <button onClick={()=>{setVisible(false);setTimeout(onClose,380);}} style={{ background:"none", border:"2px solid rgba(255,255,255,0.4)", cursor:"pointer", color:"#fff", fontSize:"0.8rem", width:22, height:22, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"'Pixelify Sans','Press Start 2P',monospace" }}>X</button>
           </div>
         </div>
-
-        {/* Output area */}
-        <div
-          onClick={() => inputRef.current?.focus()}
-          style={{
-            flex:1, overflowY:"auto", padding:"1rem 1.3rem",
-            fontFamily:"'JetBrains Mono',monospace",
-            fontSize:"0.78rem", lineHeight:1.7,
-            cursor:"text",
-          }}
-        >
+        {/* Output */}
+        <div onClick={()=>inputRef.current?.focus()} style={{ flex:1, overflowY:"auto", padding:"1rem 1.2rem", fontSize:"0.88rem", lineHeight:1.75, cursor:"text" }}>
           {history.map((entry, ei) => (
-            <div key={ei} style={{ marginBottom:"0.6rem", animation:"termLineIn 0.2s ease both" }}>
-              {entry.type === "cmd" && (
+            <div key={ei} style={{ marginBottom:"0.5rem", animation:"termLineIn 0.2s ease both" }}>
+              {entry.type==="cmd" && (
                 <div style={{ display:"flex", gap:"0.5rem", color:"rgba(255,255,255,0.85)" }}>
-                  <span style={{ color:"#10B981", userSelect:"none" }}>arman@portfolio</span>
+                  <span style={{ color:"#7C3AED", userSelect:"none" }}>ARMAN@PORTFOLIO</span>
                   <span style={{ color:"rgba(255,255,255,0.3)", userSelect:"none" }}>:~$</span>
                   <span>{entry.text}</span>
                 </div>
               )}
-              {(entry.type === "output" || entry.type === "system") && (
-                <div style={{ paddingLeft: entry.type === "output" ? "1rem" : 0 }}>
-                  {entry.lines.map((l, li) => (
-                    <div key={li} style={{
-                      color: l.col || "rgba(255,255,255,0.6)",
-                      fontWeight: l.bold ? 700 : 400,
-                      whiteSpace:"pre",
-                    }}>{l.text}</div>
-                  ))}
+              {(entry.type==="output"||entry.type==="system") && (
+                <div style={{ paddingLeft:entry.type==="output"?"1rem":0 }}>
+                  {entry.lines.map((l,li) => <div key={li} style={{ color:l.col||"rgba(255,255,255,0.6)", fontWeight:l.bold?700:400, whiteSpace:"pre" }}>{l.text}</div>)}
                 </div>
               )}
             </div>
           ))}
           <div ref={bottomRef}/>
         </div>
-
-        {/* Input row */}
-        <div style={{
-          display:"flex", alignItems:"center", gap:"0.6rem",
-          padding:"0.75rem 1.3rem",
-          borderTop:"1px solid rgba(255,255,255,0.07)",
-          background:"rgba(255,255,255,0.02)",
-          flexShrink:0,
-        }}>
-          <span style={{ color:"#10B981", fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem", userSelect:"none" }}>arman@portfolio</span>
-          <span style={{ color:"rgba(255,255,255,0.3)", fontFamily:"'JetBrains Mono',monospace", fontSize:"0.78rem", userSelect:"none" }}>:~$</span>
-          <input
-            ref={inputRef}
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={handleKey}
-            autoComplete="off"
-            spellCheck={false}
-            placeholder="type a command…"
-            style={{
-              flex:1, background:"none", border:"none", outline:"none",
-              fontFamily:"'JetBrains Mono',monospace",
-              fontSize:"0.78rem", color:"rgba(255,255,255,0.88)",
-              caretColor:"#0D9488",
-            }}
-          />
-          {/* blinking caret indicator */}
-          <div style={{
-            width:7, height:14, background:"#0D9488", borderRadius:1,
-            animation:"termCursor 0.9s step-end infinite",
-            flexShrink:0,
-          }}/>
+        {/* Input */}
+        <div style={{ display:"flex", alignItems:"center", gap:"0.5rem", padding:"0.6rem 1.2rem", borderTop:"2px solid #7C3AED", background:"rgba(124,58,237,0.05)", flexShrink:0 }}>
+          <span style={{ color:"#7C3AED", fontSize:"0.75rem", userSelect:"none" }}>ARMAN@PORTFOLIO</span>
+          <span style={{ color:"rgba(255,255,255,0.3)", fontSize:"0.75rem", userSelect:"none" }}>:~$</span>
+          <input ref={inputRef} value={input} onChange={e=>setInput(e.target.value)} onKeyDown={handleKey} autoComplete="off" spellCheck={false} placeholder="type command..." style={{ flex:1, background:"none", border:"none", outline:"none", fontSize:"0.75rem", color:"rgba(255,255,255,0.88)", caretColor:"#7C3AED", fontFamily:"'Space Mono','Share Tech Mono',monospace" }}/>
+          <div style={{ width:8, height:14, background:"#7C3AED", animation:"termCursor 0.9s step-end infinite", flexShrink:0 }}/>
         </div>
       </div>
     </div>
@@ -830,27 +612,17 @@ function TerminalEasterEgg({ onClose }) {
 
 /* ─────────────── TOAST SYSTEM ─────────────── */
 const toastListeners = [];
-function showToast(msg, icon = "✓") {
-  toastListeners.forEach(fn => fn({ msg, icon, id: Date.now() }));
-}
+function showToast(msg, icon="✓") { toastListeners.forEach(fn => fn({ msg, icon, id:Date.now() })); }
 function ToastContainer() {
   const [toasts, setToasts] = useState([]);
   useEffect(() => {
-    const fn = (t) => {
-      setToasts(p => [...p, t]);
-      setTimeout(() => setToasts(p => p.filter(x => x.id !== t.id)), 3000);
-    };
+    const fn = (t) => { setToasts(p=>[...p,t]); setTimeout(()=>setToasts(p=>p.filter(x=>x.id!==t.id)), 3000); };
     toastListeners.push(fn);
-    return () => { const i = toastListeners.indexOf(fn); if (i > -1) toastListeners.splice(i, 1); };
+    return () => { const i=toastListeners.indexOf(fn); if(i>-1)toastListeners.splice(i,1); };
   }, []);
   return (
     <div className="toast-wrap">
-      {toasts.map(t => (
-        <div key={t.id} className="toast">
-          <span style={{ fontSize:"1rem" }}>{t.icon}</span>
-          <span>{t.msg}</span>
-        </div>
-      ))}
+      {toasts.map(t => <div key={t.id} className="toast"><span style={{fontSize:"0.8rem"}}>{t.icon}</span><span>{t.msg}</span></div>)}
     </div>
   );
 }
@@ -859,49 +631,25 @@ function ToastContainer() {
 function ScrollProgressBar() {
   const [pct, setPct] = useState(0);
   useEffect(() => {
-    const fn = () => {
-      const el = document.documentElement;
-      setPct((el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100);
-    };
+    const fn = () => { const el=document.documentElement; setPct((el.scrollTop/(el.scrollHeight-el.clientHeight))*100); };
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
-  return <div className="scroll-bar" style={{ width: `${pct}%` }} />;
+  return <div className="scroll-bar" style={{ width:`${pct}%` }} />;
 }
 
-/* ─────────────── SPOTLIGHT GLOW ─────────────── */
-function SpotlightGlow() {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const fn = (e) => {
-      el.style.left = (e.clientX - 200) + "px";
-      el.style.top  = (e.clientY - 200) + "px";
-    };
-    window.addEventListener("mousemove", fn);
-    return () => window.removeEventListener("mousemove", fn);
-  }, []);
-  return <div ref={ref} className="spotlight" style={{ width:400, height:400 }} />;
-}
-
-/* ─────────────── MOUSE TRAIL SPARKLES ─────────────── */
+/* ─────────────── MOUSE TRAIL ─────────────── */
 function MouseTrail() {
   useEffect(() => {
-    const COLORS = ["#0D9488","#38BDF8","#5EEAD4","#EAB308"];
+    const COLORS = ["#7C3AED","#06B6D4","#F59E0B","#EF4444","#10B981"];
     let count = 0;
     const fn = (e) => {
-      if (count++ % 3 !== 0) return; // throttle
+      if (count++ % 3 !== 0) return;
       const el = document.createElement("div");
-      const size = Math.random() * 6 + 4;
-      el.style.cssText = `
-        position:fixed; pointer-events:none; z-index:9997;
-        width:${size}px; height:${size}px; border-radius:50%;
-        background:${COLORS[Math.floor(Math.random()*COLORS.length)]};
-        left:${e.clientX - size/2}px; top:${e.clientY - size/2}px;
-        animation:sparkle 0.6s ease both;
-      `;
+      const size = 6;
+      el.style.cssText = `position:fixed;pointer-events:none;z-index:9997;width:${size}px;height:${size}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};left:${e.clientX-size/2}px;top:${e.clientY-size/2}px;animation:sparkle 0.5s ease both;image-rendering:pixelated;`;
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 700);
+      setTimeout(()=>el.remove(), 600);
     };
     window.addEventListener("mousemove", fn);
     return () => window.removeEventListener("mousemove", fn);
@@ -917,22 +665,15 @@ function KonamiConfetti() {
     const fn = (e) => {
       seq.current = [...seq.current, e.keyCode].slice(-10);
       if (seq.current.join(",") === CODE.join(",")) {
-        const COLORS = ["#0D9488","#5EEAD4","#38BDF8","#EAB308","#10B981","#0EA5E9","#CCFBF1"];
-        for (let i = 0; i < 80; i++) {
+        const COLORS = ["#7C3AED","#06B6D4","#F59E0B","#EF4444","#10B981","#A78BFA"];
+        for (let i=0; i<80; i++) {
           const el = document.createElement("div");
-          const size = Math.random() * 10 + 5;
-          const col = COLORS[Math.floor(Math.random() * COLORS.length)];
-          el.style.cssText = `
-            position:fixed; pointer-events:none; z-index:9999;
-            width:${size}px; height:${size}px;
-            background:${col}; border-radius:${Math.random() > 0.5 ? "50%" : "2px"};
-            left:${Math.random() * 100}vw; top:-20px;
-            animation:confettiFall ${1.5 + Math.random() * 2}s ease ${Math.random() * 0.8}s both;
-          `;
+          const size = Math.random()*10+5;
+          el.style.cssText = `position:fixed;pointer-events:none;z-index:9999;width:${size}px;height:${size}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};left:${Math.random()*100}vw;top:-20px;animation:confettiFall ${1.5+Math.random()*2}s ease ${Math.random()*0.8}s both;`;
           document.body.appendChild(el);
-          setTimeout(() => el.remove(), 4000);
+          setTimeout(()=>el.remove(), 4000);
         }
-        showToast("🎉 Konami Code activated! You found the easter egg!", "🎮");
+        showToast("KONAMI CODE UNLOCKED! NICE!", "GAME");
         seq.current = [];
       }
     };
@@ -948,86 +689,52 @@ function KeyboardShortcuts() {
   useEffect(() => {
     let timer;
     const fn = (e) => {
-      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+      if (e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA") return;
       const map = {
-        g: { url:"https://github.com/armanphaugat", label:"Opening GitHub…", icon:"🐙" },
-        l: { url:"https://leetcode.com/u/armanphaugat20", label:"Opening LeetCode…", icon:"🧩" },
-        k: { url:"https://www.linkedin.com/in/armanphaugat05/", label:"Opening LinkedIn…", icon:"💼" },
-        r: { url:"/ARMANRESUME.pdf", label:"Downloading Resume…", icon:"📄" },
+        g: { url:"https://github.com/armanphaugat", label:"OPENING GITHUB...", icon:"G" },
+        l: { url:"https://leetcode.com/u/armanphaugat20", label:"OPENING LEETCODE...", icon:"LC" },
+        k: { url:"https://www.linkedin.com/in/armanphaugat05/", label:"OPENING LINKEDIN...", icon:"LI" },
+        r: { url:"/ARMANRESUME.pdf", label:"DOWNLOADING RESUME...", icon:"PDF" },
       };
-      const scroll = {
-        "1": "hero","2": "about","3": "projects","4": "skills","5": "contact",
-      };
-      if (map[e.key]) {
-        const { url, label, icon } = map[e.key];
-        showToast(label, icon);
-        setHint(null);
-        setTimeout(() => window.open(url, "_blank"), 400);
-      }
-      if (scroll[e.key]) {
-        document.getElementById(scroll[e.key])?.scrollIntoView({ behavior:"smooth" });
-        showToast(`Jumped to section ${e.key}`, "⌨️");
-      }
-      if (e.key === "?") {
-        setHint(p => p ? null : true);
-        clearTimeout(timer);
-        if (!hint) timer = setTimeout(() => setHint(null), 5000);
-      }
+      const scroll = { "1":"hero","2":"about","3":"projects","4":"skills","5":"contact" };
+      if (map[e.key]) { const {url,label,icon}=map[e.key]; showToast(label,icon); setHint(null); setTimeout(()=>window.open(url,"_blank"),400); }
+      if (scroll[e.key]) { document.getElementById(scroll[e.key])?.scrollIntoView({behavior:"smooth"}); showToast(`JUMPED TO SECTION ${e.key}`,">>"); }
+      if (e.key==="?") { setHint(p=>p?null:true); clearTimeout(timer); if(!hint)timer=setTimeout(()=>setHint(null),5000); }
     };
     window.addEventListener("keydown", fn);
     return () => { window.removeEventListener("keydown", fn); clearTimeout(timer); };
   }, [hint]);
 
-  if (!hint) return (
-    <div className="kbd-hint" style={{ opacity:0.6 }}>
-      Press <span className="kbd-key">?</span> for shortcuts · <span className="kbd-key">`</span> for terminal
-    </div>
-  );
+  if (!hint) return <div className="kbd-hint" style={{opacity:0.6}}>Press <span className="kbd-key">?</span> for shortcuts &nbsp;·&nbsp; <span className="kbd-key">`</span> for terminal</div>;
   return (
-    <div className="kbd-hint" style={{ gap:"1.2rem", opacity:1, borderRadius:14, padding:"0.8rem 1.5rem" }}>
-      {[["G","GitHub"],["L","LeetCode"],["K","LinkedIn"],["R","Resume"],["1-5","Sections"],["` ","Terminal"]].map(([k,v]) => (
-        <span key={k} style={{ display:"flex", alignItems:"center", gap:"0.3rem" }}>
+    <div className="kbd-hint" style={{gap:"1.2rem",opacity:1,padding:"0.8rem 1.5rem"}}>
+      {[["G","GitHub"],["L","LeetCode"],["K","LinkedIn"],["R","Resume"],["1-5","Sections"],["`","Terminal"]].map(([k,v]) => (
+        <span key={k} style={{display:"flex",alignItems:"center",gap:"0.3rem"}}>
           <span className="kbd-key">{k}</span>
-          <span style={{ fontSize:"0.65rem" }}>{v}</span>
+          <span style={{fontSize:"0.78rem"}}>{v}</span>
         </span>
       ))}
     </div>
   );
 }
 
-/* ─────────────── FLOATING CONNECT CTA ─────────────── */
+/* ─────────────── FLOATING CTA ─────────────── */
 function FloatingConnectCTA() {
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => { if (!dismissed) setShow(true); }, 12000);
-    return () => clearTimeout(t);
-  }, [dismissed]);
-  if (!show || dismissed) return null;
+  useEffect(() => { const t=setTimeout(()=>{ if(!dismissed)setShow(true); },12000); return ()=>clearTimeout(t); }, [dismissed]);
+  if (!show||dismissed) return null;
   return (
     <div className="float-cta">
-      <div style={{
-        background:"var(--paper)", border:"1px solid rgba(13,148,136,0.2)",
-        borderRadius:14, padding:"1rem 1.3rem", boxShadow:"0 8px 40px rgba(13,148,136,0.18)",
-        maxWidth:220, position:"relative",
-      }}>
-        <button onClick={() => setDismissed(true)} style={{
-          position:"absolute", top:"0.4rem", right:"0.5rem",
-          background:"none", border:"none", cursor:"pointer",
-          fontSize:"0.75rem", color:"var(--muted)", lineHeight:1,
-        }}>✕</button>
-        <div className="status-available" style={{ marginBottom:"0.7rem" }}>
+      <div style={{ background:"var(--paper)", border:"3px solid #7C3AED", boxShadow:"5px 5px 0 #7C3AED", padding:"1rem 1.2rem", maxWidth:220, position:"relative" }}>
+        <button onClick={()=>setDismissed(true)} style={{ position:"absolute", top:"0.3rem", right:"0.4rem", background:"none", border:"2px solid #7C3AED", cursor:"pointer", fontSize:"0.82rem", color:"var(--muted)", fontFamily:"'Pixelify Sans','Press Start 2P',monospace", width:16, height:16, display:"flex", alignItems:"center", justifyContent:"center" }}>X</button>
+        <div className="status-available" style={{marginBottom:"0.6rem"}}>
           <div className="status-ping"/>
-          <span style={{ fontSize:"0.65rem", color:"#059669", fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>AVAILABLE FOR HIRE</span>
+          <span style={{fontSize:"0.88rem",color:"#059669",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>AVAILABLE</span>
         </div>
-        <div style={{ fontSize:"0.82rem", fontWeight:700, color:"var(--ink)", marginBottom:"0.4rem" }}>Open to opportunities</div>
-        <div style={{ fontSize:"0.75rem", color:"var(--muted)", marginBottom:"0.9rem", lineHeight:1.5 }}>Backend · AI/ML · Full Stack</div>
-        <a href="mailto:armanphaugat20@gmail.com" style={{
-          display:"block", textAlign:"center", padding:"0.55rem",
-          background:"linear-gradient(135deg,#0D9488,#38BDF8)",
-          color:"#fff", borderRadius:8, textDecoration:"none",
-          fontSize:"0.78rem", fontWeight:700,
-        }} onClick={() => setDismissed(true)}>Let's talk →</a>
+        <div style={{fontSize:"0.6rem",fontWeight:700,color:"var(--ink)",marginBottom:"0.3rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",lineHeight:1.6}}>OPEN TO WORK</div>
+        <div style={{fontSize:"0.65rem",color:"var(--muted)",marginBottom:"0.8rem",lineHeight:1.5}}>Backend · AI/ML · Full Stack</div>
+        <a href="mailto:armanphaugat20@gmail.com" style={{ display:"block", textAlign:"center", padding:"0.5rem", background:"#7C3AED", color:"#fff", border:"none", fontSize:"0.82rem", fontWeight:700, textDecoration:"none", fontFamily:"'Pixelify Sans','Press Start 2P',monospace", boxShadow:"3px 3px 0 #4C1D95" }} onClick={()=>setDismissed(true)}>LETS TALK &gt;&gt;</a>
       </div>
     </div>
   );
@@ -1036,50 +743,26 @@ function FloatingConnectCTA() {
 /* ─────────────── THEME ACCENT PICKER ─────────────── */
 function ThemeAccentPicker() {
   const [open, setOpen] = useState(false);
-  const [accent, setAccent] = useState("purple");
   const ACCENTS = [
-    { key:"purple", col:"#0D9488", label:"Purple" },
-    { key:"blue",   col:"#0D9488", label:"Blue"   },
-    { key:"green",  col:"#059669", label:"Green"  },
-    { key:"rose",   col:"#E11D48", label:"Rose"   },
+    { key:"purple", col:"#7C3AED" },
+    { key:"cyan",   col:"#06B6D4" },
+    { key:"green",  col:"#10B981" },
+    { key:"rose",   col:"#EF4444" },
   ];
-  const pick = (key) => {
-    setAccent(key);
-    document.documentElement.setAttribute("data-accent", key);
-    showToast(`Theme: ${key.charAt(0).toUpperCase()+key.slice(1)}`, "🎨");
+  const pick = (key, col) => {
+    document.documentElement.style.setProperty("--v-acc", col);
+    showToast(`THEME: ${key.toUpperCase()}`, "CLR");
     setOpen(false);
   };
-  const cur = ACCENTS.find(a => a.key === accent);
   return (
-    <div style={{ position:"relative" }}>
-      <button onClick={() => setOpen(o => !o)} title="Change accent color" style={{
-        width:34, height:34, borderRadius:6,
-        background: cur.col + "22",
-        border:`1.5px solid ${cur.col}44`,
-        cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
-        transition:"transform 0.2s",
-      }}
-        onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
-        onMouseLeave={e=>e.currentTarget.style.transform=""}
-      >
-        <div style={{ width:14, height:14, borderRadius:"50%", background:`linear-gradient(135deg,${cur.col},${cur.col}88)` }}/>
+    <div style={{position:"relative"}}>
+      <button onClick={()=>setOpen(o=>!o)} title="Change accent" style={{ width:34, height:34, background:"var(--vPale)", border:"2px solid #7C3AED", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"2px 2px 0 #7C3AED" }}>
+        <div style={{width:14,height:14,background:"linear-gradient(135deg,#7C3AED,#06B6D4)"}}/>
       </button>
       {open && (
-        <div style={{
-          position:"absolute", top:"calc(100% + 0.5rem)", right:0,
-          background:"var(--paper)", border:"1px solid rgba(13,148,136,0.15)",
-          borderRadius:10, padding:"0.6rem", boxShadow:"0 8px 32px rgba(0,0,0,0.12)",
-          display:"flex", gap:"0.4rem", zIndex:900, animation:"backTopIn 0.2s ease both",
-        }}>
+        <div style={{ position:"absolute", top:"calc(100% + 0.4rem)", right:0, background:"var(--paper)", border:"3px solid #7C3AED", padding:"0.5rem", boxShadow:"4px 4px 0 #7C3AED", display:"flex", gap:"0.3rem", zIndex:900 }}>
           {ACCENTS.map(a => (
-            <button key={a.key} onClick={() => pick(a.key)} title={a.label} style={{
-              width:24, height:24, borderRadius:"50%",
-              background:a.col, border: accent===a.key ? `2px solid var(--ink)` : "2px solid transparent",
-              cursor:"pointer", transition:"transform 0.15s",
-            }}
-              onMouseEnter={e=>e.currentTarget.style.transform="scale(1.2)"}
-              onMouseLeave={e=>e.currentTarget.style.transform=""}
-            />
+            <button key={a.key} onClick={()=>pick(a.key,a.col)} style={{ width:24, height:24, background:a.col, border:"2px solid rgba(0,0,0,0.2)", cursor:"pointer" }}/>
           ))}
         </div>
       )}
@@ -1087,58 +770,41 @@ function ThemeAccentPicker() {
   );
 }
 
-/* ─────────────── GITHUB STATS CARD ─────────────── */
+/* ─────────────── GITHUB/LEETCODE STATS ─────────────── */
 function GitHubStatsCard() {
   const stats = [
-    { label:"Max Streak",  value:"120+",  icon:"📦" },
-    { label:"Languages",      value:"3",    icon:"💻" },
-    { label:"Questions",  value:"700+", icon:"🔥" },
-    { label:"Badges Earned",   value:"9+",  icon:"⭐" },
+    { label:"MAX STREAK", value:"120+", icon:"🔥", col:"#EF4444" },
+    { label:"LANGUAGES",  value:"3",    icon:"💻", col:"#7C3AED" },
+    { label:"QUESTIONS",  value:"700+", icon:"⚡", col:"#F59E0B" },
+    { label:"BADGES",     value:"9+",   icon:"★",  col:"#10B981" },
   ];
   return (
-    <div style={{
-      background: "linear-gradient(135deg,#0D1117,#161B22)",
-      border:"1px solid rgba(255,255,255,0.08)",
-      borderRadius:16, padding:"1.8rem",
-      boxShadow:"0 4px 32px rgba(0,0,0,0.3)",
-    }}>
-      <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", marginBottom:"1.4rem" }}>
-        {/* LeetCode Logo */}
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ flexShrink:0 }}>
-          <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" fill="#FFA116"/>
-        </svg>
+    <div style={{ background:"linear-gradient(135deg,#050010 0%,#0a0020 100%)", border:"3px solid #7C3AED", boxShadow:"8px 8px 0 #7C3AED, 0 0 20px rgba(124,58,237,0.15)", padding:"1.5rem", fontFamily:"'Space Mono','Share Tech Mono',monospace" }}>
+      <div style={{display:"flex",alignItems:"center",gap:"0.8rem",marginBottom:"1.2rem"}}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" fill="#FFA116"/></svg>
         <div>
-          <div style={{ fontSize:"0.9rem", fontWeight:700, color:"#fff" }}>armanphaugat</div>
-          <div style={{ fontSize:"0.7rem", color:"rgba(255,255,255,0.4)", fontFamily:"'JetBrains Mono',monospace" }}>leetcode.com/armanphaugat20</div>
+          <div style={{fontSize:"0.75rem",fontWeight:700,color:"#fff",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>ARMANPHAUGAT</div>
+          <div style={{fontSize:"0.65rem",color:"rgba(255,255,255,0.4)"}}>leetcode.com/armanphaugat20</div>
         </div>
-        <a href="https://leetcode.com/armanphaugat20" target="_blank" rel="noreferrer" style={{
-          marginLeft:"auto", padding:"0.35rem 0.9rem",
-          background:"rgba(255,255,255,0.1)", color:"#fff",
-          border:"1px solid rgba(255,255,255,0.15)", borderRadius:6,
-          fontSize:"0.72rem", fontWeight:700, textDecoration:"none",
-          transition:"background 0.2s",
-        }}
-          onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.18)"}
-          onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.1)"}
-        >Follow</a>
+        <a href="https://leetcode.com/armanphaugat20" target="_blank" rel="noreferrer" style={{ marginLeft:"auto", padding:"0.3rem 0.8rem", background:"rgba(255,255,255,0.08)", color:"#fff", border:"2px solid rgba(255,255,255,0.2)", fontSize:"0.65rem", textDecoration:"none", fontFamily:"'Pixelify Sans','Press Start 2P',monospace" }}>+FOLLOW</a>
       </div>
-      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0.8rem", marginBottom:"1.2rem" }}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0.6rem",marginBottom:"1rem"}}>
         {stats.map(s => (
-          <div key={s.label} style={{ background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:10, padding:"0.8rem 1rem" }}>
-            <div style={{ fontSize:"0.9rem", marginBottom:"0.2rem" }}>{s.icon}</div>
-            <div style={{ fontSize:"1.1rem", fontWeight:800, color:"#fff", fontFamily:"'Syne',sans-serif" }}>{s.value}</div>
-            <div style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.35)", fontFamily:"'JetBrains Mono',monospace", textTransform:"uppercase", letterSpacing:"1px" }}>{s.label}</div>
+          <div key={s.label} style={{background:"rgba(255,255,255,0.04)",border:`2px solid ${s.col}`,padding:"0.75rem",boxShadow:`3px 3px 0 ${s.col}, 0 0 12px ${s.col}22`}}>
+            <div style={{fontSize:"1rem",marginBottom:"0.2rem"}}>{s.icon}</div>
+            <div style={{fontSize:"1rem",fontWeight:800,color:"#fff",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",lineHeight:1.2}}>{s.value}</div>
+            <div style={{fontSize:"0.78rem",color:"rgba(255,255,255,0.35)",textTransform:"uppercase",letterSpacing:"1px",marginTop:"0.2rem"}}>{s.label}</div>
           </div>
         ))}
       </div>
-      {/* Fake contribution graph */}
-      <div style={{ marginTop:"0.5rem" }}>
-        <div style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.3)", fontFamily:"'JetBrains Mono',monospace", marginBottom:"0.5rem" }}>Contribution activity</div>
-        <div style={{ display:"flex", gap:"3px", flexWrap:"wrap" }}>
+      {/* Fake contribution grid */}
+      <div>
+        <div style={{fontSize:"0.82rem",color:"rgba(255,255,255,0.3)",marginBottom:"0.4rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>ACTIVITY</div>
+        <div style={{display:"flex",gap:"2px",flexWrap:"wrap"}}>
           {Array.from({length:52*7}).map((_,i) => {
             const intensity = Math.random();
-            const bg = intensity > 0.85 ? "#FFA116" : intensity > 0.6 ? "#CC8000" : intensity > 0.35 ? "#7A4D00" : intensity > 0.15 ? "#3D2600" : "rgba(255,255,255,0.04)";
-            return <div key={i} style={{ width:9, height:9, borderRadius:2, background:bg }}/>;
+            const bg = intensity>0.85?"#FFA116":intensity>0.6?"#CC8000":intensity>0.35?"#7A4D00":intensity>0.15?"#3D2600":"rgba(255,255,255,0.03)";
+            return <div key={i} style={{width:9,height:9,background:bg,transition:"background 0.2s"}}/>;
           })}
         </div>
       </div>
@@ -1148,14 +814,14 @@ function GitHubStatsCard() {
 
 /* ─────────────── FUN FACTS TICKER ─────────────── */
 const FUN_FACTS = [
-  "I debug with console.log and I'm not ashamed 🐛",
-  "My first language was C, not Python 🔥",
-  "I solve LeetCode problems while waiting for builds 😤",
-  "I read system design blogs for fun 📚",
-  "Dark mode was always on before it was cool 🌙",
-  "I've rewritten a project from scratch at least 3 times 🔄",
-  "ACID compliance keeps me up at night (in a good way) 🗄️",
-  "I named a variable 'temp2' once. I regret it every day 😔",
+  "I debug with console.log. No shame. Ever.",
+  "First language: C. Not Python. Chaos.",
+  "I solve LeetCode while waiting for builds.",
+  "I read system design blogs for fun...",
+  "Dark mode since before it was a feature.",
+  "I've rewritten projects from scratch 3x.",
+  "ACID compliance = my love language.",
+  "I named a var 'temp2' once. Regret daily.",
 ];
 function FunFactsTicker() {
   const [idx, setIdx] = useState(0);
@@ -1163,236 +829,138 @@ function FunFactsTicker() {
   useEffect(() => {
     const iv = setInterval(() => {
       setVisible(false);
-      setTimeout(() => { setIdx(i => (i+1) % FUN_FACTS.length); setVisible(true); }, 400);
+      setTimeout(() => { setIdx(i=>(i+1)%FUN_FACTS.length); setVisible(true); }, 400);
     }, 4000);
     return () => clearInterval(iv);
   }, []);
   return (
-    <div style={{ overflow:"hidden", height:"1.4rem" }}>
-      <div style={{
-        fontSize:"0.72rem", color:"rgba(255,255,255,0.3)",
-        fontFamily:"'JetBrains Mono',monospace",
-        transition:"opacity 0.4s, transform 0.4s",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(8px)",
-        whiteSpace:"nowrap",
-      }}>
-        {FUN_FACTS[idx]}
+    <div style={{overflow:"hidden",height:"1.3rem"}}>
+      <div style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.3)", transition:"opacity 0.4s,transform 0.4s", opacity:visible?1:0, transform:visible?"translateY(0)":"translateY(8px)", whiteSpace:"nowrap", fontFamily:"'Space Mono','Share Tech Mono',monospace" }}>
+        &gt; {FUN_FACTS[idx]}
       </div>
     </div>
   );
 }
 
-/* ─────────────── AVAILABILITY WIDGET ─────────────── */
-/* ─────────────── FEATURE 11: LIVE IST CLOCK ─────────────── */
+/* ─────────────── LIVE IST CLOCK ─────────────── */
 function LiveISTClock() {
   const [time, setTime] = useState(null);
   useEffect(() => {
     const tick = () => {
       const now = new Date();
-      // IST = UTC + 5:30
-      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-      const ist = new Date(utc + 5.5 * 3600000);
+      const utc = now.getTime() + now.getTimezoneOffset()*60000;
+      const ist = new Date(utc + 5.5*3600000);
       const h = ist.getHours();
       const m = String(ist.getMinutes()).padStart(2,"0");
       const s = String(ist.getSeconds()).padStart(2,"0");
-      const ampm = h >= 12 ? "PM" : "AM";
-      const h12 = String(h % 12 || 12).padStart(2,"0");
-      const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-      const day = days[ist.getDay()];
-      setTime({ display:`${h12}:${m}:${s} ${ampm}`, day, isWorkHour: h >= 9 && h < 19 });
+      const ampm = h>=12?"PM":"AM";
+      const h12 = String(h%12||12).padStart(2,"0");
+      const days=["SUN","MON","TUE","WED","THU","FRI","SAT"];
+      setTime({ display:`${h12}:${m}:${s} ${ampm}`, day:days[ist.getDay()], isWorkHour:h>=9&&h<19 });
     };
     tick();
     const iv = setInterval(tick, 1000);
     return () => clearInterval(iv);
   }, []);
-
   if (!time) return null;
   return (
-    <div style={{
-      display:"flex", alignItems:"center", gap:"0.8rem",
-      padding:"0.7rem 1.1rem",
-      background:"rgba(13,148,136,0.06)",
-      border:"1px solid rgba(13,148,136,0.12)",
-      borderRadius:10, marginBottom:"1rem",
-    }}>
-      <div style={{ fontSize:"1.2rem" }}>🕐</div>
+    <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", padding:"0.7rem 1rem", background:"rgba(124,58,237,0.06)", border:"2px solid #7C3AED", marginBottom:"1rem", boxShadow:"3px 3px 0 #7C3AED" }}>
+      <div style={{fontSize:"1.2rem"}}>🕐</div>
       <div>
-        <div style={{
-          fontFamily:"'JetBrains Mono',monospace",
-          fontSize:"1.05rem", fontWeight:700,
-          color:"var(--ink)", letterSpacing:"1px",
-          lineHeight:1.2,
-        }}>{time.display}</div>
-        <div style={{
-          fontSize:"0.62rem", color:"var(--muted)",
-          fontFamily:"'JetBrains Mono',monospace", marginTop:"0.15rem",
-        }}>
-          {time.day} · IST (UTC+5:30) · Jaipur, India
-        </div>
+        <div style={{ fontFamily:"'Pixelify Sans','Press Start 2P',monospace", fontSize:"1rem", fontWeight:700, color:"var(--ink)", letterSpacing:"1px", lineHeight:1.2 }}>{time.display}</div>
+        <div style={{ fontSize:"0.82rem", color:"var(--muted)", fontFamily:"'Space Mono','Share Tech Mono',monospace", marginTop:"0.15rem" }}>{time.day} · IST (UTC+5:30) · JAIPUR</div>
       </div>
-      <div style={{ marginLeft:"auto", textAlign:"right" }}>
-        <div style={{
-          fontSize:"0.6rem", fontWeight:700,
-          fontFamily:"'JetBrains Mono',monospace",
-          color: time.isWorkHour ? "#059669" : "#B45309",
-          background: time.isWorkHour ? "rgba(16,185,129,0.1)" : "rgba(245,158,11,0.1)",
-          border: `1px solid ${time.isWorkHour ? "rgba(16,185,129,0.25)" : "rgba(245,158,11,0.25)"}`,
-          padding:"0.2rem 0.6rem", borderRadius:100,
-        }}>
-          {time.isWorkHour ? "🟢 AWAKE" : "🌙 SLEEPING"}
+      <div style={{marginLeft:"auto",textAlign:"right"}}>
+        <div style={{ fontSize:"0.78rem", fontWeight:700, fontFamily:"'Pixelify Sans','Press Start 2P',monospace", color:time.isWorkHour?"#059669":"#B45309", background:time.isWorkHour?"rgba(16,185,129,0.1)":"rgba(245,158,11,0.1)", border:`2px solid ${time.isWorkHour?"#10B981":"#F59E0B"}`, padding:"0.2rem 0.5rem", boxShadow:`2px 2px 0 ${time.isWorkHour?"#10B981":"#F59E0B"}` }}>
+          {time.isWorkHour?"[AWAKE]":"[ZZZ...]"}
         </div>
-        <div style={{ fontSize:"0.55rem", color:"var(--muted)", marginTop:"0.2rem", fontFamily:"'JetBrains Mono',monospace" }}>
-          {time.isWorkHour ? "likely at desk" : "replies next morning"}
-        </div>
+        <div style={{fontSize:"0.78rem",color:"var(--muted)",marginTop:"0.2rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{time.isWorkHour?"likely at desk":"replies AM"}</div>
       </div>
     </div>
   );
 }
 
 function AvailabilityWidget() {
-  const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-  const slots = {
-    Mon: ["10:00","14:00","16:00"],
-    Tue: ["11:00","15:00"],
-    Wed: ["10:00","13:00","17:00"],
-    Thu: ["14:00","16:00"],
-    Fri: ["10:00","12:00"],
-    Sat: [],
-    Sun: [],
-  };
+  const days=["MON","TUE","WED","THU","FRI","SAT","SUN"];
+  const slots={MON:["10:00","14:00","16:00"],TUE:["11:00","15:00"],WED:["10:00","13:00","17:00"],THU:["14:00","16:00"],FRI:["10:00","12:00"],SAT:[],SUN:[]};
   return (
-    <div style={{ background:"var(--paper)", border:"1px solid rgba(13,148,136,0.1)", borderRadius:14, padding:"1.5rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
+    <div style={{background:"var(--paper)",border:"3px solid #7C3AED",padding:"1.5rem",boxShadow:"5px 5px 0 #7C3AED"}}>
       <LiveISTClock />
-      <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.2rem" }}>
-        <span style={{ fontSize:"1.1rem" }}>📅</span>
+      <div style={{display:"flex",alignItems:"center",gap:"0.7rem",marginBottom:"1rem"}}>
+        <span style={{fontSize:"1rem"}}>📅</span>
         <div>
-          <div style={{ fontSize:"0.9rem", fontWeight:800, color:"var(--ink)" }}>Availability</div>
-          <div style={{ fontSize:"0.7rem", color:"var(--muted)", fontFamily:"'JetBrains Mono',monospace" }}>IST (UTC+5:30) · Open to calls</div>
+          <div style={{fontSize:"0.65rem",fontWeight:800,color:"var(--ink)",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>AVAILABILITY</div>
+          <div style={{fontSize:"0.65rem",color:"var(--muted)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>IST (UTC+5:30)</div>
         </div>
-        <div className="status-available" style={{ marginLeft:"auto" }}>
+        <div className="status-available" style={{marginLeft:"auto"}}>
           <div className="status-ping"/>
-          <span style={{ fontSize:"0.6rem", color:"#059669", fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>OPEN</span>
+          <span style={{fontSize:"0.88rem",color:"#059669",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>OPEN</span>
         </div>
       </div>
-      <div style={{ display:"grid", gridTemplateColumns:"repeat(7,1fr)", gap:"0.3rem" }}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:"0.3rem"}}>
         {days.map(d => (
-          <div key={d} style={{ textAlign:"center" }}>
-            <div style={{ fontSize:"0.58rem", color:"var(--muted)", fontFamily:"'JetBrains Mono',monospace", marginBottom:"0.3rem", textTransform:"uppercase" }}>{d}</div>
-            {slots[d].length > 0 ? slots[d].map(t => (
-              <div key={t} style={{
-                fontSize:"0.58rem", padding:"0.2rem 0.2rem", borderRadius:4, marginBottom:"0.2rem",
-                background:"rgba(13,148,136,0.12)", color:"#0D9488",
-                fontFamily:"'JetBrains Mono',monospace", fontWeight:600,
-              }}>{t}</div>
-            )) : (
-              <div style={{ fontSize:"0.58rem", color:"var(--muted)", opacity:0.4, fontFamily:"'JetBrains Mono',monospace" }}>–</div>
+          <div key={d} style={{textAlign:"center"}}>
+            <div style={{fontSize:"0.78rem",color:"var(--muted)",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",marginBottom:"0.3rem"}}>{d}</div>
+            {slots[d].length>0?slots[d].map(t=>(
+              <div key={t} style={{fontSize:"0.78rem",padding:"0.2rem",marginBottom:"0.2rem",background:"rgba(124,58,237,0.1)",color:"#7C3AED",fontFamily:"'Space Mono','Share Tech Mono',monospace",border:"1px solid #7C3AED",fontWeight:600}}>{t}</div>
+            )):(
+              <div style={{fontSize:"0.65rem",color:"var(--muted)",opacity:0.4,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>--</div>
             )}
           </div>
         ))}
       </div>
-      <a href="mailto:armanphaugat20@gmail.com?subject=Meeting Request" style={{
-        display:"block", textAlign:"center", marginTop:"1rem",
-        padding:"0.55rem", background:"rgba(13,148,136,0.1)",
-        border:"1px solid rgba(13,148,136,0.2)", borderRadius:8,
-        fontSize:"0.78rem", fontWeight:700, color:"#0D9488",
-        textDecoration:"none", transition:"background 0.2s",
-      }}
-        onMouseEnter={e=>e.currentTarget.style.background="rgba(13,148,136,0.2)"}
-        onMouseLeave={e=>e.currentTarget.style.background="rgba(13,148,136,0.1)"}
-      >Book a call →</a>
+      <a href="mailto:armanphaugat20@gmail.com?subject=Meeting Request" style={{ display:"block", textAlign:"center", marginTop:"1rem", padding:"0.55rem", background:"rgba(124,58,237,0.1)", border:"2px solid #7C3AED", fontSize:"0.6rem", fontWeight:700, color:"#7C3AED", textDecoration:"none", boxShadow:"3px 3px 0 #7C3AED", fontFamily:"'Pixelify Sans','Press Start 2P',monospace", transition:"all 0.1s" }}
+        onMouseEnter={e=>{e.currentTarget.style.background="#7C3AED";e.currentTarget.style.color="#fff";}}
+        onMouseLeave={e=>{e.currentTarget.style.background="rgba(124,58,237,0.1)";e.currentTarget.style.color="#7C3AED";}}
+      >BOOK A CALL &gt;&gt;</a>
     </div>
   );
 }
 
-/* ─────────────── SKILL RADAR CHART ─────────────── */
+/* ─────────────── SKILL RADAR ─────────────── */
 function SkillRadar() {
-  const skills = [
-    { label:"Backend",  val:90 }, { label:"DSA/CP",   val:92 },
-    { label:"AI / ML",  val:80 }, { label:"Databases", val:85 },
-    { label:"DevOps",   val:75 }, { label:"Frontend",  val:72 },
-  ];
-  const N = skills.length;
-  const cx = 160, cy = 160, R = 120;
-  const angleStep = (Math.PI * 2) / N;
-  const polarToXY = (i, r) => ({
-    x: cx + r * Math.sin(i * angleStep),
-    y: cy - r * Math.cos(i * angleStep),
-  });
-  const rings = [0.25, 0.5, 0.75, 1.0];
-  const dataPoints = skills.map((s, i) => polarToXY(i, (s.val / 100) * R));
-  const poly = dataPoints.map(p => `${p.x},${p.y}`).join(" ");
-
+  const skills=[{label:"Backend",val:90},{label:"DSA/CP",val:92},{label:"AI/ML",val:80},{label:"Databases",val:85},{label:"DevOps",val:75},{label:"Frontend",val:72}];
+  const N=skills.length;
+  const cx=160,cy=160,R=120;
+  const angleStep=(Math.PI*2)/N;
+  const polarToXY=(i,r)=>({x:cx+r*Math.sin(i*angleStep),y:cy-r*Math.cos(i*angleStep)});
+  const rings=[0.25,0.5,0.75,1.0];
+  const dataPoints=skills.map((s,i)=>polarToXY(i,(s.val/100)*R));
+  const poly=dataPoints.map(p=>`${p.x},${p.y}`).join(" ");
   return (
-    <div style={{ display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column" }}>
+    <div style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
       <svg width="320" height="320" viewBox="0 0 320 320">
-        {/* Rings */}
-        {rings.map(r => (
-          <polygon key={r} points={skills.map((_,i) => { const p = polarToXY(i, r*R); return `${p.x},${p.y}`; }).join(" ")}
-            fill="none" stroke="rgba(13,148,136,0.15)" strokeWidth="1"/>
+        {rings.map(r=>(
+          <polygon key={r} points={skills.map((_,i)=>{const p=polarToXY(i,r*R);return `${p.x},${p.y}`;}).join(" ")} fill="none" stroke="rgba(124,58,237,0.2)" strokeWidth="1" strokeDasharray="4,4"/>
         ))}
-        {/* Axes */}
-        {skills.map((_,i) => { const p = polarToXY(i, R); return (
-          <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(13,148,136,0.15)" strokeWidth="1"/>
-        );})}
-        {/* Data polygon */}
-        <polygon points={poly} fill="rgba(13,148,136,0.18)" stroke="#0D9488" strokeWidth="2" strokeLinejoin="round"/>
-        {/* Data dots */}
-        {dataPoints.map((p,i) => (
-          <circle key={i} cx={p.x} cy={p.y} r="5" fill="#0D9488" stroke="#fff" strokeWidth="2"/>
-        ))}
-        {/* Labels */}
-        {skills.map((s, i) => {
-          const p = polarToXY(i, R + 22);
-          return (
-            <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle"
-              fill="var(--ink)" fontSize="10" fontFamily="'Syne',sans-serif" fontWeight="700">
-              {s.label}
-            </text>
-          );
-        })}
-        {/* Values at center ring labels */}
-        {skills.map((s, i) => {
-          const p = polarToXY(i, (s.val / 100) * R - 14);
-          return (
-            <text key={`v${i}`} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle"
-              fill="#0D9488" fontSize="9" fontFamily="'JetBrains Mono',monospace" fontWeight="700">
-              {s.val}%
-            </text>
-          );
-        })}
+        {skills.map((_,i)=>{const p=polarToXY(i,R);return <line key={i} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="rgba(124,58,237,0.15)" strokeWidth="1"/>;} )}
+        <polygon points={poly} fill="rgba(124,58,237,0.15)" stroke="#7C3AED" strokeWidth="2"/>
+        {dataPoints.map((p,i)=><rect key={i} x={p.x-4} y={p.y-4} width={8} height={8} fill="#7C3AED" stroke="#fff" strokeWidth="2"/>)}
+        {skills.map((s,i)=>{const p=polarToXY(i,R+22);return <text key={i} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="var(--ink)" fontSize="9" fontFamily="'Pixelify Sans','Press Start 2P',monospace">{s.label}</text>;})}
+        {skills.map((s,i)=>{const p=polarToXY(i,(s.val/100)*R-14);return <text key={`v${i}`} x={p.x} y={p.y} textAnchor="middle" dominantBaseline="middle" fill="#7C3AED" fontSize="8" fontFamily="'Space Mono','Share Tech Mono',monospace" fontWeight="700">{s.val}%</text>;})}
       </svg>
     </div>
   );
 }
 
-/* ─────────────── PROJECT CATEGORY STATS BAR ─────────────── */
+/* ─────────────── PROJECT STATS BAR ─────────────── */
 function ProjectStatsBar() {
-  const cats = [
-    { label:"Backend",  count:2, col:"#0D9488" },
-    { label:"AI / ML",  count:5, col:"#0EA5E9" },
-    { label:"Frontend", count:2, col:"#10B981" },
-    { label:"Game",     count:1, col:"#F59E0B" },
-  ];
-  const total = cats.reduce((s,c) => s+c.count, 0);
+  const cats=[{label:"Backend",count:2,col:"#7C3AED"},{label:"AI/ML",count:5,col:"#06B6D4"},{label:"Frontend",count:2,col:"#10B981"},{label:"Game",count:1,col:"#F59E0B"}];
+  const total=cats.reduce((s,c)=>s+c.count,0);
   return (
-    <div style={{ marginBottom:"2rem" }} className="rv">
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"0.8rem" }}>
-        <span style={{ fontSize:"0.78rem", color:"var(--muted)", fontFamily:"'JetBrains Mono',monospace" }}>Category breakdown</span>
-        <span style={{ fontSize:"0.78rem", color:"var(--muted)", fontFamily:"'JetBrains Mono',monospace" }}>{total} total</span>
+    <div style={{marginBottom:"2rem"}} className="rv">
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"0.6rem"}}>
+        <span style={{fontSize:"0.65rem",color:"var(--muted)",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>CATEGORY BREAKDOWN</span>
+        <span style={{fontSize:"0.65rem",color:"var(--muted)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{total} TOTAL</span>
       </div>
-      <div style={{ height:8, borderRadius:4, overflow:"hidden", display:"flex", gap:2 }}>
-        {cats.map(c => (
-          <div key={c.label} style={{ flex:c.count, background:c.col, borderRadius:2, transition:"flex 0.5s ease" }}
-            title={`${c.label}: ${c.count}`}
-          />
-        ))}
+      <div style={{height:10,overflow:"hidden",display:"flex",gap:2,border:"2px solid #7C3AED",boxShadow:"3px 3px 0 #7C3AED"}}>
+        {cats.map(c=><div key={c.label} style={{flex:c.count,background:c.col}} title={`${c.label}: ${c.count}`}/>)}
       </div>
-      <div style={{ display:"flex", gap:"1.2rem", marginTop:"0.6rem", flexWrap:"wrap" }}>
-        {cats.map(c => (
-          <div key={c.label} style={{ display:"flex", alignItems:"center", gap:"0.35rem" }}>
-            <div style={{ width:8, height:8, borderRadius:2, background:c.col }}/>
-            <span style={{ fontSize:"0.68rem", color:"var(--muted)", fontFamily:"'JetBrains Mono',monospace" }}>{c.label} ({c.count})</span>
+      <div style={{display:"flex",gap:"1rem",marginTop:"0.5rem",flexWrap:"wrap"}}>
+        {cats.map(c=>(
+          <div key={c.label} style={{display:"flex",alignItems:"center",gap:"0.3rem"}}>
+            <div style={{width:8,height:8,background:c.col,border:`1px solid ${c.col}`}}/>
+            <span style={{fontSize:"0.6rem",color:"var(--muted)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{c.label} ({c.count})</span>
           </div>
         ))}
       </div>
@@ -1402,242 +970,135 @@ function ProjectStatsBar() {
 
 /* ─────────────── CURSOR ─────────────── */
 function Cursor() {
-  const dot   = useRef(null);
-  const trail = useRef(null);
-  useEffect(() => {
-    let tx = 0, ty = 0;
-    const onMove = (e) => {
-      const x = e.clientX, y = e.clientY;
-      if (dot.current) { dot.current.style.left = x + "px"; dot.current.style.top = y + "px"; }
-      const step = () => {
-        tx += (x - tx) * 0.1; ty += (y - ty) * 0.1;
-        if (trail.current) { trail.current.style.left = tx + "px"; trail.current.style.top = ty + "px"; }
-        requestAnimationFrame(step);
-      };
+  const dot=useRef(null); const trail=useRef(null);
+  useEffect(()=>{
+    let tx=0,ty=0;
+    const onMove=(e)=>{
+      const x=e.clientX,y=e.clientY;
+      if(dot.current){dot.current.style.left=x+"px";dot.current.style.top=y+"px";}
+      const step=()=>{ tx+=(x-tx)*0.12; ty+=(y-ty)*0.12; if(trail.current){trail.current.style.left=tx+"px";trail.current.style.top=ty+"px";} requestAnimationFrame(step); };
       step();
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+    window.addEventListener("mousemove",onMove);
+    return ()=>window.removeEventListener("mousemove",onMove);
+  },[]);
   return (
     <>
-      <div ref={dot}   style={{ position:"fixed", width:7, height:7, background:C.v, borderRadius:"50%", transform:"translate(-50%,-50%)", pointerEvents:"none", zIndex:9999 }} />
-      <div ref={trail} style={{ position:"fixed", width:28, height:28, border:`1.5px solid ${C.v}`, borderRadius:"50%", transform:"translate(-50%,-50%)", pointerEvents:"none", zIndex:9998, opacity:.4 }} />
+      <div ref={dot} style={{position:"fixed",width:8,height:8,background:"#7C3AED",transform:"translate(-50%,-50%)",pointerEvents:"none",zIndex:9999,imageRendering:"pixelated"}}/>
+      <div ref={trail} style={{position:"fixed",width:20,height:20,border:"2px solid #7C3AED",transform:"translate(-50%,-50%)",pointerEvents:"none",zIndex:9998,opacity:.5,imageRendering:"pixelated"}}/>
     </>
   );
 }
 
 /* ─────────────── SCROLL REVEAL ─────────────── */
 function useReveal() {
-  useEffect(() => {
-    const els = document.querySelectorAll(".rv");
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("on"); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
-    els.forEach(el => obs.observe(el));
-    return () => obs.disconnect();
+  useEffect(()=>{
+    const els=document.querySelectorAll(".rv");
+    const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("on");obs.unobserve(e.target);} }); },{threshold:0.1});
+    els.forEach(el=>obs.observe(el));
+    return ()=>obs.disconnect();
   });
 }
 
-/* ─────────────── SECTION TRANSITION ─────────────── */
 function useSectionTransitions() {
-  useEffect(() => {
-    const els = document.querySelectorAll(".sec-transition");
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    els.forEach(el => obs.observe(el));
-    return () => obs.disconnect();
+  useEffect(()=>{
+    const els=document.querySelectorAll(".sec-transition");
+    const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target);} }); },{threshold:0.08});
+    els.forEach(el=>obs.observe(el));
+    return ()=>obs.disconnect();
   });
 }
 
-/* ─────────────── TILT ─────────────── */
 function useTilt(ref) {
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const onMove = (e) => {
-      const r = el.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      el.style.transform = `perspective(700px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.02)`;
-      el.style.boxShadow = `${-x * 20}px ${y * 20}px 48px rgba(13,148,136,0.14)`;
-    };
-    const onLeave = () => { el.style.transform = ""; el.style.boxShadow = ""; };
-    el.addEventListener("mousemove", onMove);
-    el.addEventListener("mouseleave", onLeave);
-    return () => { el.removeEventListener("mousemove", onMove); el.removeEventListener("mouseleave", onLeave); };
-  }, []);
+  useEffect(()=>{
+    const el=ref.current; if(!el) return;
+    const onMove=(e)=>{ const r=el.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width-0.5; const y=(e.clientY-r.top)/r.height-0.5; el.style.transform=`perspective(700px) rotateY(${x*8}deg) rotateX(${-y*8}deg) scale(1.02)`; };
+    const onLeave=()=>{ el.style.transform=""; };
+    el.addEventListener("mousemove",onMove);
+    el.addEventListener("mouseleave",onLeave);
+    return ()=>{ el.removeEventListener("mousemove",onMove); el.removeEventListener("mouseleave",onLeave); };
+  },[]);
 }
 
 /* ─────────────── NAV ─────────────── */
 function Nav({ dark, setDark }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-  const links = ["About","Experience","Resume","Projects","Skills","Blog","Timeline","Contact"];
-  const closeMenu = () => setMenuOpen(false);
+  useEffect(()=>{ const fn=()=>setScrolled(window.scrollY>50); window.addEventListener("scroll",fn); return ()=>window.removeEventListener("scroll",fn); },[]);
+  const links=["About","Experience","Resume","Projects","Skills","Blog","Timeline","Contact"];
+  const closeMenu=()=>setMenuOpen(false);
 
-  const barStyle = (open, which) => ({
-    display:"block", width:22, height:2, background:"var(--ink)", borderRadius:2,
-    transformOrigin:"center",
-    transition:"transform 0.3s, opacity 0.3s",
-    transform: open
-      ? which==="top" ? "translateY(8px) rotate(45deg)"
-      : which==="bot" ? "translateY(-8px) rotate(-45deg)"
-      : "scaleX(0)"
-      : "none",
-    opacity: open && which==="mid" ? 0 : 1,
+  const barStyle=(open,which)=>({
+    display:"block",width:22,height:2,background:"var(--ink)",
+    transformOrigin:"center",transition:"transform 0.3s, opacity 0.3s",
+    transform:open?which==="top"?"translateY(8px) rotate(45deg)":which==="bot"?"translateY(-8px) rotate(-45deg)":"scaleX(0)":"none",
+    opacity:open&&which==="mid"?0:1,
   });
 
   return (
     <>
-      {/* Mobile full-screen menu */}
-      <div className={`mob-menu${menuOpen ? " open" : ""}`}>
-        {links.map(l => (
-          <a key={l} href={`#${l.toLowerCase()}`} onClick={closeMenu}>{l}</a>
-        ))}
-        <button onClick={() => setDark(d => !d)} style={{
-          background:"none", border:`1.5px solid rgba(13,148,136,0.3)`, borderRadius:100,
-          padding:"0.6rem 1.6rem", cursor:"pointer", fontSize:"1rem",
-          display:"flex", alignItems:"center", gap:"0.6rem",
-          fontFamily:"'Syne',sans-serif", fontWeight:700, color:"var(--ink)",
-        }}>
-          <span key={dark ? "m" : "s"} style={{ animation:"darkToggle 0.3s ease both" }}>{dark ? "☀️" : "🌙"}</span>
-          {dark ? "Light Mode" : "Dark Mode"}
+      <div className={`mob-menu${menuOpen?" open":""}`}>
+        {links.map(l=><a key={l} href={`#${l.toLowerCase()}`} onClick={closeMenu}>{l}</a>)}
+        <button onClick={()=>setDark(d=>!d)} style={{ background:"none", border:"3px solid #7C3AED", padding:"0.6rem 1.4rem", cursor:"pointer", fontSize:"0.65rem", display:"flex", alignItems:"center", gap:"0.5rem", fontFamily:"'Pixelify Sans','Press Start 2P',monospace", fontWeight:700, color:"var(--ink)", boxShadow:"3px 3px 0 #7C3AED" }}>
+          <span key={dark?"m":"s"} style={{animation:"darkToggle 0.3s ease both"}}>{dark?"SUN":"MOON"}</span>
+          {dark?"LIGHT":"DARK"}
         </button>
-        <div style={{ display:"flex", gap:"0.8rem", marginTop:"1rem", flexWrap:"wrap", justifyContent:"center" }}>
-          <a href="mailto:armanphaugat20@gmail.com" onClick={closeMenu} style={{
-            padding:"0.7rem 1.5rem", background:C.v, color:"#fff",
-            borderRadius:8, textDecoration:"none", fontWeight:700, fontSize:"0.9rem",
-          }}>Hire Me →</a>
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" onClick={closeMenu} style={{
-            padding:"0.7rem 1.5rem", background:"transparent", color:C.v,
-            border:`1.5px solid ${C.v}`, borderRadius:8, textDecoration:"none",
-            fontWeight:700, fontSize:"0.9rem", display:"flex", alignItems:"center", gap:"0.4rem",
-          }}><Download size={14}/> Resume</a>
-          <a href="https://www.linkedin.com/in/armanphaugat05/" target="_blank" rel="noreferrer" onClick={closeMenu} style={{
-            padding:"0.7rem 1.5rem", background:"#0A66C2", color:"#fff",
-            borderRadius:8, textDecoration:"none", fontWeight:700, fontSize:"0.9rem",
-            display:"flex", alignItems:"center", gap:"0.4rem",
-          }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://leetcode.com/u/armanphaugat20" target="_blank" rel="noreferrer" onClick={closeMenu} style={{
-            padding:"0.7rem 1.5rem", background:"#FFA116", color:"#fff",
-            borderRadius:8, textDecoration:"none", fontWeight:700, fontSize:"0.9rem",
-            display:"flex", alignItems:"center", gap:"0.4rem",
-          }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
-            LeetCode
-          </a>
-        </div>
       </div>
 
-      <nav style={{
-        position:"fixed", top:0, left:0, right:0, zIndex:600,
-        display:"flex", alignItems:"center", justifyContent:"space-between",
-        padding: scrolled ? "0.85rem 2rem" : "1.3rem 2rem",
-        background: scrolled || menuOpen ? "var(--bg)" : "transparent",
-        backdropFilter: scrolled || menuOpen ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(13,148,136,0.15)" : "1px solid transparent",
-        transition:"all 0.35s cubic-bezier(0.16,1,0.3,1)",
-      }}>
+      <nav style={{ position:"fixed", top:0, left:0, right:0, zIndex:600, display:"flex", alignItems:"center", justifyContent:"space-between", padding:scrolled||menuOpen?"0.8rem 2rem":"1.2rem 2rem", background:scrolled||menuOpen?"var(--bg)":"transparent", borderBottom:scrolled?"3px solid #7C3AED":"3px solid transparent", boxShadow:scrolled?"0 3px 0 #7C3AED":"none", transition:"all 0.25s ease", fontFamily:"'Pixelify Sans','Press Start 2P',monospace" }}>
         {/* Logo */}
-        <div style={{ display:"flex", alignItems:"center", gap:"0.6rem" }}>
-          <div style={{ width:32, height:32, borderRadius:8, background:`linear-gradient(135deg,${C.v},${C.accent})`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-            <span style={{ color:"#fff", fontSize:"0.8rem", fontWeight:800 }}>AP</span>
+        <div style={{display:"flex",alignItems:"center",gap:"0.7rem"}}>
+          <div style={{width:32,height:32,background:"#7C3AED",border:"2px solid #4C1D95",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"3px 3px 0 #4C1D95"}}>
+            <span style={{color:"#fff",fontSize:"0.82rem",fontWeight:800}}>AP</span>
           </div>
-          <span className="mono" style={{ fontSize:"0.8rem", color:C.v, fontWeight:500 }}>arman<span style={{color:C.muted}}>.dev</span></span>
+          <span style={{fontSize:"0.6rem",color:"#7C3AED",fontWeight:500}}>arman<span style={{color:C.muted}}>.exe</span></span>
         </div>
-
         {/* Desktop links */}
-        <div className="hide-mob" style={{ display:"flex", gap:"2.2rem" }}>
-          {links.map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link"
-              style={{ color:C.inkMid, fontSize:"0.82rem", fontWeight:600, letterSpacing:"0.2px" }}
-              onMouseEnter={e => e.currentTarget.style.color = C.v}
-              onMouseLeave={e => e.currentTarget.style.color = C.inkMid}
+        <div className="hide-mob" style={{display:"flex",gap:"1.8rem"}}>
+          {links.map(l=>(
+            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link" style={{color:C.inkMid,fontSize:"0.78rem",fontWeight:600,letterSpacing:"0.5px"}}
+              onMouseEnter={e=>e.currentTarget.style.color="#7C3AED"}
+              onMouseLeave={e=>e.currentTarget.style.color=C.inkMid}
             >{l}</a>
           ))}
         </div>
-
         {/* Desktop CTAs */}
-        <div className="hide-mob" style={{ display:"flex", gap:"0.7rem", alignItems:"center" }}>
-          {/* Theme accent picker */}
-          <ThemeAccentPicker />
-          {/* Dark mode toggle */}
-          <button onClick={() => setDark(d => !d)} title={dark ? "Switch to light mode" : "Switch to dark mode"} style={{
-            width:34, height:34, borderRadius:6,
-            background: dark ? "rgba(255,255,255,0.1)" : "rgba(13,148,136,0.08)",
-            border: `1.5px solid ${dark ? "rgba(255,255,255,0.25)" : "rgba(13,148,136,0.2)"}`,
-            cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
-            transition:"background 0.2s, border-color 0.2s, transform 0.2s", flexShrink:0,
-          }}
-            onMouseEnter={e=>e.currentTarget.style.transform="translateY(-2px)"}
-            onMouseLeave={e=>e.currentTarget.style.transform=""}
+        <div className="hide-mob" style={{display:"flex",gap:"0.5rem",alignItems:"center"}}>
+          <ThemeAccentPicker/>
+          <button onClick={()=>setDark(d=>!d)} title="Toggle theme" style={{ width:34, height:34, background:"var(--vPale)", border:"2px solid #7C3AED", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"2px 2px 0 #7C3AED", transition:"all 0.1s" }}
+            onMouseEnter={e=>e.currentTarget.style.transform="translate(-1px,-1px)"}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.filter=""}}
           >
-            <span key={dark ? "moon" : "sun"} style={{ fontSize:"1rem", display:"block", animation:"darkToggle 0.3s ease both" }}>
-              {dark ? "☀️" : "🌙"}
-            </span>
+            <span key={dark?"moon":"sun"} style={{fontSize:"0.9rem",animation:"darkToggle 0.3s ease both"}}>{dark?"☀️":"🌙"}</span>
           </button>
-          {/* LinkedIn icon button */}
-          <a href="https://www.linkedin.com/in/armanphaugat05/" target="_blank" rel="noreferrer" title="LinkedIn" style={{
-            width:34, height:34, borderRadius:6, background:"#0A66C2", color:"#fff",
-            display:"flex", alignItems:"center", justifyContent:"center",
-            textDecoration:"none", transition:"background 0.2s, transform 0.2s", flexShrink:0,
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background="#004182";e.currentTarget.style.transform="translateY(-2px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="#0A66C2";e.currentTarget.style.transform="";}}
+          <a href="https://www.linkedin.com/in/armanphaugat05/" target="_blank" rel="noreferrer" style={{ width:34,height:34,background:"#0A66C2",border:"2px solid #004182",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",boxShadow:"2px 2px 0 #004182",transition:"all 0.1s" }}
+            onMouseEnter={e=>e.currentTarget.style.transform="translate(-1px,-1px)"}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.filter=""}}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
-          {/* LeetCode icon button */}
-          <a href="https://leetcode.com/u/armanphaugat20" target="_blank" rel="noreferrer" title="LeetCode" style={{
-            width:34, height:34, borderRadius:6, background:"#FFA116", color:"#fff",
-            display:"flex", alignItems:"center", justifyContent:"center",
-            textDecoration:"none", transition:"background 0.2s, transform 0.2s", flexShrink:0,
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background="#cc8100";e.currentTarget.style.transform="translateY(-2px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="#FFA116";e.currentTarget.style.transform="";}}
+          <a href="https://leetcode.com/u/armanphaugat20" target="_blank" rel="noreferrer" style={{ width:34,height:34,background:"#FFA116",border:"2px solid #cc8100",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",boxShadow:"2px 2px 0 #cc8100",transition:"all 0.1s" }}
+            onMouseEnter={e=>e.currentTarget.style.transform="translate(-1px,-1px)"}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.filter=""}}
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
           </a>
-          <a href="mailto:armanphaugat20@gmail.com" style={{
-            padding:"0.5rem 1.3rem", background:C.v, color:"#fff",
-            borderRadius:6, fontSize:"0.8rem", fontWeight:600, textDecoration:"none", transition:"background 0.2s",
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = C.vDeep}
-            onMouseLeave={e => e.currentTarget.style.background = C.v}
-          >Hire Me →</a>
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" style={{
-            padding:"0.5rem 1.2rem", background:"transparent", color:C.v,
-            border:`1.5px solid ${C.v}`, borderRadius:6, fontSize:"0.8rem", fontWeight:600,
-            textDecoration:"none", transition:"background 0.2s, color 0.2s",
-            display:"flex", alignItems:"center", gap:"0.4rem",
-            animation:"resumePulse 2.5s ease-in-out infinite",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background=C.v;e.currentTarget.style.color="#fff";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=C.v;}}
+          <a href="mailto:armanphaugat20@gmail.com" style={{ padding:"0.55rem 1.1rem", background:"#7C3AED", color:"#fff", border:"2px solid #4C1D95", fontSize:"0.85rem", fontWeight:600, textDecoration:"none", boxShadow:"3px 3px 0 #4C1D95", transition:"all 0.1s", whiteSpace:"nowrap" }}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translate(-1px,-1px)";e.currentTarget.style.boxShadow="4px 4px 0 #4C1D95";}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="3px 3px 0 #4C1D95";}}
+          >HIRE ME ▶</a>
+          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" style={{ padding:"0.55rem 1.1rem", background:"transparent", color:"#7C3AED", border:"2px solid #7C3AED", fontSize:"0.85rem", fontWeight:600, textDecoration:"none", display:"flex", alignItems:"center", gap:"0.4rem", animation:"resumePulse 2.5s ease-in-out infinite", boxShadow:"3px 3px 0 #7C3AED", whiteSpace:"nowrap" }}
+            onMouseEnter={e=>{e.currentTarget.style.background="#7C3AED";e.currentTarget.style.color="#fff";}}
+            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color="#7C3AED";}}
           >
-            <Download size={13} strokeWidth={2.5} />
-            Resume
+            <Download size={12} strokeWidth={2.5}/>CV
           </a>
         </div>
-
         {/* Hamburger */}
-        <button className="show-mob" onClick={() => setMenuOpen(o => !o)} style={{
-          background:"none", border:"none", cursor:"pointer", padding:"4px",
-          display:"flex", flexDirection:"column", gap:6, zIndex:700,
-        }}>
-          <span style={barStyle(menuOpen,"top")} />
-          <span style={barStyle(menuOpen,"mid")} />
-          <span style={barStyle(menuOpen,"bot")} />
+        <button className="show-mob" onClick={()=>setMenuOpen(o=>!o)} style={{ background:"none", border:"none", cursor:"pointer", padding:"4px", display:"flex", flexDirection:"column", gap:6, zIndex:700 }}>
+          <span style={barStyle(menuOpen,"top")}/>
+          <span style={barStyle(menuOpen,"mid")}/>
+          <span style={barStyle(menuOpen,"bot")}/>
         </button>
       </nav>
     </>
@@ -1645,89 +1106,54 @@ function Nav({ dark, setDark }) {
 }
 
 /* ─────────────── ANIMATED COUNTER ─────────────── */
-function useCounter(target, duration = 1800) {
+function useCounter(target, duration=1800) {
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef(null);
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStarted(true); }, { threshold: 0.5 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-  useEffect(() => {
-    if (!started) return;
-    const isFloat = String(target).includes(".");
-    const numTarget = parseFloat(target);
-    const start = performance.now();
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      const val = numTarget * ease;
-      setCount(isFloat ? val.toFixed(2) : Math.floor(val));
-      if (progress < 1) requestAnimationFrame(step);
-    };
+  useEffect(()=>{ const obs=new IntersectionObserver(([e])=>{ if(e.isIntersecting)setStarted(true); },{threshold:0.5}); if(ref.current)obs.observe(ref.current); return ()=>obs.disconnect(); },[]);
+  useEffect(()=>{
+    if(!started) return;
+    const isFloat=String(target).includes(".");
+    const numTarget=parseFloat(target);
+    const start=performance.now();
+    const step=(now)=>{ const progress=Math.min((now-start)/duration,1); const ease=1-Math.pow(1-progress,3); const val=numTarget*ease; setCount(isFloat?val.toFixed(2):Math.floor(val)); if(progress<1)requestAnimationFrame(step); };
     requestAnimationFrame(step);
-  }, [started, target, duration]);
-  return { ref, count };
+  },[started,target,duration]);
+  return {ref,count};
 }
 
-function AnimatedStat({ value, label, suffix = "" }) {
-  const numeric = parseFloat(value.replace(/[^0-9.]/g, ""));
-  const prefix  = value.match(/^[^0-9]*/)?.[0] || "";
-  const sfx     = value.match(/[^0-9.]+$/)?.[0] || suffix;
-  const { ref, count } = useCounter(numeric);
+function AnimatedStat({ value, label, suffix="" }) {
+  const numeric=parseFloat(value.replace(/[^0-9.]/g,""));
+  const prefix=value.match(/^[^0-9]*/)?.[0]||"";
+  const sfx=value.match(/[^0-9.]+$/)?.[0]||suffix;
+  const {ref,count}=useCounter(numeric);
   return (
-    <div ref={ref} style={{ padding:"0 2.5rem 0 0", marginRight:"2.5rem", borderRight:"1px solid rgba(13,148,136,0.1)", marginBottom:"1rem" }}>
-      <div className="serif" style={{ fontSize:"1.9rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px" }}>
-        {prefix}{count}{sfx}
-      </div>
-      <div className="mono" style={{ fontSize:"0.62rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:"1.5px", marginTop:"0.2rem", lineHeight:1.4 }}>{label}</div>
+    <div ref={ref} style={{ padding:"0 2rem 0 0", marginRight:"2rem", borderRight:"3px solid rgba(124,58,237,0.25)", marginBottom:"1rem" }}>
+      <div style={{ fontSize:"1.6rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px", fontFamily:"'VT323',monospace", lineHeight:1 }}>{prefix}{count}{sfx}</div>
+      <div style={{ fontSize:"0.78rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:"1.5px", marginTop:"0.2rem", lineHeight:1.4, fontFamily:"'Pixelify Sans','Press Start 2P',monospace" }}>{label}</div>
     </div>
   );
 }
 
 /* ─────────────── SECTION PROGRESS SIDEBAR ─────────────── */
-const SECTIONS = ["hero","about","experience","resume","projects","skills","achievements","blog","timeline","contact"];
-const SECTION_LABELS = ["Home","About","Exp","Resume","Projects","Skills","Awards","Blog","Timeline","Contact"];
+const SECTIONS=["hero","about","experience","resume","projects","skills","achievements","blog","timeline","contact"];
+const SECTION_LABELS=["Home","About","Exp","Resume","Projects","Skills","Awards","Blog","Timeline","Contact"];
 
 function SectionProgress() {
   const [active, setActive] = useState(0);
-  useEffect(() => {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const idx = SECTIONS.indexOf(e.target.id);
-          if (idx !== -1) setActive(idx);
-        }
-      });
-    }, { threshold: 0.35 });
-    SECTIONS.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
-    return () => obs.disconnect();
-  }, []);
+  useEffect(()=>{
+    const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){const idx=SECTIONS.indexOf(e.target.id); if(idx!==-1)setActive(idx);} }); },{threshold:0.35});
+    SECTIONS.forEach(id=>{ const el=document.getElementById(id); if(el)obs.observe(el); });
+    return ()=>obs.disconnect();
+  },[]);
   return (
-    <div className="progress-sidebar" style={{
-      position:"fixed", right:"1.4rem", top:"50%", transform:"translateY(-50%)",
-      zIndex:700, display:"flex", flexDirection:"column", alignItems:"center", gap:"0.55rem",
-    }}>
-      <div style={{ position:"absolute", top:0, bottom:0, left:"50%", width:1, background:"rgba(13,148,136,0.12)", transform:"translateX(-50%)", zIndex:-1 }}/>
-      {SECTIONS.map((id, i) => (
-        <div key={id} style={{ position:"relative", display:"flex", alignItems:"center", gap:"0.5rem" }}>
-          {active === i && (
-            <div style={{
-              position:"absolute", right:"calc(100% + 0.6rem)",
-              background:"var(--paper)", border:"1px solid rgba(13,148,136,0.2)",
-              borderRadius:6, padding:"0.2rem 0.55rem",
-              fontSize:"0.6rem", fontFamily:"'JetBrains Mono',monospace",
-              color:"#0D9488", whiteSpace:"nowrap", fontWeight:700,
-              animation:"backTopIn 0.2s ease both",
-              boxShadow:"0 2px 12px rgba(13,148,136,0.12)",
-            }}>{SECTION_LABELS[i]}</div>
+    <div className="progress-sidebar" style={{ position:"fixed", right:"1.2rem", top:"50%", transform:"translateY(-50%)", zIndex:700, display:"flex", flexDirection:"column", alignItems:"center", gap:"0.5rem" }}>
+      {SECTIONS.map((id,i)=>(
+        <div key={id} style={{position:"relative",display:"flex",alignItems:"center",gap:"0.4rem"}}>
+          {active===i && (
+            <div style={{ position:"absolute", right:"calc(100% + 0.5rem)", background:"var(--paper)", border:"2px solid #7C3AED", borderRadius:0, padding:"0.15rem 0.5rem", fontSize:"0.75rem", fontFamily:"'Pixelify Sans','Press Start 2P',monospace", color:"#7C3AED", whiteSpace:"nowrap", fontWeight:700, animation:"backTopIn 0.2s ease both", boxShadow:"2px 2px 0 #7C3AED" }}>{SECTION_LABELS[i]}</div>
           )}
-          <div
-            className={`progress-dot${active === i ? " active" : ""}`}
-            onClick={() => document.getElementById(id)?.scrollIntoView({ behavior:"smooth" })}
-            title={SECTION_LABELS[i]}
-          />
+          <div className={`progress-dot${active===i?" active":""}`} onClick={()=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"})} title={SECTION_LABELS[i]}/>
         </div>
       ))}
     </div>
@@ -1737,20 +1163,11 @@ function SectionProgress() {
 /* ─────────────── BACK TO TOP ─────────────── */
 function BackToTop() {
   const [show, setShow] = useState(false);
-  useEffect(() => {
-    const fn = () => setShow(window.scrollY > 500);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
+  useEffect(()=>{ const fn=()=>setShow(window.scrollY>500); window.addEventListener("scroll",fn); return ()=>window.removeEventListener("scroll",fn); },[]);
   if (!show) return null;
   return (
-    <button className="btt-btn" onClick={() => window.scrollTo({ top:0, behavior:"smooth" })}
-      style={{ animation:"backTopIn 0.3s ease both" }}
-      title="Back to top"
-    >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="18 15 12 9 6 15"/>
-      </svg>
+    <button className="btt-btn" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})} style={{animation:"backTopIn 0.3s ease both"}} title="Back to top">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="square"><polyline points="18 15 12 9 6 15"/></svg>
     </button>
   );
 }
@@ -1758,227 +1175,131 @@ function BackToTop() {
 /* ─────────────── PARTICLE CANVAS ─────────────── */
 function ParticleCanvas() {
   const canvasRef = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+  useEffect(()=>{
+    const canvas=canvasRef.current; if(!canvas) return;
+    const ctx=canvas.getContext("2d");
     let animId;
-    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+    const resize=()=>{ canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; };
     resize();
-    window.addEventListener("resize", resize);
-
-    const COLORS = ["#0D9488","#5EEAD4","#38BDF8","#C4B5FD"];
-    const pts = Array.from({ length: 70 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      r: Math.random() * 2 + 1,
-      col: COLORS[Math.floor(Math.random() * COLORS.length)],
-    }));
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      pts.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.col + "99";
-        ctx.fill();
+    window.addEventListener("resize",resize);
+    const COLORS=["#7C3AED","#A78BFA","#06B6D4","#F59E0B","#EF4444","#10B981"];
+    const pts=Array.from({length:60},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.4,r:Math.random()*2+1,col:COLORS[Math.floor(Math.random()*COLORS.length)]}));
+    const draw=()=>{
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pts.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+        if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+        ctx.fillStyle=p.col+"88";
+        ctx.fillRect(Math.round(p.x),Math.round(p.y),Math.round(p.r*2),Math.round(p.r*2));
       });
-      // Draw constellation lines
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-          const dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 110) {
+      for(let i=0;i<pts.length;i++){
+        for(let j=i+1;j<pts.length;j++){
+          const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+          const dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<100){
             ctx.beginPath();
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = `rgba(13,148,136,${0.12 * (1 - dist / 110)})`;
-            ctx.lineWidth = 0.6;
+            ctx.moveTo(pts[i].x,pts[i].y);
+            ctx.lineTo(pts[j].x,pts[j].y);
+            ctx.strokeStyle=`rgba(124,58,237,${0.08*(1-dist/100)})`;
+            ctx.lineWidth=0.5;
             ctx.stroke();
           }
         }
       }
-      animId = requestAnimationFrame(draw);
+      animId=requestAnimationFrame(draw);
     };
     draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
-  }, []);
-  return <canvas ref={canvasRef} style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.55 }} />;
+    return ()=>{ cancelAnimationFrame(animId); window.removeEventListener("resize",resize); };
+  },[]);
+  return <canvas ref={canvasRef} style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.5}}/>;
 }
 
 /* ─────────────── HERO ─────────────── */
 function Hero() {
   const [typed, setTyped] = useState("");
-  const words = ["Backend Engineer","System Designer","AI / ML Builder","Competitive Programmer","Full Stack Dev"];
-  useEffect(() => {
-    let idx = 0, dir = 1, wi = 0;
-    const iv = setInterval(() => {
-      const w = words[wi % words.length];
-      setTyped(dir === 1 ? w.slice(0, idx + 1) : w.slice(0, idx));
-      if (dir === 1) { idx++; if (idx === w.length) dir = -1; }
-      else { idx--; if (idx < 0) { dir = 1; idx = 0; wi++; } }
-    }, 80);
-    return () => clearInterval(iv);
-  }, []);
+  const words=["Backend Engineer","System Designer","AI / ML Builder","Competitive Programmer","Full Stack Dev"];
+  useEffect(()=>{
+    let idx=0,dir=1,wi=0;
+    const iv=setInterval(()=>{
+      const w=words[wi%words.length];
+      setTyped(dir===1?w.slice(0,idx+1):w.slice(0,idx));
+      if(dir===1){idx++;if(idx===w.length)dir=-1;}else{idx--;if(idx<0){dir=1;idx=0;wi++;}}
+    },80);
+    return ()=>clearInterval(iv);
+  },[]);
 
   return (
-    <section id="hero" className="hero-sec" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"9rem 4rem 5rem", position:"relative", overflow:"hidden" }}>
-      {/* Animated BG + Floating Tech Icons */}
-      <div className="float-bg" style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
-        <div className="noise-overlay" />
-        <ParticleCanvas />
-        {/* Gradient orbs */}
-        <div style={{ position:"absolute", top:"-10%", right:"-5%", width:600, height:600, borderRadius:"50%", background:`radial-gradient(circle,rgba(13,148,136,0.1) 0%,transparent 70%)`, animation:"floatUp 10s ease-in-out infinite" }} />
-        <div style={{ position:"absolute", bottom:"-5%", left:"-8%", width:400, height:400, borderRadius:"50%", background:`radial-gradient(circle,rgba(232,121,249,0.08) 0%,transparent 70%)`, animation:"floatUp 13s ease-in-out infinite reverse" }} />
-        {/* Grid lines */}
-        <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.035 }}>
-          {Array.from({length:12}).map((_,i) => <line key={i} x1={`${(i+1)*8.33}%`} y1="0" x2={`${(i+1)*8.33}%`} y2="100%" stroke={C.v} strokeWidth="1"/>)}
-        </svg>
-        {/* Rings */}
-        <div style={{ position:"absolute", top:"20%", right:"12%", width:160, height:160, border:`1px solid rgba(13,148,136,0.15)`, borderRadius:"50%", animation:"spinSlow 25s linear infinite" }} />
-        <div style={{ position:"absolute", top:"22%", right:"14%", width:120, height:120, border:`1px dashed rgba(232,121,249,0.12)`, borderRadius:"50%", animation:"spinSlow 18s linear infinite reverse" }} />
-        {/* Floating Lucide tech icons */}
-        {[
-          { Icon:Zap,          top:"12%",  left:"5%",   sz:32, anim:"iconDrift  7s  ease-in-out infinite", delay:"0s"   },
-          { Icon:Code2,        top:"25%",  left:"90%",  sz:28, anim:"iconDriftB 9s  ease-in-out infinite", delay:"1.2s" },
-          { Icon:Database,     top:"55%",  left:"88%",  sz:26, anim:"iconDrift  11s ease-in-out infinite", delay:"2.1s" },
-          { Icon:Server,       top:"70%",  left:"6%",   sz:30, anim:"iconDriftC 8s  ease-in-out infinite", delay:"0.7s" },
-          { Icon:Globe,        top:"80%",  left:"78%",  sz:26, anim:"iconDriftB 12s ease-in-out infinite", delay:"3.5s" },
-          { Icon:GitBranch,    top:"40%",  left:"3%",   sz:24, anim:"iconDriftD 9s  ease-in-out infinite", delay:"1.8s" },
-          { Icon:BrainCircuit, top:"88%",  left:"40%",  sz:28, anim:"iconDrift  13s ease-in-out infinite", delay:"4.1s" },
-          { Icon:Terminal,     top:"15%",  left:"74%",  sz:24, anim:"iconDriftC 10s ease-in-out infinite", delay:"2.8s" },
-          { Icon:Package,      top:"60%",  left:"50%",  sz:22, anim:"iconDriftD 14s ease-in-out infinite", delay:"0.3s" },
-          { Icon:Lock,         top:"35%",  left:"64%",  sz:20, anim:"iconDrift  6s  ease-in-out infinite", delay:"5.0s" },
-          { Icon:Network,      top:"90%",  left:"15%",  sz:26, anim:"iconDriftB 11s ease-in-out infinite", delay:"1.5s" },
-          { Icon:Bot,          top:"5%",   left:"48%",  sz:28, anim:"iconDriftC 8s  ease-in-out infinite", delay:"3.0s" },
-          { Icon:Layers,       top:"48%",  left:"92%",  sz:22, anim:"iconDrift  9s  ease-in-out infinite", delay:"6.0s" },
-          { Icon:Workflow,     top:"92%",  left:"60%",  sz:24, anim:"iconDriftD 12s ease-in-out infinite", delay:"2.4s" },
-        ].map(({Icon, top, left, sz, anim, delay}, i) => (
-          <div key={i} style={{
-            position:"absolute", top, left,
-            opacity:0.12,
-            animation: anim,
-            animationDelay: delay,
-            color: i % 3 === 0 ? C.v : i % 3 === 1 ? C.accent : C.vLight,
-          }}>
-            <Icon size={sz} strokeWidth={1.2} />
-          </div>
+    <section id="hero" className="hero-sec" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"9rem 4rem 5rem", position:"relative", overflow:"hidden", background:"var(--bg)",backgroundImage:"radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124,58,237,0.12) 0%, transparent 70%)" }}>
+      {/* BG */}
+      <div className="float-bg" style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
+        <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(124,58,237,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.06) 1px,transparent 1px)",backgroundSize:"48px 48px",backgroundPosition:"center center",backgroundAttachment:"local"}}/>
+        <ParticleCanvas/>
+        {[{Icon:Zap,top:"12%",left:"5%",sz:32,anim:"iconDrift 7s ease-in-out infinite",delay:"0s",col:"#7C3AED"},{Icon:Code2,top:"25%",left:"90%",sz:28,anim:"iconDriftB 9s ease-in-out infinite",delay:"1.2s",col:"#06B6D4"},{Icon:Database,top:"55%",left:"88%",sz:26,anim:"iconDrift 11s ease-in-out infinite",delay:"2.1s",col:"#F59E0B"},{Icon:Server,top:"70%",left:"6%",sz:30,anim:"iconDriftC 8s ease-in-out infinite",delay:"0.7s",col:"#EF4444"},{Icon:BrainCircuit,top:"88%",left:"40%",sz:28,anim:"iconDrift 13s ease-in-out infinite",delay:"4.1s",col:"#10B981"},{Icon:Terminal,top:"15%",left:"74%",sz:24,anim:"iconDriftC 10s ease-in-out infinite",delay:"2.8s",col:"#7C3AED"},{Icon:Bot,top:"5%",left:"48%",sz:28,anim:"iconDriftC 8s ease-in-out infinite",delay:"3.0s",col:"#06B6D4"}].map(({Icon,top,left,sz,anim,delay,col},i)=>(
+          <div key={i} style={{position:"absolute",top,left,opacity:0.13,animation:anim,animationDelay:delay,color:col}}><Icon size={sz} strokeWidth={1.5}/></div>
         ))}
       </div>
 
-      <div style={{ maxWidth:1060, margin:"0 auto", width:"100%", position:"relative", zIndex:1, paddingLeft:0, paddingRight:0 }}>
-        <div style={{ display:"flex", alignItems:"center", gap:"1rem", marginBottom:"1.6rem", flexWrap:"wrap" }}>
-          <div className="rv mono" style={{ fontSize:"0.72rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", display:"flex", alignItems:"center", gap:"1rem" }}>
-            <span style={{ display:"inline-block", width:32, height:1, background:C.v }} />
-            3rd Year CSE · Manipal University Jaipur · 2023–2027
+      <div style={{maxWidth:1060,margin:"0 auto",width:"100%",position:"relative",zIndex:1}}>
+        {/* Tag */}
+        <div className="rv" style={{display:"flex",alignItems:"center",gap:"1rem",marginBottom:"1.4rem",flexWrap:"wrap"}}>
+          <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",display:"flex",alignItems:"center",gap:"0.8rem"}}>
+            <span style={{display:"inline-block",width:28,height:4,background:"linear-gradient(90deg,#7C3AED,#06B6D4)"}}/>
+            3RD YEAR CSE · MUJ · 2023-2027
           </div>
-          <div className="rv d1 status-available">
+          <div className="status-available">
             <div className="status-ping"/>
-            <span style={{ fontSize:"0.62rem", color:"#059669", fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>OPEN TO WORK</span>
+            <span style={{fontSize:"0.88rem",color:"#059669",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>OPEN TO WORK</span>
           </div>
         </div>
 
-        <h1 className="rv d1 serif" style={{ fontSize:"clamp(3.8rem,9vw,8rem)", fontWeight:400, lineHeight:1.0, marginBottom:"0.6rem", letterSpacing:"-2px", color:C.ink }}>
-          Arman<br/>
-          <span className="grad" style={{ fontStyle:"italic" }}>Phaugat</span>
+        {/* Name */}
+        <h1 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(2.6rem,6.5vw,5.8rem)",fontWeight:700,lineHeight:1.1,marginBottom:"0.9rem",letterSpacing:"4px",color:"var(--ink)",animation:"heroGlow 4s ease-in-out infinite"}}>
+          ARMAN<br/>
+          <span className="grad" style={{display:"inline-block",filter:"drop-shadow(0 0 12px rgba(124,58,237,0.4))"}}>PHAUGAT</span>
         </h1>
 
-        <div className="rv d2" style={{ marginBottom:"2rem", height:"2.2rem", display:"flex", alignItems:"center" }}>
-          <span className="mono" style={{ fontSize:"clamp(1rem,2.2vw,1.4rem)", color:C.muted, fontWeight:300 }}>
-            {typed}<span style={{ animation:"blink 1s infinite", display:"inline-block", color:C.v }}>|</span>
+        {/* Typewriter */}
+        <div className="rv d2" style={{marginBottom:"1.5rem",height:"2rem",display:"flex",alignItems:"center"}}>
+          <span style={{fontSize:"1.9rem",color:"var(--muted)",fontFamily:"'VT323',monospace",letterSpacing:"1px"}}>
+            &gt; {typed}<span style={{animation:"blink 1s infinite",display:"inline-block",color:"#7C3AED"}}>_</span>
           </span>
         </div>
 
-        <p className="rv d3" style={{ fontSize:"1.05rem", color:C.muted, maxWidth:520, lineHeight:1.9, marginBottom:"3rem", fontWeight:400 }}>
-          Building fast backends, shipping ML models, and crafting AI-powered apps.
-          Top <strong style={{color:C.v}}>0.3% LeetCode</strong> · <strong style={{color:C.v}}>9.05 CGPA</strong> · 900+ DSA problems solved.
+        {/* Description */}
+        <p className="rv d3" style={{fontSize:"1rem",color:"var(--muted)",maxWidth:520,lineHeight:2,marginBottom:"2.5rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+          Building fast backends, shipping ML models, crafting AI-powered apps.<br/>
+          Top <strong style={{color:"#7C3AED"}}>0.3% LeetCode</strong> · <strong style={{color:"#06B6D4"}}>9.05 CGPA</strong> · <strong style={{color:"#F59E0B"}}>900+ DSA</strong> solved.
         </p>
 
-        {/* ✅ FIX 1: Merged duplicate className props into one — was: className="rv d4" style={{...}} className="hero-ctarow }}" */}
-        <div className="rv d4 hero-ctarow" style={{ display:"flex", gap:"1rem", flexWrap:"wrap", marginBottom:"4.5rem" }}>
-          <a href="#projects" style={{
-            padding:"0.95rem 2.2rem", background:`linear-gradient(135deg,${C.v},${C.accent})`,
-            color:"#fff", borderRadius:8, textDecoration:"none", fontSize:"0.88rem", fontWeight:700,
-            boxShadow:`0 8px 32px rgba(13,148,136,0.35)`, transition:"transform 0.2s, box-shadow 0.2s",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow=`0 14px 40px rgba(13,148,136,0.5)`;}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`0 8px 32px rgba(13,148,136,0.35)`;}}
-          >View Projects ↗</a>
-          <a href="#contact" style={{
-            padding:"0.95rem 2.2rem", background:"transparent", color:C.ink,
-            border:`1.5px solid rgba(13,148,136,0.25)`, borderRadius:8, textDecoration:"none",
-            fontSize:"0.88rem", fontWeight:700, transition:"border-color 0.2s, background 0.2s, transform 0.2s",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor=C.v;e.currentTarget.style.background=C.vPale;e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(13,148,136,0.25)";e.currentTarget.style.background="transparent";e.currentTarget.style.transform="";}}
-          >Let's Talk</a>
-          <a href="https://github.com/armanphaugat" target="_blank" rel="noreferrer" style={{
-            padding:"0.95rem 1.6rem", background:"#1e293b", color:"#fff", borderRadius:8,
-            textDecoration:"none", fontSize:"0.88rem", fontWeight:700,
-            transition:"background 0.2s, transform 0.2s", display:"flex", alignItems:"center", gap:"0.5rem",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background=C.vDeep;e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="#1e293b";e.currentTarget.style.transform="";}}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/armanphaugat05/" target="_blank" rel="noreferrer" style={{
-            padding:"0.95rem 1.6rem", background:"#0A66C2", color:"#fff", borderRadius:8,
-            textDecoration:"none", fontSize:"0.88rem", fontWeight:700,
-            transition:"background 0.2s, transform 0.2s", display:"flex", alignItems:"center", gap:"0.5rem",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background="#004182";e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="#0A66C2";e.currentTarget.style.transform="";}}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://leetcode.com/u/armanphaugat20" target="_blank" rel="noreferrer" style={{
-            padding:"0.95rem 1.6rem", background:"#FFA116", color:"#fff", borderRadius:8,
-            textDecoration:"none", fontSize:"0.88rem", fontWeight:700,
-            transition:"background 0.2s, transform 0.2s", display:"flex", alignItems:"center", gap:"0.5rem",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background="#cc8100";e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="#FFA116";e.currentTarget.style.transform="";}}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
-            LeetCode
-          </a>
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" style={{
-            padding:"0.95rem 1.6rem", background:"transparent", color:C.v,
-            border:`1.5px solid ${C.v}`, borderRadius:8, textDecoration:"none",
-            fontSize:"0.88rem", fontWeight:700, display:"flex", alignItems:"center", gap:"0.5rem",
-            transition:"background 0.2s, color 0.2s, transform 0.2s",
-            animation:"resumePulse 2.5s ease-in-out infinite",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.background=C.v;e.currentTarget.style.color="#fff";e.currentTarget.style.transform="translateY(-3px)";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=C.v;e.currentTarget.style.transform="";}}
-          >
-            <Download size={15} strokeWidth={2.5} />
-            Resume
+        {/* CTAs */}
+        <div className="rv d4 hero-ctarow" style={{display:"flex",gap:"0.8rem",flexWrap:"wrap",marginBottom:"3.5rem"}}>
+          {[
+            {href:"#projects",label:"VIEW PROJECTS >>",bg:"#7C3AED",color:"#fff",shadow:"#4C1D95"},
+            {href:"#contact",label:"LETS TALK",bg:"transparent",color:"var(--ink)",shadow:"#7C3AED",bord:"#7C3AED"},
+            {href:"https://github.com/armanphaugat",label:"GITHUB",bg:"#1e293b",color:"#fff",shadow:"#0f172a"},
+            {href:"https://www.linkedin.com/in/armanphaugat05/",label:"LINKEDIN",bg:"#0A66C2",color:"#fff",shadow:"#004182"},
+            {href:"https://leetcode.com/u/armanphaugat20",label:"LEETCODE",bg:"#FFA116",color:"#fff",shadow:"#cc8100"},
+          ].map(({href,label,bg,color,shadow,bord})=>(
+            <a key={label} href={href} target={href.startsWith("http")?"_blank":undefined} rel="noreferrer" className="px-btn" style={{
+              padding:"0.75rem 1.4rem", background:bg, color, fontSize:"0.88rem", fontWeight:700, textDecoration:"none",
+              fontFamily:"'Pixelify Sans','Press Start 2P',monospace", border:`2px solid ${bord||shadow}`,
+              boxShadow:`4px 4px 0 ${shadow}`, display:"inline-flex", alignItems:"center", gap:"0.4rem",
+            }}>{label}</a>
+          ))}
+          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="px-btn" style={{ padding:"0.8rem 1.5rem", background:"transparent", color:"#7C3AED", border:"2px solid #7C3AED", fontSize:"0.82rem", fontWeight:700, textDecoration:"none", fontFamily:"'Pixelify Sans','Press Start 2P',monospace", boxShadow:"4px 4px 0 #7C3AED", display:"inline-flex", alignItems:"center", gap:"0.4rem", animation:"resumePulse 2.5s ease-in-out infinite" }}>
+            <Download size={12} strokeWidth={2.5}/>RESUME
           </a>
         </div>
 
-        {/* Stats row — animated counters */}
-        <div className="rv hero-stats" style={{ display:"flex", gap:"0", borderTop:"1px solid rgba(13,148,136,0.1)", paddingTop:"2.5rem", flexWrap:"wrap" }}>
-          <AnimatedStat value="9.05" label="CGPA — Dean's Award" />
-          <AnimatedStat value="900+" label="DSA Problems" />
-          <AnimatedStat value="10+" label="Projects Built" />
-          <div style={{ padding:"0 2.5rem 0 0", marginRight:"2.5rem", marginBottom:"1rem" }}>
-            <div className="serif" style={{ fontSize:"1.9rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px" }}>Top 0.3%</div>
-            <div className="mono" style={{ fontSize:"0.62rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:"1.5px", marginTop:"0.2rem", lineHeight:1.4 }}>LeetCode Global</div>
-          </div>
-          <div style={{ padding:"0", marginBottom:"1rem" }}>
-            <div className="serif" style={{ fontSize:"1.9rem", fontWeight:400, color:"var(--ink)", letterSpacing:"-1px" }}>3rd Year</div>
-            <div className="mono" style={{ fontSize:"0.62rem", color:"var(--muted)", textTransform:"uppercase", letterSpacing:"1.5px", marginTop:"0.2rem", lineHeight:1.4 }}>B.Tech CSE</div>
+        {/* Stats */}
+        <div className="rv" style={{display:"flex",gap:"0",borderTop:"2px solid rgba(124,58,237,0.25)",paddingTop:"2rem",marginTop:"0.5rem",flexWrap:"wrap"}}>
+          <AnimatedStat value="9.05" label="CGPA - DEANS AWARD"/>
+          <AnimatedStat value="900+" label="DSA PROBLEMS"/>
+          <AnimatedStat value="10+" label="PROJECTS BUILT"/>
+          <div style={{padding:"0 2rem 0 0",marginRight:"2rem",marginBottom:"1rem"}}>
+            <div style={{fontSize:"2.2rem",fontWeight:400,color:"var(--ink)",fontFamily:"'VT323',monospace",lineHeight:1}}>TOP 0.3%</div>
+            <div style={{fontSize:"0.82rem",color:"var(--muted)",textTransform:"uppercase",letterSpacing:"1.5px",marginTop:"0.25rem",lineHeight:1.4,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>LEETCODE GLOBAL</div>
           </div>
         </div>
       </div>
@@ -1988,14 +1309,15 @@ function Hero() {
 
 /* ─────────────── MARQUEE ─────────────── */
 function Marquee() {
-  const items = ["Node.js","Redis","MySQL","BullMQ","Python","FastAPI","LangChain","FAISS","MongoDB","Docker","XGBoost","Streamlit","Pygame","React","Scikit-learn","RAG","HuggingFace","JWT","Pandas","Groq","System Design","ACID Transactions"];
-  const doubled = [...items, ...items];
+  const items=["Node.js","Redis","MySQL","BullMQ","Python","FastAPI","LangChain","FAISS","MongoDB","Docker","XGBoost","Streamlit","Pygame","React","Scikit-learn","RAG","HuggingFace","JWT","Pandas","Groq","System Design","ACID"];
+  const doubled=[...items,...items];
+  const COLS=["#7C3AED","#06B6D4","#F59E0B","#EF4444","#10B981","#A78BFA"];
   return (
-    <div style={{ background:"#0F172A", padding:"1rem 0", overflow:"hidden", borderTop:`1px solid rgba(13,148,136,0.3)`, borderBottom:`1px solid rgba(13,148,136,0.3)` }}>
-      <div style={{ display:"flex", animation:"marquee 30s linear infinite", width:"max-content" }}>
-        {doubled.map((item,i) => (
-          <span key={i} className="mono" style={{ color:C.vLight, fontSize:"0.72rem", letterSpacing:"2px", textTransform:"uppercase", padding:"0 2rem", display:"flex", alignItems:"center", gap:"2rem" }}>
-            {item} <span style={{ color:C.v, fontSize:"0.45rem" }}>◆</span>
+    <div style={{background:"linear-gradient(135deg,#0c0020 0%,#130030 50%,#0c0020 100%)",padding:"0.9rem 0",overflow:"hidden",borderTop:"3px solid #7C3AED",borderBottom:"3px solid #7C3AED",boxShadow:"0 4px 20px rgba(124,58,237,0.2),0 -4px 20px rgba(124,58,237,0.2)"}}>
+      <div style={{display:"flex",animation:"marquee 25s linear infinite",width:"max-content"}}>
+        {doubled.map((item,i)=>(
+          <span key={i} style={{color:COLS[i%COLS.length],fontSize:"0.88rem",letterSpacing:"2px",textTransform:"uppercase",padding:"0 1.8rem",display:"flex",alignItems:"center",gap:"1.5rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>
+            {item}<span style={{color:"rgba(124,58,237,0.6)",fontSize:"0.85rem",textShadow:"0 0 4px rgba(124,58,237,0.8)"}}>■</span>
           </span>
         ))}
       </div>
@@ -2007,63 +1329,52 @@ function Marquee() {
 function About() {
   const cardRef = useRef(null);
   useTilt(cardRef);
+  const COLORS_CYCLE=["#7C3AED","#06B6D4","#F59E0B","#EF4444","#10B981"];
   return (
-    <section id="about" style={{ padding:"8rem 4rem", background:C.bg2, position:"relative", overflow:"hidden" }} className="sec-pad">
-      {/* Floating Lucide icons bg */}
-      <div className="float-bg" style={{ position:"absolute", inset:0, pointerEvents:"none" }}>
-        {[
-          { Icon:Code2,    top:"8%",  left:"92%", sz:36, anim:"iconDrift  9s  ease-in-out infinite", delay:"0s",   col:C.v      },
-          { Icon:Binary,   top:"75%", left:"2%",  sz:32, anim:"iconDriftB 11s ease-in-out infinite", delay:"2s",   col:C.accent },
-          { Icon:Cpu,      top:"50%", left:"95%", sz:30, anim:"iconDriftC 8s  ease-in-out infinite", delay:"1s",   col:C.vLight },
-          { Icon:Zap,      top:"88%", left:"88%", sz:28, anim:"iconDrift  13s ease-in-out infinite", delay:"3.5s", col:C.v      },
-          { Icon:Terminal, top:"20%", left:"0%",  sz:26, anim:"iconDriftD 10s ease-in-out infinite", delay:"1.5s", col:C.accent },
-        ].map(({Icon,top,left,sz,anim,delay,col},i) => (
-          <div key={i} style={{ position:"absolute", top, left, opacity:0.09, animation:anim, animationDelay:delay, color:col }}><Icon size={sz} strokeWidth={1} /></div>
-        ))}
-      </div>
-      <div style={{ maxWidth:1060, margin:"0 auto", display:"grid", gridTemplateColumns:"1fr 1fr", gap:"5rem", alignItems:"start", position:"relative", zIndex:1 }} className="grid2">
+    <section id="about" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden",backgroundImage:"radial-gradient(ellipse 60% 40% at 80% 20%, rgba(6,182,212,0.06) 0%, transparent 60%)"}} className="sec-pad">
+      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(124,58,237,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.05) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none"}}/>
+      <div style={{maxWidth:1060,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:"4rem",alignItems:"start",position:"relative",zIndex:1}} className="grid2">
         <div>
-          <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-            <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>About Me
+          <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.8rem",fontWeight:700}}>
+            <span style={{width:20,height:4,background:"#7C3AED",display:"inline-block",boxShadow:"2px 2px 0 #4C1D95"}}/>ABOUT ME
           </div>
-          <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.4rem,4vw,3.4rem)", fontWeight:400, letterSpacing:"-1.5px", lineHeight:1.1, marginBottom:"1.5rem", fontStyle:"italic", color:C.ink }}>
-            Passionate about <span className="grad">systems & scale</span>
+          <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.5rem,3vw,2.4rem)",fontWeight:700,letterSpacing:"0px",lineHeight:1.3,marginBottom:"1.5rem",color:"var(--ink)"}}>
+            PASSIONATE ABOUT<br/><span className="grad">SYSTEMS & SCALE</span>
           </h2>
-          <div className="rv d2" style={{ fontSize:"0.97rem", color:C.muted, lineHeight:1.95 }}>
-            <p style={{marginBottom:"1.1rem"}}>I'm a <strong style={{color:C.ink}}>3rd-year Computer Science student</strong> at Manipal University Jaipur who builds things that work fast, scale cleanly, and solve real problems.</p>
-            <p style={{marginBottom:"1.1rem"}}>My core focus is backend engineering — <strong style={{color:C.v}}>Node.js, Redis, BullMQ, MySQL</strong> — plus AI applications with <strong style={{color:C.v}}>LangChain, FAISS, and Groq</strong>. I also train ML models with Scikit-learn and XGBoost.</p>
-            <p>I solve 900+ DSA problems not for the resume line, but because I genuinely love finding the most elegant path through a hard problem.</p>
+          <div className="rv d2" style={{fontSize:"0.95rem",color:"var(--muted)",lineHeight:2.1,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+            <p style={{marginBottom:"1rem"}}>I'm a <strong style={{color:"var(--ink)"}}>3rd-year CS student</strong> at Manipal University Jaipur who builds things that work fast, scale cleanly, and solve real problems.</p>
+            <p style={{marginBottom:"1rem"}}>Core focus: backend engineering — <strong style={{color:"#7C3AED"}}>Node.js, Redis, BullMQ, MySQL</strong> — plus AI apps with <strong style={{color:"#06B6D4"}}>LangChain, FAISS, and Groq</strong>. ML models with Scikit-learn and XGBoost.</p>
+            <p>I solve 900+ DSA problems because I genuinely love finding elegant solutions to hard problems.</p>
           </div>
-          <div className="rv d3" style={{ display:"flex", gap:"0.7rem", marginTop:"2rem", flexWrap:"wrap" }}>
-            {["Open to Internships","Available for Projects","LeetCode Top 0.3%"].map(t => (
-              <span key={t} style={{ padding:"0.4rem 1rem", border:`1px solid rgba(13,148,136,0.2)`, borderRadius:100, fontSize:"0.75rem", color:C.v, fontWeight:600, background:C.vPale }}>{t}</span>
+          <div className="rv d3" style={{display:"flex",gap:"0.5rem",marginTop:"1.5rem",flexWrap:"wrap"}}>
+            {["Open to Internships","Available for Projects","LeetCode Top 0.3%"].map((t,i)=>(
+              <span key={t} style={{padding:"0.35rem 0.8rem",border:`2px solid ${COLORS_CYCLE[i]}`,fontSize:"0.6rem",color:COLORS_CYCLE[i],fontWeight:600,background:`${COLORS_CYCLE[i]}12`,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:`2px 2px 0 ${COLORS_CYCLE[i]}`}}>{t}</span>
             ))}
           </div>
         </div>
 
-        <div ref={cardRef} className="rv d2" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:20, padding:"2.5rem", boxShadow:"0 4px 40px rgba(13,148,136,0.06)", willChange:"transform", transition:"transform 0.15s ease, box-shadow 0.15s ease" }}>
+        <div ref={cardRef} className="rv d2 px-card" style={{background:"var(--paper)",padding:"2rem",willChange:"transform",transition:"transform 0.15s ease"}}>
           {[
-            ["🎓","Education","B.Tech CSE · 3rd Year","Manipal University Jaipur · 2023–2027"],
-            ["📍","Location","Jaipur, Rajasthan","India"],
-            ["🏅","CGPA","9.05 / 10","Dean's Excellence Award — Multiple Semesters"],
-            ["⚡","Focus","Backend · AI/ML","Node.js · Python · System Design"],
-            ["🧩","Competitive","LeetCode Top 0.3%","900+ problems · Global Rank"],
-            ["🚀","Hackathon","MUJHackX Round 2","Among 1300+ participants"],
-          ].map(([ico,label,val,sub],i) => (
-            <div key={label} style={{ display:"flex", gap:"1.1rem", alignItems:"flex-start", padding:"1rem 0", borderBottom: i < 5 ? `1px solid rgba(13,148,136,0.06)` : "none" }}>
-              <div style={{ width:36, height:36, borderRadius:10, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem", flexShrink:0 }}>{ico}</div>
+            ["🎓","EDUCATION","B.Tech CSE · 3rd Year","MUJ · 2023-2027","#7C3AED"],
+            ["📍","LOCATION","Jaipur, Rajasthan","India","#06B6D4"],
+            ["🏅","CGPA","9.05 / 10","Dean's Excellence Award","#F59E0B"],
+            ["⚡","FOCUS","Backend · AI/ML","Node.js · Python · Sys Design","#EF4444"],
+            ["🧩","COMPETITIVE","LeetCode Top 0.3%","900+ problems solved","#10B981"],
+            ["🚀","HACKATHON","MUJHackX Round 2","1300+ participants","#7C3AED"],
+          ].map(([ico,label,val,sub,col],i)=>(
+            <div key={label} style={{display:"flex",gap:"0.9rem",alignItems:"flex-start",padding:"0.8rem 0",borderBottom:i<5?`2px solid rgba(124,58,237,0.08)`:"none"}}>
+              <div style={{width:32,height:32,background:`${col}18`,border:`2px solid ${col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.9rem",flexShrink:0,boxShadow:`2px 2px 0 ${col}`}}>{ico}</div>
               <div>
-                <div className="mono" style={{ fontSize:"0.6rem", color:C.muted, textTransform:"uppercase", letterSpacing:"1.5px", marginBottom:"0.1rem" }}>{label}</div>
-                <div style={{ fontSize:"0.9rem", fontWeight:700, color:C.ink }}>{val}</div>
-                <div style={{ fontSize:"0.78rem", color:C.muted, marginTop:"0.1rem" }}>{sub}</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"var(--muted)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:"0.2rem"}}>{label}</div>
+                <div style={{fontSize:"0.9rem",fontWeight:700,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{val}</div>
+                <div style={{fontSize:"0.85rem",color:"var(--muted)",marginTop:"0.15rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{sub}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      {/* GitHub Stats card below */}
-      <div style={{ maxWidth:1060, margin:"2.5rem auto 0", position:"relative", zIndex:1 }} className="rv d4">
-        <GitHubStatsCard />
+      <div style={{maxWidth:1060,margin:"2rem auto 0",position:"relative",zIndex:1}} className="rv d4">
+        <GitHubStatsCard/>
       </div>
     </section>
   );
@@ -2072,60 +1383,47 @@ function About() {
 /* ─────────────── EXPERIENCE ─────────────── */
 function Experience() {
   return (
-    <section id="experience" style={{ padding:"8rem 4rem", background:C.bg }} className="sec-pad">
-      <div style={{ maxWidth:1060, margin:"0 auto" }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Experience
+    <section id="experience" style={{padding:"8rem 4rem",background:"var(--bg)",backgroundImage:"radial-gradient(ellipse 60% 50% at 20% 20%, rgba(124,58,237,0.05) 0%, transparent 60%)"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>EXPERIENCE
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
-          Where I've <span className="grad">worked</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+          WHERE I'VE <span className="grad">WORKED</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"3rem", lineHeight:1.8 }}>Real-world experience shipping under professional deadlines.</p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Real-world experience shipping under professional deadlines.</p>
 
-        <div className="rv d3" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:18, padding:"2.5rem", boxShadow:"0 4px 40px rgba(13,148,136,0.06)", transition:"transform 0.25s, box-shadow 0.25s" }}
-          onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-5px)";e.currentTarget.style.boxShadow="0 16px 56px rgba(13,148,136,0.13)";}}
-          onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 4px 40px rgba(13,148,136,0.06)";}}
-        >
-          <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:"1rem", marginBottom:"1.5rem" }}>
-            <div style={{ display:"flex", gap:"1.2rem", alignItems:"center" }}>
-              <div style={{ width:52, height:52, borderRadius:14, background:"#1e293b", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.5rem", flexShrink:0 }}>🏥</div>
+        <div className="rv d3 px-card" style={{background:"var(--paper)",padding:"2rem",transition:"transform 0.1s,box-shadow 0.1s"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:"1rem",marginBottom:"1.2rem"}}>
+            <div style={{display:"flex",gap:"1rem",alignItems:"center"}}>
+              <div style={{width:48,height:48,background:"#1e293b",border:"2px solid #7C3AED",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.3rem",flexShrink:0,boxShadow:"3px 3px 0 #7C3AED"}}>🏥</div>
               <div>
-                <div style={{ fontSize:"1.1rem", fontWeight:800, color:C.ink }}>Web Development Intern</div>
-                <div style={{ fontSize:"0.9rem", color:C.v, fontWeight:600 }}>Indavis Lifesciences, Haridwar</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.65rem",fontWeight:800,color:"var(--ink)",lineHeight:1.5}}>WEB DEV INTERN</div>
+                <div style={{fontSize:"0.8rem",color:"#7C3AED",fontWeight:600,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Indavis Lifesciences, Haridwar</div>
               </div>
             </div>
-            <div style={{ textAlign:"right" }}>
-              <span className="mono" style={{ fontSize:"0.72rem", color:C.v, background:C.vPale, padding:"0.3rem 1rem", borderRadius:100, display:"inline-block" }}>Jun 2025 – Jul 2025</span>
-              <div className="mono" style={{ fontSize:"0.65rem", color:C.muted, marginTop:"0.4rem", letterSpacing:"1px" }}>FULL-TIME · ON-SITE</div>
+            <div style={{textAlign:"right"}}>
+              <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",background:"var(--vPale)",padding:"0.3rem 0.8rem",display:"inline-block",border:"2px solid #7C3AED",boxShadow:"2px 2px 0 #7C3AED"}}>JUN-JUL 2025</span>
+              <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)",marginTop:"0.3rem",letterSpacing:"1px"}}>FULL-TIME · ON-SITE</div>
             </div>
           </div>
-          {["Maintained and updated the company website ensuring smooth performance and content accuracy.","Collaborated with cross-functional teams to align website updates with brand guidelines and business objectives."].map((b,i) => (
-            <div key={i} style={{ display:"flex", gap:"0.7rem", fontSize:"0.9rem", color:C.muted, marginBottom:"0.6rem", lineHeight:1.75 }}>
-              <span style={{ color:C.v, flexShrink:0 }}>▸</span>{b}
+          {["Maintained and updated the company website ensuring smooth performance and content accuracy.","Collaborated with cross-functional teams to align website updates with brand guidelines and business objectives."].map((b,i)=>(
+            <div key={i} style={{display:"flex",gap:"0.6rem",fontSize:"0.9rem",color:"var(--muted)",marginBottom:"0.55rem",lineHeight:1.75,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+              <span style={{color:"#7C3AED",flexShrink:0,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>▸</span>{b}
             </div>
           ))}
-          <div style={{ marginTop:"1.4rem", display:"flex", gap:"0.5rem", flexWrap:"wrap" }}>
-            {["Website Maintenance","Team Collaboration","Content Management","Brand Alignment"].map(t=>(
-              <span key={t} className="chip">{t}</span>
-            ))}
+          <div style={{marginTop:"1.2rem",display:"flex",gap:"0.4rem",flexWrap:"wrap"}}>
+            {["Website Maintenance","Team Collab","Content Mgmt","Brand Alignment"].map(t=><span key={t} className="chip">{t}</span>)}
           </div>
         </div>
 
-        {/* ✅ FIX 2: Merged duplicate className props into one — was: className="rv d4" className="otw-banner" */}
-        <div className="rv d4 otw-banner" style={{ marginTop:"2rem", background:`linear-gradient(135deg,${C.vDeep},${C.v})`, borderRadius:18, padding:"2.5rem", color:"#fff", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1.5rem" }}>
+        <div className="rv d4 otw-banner" style={{marginTop:"1.5rem",background:"linear-gradient(135deg,#1a0a2e 0%,#0d0030 100%)",border:"3px solid #7C3AED",padding:"2rem",boxShadow:"8px 8px 0 #7C3AED, 0 0 30px rgba(124,58,237,0.2)",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem"}}>
           <div>
-            <div className="mono" style={{ fontSize:"0.68rem", letterSpacing:"2px", textTransform:"uppercase", opacity:.6, marginBottom:"0.5rem" }}>Currently Seeking</div>
-            <div style={{ fontSize:"1.3rem", fontWeight:800, marginBottom:"0.4rem" }}>Summer Internship 2026 · Full-Time Roles</div>
-            <div style={{ opacity:0.7, fontSize:"0.88rem" }}>Backend Engineering · AI/ML Engineering · Full Stack</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"rgba(255,255,255,0.5)",letterSpacing:"2px",marginBottom:"0.4rem"}}>CURRENTLY SEEKING</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"1rem",fontWeight:800,color:"#fff",marginBottom:"0.35rem",lineHeight:1.5}}>SUMMER INTERNSHIP 2026</div>
+            <div style={{fontSize:"0.9rem",color:"rgba(255,255,255,0.7)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Backend · AI/ML · Full Stack</div>
           </div>
-          <a href="mailto:armanphaugat20@gmail.com" style={{
-            padding:"0.85rem 2rem", background:"rgba(255,255,255,0.15)", color:"#fff",
-            border:"1.5px solid rgba(255,255,255,0.3)", borderRadius:8, textDecoration:"none",
-            fontWeight:700, fontSize:"0.85rem", whiteSpace:"nowrap", transition:"background 0.2s",
-          }}
-            onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.25)"}
-            onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.15)"}
-          >Reach Out →</a>
+          <a href="mailto:armanphaugat20@gmail.com" className="px-btn" style={{padding:"0.8rem 1.5rem",background:"rgba(255,255,255,0.1)",color:"#fff",border:"2px solid rgba(255,255,255,0.3)",textDecoration:"none",fontWeight:700,fontSize:"0.82rem",whiteSpace:"nowrap",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"3px 3px 0 rgba(255,255,255,0.2)"}}>REACH OUT &gt;&gt;</a>
         </div>
       </div>
     </section>
@@ -2135,228 +1433,128 @@ function Experience() {
 /* ─────────────── RESUME ─────────────── */
 function Resume() {
   return (
-    <section id="resume" style={{ padding:"8rem 4rem", background:C.bg }} className="sec-pad">
-      <div style={{ maxWidth:1060, margin:"0 auto" }}>
-
-        {/* Header */}
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Resume
+    <section id="resume" style={{padding:"8rem 4rem",background:"var(--bg)",backgroundImage:"radial-gradient(ellipse 60% 50% at 20% 20%, rgba(124,58,237,0.05) 0%, transparent 60%)"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>RESUME
         </div>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", flexWrap:"wrap", gap:"1.5rem", marginBottom:"3.5rem" }}>
-          <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink }}>
-            Curriculum <span className="grad">Vitae</span>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap",gap:"1.5rem",marginBottom:"3rem"}}>
+          <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.1rem,2.5vw,1.6rem)",fontWeight:400,color:"var(--ink)",lineHeight:1.5}}>
+            CURRICULUM <span className="grad">VITAE</span>
           </h2>
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="rv d2" style={{
-            padding:"0.85rem 2rem", background:`linear-gradient(135deg,${C.v},${C.accent})`,
-            color:"#fff", borderRadius:8, textDecoration:"none", fontSize:"0.85rem", fontWeight:700,
-            display:"flex", alignItems:"center", gap:"0.6rem",
-            boxShadow:`0 8px 28px rgba(13,148,136,0.35)`,
-            transition:"transform 0.2s, box-shadow 0.2s",
-            animation:"resumePulse 2.5s ease-in-out infinite",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow=`0 14px 40px rgba(13,148,136,0.5)`;}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`0 8px 28px rgba(13,148,136,0.35)`;}}
-          >
-            <Download size={16} strokeWidth={2.5} />
-            Download Resume (PDF)
+          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="rv d2 px-btn" style={{padding:"0.8rem 1.5rem",background:"#7C3AED",color:"#fff",border:"2px solid #4C1D95",textDecoration:"none",fontSize:"0.82rem",fontWeight:700,display:"flex",alignItems:"center",gap:"0.5rem",boxShadow:"4px 4px 0 #4C1D95",animation:"resumePulse 2.5s ease-in-out infinite, glowPulse 3s ease-in-out infinite",fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>
+            <Download size={14} strokeWidth={2.5}/>DOWNLOAD PDF
           </a>
         </div>
 
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"2rem", alignItems:"start" }} className="grid2">
-
-          {/* LEFT COLUMN */}
-          <div style={{ display:"flex", flexDirection:"column", gap:"2rem" }}>
-
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1.5rem",alignItems:"start"}} className="grid2">
+          {/* LEFT */}
+          <div style={{display:"flex",flexDirection:"column",gap:"1.5rem"}}>
             {/* Summary */}
-            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)", position:"relative", overflow:"hidden" }}>
-              <div style={{ position:"absolute", top:-30, right:-30, width:120, height:120, borderRadius:"50%", background:`linear-gradient(135deg,rgba(13,148,136,0.08),rgba(232,121,249,0.06))`, pointerEvents:"none" }}/>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.2rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>👤</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Summary</div>
+            <div className="rv px-card shimmer-hover" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1rem"}}>
+                <div style={{width:28,height:28,background:"var(--vPale)",border:"2px solid #7C3AED",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #7C3AED"}}>👤</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>SUMMARY</div>
               </div>
-              <p style={{ fontSize:"0.88rem", color:C.muted, lineHeight:1.9, position:"relative", zIndex:1 }}>
-                Passionate <strong style={{color:C.ink}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at Manipal University Jaipur, maintaining a <strong style={{color:"#0D9488"}}>9.05 CGPA</strong> with the Dean's Excellence Award. I build high-performance distributed systems with <strong style={{color:"#0D9488"}}>Node.js, Redis, and MySQL</strong>, and AI-powered applications using <strong style={{color:"#0D9488"}}>LangChain, FAISS, and Groq</strong>. Ranked in the <strong style={{color:"#0D9488"}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved — I combine strong algorithmic thinking with real-world engineering to ship fast, scalable, production-ready systems. Actively seeking internship and full-time opportunities in backend, AI/ML, or full-stack engineering.
+              <p style={{fontSize:"0.9rem",color:"var(--muted)",lineHeight:2,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+                Passionate <strong style={{color:"var(--ink)"}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at MUJ, maintaining a <strong style={{color:"#7C3AED"}}>9.05 CGPA</strong> with the Dean's Excellence Award. Builds high-performance systems with <strong style={{color:"#7C3AED"}}>Node.js, Redis, and MySQL</strong>. Ranked in the <strong style={{color:"#06B6D4"}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved.
               </p>
-              <div style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginTop:"1.2rem" }}>
-                {["Backend Engineering","AI / ML","System Design","Open to Internships","Available 2026"].map(t => (
-                  <span key={t} style={{ padding:"0.28rem 0.8rem", background:C.vPale, border:"1px solid rgba(13,148,136,0.15)", borderRadius:100, fontSize:"0.7rem", color:"#0D9488", fontWeight:600 }}>{t}</span>
+              <div style={{display:"flex",gap:"0.4rem",flexWrap:"wrap",marginTop:"1rem"}}>
+                {["Backend","AI/ML","Open to Work"].map((t,i)=>(
+                  <span key={t} style={{padding:"0.25rem 0.6rem",background:`${["#7C3AED","#06B6D4","#10B981"][i]}18`,border:`2px solid ${["#7C3AED","#06B6D4","#10B981"][i]}`,borderRadius:0,fontSize:"0.82rem",color:["#7C3AED","#06B6D4","#10B981"][i],fontWeight:600,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>{t}</span>
                 ))}
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:40, height:40, borderRadius:10, background:`linear-gradient(135deg,${C.v},${C.accent})`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                  <span style={{ color:"#fff", fontSize:"0.85rem", fontWeight:800 }}>AP</span>
+            {/* Contact */}
+            <div className="rv px-card shimmer-hover" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.8rem",marginBottom:"1.2rem"}}>
+                <div style={{width:38,height:38,background:"linear-gradient(135deg,#7C3AED,#06B6D4)",border:"2px solid #4C1D95",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"3px 3px 0 #4C1D95"}}>
+                  <span style={{color:"#fff",fontSize:"0.6rem",fontWeight:800,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>AP</span>
                 </div>
                 <div>
-                  <div style={{ fontSize:"1rem", fontWeight:800, color:C.ink }}>Arman Phaugat</div>
-                  <div className="mono" style={{ fontSize:"0.65rem", color:C.muted }}>B.Tech CSE · MUJ · 2023–2027</div>
+                  <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>ARMAN PHAUGAT</div>
+                  <div style={{fontSize:"0.65rem",color:"var(--muted)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>B.Tech CSE · MUJ · 2023-27</div>
                 </div>
               </div>
               {[
-                ["✉️", "armanphaugat20@gmail.com", "mailto:armanphaugat20@gmail.com"],
-                ["📱", "+91-9306115772",            "tel:+919306115772"],
-                ["🐙", "github.com/armanphaugat",   "https://github.com/armanphaugat"],
-                ["💼", "linkedin.com/in/armanphaugat05", "https://www.linkedin.com/in/armanphaugat05/"],
-                ["🧩", "leetcode.com/u/armanphaugat20",  "https://leetcode.com/u/armanphaugat20"],
-                ["📍", "Jaipur, Rajasthan, India",  null],
-              ].map(([icon, label, href]) => (
-                <div key={label} style={{ display:"flex", gap:"0.8rem", alignItems:"center", padding:"0.55rem 0", borderBottom:"1px solid rgba(13,148,136,0.05)" }}>
-                  <span style={{ fontSize:"0.9rem", flexShrink:0 }}>{icon}</span>
-                  {href
-                    ? <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
-                        style={{ fontSize:"0.8rem", color:C.v, textDecoration:"none", fontWeight:500, wordBreak:"break-all" }}
-                        onMouseEnter={e=>e.currentTarget.style.textDecoration="underline"}
-                        onMouseLeave={e=>e.currentTarget.style.textDecoration="none"}
-                      >{label}</a>
-                    : <span style={{ fontSize:"0.8rem", color:C.muted }}>{label}</span>
-                  }
+                ["✉️","armanphaugat20@gmail.com","mailto:armanphaugat20@gmail.com"],
+                ["📱","+91-9306115772","tel:+919306115772"],
+                ["🐙","github.com/armanphaugat","https://github.com/armanphaugat"],
+                ["💼","linkedin.com/in/armanphaugat05","https://www.linkedin.com/in/armanphaugat05/"],
+                ["🧩","leetcode.com/u/armanphaugat20","https://leetcode.com/u/armanphaugat20"],
+                ["📍","Jaipur, Rajasthan, India",null],
+              ].map(([icon,label,href])=>(
+                <div key={label} style={{display:"flex",gap:"0.7rem",alignItems:"center",padding:"0.45rem 0",borderBottom:"1px solid rgba(124,58,237,0.06)"}}>
+                  <span style={{fontSize:"0.85rem",flexShrink:0}}>{icon}</span>
+                  {href?<a href={href} target={href.startsWith("http")?"_blank":undefined} rel="noreferrer" style={{fontSize:"0.75rem",color:"#7C3AED",textDecoration:"none",fontFamily:"'Space Mono','Share Tech Mono',monospace",wordBreak:"break-all"}}>{label}</a>:<span style={{fontSize:"0.75rem",color:"var(--muted)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{label}</span>}
                 </div>
               ))}
             </div>
 
             {/* Education */}
-            <div className="rv d1" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🎓</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Education</div>
+            <div className="rv d1 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
+                <div style={{width:28,height:28,background:"var(--vPale)",border:"2px solid #F59E0B",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #F59E0B"}}>🎓</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>EDUCATION</div>
               </div>
-              <div style={{ borderLeft:`2px solid ${C.vPale}`, paddingLeft:"1.2rem" }}>
-                <div style={{ fontSize:"0.95rem", fontWeight:700, color:C.ink }}>B.Tech in Computer Science & Engineering</div>
-                <div style={{ fontSize:"0.82rem", color:C.v, fontWeight:600, marginTop:"0.2rem" }}>Manipal University Jaipur</div>
-                <div className="mono" style={{ fontSize:"0.68rem", color:C.muted, marginTop:"0.25rem" }}>2023 – 2027 · Jaipur, Rajasthan</div>
-                <div style={{ marginTop:"0.8rem", display:"flex", gap:"0.5rem", flexWrap:"wrap" }}>
-                  <span style={{ padding:"0.25rem 0.7rem", background:C.vPale, color:C.v, borderRadius:100, fontSize:"0.72rem", fontWeight:700 }}>CGPA: 9.05 / 10</span>
-                  <span style={{ padding:"0.25rem 0.7rem", background:"rgba(245,158,11,0.1)", color:"#92400E", borderRadius:100, fontSize:"0.72rem", fontWeight:700 }}>Dean's Excellence Award</span>
-                </div>
-                <div style={{ fontSize:"0.8rem", color:C.muted, marginTop:"0.8rem", lineHeight:1.7 }}>
-                  Relevant coursework: Data Structures & Algorithms, Database Management Systems, Operating Systems, Computer Networks, Object-Oriented Programming, Discrete Mathematics.
+              <div style={{borderLeft:"3px solid #7C3AED",paddingLeft:"1rem"}}>
+                <div style={{fontSize:"0.85rem",fontWeight:700,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>B.Tech in Computer Science</div>
+                <div style={{fontSize:"0.8rem",color:"#7C3AED",fontWeight:600,marginTop:"0.2rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Manipal University Jaipur</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"var(--muted)",marginTop:"0.2rem"}}>2023-2027 · Jaipur</div>
+                <div style={{marginTop:"0.6rem",display:"flex",gap:"0.4rem",flexWrap:"wrap"}}>
+                  <span style={{padding:"0.3rem 0.75rem",background:"var(--vPale)",color:"#7C3AED",fontSize:"0.78rem",fontWeight:700,border:"2px solid #7C3AED",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"2px 2px 0 #7C3AED"}}>9.05 CGPA</span>
+                  <span style={{padding:"0.3rem 0.75rem",background:"rgba(245,158,11,0.1)",color:"#92400E",fontSize:"0.78rem",fontWeight:700,border:"2px solid #F59E0B",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"2px 2px 0 #F59E0B"}}>DEANS AWARD</span>
                 </div>
               </div>
-            </div>
-
-            {/* Competitive Programming */}
-            <div className="rv d2" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🏆</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Competitive Programming</div>
-              </div>
-              {[
-                { platform:"LeetCode", handle:"armanphaugat20", stat:"Beats 99.7% · 900+ problems solved", col:"#FFA116", badge:"Top 0.3%" },
-                { platform:"Codeforces", handle:"Active participant", stat:"Regular contest participation", col:"#1890FF", badge:"Rated" },
-              ].map(({ platform, handle, stat, col, badge }) => (
-                <div key={platform} style={{ display:"flex", gap:"1rem", alignItems:"flex-start", padding:"0.8rem 0", borderBottom:"1px solid rgba(13,148,136,0.05)" }}>
-                  <div style={{ width:10, height:10, borderRadius:"50%", background:col, marginTop:"0.35rem", flexShrink:0 }}/>
-                  <div>
-                    <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
-                      <span style={{ fontSize:"0.88rem", fontWeight:700, color:C.ink }}>{platform}</span>
-                      <span style={{ fontSize:"0.62rem", padding:"0.1rem 0.5rem", background:`${col}18`, color:col, borderRadius:4, fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>{badge}</span>
-                    </div>
-                    <div className="mono" style={{ fontSize:"0.68rem", color:C.muted, marginTop:"0.1rem" }}>{handle}</div>
-                    <div style={{ fontSize:"0.78rem", color:C.muted, marginTop:"0.3rem" }}>{stat}</div>
-                  </div>
-                </div>
-              ))}
             </div>
 
             {/* Achievements */}
-            <div className="rv d3" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>⭐</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Achievements</div>
+            <div className="rv d2 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
+                <div style={{width:28,height:28,background:"rgba(245,158,11,0.15)",border:"2px solid #F59E0B",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #F59E0B"}}>⭐</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>ACHIEVEMENTS</div>
               </div>
               {[
-                { icon:"🏅", text:"Dean's Excellence Award — Multiple semesters for 9.0+ CGPA" },
-                { icon:"⚡", text:"LeetCode Top 0.3% — Global rank among millions of users" },
-                { icon:"🚀", text:"MUJHackX Round 2 Qualifier — Top performers among 1300+ participants" },
-                { icon:"💡", text:"900+ DSA problems solved across LeetCode, Codeforces & more" },
-              ].map(({ icon, text }) => (
-                <div key={text} style={{ display:"flex", gap:"0.8rem", alignItems:"flex-start", padding:"0.6rem 0", borderBottom:"1px solid rgba(13,148,136,0.05)" }}>
-                  <span style={{ fontSize:"1rem", flexShrink:0 }}>{icon}</span>
-                  <span style={{ fontSize:"0.82rem", color:C.muted, lineHeight:1.6 }}>{text}</span>
+                {icon:"🏅",text:"Dean's Excellence Award — 9.0+ CGPA multiple sems",col:"#F59E0B"},
+                {icon:"⚡",text:"LeetCode Top 0.3% — Global rank, beats 99.7%",col:"#7C3AED"},
+                {icon:"🚀",text:"MUJHackX Round 2 — Top among 1300+ participants",col:"#10B981"},
+                {icon:"💡",text:"900+ DSA problems across platforms",col:"#06B6D4"},
+              ].map(({icon,text,col})=>(
+                <div key={text} style={{display:"flex",gap:"0.7rem",alignItems:"flex-start",padding:"0.5rem 0",borderBottom:"1px solid rgba(124,58,237,0.06)"}}>
+                  <span style={{fontSize:"0.9rem",flexShrink:0}}>{icon}</span>
+                  <span style={{fontSize:"0.78rem",color:"var(--muted)",lineHeight:1.6,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{text}</span>
                 </div>
               ))}
             </div>
 
             {/* Certifications */}
-            <div className="rv d4" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>📜</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Licenses & Certifications</div>
+            <div className="rv d3 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
+                <div style={{width:28,height:28,background:"rgba(6,182,212,0.15)",border:"2px solid #06B6D4",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #06B6D4"}}>📜</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>CERTIFICATIONS</div>
               </div>
               {[
-                {
-                  org:"TLE Eliminators", icon:"🥋", col:"#E53E3E",
-                  name:"Competitive Programming — Level 1, 2 & 3",
-                  issued:"Dec 2023", skills:["C++","Algorithms","Data Structures","CP Contests"],
-                  badge:"3 Certs",
-                },
-                {
-                  org:"NPTEL", icon:"🎓", col:"#2B6CB0",
-                  name:"Design and Analysis of Algorithms (DAA)",
-                  issued:"Jan 2025", skills:["C++","Algorithm Design","Complexity Analysis"],
-                  badge:"Verified",
-                },
-                {
-                  org:"Red Hat", icon:"🎩", col:"#C53030",
-                  name:"System Administration I & II",
-                  issued:"Jan 2025", skills:["Linux","RHEL","Sysadmin","Shell Scripting"],
-                  badge:"2 Certs",
-                },
-                {
-                  org:"Coursera", icon:"📡", col:"#2D3748",
-                  name:"RAG (Retrieval-Augmented Generation) Course",
-                  issued:"2024", skills:["LangChain","FAISS","Vector DBs","RAG","LLMs"],
-                  badge:"Verified",
-                },
-                {
-                  org:"GeeksforGeeks", icon:"💚", col:"#276749",
-                  name:"OOP Programming using Java",
-                  issued:"Aug 2024", skills:["Java","OOP","Inheritance","Polymorphism"],
-                  badge:"Verified",
-                },
-                {
-                  org:"Oracle", icon:"🔴", col:"#C05621",
-                  name:"Database Design and Foundations",
-                  issued:"Aug 2024", skills:["SQL","PL/SQL","Database Design","ER Modelling"],
-                  badge:"2 Certs",
-                },
-              ].map(({ org, icon, col, name, issued, skills, badge }, i) => (
-                <div key={name} style={{
-                  display:"flex", gap:"1rem", alignItems:"flex-start",
-                  padding:"1rem 0",
-                  borderBottom: i < 5 ? "1px solid rgba(13,148,136,0.06)" : "none",
-                }}>
-                  {/* Org avatar */}
-                  <div style={{
-                    width:38, height:38, borderRadius:9, background:`${col}18`,
-                    border:`1.5px solid ${col}33`, display:"flex", alignItems:"center",
-                    justifyContent:"center", fontSize:"1.1rem", flexShrink:0,
-                  }}>{icon}</div>
-                  <div style={{ flex:1, minWidth:0 }}>
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", gap:"0.5rem", flexWrap:"wrap" }}>
+                {org:"TLE Eliminators",icon:"🥋",col:"#EF4444",name:"CP Level 1, 2 & 3",issued:"Dec 2023",skills:["C++","DSA","Algorithms"],badge:"3 CERTS"},
+                {org:"NPTEL",icon:"🎓",col:"#2B6CB0",name:"Design & Analysis of Algorithms",issued:"Jan 2025",skills:["C++","Algorithm Design"],badge:"VERIFIED"},
+                {org:"Red Hat",icon:"🎩",col:"#C53030",name:"Sysadmin I & II",issued:"Jan 2025",skills:["Linux","RHEL","Shell"],badge:"2 CERTS"},
+                {org:"Coursera",icon:"📡",col:"#2D3748",name:"RAG Course",issued:"2024",skills:["LangChain","FAISS","RAG"],badge:"VERIFIED"},
+                {org:"GeeksforGeeks",icon:"💚",col:"#276749",name:"OOP with Java",issued:"Aug 2024",skills:["Java","OOP"],badge:"VERIFIED"},
+                {org:"Oracle",icon:"🔴",col:"#C05621",name:"Database Design",issued:"Aug 2024",skills:["SQL","DB Design"],badge:"2 CERTS"},
+              ].map(({org,icon,col,name,issued,skills,badge},i)=>(
+                <div key={name} style={{display:"flex",gap:"0.8rem",alignItems:"flex-start",padding:"0.8rem 0",borderBottom:i<5?"1px solid rgba(124,58,237,0.06)":"none"}}>
+                  <div style={{width:34,height:34,background:`${col}15`,border:`2px solid ${col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1rem",flexShrink:0,boxShadow:`2px 2px 0 ${col}`}}>{icon}</div>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:"0.4rem",flexWrap:"wrap"}}>
                       <div>
-                        <div style={{ fontSize:"0.85rem", fontWeight:700, color:C.ink, lineHeight:1.35 }}>{name}</div>
-                        <div style={{ fontSize:"0.75rem", color:col, fontWeight:600, marginTop:"0.1rem" }}>{org}</div>
+                        <div style={{fontSize:"0.8rem",fontWeight:700,color:"var(--ink)",lineHeight:1.3,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{name}</div>
+                        <div style={{fontSize:"0.72rem",color:col,fontWeight:600,marginTop:"0.1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{org}</div>
                       </div>
-                      <span style={{
-                        fontSize:"0.6rem", padding:"0.15rem 0.55rem", borderRadius:4,
-                        background:`${col}15`, color:col, fontWeight:700,
-                        fontFamily:"'JetBrains Mono',monospace", flexShrink:0, whiteSpace:"nowrap",
-                      }}>{badge}</span>
+                      <span style={{fontSize:"0.75rem",padding:"0.15rem 0.4rem",background:`${col}15`,color:col,fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",flexShrink:0,whiteSpace:"nowrap",border:`1px solid ${col}`,boxShadow:`1px 1px 0 ${col}`}}>{badge}</span>
                     </div>
-                    <div className="mono" style={{ fontSize:"0.62rem", color:C.muted, marginTop:"0.35rem" }}>Issued {issued}</div>
-                    <div style={{ display:"flex", flexWrap:"wrap", gap:"0.3rem", marginTop:"0.5rem" }}>
-                      {skills.map(s => (
-                        <span key={s} style={{
-                          fontSize:"0.62rem", padding:"0.15rem 0.5rem", borderRadius:4,
-                          background:C.vPale, color:C.v,
-                          border:"1px solid rgba(13,148,136,0.15)",
-                          fontFamily:"'JetBrains Mono',monospace",
-                        }}>{s}</span>
-                      ))}
+                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)",marginTop:"0.2rem"}}>ISSUED {issued}</div>
+                    <div style={{display:"flex",flexWrap:"wrap",gap:"0.25rem",marginTop:"0.4rem"}}>
+                      {skills.map(s=><span key={s} style={{fontSize:"0.82rem",padding:"0.12rem 0.4rem",background:"var(--vPale)",color:"#7C3AED",border:"1px solid #7C3AED",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{s}</span>)}
                     </div>
                   </div>
                 </div>
@@ -2364,257 +1562,151 @@ function Resume() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div style={{ display:"flex", flexDirection:"column", gap:"2rem" }}>
-
-            {/* Experience */}
-            <div className="rv" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>💼</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Work Experience</div>
+          {/* RIGHT */}
+          <div style={{display:"flex",flexDirection:"column",gap:"1.5rem"}}>
+            {/* Work Experience */}
+            <div className="rv px-card shimmer-hover" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
+                <div style={{width:28,height:28,background:"rgba(124,58,237,0.15)",border:"2px solid #7C3AED",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #7C3AED"}}>💼</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>WORK EXPERIENCE</div>
               </div>
-              <div style={{ borderLeft:`2px solid ${C.vPale}`, paddingLeft:"1.2rem" }}>
-                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", flexWrap:"wrap", gap:"0.5rem" }}>
+              <div style={{borderLeft:"3px solid #7C3AED",paddingLeft:"1rem"}}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:"0.4rem"}}>
                   <div>
-                    <div style={{ fontSize:"0.95rem", fontWeight:700, color:C.ink }}>Web Development Intern</div>
-                    <div style={{ fontSize:"0.82rem", color:C.v, fontWeight:600, marginTop:"0.2rem" }}>Indavis Lifesciences, Haridwar</div>
+                    <div style={{fontSize:"0.88rem",fontWeight:700,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Web Dev Intern</div>
+                    <div style={{fontSize:"0.8rem",color:"#7C3AED",fontWeight:600,marginTop:"0.1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Indavis Lifesciences, Haridwar</div>
                   </div>
-                  <span className="mono" style={{ fontSize:"0.65rem", color:C.v, background:C.vPale, padding:"0.2rem 0.7rem", borderRadius:100 }}>Jun – Jul 2025</span>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"#7C3AED",background:"var(--vPale)",padding:"0.2rem 0.5rem",border:"1px solid #7C3AED"}}>JUN-JUL 2025</span>
                 </div>
-                <ul style={{ listStyle:"none", marginTop:"0.9rem", display:"flex", flexDirection:"column", gap:"0.5rem" }}>
-                  {[
-                    "Maintained and updated the company website ensuring smooth performance and content accuracy",
-                    "Collaborated with cross-functional teams to align website updates with brand guidelines",
-                    "Managed content workflows and ensured consistent brand representation across all web pages",
-                  ].map((b,i) => (
-                    <li key={i} style={{ display:"flex", gap:"0.5rem", fontSize:"0.8rem", color:C.muted, lineHeight:1.65 }}>
-                      <span style={{ color:C.v, flexShrink:0 }}>▸</span>{b}
+                <ul style={{listStyle:"none",marginTop:"0.8rem",display:"flex",flexDirection:"column",gap:"0.4rem"}}>
+                  {["Maintained and updated company website, smooth performance + content accuracy","Collaborated with cross-functional teams aligning updates with brand guidelines","Managed content workflows, consistent brand representation across web pages"].map((b,i)=>(
+                    <li key={i} style={{display:"flex",gap:"0.4rem",fontSize:"0.78rem",color:"var(--muted)",lineHeight:1.65,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+                      <span style={{color:"#7C3AED",flexShrink:0,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>▸</span>{b}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            {/* Technical Skills */}
-            <div className="rv d1" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🛠️</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Technical Skills</div>
+            {/* Tech Skills */}
+            <div className="rv d1 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
+                <div style={{width:28,height:28,background:"rgba(6,182,212,0.15)",border:"2px solid #06B6D4",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #06B6D4"}}>🛠️</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>TECH SKILLS</div>
               </div>
               {[
-                { label:"Languages",         items:["Python","JavaScript","C","C++","Java","HTML","CSS"] },
-                { label:"Backend",           items:["Node.js","Express.js","FastAPI","REST APIs","JWT","Argon2","Bcrypt"] },
-                { label:"Databases & Cache", items:["MySQL","MongoDB","Redis","FAISS","SQLite3"] },
-                { label:"AI / ML",           items:["LangChain","HuggingFace","RAG","XGBoost","Scikit-learn","Pandas","NumPy"] },
-                { label:"DevOps & Tools",    items:["Docker","Git","GitHub","Postman","Cloudinary","Groq","BullMQ"] },
-                { label:"Concepts",          items:["System Design","DSA","ACID","Caching","Rate Limiting","OOP","Auth & AuthZ"] },
-              ].map(({ label, items }) => (
-                <div key={label} style={{ marginBottom:"1rem" }}>
-                  <div className="mono" style={{ fontSize:"0.62rem", color:C.v, textTransform:"uppercase", letterSpacing:"1.5px", marginBottom:"0.45rem", fontWeight:700 }}>{label}</div>
-                  <div style={{ display:"flex", flexWrap:"wrap", gap:"0.35rem" }}>
-                    {items.map(t => <span key={t} className="chip" style={{ fontSize:"0.72rem" }}>{t}</span>)}
+                {label:"Languages",items:["Python","JavaScript","C","C++","Java","HTML","CSS"],col:"#7C3AED"},
+                {label:"Backend",items:["Node.js","Express","FastAPI","REST","JWT","Argon2"],col:"#06B6D4"},
+                {label:"Databases",items:["MySQL","MongoDB","Redis","FAISS","SQLite3"],col:"#10B981"},
+                {label:"AI/ML",items:["LangChain","HuggingFace","RAG","XGBoost","Scikit-learn"],col:"#F59E0B"},
+                {label:"DevOps",items:["Docker","Git","GitHub","Postman","BullMQ"],col:"#EF4444"},
+                {label:"Concepts",items:["System Design","DSA","ACID","Caching","Rate Limiting"],col:"#7C3AED"},
+              ].map(({label,items,col})=>(
+                <div key={label} style={{marginBottom:"0.8rem"}}>
+                  <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:col,textTransform:"uppercase",letterSpacing:"1px",marginBottom:"0.4rem",fontWeight:700}}>&gt; {label}</div>
+                  <div style={{display:"flex",flexWrap:"wrap",gap:"0.3rem"}}>
+                    {items.map(t=><span key={t} className="chip" style={{fontSize:"0.65rem"}}>{t}</span>)}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Key Projects (condensed) */}
-            <div className="rv d2" style={{ background:C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16, padding:"1.8rem", boxShadow:"0 2px 20px rgba(13,148,136,0.05)" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.7rem", marginBottom:"1.4rem" }}>
-                <div style={{ width:32, height:32, borderRadius:8, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>🚀</div>
-                <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>Key Projects</div>
+            {/* Key Projects */}
+            <div className="rv d2 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
+                <div style={{width:28,height:28,background:"rgba(245,158,11,0.15)",border:"2px solid #F59E0B",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #F59E0B"}}>🚀</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)"}}>KEY PROJECTS</div>
               </div>
               {[
-                { name:"Real Time Stock Trading Backend", tech:"Node.js · Redis · MySQL · BullMQ · Docker", points:["Redis Sorted Sets → <50ms leaderboard queries","JWT auth + Token Bucket rate limiter","MySQL row-level locking for concurrent trades"] },
-                { name:"RAG Discord Bot", tech:"Python · FastAPI · LangChain · FAISS · Groq", points:["Ingests PDFs & web pages into per-guild vector stores","LCEL chain with Groq Llama 3.3 for contextual answers","Multi-server isolation with permission-gated uploads"] },
-                { name:"Video Streaming & User Management", tech:"Node.js · MongoDB · Cloudinary · ffmpeg", points:["HLS transcoding (360p/720p) via ffmpeg + Cloudinary","JWT access/refresh token lifecycle management","MongoDB aggregation pipelines for watch history"] },
-                { name:"Cricket Score & IPL Win Predictor", tech:"Python · XGBoost · Streamlit · CricAPI", points:["XGBoost models for IPL, T20, and ODI formats","Live CricAPI integration for real-time predictions","Logistic Regression for in-match win probability"] },
-              ].map(({ name, tech, points }, i) => (
-                <div key={name} style={{ padding:"1rem 0", borderBottom: i < 3 ? "1px solid rgba(13,148,136,0.06)" : "none" }}>
-                  <div style={{ fontSize:"0.88rem", fontWeight:700, color:C.ink, marginBottom:"0.2rem" }}>{name}</div>
-                  <div className="mono" style={{ fontSize:"0.63rem", color:C.v, marginBottom:"0.5rem" }}>{tech}</div>
-                  {points.map((p,j) => (
-                    <div key={j} style={{ display:"flex", gap:"0.5rem", fontSize:"0.77rem", color:C.muted, lineHeight:1.55, marginBottom:"0.2rem" }}>
-                      <span style={{ color:C.v, flexShrink:0 }}>→</span>{p}
+                {name:"Real Time Stock Trading Backend",tech:"Node.js · Redis · MySQL · BullMQ · Docker",points:["Redis Sorted Sets → <50ms leaderboard queries","JWT auth + Token Bucket rate limiter","MySQL row-level locking for concurrent trades"]},
+                {name:"RAG Discord Bot",tech:"Python · FastAPI · LangChain · FAISS · Groq",points:["Per-guild persistent FAISS vector stores","LCEL chain with Groq Llama 3.3","Multi-server isolation + permission gating"]},
+                {name:"Video Streaming & User Mgmt",tech:"Node.js · MongoDB · Cloudinary",points:["HLS transcoding via ffmpeg","JWT access/refresh token lifecycle","MongoDB aggregation pipelines"]},
+                {name:"Cricket Score Predictor",tech:"Python · XGBoost · Streamlit",points:["3 XGBoost models: IPL, T20, ODI","Live CricAPI integration","Format-specific feature engineering"]},
+              ].map(({name,tech,points},i)=>(
+                <div key={name} style={{padding:"0.8rem 0",borderBottom:i<3?"1px solid rgba(124,58,237,0.06)":"none"}}>
+                  <div style={{fontSize:"0.82rem",fontWeight:700,color:"var(--ink)",marginBottom:"0.15rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{name}</div>
+                  <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"#7C3AED",marginBottom:"0.4rem"}}>{tech}</div>
+                  {points.map((p,j)=>(
+                    <div key={j} style={{display:"flex",gap:"0.4rem",fontSize:"0.75rem",color:"var(--muted)",lineHeight:1.5,marginBottom:"0.15rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+                      <span style={{color:"#7C3AED",flexShrink:0,fontFamily:"'Pixelify Sans','Press Start 2P',monospace"}}>&gt;</span>{p}
                     </div>
                   ))}
                 </div>
               ))}
             </div>
-
           </div>
         </div>
 
-        {/* Bottom download CTA bar */}
-        <div className="rv d4" style={{ marginTop:"2.5rem", background:"var(--card-hover)", borderRadius:16, padding:"2rem 2.5rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"1.5rem" }}>
+        {/* Bottom CTA */}
+        <div className="rv d4" style={{marginTop:"2rem",background:"#1a0a2e",border:"3px solid #7C3AED",padding:"1.8rem 2rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem",boxShadow:"6px 6px 0 #7C3AED"}}>
           <div>
-            <div className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.4)", letterSpacing:"2px", textTransform:"uppercase", marginBottom:"0.4rem" }}>Ready to hire?</div>
-            <div style={{ fontSize:"1.1rem", fontWeight:800, color:"#fff" }}>Download the full PDF resume</div>
-            <div style={{ fontSize:"0.82rem", color:"rgba(255,255,255,0.5)", marginTop:"0.2rem" }}>Last updated · 2025 · ARMANRESUME.pdf</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"rgba(255,255,255,0.4)",letterSpacing:"2px",marginBottom:"0.3rem"}}>READY TO HIRE?</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.7rem",fontWeight:800,color:"#fff",lineHeight:1.6}}>DOWNLOAD FULL PDF RESUME</div>
+            <div style={{fontSize:"0.75rem",color:"rgba(255,255,255,0.4)",marginTop:"0.2rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Updated 2025 · ARMANRESUME.pdf</div>
           </div>
-          <div style={{ display:"flex", gap:"1rem", flexWrap:"wrap" }}>
-            <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" style={{
-              padding:"0.85rem 2rem", background:`linear-gradient(135deg,${C.v},${C.accent})`, color:"#fff",
-              borderRadius:8, textDecoration:"none", fontWeight:700, fontSize:"0.85rem",
-              display:"flex", alignItems:"center", gap:"0.6rem", whiteSpace:"nowrap",
-              transition:"transform 0.2s, box-shadow 0.2s",
-            }}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow=`0 10px 30px rgba(13,148,136,0.4)`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="";}}
-            >
-              <Download size={15} strokeWidth={2.5}/>
-              Download PDF
+          <div style={{display:"flex",gap:"0.8rem",flexWrap:"wrap"}}>
+            <a href="/ARMANRESUME.pdf" download className="px-btn" style={{padding:"0.8rem 1.5rem",background:"#7C3AED",color:"#fff",border:"2px solid #A78BFA",textDecoration:"none",fontWeight:700,fontSize:"0.82rem",display:"flex",alignItems:"center",gap:"0.5rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"3px 3px 0 #A78BFA"}}>
+              <Download size={13} strokeWidth={2.5}/>DOWNLOAD
             </a>
-            <a href="mailto:armanphaugat20@gmail.com" style={{
-              padding:"0.85rem 2rem", background:"rgba(255,255,255,0.1)", color:"#fff",
-              border:"1px solid rgba(255,255,255,0.2)", borderRadius:8, textDecoration:"none",
-              fontWeight:700, fontSize:"0.85rem", whiteSpace:"nowrap", transition:"background 0.2s",
-            }}
-              onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.18)"}
-              onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.1)"}
-            >Reach Out →</a>
+            <a href="mailto:armanphaugat20@gmail.com" className="px-btn" style={{padding:"0.8rem 1.5rem",background:"rgba(255,255,255,0.08)",color:"#fff",border:"2px solid rgba(255,255,255,0.2)",textDecoration:"none",fontWeight:700,fontSize:"0.82rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:"3px 3px 0 rgba(255,255,255,0.15)"}}>CONTACT &gt;&gt;</a>
           </div>
         </div>
-
       </div>
     </section>
   );
 }
 
 /* ─────────────── PROJECTS ─────────────── */
-/* ─────────────── FEATURE 12: PROJECT COMPLEXITY ─────────────── */
-// complexity: 1=Low, 2=Medium, 3=High
-// complexityNote: shown in tooltip on hover
-const PROJECTS = [
-  { num:"01", name:"Real Time Stock Trading Backend", tagline:"High-perf system · live leaderboards · ACID-safe concurrency", category:"Backend",
-    complexity:3, complexityNote:"Distributed systems · ACID transactions · Redis concurrency · Docker",
-    highlights:["Redis Sorted Sets + pipeline opt → <50ms leaderboard queries","BullMQ price engine · 30-min repeatable jobs · ±25% variation","JWT auth + Token Bucket rate limiter at 5 req/sec/user","MySQL row-level locking for concurrent buy/sell workflows"],
-    tech:["Node.js","Express","MySQL","Redis","BullMQ","JWT","Docker","Argon2"],
-    youtube:"https://www.youtube.com/watch?v=IcetVmIat-w" },
-  { num:"02", name:"Video Streaming & User Management", tagline:"YouTube-like backend · HLS adaptive streaming · real-time analytics", category:"Backend",
-    complexity:3, complexityNote:"HLS video pipeline · MongoDB aggregation · auth lifecycle management",
-    highlights:["HLS transcoding via ffmpeg · 360p/720p on Cloudinary","JWT access + refresh token flow · secure auth lifecycle","MongoDB query opt — ~200ms → ~120ms response time","Aggregation pipelines for watch history & subscriptions"],
-    tech:["Node.js","MongoDB","Express","Cloudinary","JWT","ffmpeg","Bcrypt"],
-    youtube:"https://youtu.be/w6980_4fVSQ" },
-  { num:"03", name:"RAG Discord Bot", tagline:"AI bot ingesting PDFs & web pages · answers via Llama 3.3", category:"AI/ML",
-    complexity:3, complexityNote:"LLM pipeline · vector DBs · multi-server isolation · RAG architecture",
-    highlights:["LangChain: web scrape · PDF parse · recursive chunking → FAISS","HuggingFace embeddings · per-guild persistent vector stores","LCEL chain feeds context chunks to Groq Llama 3.3 LLM","FastAPI · multi-server isolation · permission-gated uploads"],
-    tech:["Python","FastAPI","LangChain","FAISS","Discord.py","Groq","HuggingFace"],
-    discord:"https://discord.com/oauth2/authorize?client_id=1463510548808208415&permissions=8&integration_type=0&scope=bot" },
-  { num:"04", name:"RAG Bot Website", tagline:"React showcase for the Discord RAG bot with interactive demos", category:"Frontend",
-    complexity:1, complexityNote:"Pure React · zero CSS frameworks · IntersectionObserver animations",
-    highlights:["Scroll-triggered animations via IntersectionObserver","Interactive feature tabs — PDF / web scraping / Q&A modes","Zero CSS framework · pure React inline styling architecture","Vite + React · modular component structure"],
-    tech:["React","Vite","JavaScript","CSS","Lucide Icons"],
-    webapp:"https://gamezobot.netlify.app/",
-    website:"https://armanphaugat.github.io/ragwebsite/" },
-  { num:"05", name:"Cricket Score Predictor", tagline:"Live IPL · T20 · ODI score prediction via XGBoost models", category:"AI/ML",
-    complexity:2, complexityNote:"3 XGBoost models · live API · format-specific feature engineering",
-    highlights:["3 pre-trained XGBoost models for IPL, T20, and ODI formats","CricAPI integration for live match data","Streamlit UI with team + overs input for instant predictions","Format-specific feature engineering pipelines"],
-    tech:["Python","Streamlit","XGBoost","Scikit-learn","Pandas","CricAPI","Pickle"] },
-  { num:"06", name:"IPL Win Predictor", tagline:"Real-time IPL win probability via ML on historical data", category:"AI/ML",
-    complexity:2, complexityNote:"Logistic Regression + Random Forest · 4500+ row dataset · CRR/RRR features",
-    highlights:["Logistic Regression / Random Forest on seasons of IPL records","Dynamic win % via CRR, RRR, wickets, overs remaining","Feature engineering on 4500+ raw CSV match rows","Streamlit web app for in-match probability visualization"],
-    tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Matplotlib"] },
-  { num:"07", name:"Book Recommender System", tagline:"Dual-mode engine — popularity-based & collaborative filtering", category:"AI/ML",
-    complexity:2, complexityNote:"Cosine similarity matrix · dual recommendation modes · signal filtering",
-    highlights:["Popularity: top 50 books filtered by 250+ ratings + avg score","Collaborative filtering with cosine similarity on pivot matrix","Filters to users with 200+ ratings for higher signal quality","Streamlit UI with covers, authors, top-N recommendations"],
-    tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Cosine Similarity"] },
-  { num:"08", name:"WhatsApp Chat Analyser", tagline:"Upload any export · visualize conversation trends instantly", category:"AI/ML",
-    complexity:1, complexityNote:"Regex parsing · Pandas analysis · Matplotlib + WordCloud visualizations",
-    highlights:["Timeline analysis · daily, weekly, monthly message frequency","Top emoji breakdown with pie chart visualizations","Most active user leaderboard for group chats","WordCloud + Matplotlib interactive charts"],
-    tech:["Python","Streamlit","Pandas","Matplotlib","WordCloud","Regex","Emoji"] },
-  { num:"09", name:"Cuntrex — 2D Shooter Game", tagline:"Two-player 2D shooter built from scratch with Pygame", category:"Game",
-    complexity:2, complexityNote:"Full game loop · collision physics · sprite animation · audio mixer",
-    highlights:["Full game loop · frame control · event handling · collision detection","Health bar system with real-time ratio-based rendering","Menu / play / retry screens with image-based hit detection","Background music + jump SFX via Pygame mixer"],
-    tech:["Python","Pygame","OOP","Game Loop","Sprite Animation"] },
-  { num:"10", name:"SalesForce UI Clone", tagline:"Pixel-accurate frontend clone of the Salesforce homepage", category:"Frontend",
-    complexity:1, complexityNote:"CSS precision · responsive grid · brand-faithful layout replication",
-    highlights:["Full layout: nav, hero, content strips — no frameworks","CSS-only responsive grid and flexbox layout","Faithfully replicated brand typography and spacing","A focused exercise in CSS precision and layout mastery"],
-    tech:["HTML","CSS","Flexbox","Responsive Design"] },
+const PROJECTS=[
+  {num:"01",name:"Real Time Stock Trading Backend",tagline:"High-perf system · live leaderboards · ACID-safe concurrency",category:"Backend",highlights:["Redis Sorted Sets → <50ms leaderboard queries","BullMQ price engine · 30-min jobs","JWT auth + Token Bucket rate limiter","MySQL row-level locking for trades"],tech:["Node.js","Express","MySQL","Redis","BullMQ","JWT","Docker","Argon2"],youtube:"https://www.youtube.com/watch?v=IcetVmIat-w"},
+  {num:"02",name:"Video Streaming & User Management",tagline:"YouTube-like backend · HLS adaptive streaming",category:"Backend",highlights:["HLS transcoding via ffmpeg · 360p/720p","JWT access + refresh token flow","MongoDB query opt ~200ms → ~120ms","Aggregation pipelines for watch history"],tech:["Node.js","MongoDB","Express","Cloudinary","JWT","ffmpeg","Bcrypt"],youtube:"https://youtu.be/w6980_4fVSQ"},
+  {num:"03",name:"RAG Discord Bot",tagline:"AI bot ingesting PDFs & web pages · Llama 3.3",category:"AI/ML",highlights:["LangChain: web scrape + PDF parse + FAISS","HuggingFace embeddings, per-guild stores","LCEL chain → Groq Llama 3.3","FastAPI · multi-server isolation"],tech:["Python","FastAPI","LangChain","FAISS","Discord.py","Groq","HuggingFace"],discord:"https://discord.com/oauth2/authorize?client_id=1463510548808208415&permissions=8&integration_type=0&scope=bot"},
+  {num:"04",name:"RAG Bot Website",tagline:"React showcase for the Discord RAG bot",category:"Frontend",highlights:["Scroll-triggered IntersectionObserver anims","Interactive feature tabs","Zero CSS framework · pure React","Vite + modular component structure"],tech:["React","Vite","JavaScript","CSS","Lucide"],webapp:"https://gamezobot.netlify.app/",website:"https://armanphaugat.github.io/ragwebsite/"},
+  {num:"05",name:"Cricket Score Predictor",tagline:"Live IPL · T20 · ODI score prediction via XGBoost",category:"AI/ML",highlights:["3 XGBoost models: IPL, T20, ODI","CricAPI live integration","Streamlit UI with instant predictions","Format-specific feature engineering"],tech:["Python","Streamlit","XGBoost","Scikit-learn","Pandas","CricAPI","Pickle"]},
+  {num:"06",name:"IPL Win Predictor",tagline:"Real-time IPL win probability via ML",category:"AI/ML",highlights:["Logistic Regression + Random Forest","Dynamic win % via CRR/RRR/wickets","Feature engineering on 4500+ rows","Streamlit in-match probability viz"],tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Matplotlib"]},
+  {num:"07",name:"Book Recommender System",tagline:"Dual-mode: popularity + collaborative filtering",category:"AI/ML",highlights:["Popularity: top 50 filtered by 250+ ratings","Cosine similarity on pivot matrix","Filter: users with 200+ ratings","Streamlit UI with covers + ratings"],tech:["Python","Streamlit","Scikit-learn","Pandas","NumPy","Cosine Similarity"]},
+  {num:"08",name:"WhatsApp Chat Analyser",tagline:"Upload export · visualize conversation trends",category:"AI/ML",highlights:["Timeline analysis · daily/weekly/monthly","Top emoji breakdown pie charts","Most active user leaderboard","WordCloud + Matplotlib charts"],tech:["Python","Streamlit","Pandas","Matplotlib","WordCloud","Regex","Emoji"]},
+  {num:"09",name:"Cuntrex — 2D Shooter Game",tagline:"Two-player 2D shooter built with Pygame",category:"Game",highlights:["Full game loop · collision detection","Health bar real-time rendering","Menu / play / retry screens","Background music + SFX via Pygame mixer"],tech:["Python","Pygame","OOP","Game Loop","Sprite Animation"]},
+  {num:"10",name:"SalesForce UI Clone",tagline:"Pixel-accurate Salesforce homepage clone",category:"Frontend",highlights:["Full layout: nav, hero, content strips","CSS-only responsive grid","Brand-faithful typography + spacing","Pure HTML/CSS — no frameworks"],tech:["HTML","CSS","Flexbox","Responsive Design"]},
 ];
 
-const CAT_COLORS = { Backend:C.v, "AI/ML":"#0EA5E9", Frontend:"#10B981", Game:"#F59E0B" };
-const CATEGORIES = ["All","Backend","AI/ML","Frontend","Game"];
-
-
+const CAT_COLORS={Backend:"#7C3AED","AI/ML":"#06B6D4",Frontend:"#10B981",Game:"#F59E0B"};
+const CATEGORIES=["All","Backend","AI/ML","Frontend","Game"];
 
 function ProjectCard({ p }) {
   const [hov, setHov] = useState(false);
-  const cc = CAT_COLORS[p.category] || C.v;
+  const cc=CAT_COLORS[p.category]||"#7C3AED";
   return (
-    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{
-      background: hov ? "var(--card-hover)" : C.paper, border:`1px solid rgba(13,148,136,0.1)`, borderRadius:16,
-      padding:"1.9rem", transition:"background 0.35s, transform 0.25s, box-shadow 0.25s",
-      transform: hov ? "translateY(-8px)" : "translateY(0)",
-      boxShadow: hov ? "0 24px 64px rgba(22,13,40,0.22)" : "0 2px 20px rgba(13,148,136,0.05)",
-      display:"flex", flexDirection:"column", cursor:"default",
-    }}>
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"1rem" }}>
-        <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
-          <span className="mono" style={{ fontSize:"0.65rem", color: hov ? "rgba(255,255,255,0.3)" : C.muted }}>/{p.num}</span>
-          <span style={{ fontSize:"0.6rem", fontWeight:700, padding:"0.18rem 0.6rem", borderRadius:100, background:`${cc}18`, color:cc, border:`1px solid ${cc}44`, fontFamily:"'JetBrains Mono',monospace" }}>{p.category}</span>
+    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ background:hov?"#1a0a2e":"var(--paper)", border:`3px solid ${cc}`, boxShadow:hov?`8px 8px 0 ${cc}`:`4px 4px 0 ${cc}`, padding:"1.6rem", transition:"all 0.1s", transform:hov?"translate(-4px,-4px)":"translate(0,0)", display:"flex", flexDirection:"column", cursor:"default" }}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"0.8rem"}}>
+        <div style={{display:"flex",gap:"0.4rem",alignItems:"center"}}>
+          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:hov?"rgba(255,255,255,0.4)":"var(--muted)"}}>#{p.num}</span>
+          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",fontWeight:700,padding:"0.15rem 0.5rem",background:`${cc}18`,color:cc,border:`1px solid ${cc}`}}>{p.category}</span>
         </div>
-        <div style={{ width:28, height:28, borderRadius:7, background: hov ? "rgba(13,148,136,0.3)" : C.vPale, display:"flex", alignItems:"center", justifyContent:"center", transition:"background 0.3s" }}>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={hov ? C.vLight : C.v} strokeWidth="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+        <div style={{width:24,height:24,background:hov?`${cc}33`:"var(--vPale)",border:`2px solid ${cc}`,display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.1s"}}>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={cc} strokeWidth="3"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
         </div>
       </div>
-      <h3 style={{ fontSize:"1rem", fontWeight:800, color: hov ? "#fff" : C.ink, marginBottom:"0.4rem", lineHeight:1.3, letterSpacing:"-0.2px" }}>{p.name}</h3>
-      <p style={{ fontSize:"0.8rem", color: hov ? "rgba(255,255,255,0.5)" : C.muted, marginBottom:"1rem", lineHeight:1.65 }}>{p.tagline}</p>
-      <div style={{ flex:1, marginBottom:"1.2rem" }}>
-        {p.highlights.map((h,i) => (
-          <div key={i} style={{ display:"flex", gap:"0.5rem", fontSize:"0.78rem", color: hov ? "rgba(255,255,255,0.6)" : C.muted, marginBottom:"0.38rem", lineHeight:1.55 }}>
-            <span style={{ color: hov ? C.vLight : C.v, flexShrink:0 }}>→</span>{h}
+      <h3 style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.65rem",fontWeight:800,color:hov?"#fff":"var(--ink)",marginBottom:"0.4rem",lineHeight:1.6}}>{p.name}</h3>
+      <p style={{fontSize:"0.88rem",color:hov?"rgba(255,255,255,0.6)":"var(--muted)",marginBottom:"0.9rem",lineHeight:1.7,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{p.tagline}</p>
+      <div style={{flex:1,marginBottom:"1rem"}}>
+        {p.highlights.map((h,i)=>(
+          <div key={i} style={{display:"flex",gap:"0.4rem",fontSize:"0.84rem",color:hov?"rgba(255,255,255,0.7)":"var(--muted)",marginBottom:"0.35rem",lineHeight:1.55,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+            <span style={{color:hov?"#A78BFA":cc,flexShrink:0,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",lineHeight:"1.8"}}>&#9658;</span>{h}
           </div>
         ))}
       </div>
-      <div style={{ display:"flex", flexWrap:"wrap", gap:"0.35rem", marginBottom:"1rem" }}>
-        {p.tech.map(t => (
-          <span key={t} className="mono" style={{
-            fontSize:"0.62rem", padding:"0.2rem 0.6rem", borderRadius:5,
-            background: hov ? "rgba(13,148,136,0.2)" : C.vPale,
-            color: hov ? C.vLight : C.v, border:`1px solid ${hov ? "rgba(13,148,136,0.3)" : "rgba(13,148,136,0.15)"}`,
-            transition:"background 0.3s, color 0.3s",
-          }}>{t}</span>
+      <div style={{display:"flex",flexWrap:"wrap",gap:"0.3rem",marginBottom:"0.8rem"}}>
+        {p.tech.map(t=>(
+          <span key={t} style={{fontFamily:"'Space Mono','Share Tech Mono',monospace",fontSize:"0.78rem",padding:"0.28rem 0.65rem",background:hov?"rgba(167,139,250,0.15)":"var(--vPale)",color:hov?"#A78BFA":cc,border:`1px solid ${hov?"rgba(167,139,250,0.3)":cc}`,transition:"all 0.1s"}}>{t}</span>
         ))}
       </div>
-      {(p.youtube || p.webapp || p.website || p.discord) && (
-        <div style={{ display:"flex", flexWrap:"wrap", gap:"0.5rem", paddingTop:"0.9rem", borderTop:`1px solid ${hov ? "rgba(255,255,255,0.08)" : "rgba(13,148,136,0.08)"}` }}>
-          {p.youtube && (
-            <a href={p.youtube} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#dc2626", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
-              onMouseEnter={e=>{e.currentTarget.style.background="#b91c1c";e.currentTarget.style.transform="translateY(-1px)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background="#dc2626";e.currentTarget.style.transform="";}}>
-              ▶ Demo
-            </a>
-          )}
-          {p.webapp && (
-            <a href={p.webapp} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#7c3aed", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
-              onMouseEnter={e=>{e.currentTarget.style.background="#6d28d9";e.currentTarget.style.transform="translateY(-1px)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background="#7c3aed";e.currentTarget.style.transform="";}}>
-              🌐 Live
-            </a>
-          )}
-          {p.website && (
-            <a href={p.website} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#0ea5e9", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
-              onMouseEnter={e=>{e.currentTarget.style.background="#0284c7";e.currentTarget.style.transform="translateY(-1px)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background="#0ea5e9";e.currentTarget.style.transform="";}}>
-              🔗 Website
-            </a>
-          )}
-          {p.discord && (
-            <a href={p.discord} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              style={{ flex:1, minWidth:"80px", textAlign:"center", padding:"0.45rem 0.7rem", borderRadius:7, background:"#5865f2", color:"#fff", textDecoration:"none", fontSize:"0.7rem", fontWeight:700, fontFamily:"'Syne',sans-serif", transition:"background 0.2s, transform 0.15s", display:"flex", alignItems:"center", justifyContent:"center", gap:"0.3rem" }}
-              onMouseEnter={e=>{e.currentTarget.style.background="#4752c4";e.currentTarget.style.transform="translateY(-1px)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background="#5865f2";e.currentTarget.style.transform="";}}>
-              + Add Bot
-            </a>
-          )}
+      {(p.youtube||p.webapp||p.website||p.discord)&&(
+        <div style={{display:"flex",flexWrap:"wrap",gap:"0.4rem",paddingTop:"0.8rem",borderTop:`2px solid ${hov?"rgba(255,255,255,0.08)":"rgba(124,58,237,0.1)"}`}}>
+          {p.youtube&&<a href={p.youtube} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#dc2626",color:"#fff",textDecoration:"none",fontSize:"0.78rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",border:"2px solid #991b1b",boxShadow:"2px 2px 0 #991b1b"}}>DEMO</a>}
+          {p.webapp&&<a href={p.webapp} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#7c3aed",color:"#fff",textDecoration:"none",fontSize:"0.78rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",border:"2px solid #4c1d95",boxShadow:"2px 2px 0 #4c1d95"}}>LIVE</a>}
+          {p.website&&<a href={p.website} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#0ea5e9",color:"#fff",textDecoration:"none",fontSize:"0.78rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",border:"2px solid #0284c7",boxShadow:"2px 2px 0 #0284c7"}}>SITE</a>}
+          {p.discord&&<a href={p.discord} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#5865f2",color:"#fff",textDecoration:"none",fontSize:"0.78rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",border:"2px solid #4752c4",boxShadow:"2px 2px 0 #4752c4"}}>ADD BOT</a>}
         </div>
       )}
     </div>
@@ -2623,33 +1715,32 @@ function ProjectCard({ p }) {
 
 function Projects() {
   const [active, setActive] = useState("All");
-  const filtered = active === "All" ? PROJECTS : PROJECTS.filter(p => p.category === active);
+  const filtered=active==="All"?PROJECTS:PROJECTS.filter(p=>p.category===active);
+  const CAT_COLORS_BTN={Backend:"#7C3AED","AI/ML":"#06B6D4",Frontend:"#10B981",Game:"#F59E0B",All:"#1a0a2e"};
   return (
-    <section id="projects" style={{ padding:"8rem 4rem", background:C.bg2 }} className="sec-pad">
-      <div style={{ maxWidth:1060, margin:"0 auto" }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Projects
+    <section id="projects" style={{padding:"8rem 4rem",background:"var(--bg2)",backgroundImage:"radial-gradient(ellipse 50% 60% at 10% 80%, rgba(124,58,237,0.06) 0%, transparent 60%)"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>PROJECTS
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
-          Things I've <span className="grad">built</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+          THINGS I'VE <span className="grad">BUILT</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"2rem", lineHeight:1.8 }}>10 projects spanning backends · ML models · AI bots · games · frontend clones</p>
-        <ProjectStatsBar />
-        <div className="rv d3" style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap", marginBottom:"2.5rem" }}>
-          {CATEGORIES.map(cat => (
-            <button key={cat} onClick={()=>setActive(cat)} style={{
-              padding:"0.45rem 1.2rem", borderRadius:100, cursor:"pointer",
-              border: active === cat ? "none" : `1px solid rgba(13,148,136,0.18)`,
-              background: active === cat ? "var(--filter-active-bg)" : "transparent",
-              color: active === cat ? "var(--filter-active-color)" : C.muted,
-              fontSize:"0.78rem", fontWeight:600, fontFamily:"'Syne',sans-serif", transition:"all 0.2s",
-            }}>
-              {cat} <span style={{opacity:.6, fontSize:"0.68rem"}}>({cat==="All" ? PROJECTS.length : PROJECTS.filter(p=>p.category===cat).length})</span>
-            </button>
-          ))}
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"1.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>10 projects: backends · ML models · AI bots · games · frontend clones</p>
+        <ProjectStatsBar/>
+        <div className="rv d3" style={{display:"flex",gap:"0.5rem",flexWrap:"wrap",marginBottom:"2rem"}}>
+          {CATEGORIES.map(cat=>{
+            const col=CAT_COLORS_BTN[cat]||"#7C3AED";
+            const isActive=active===cat;
+            return (
+              <button key={cat} onClick={()=>setActive(cat)} style={{ padding:"0.4rem 1rem", cursor:"pointer", border:`2px solid ${col}`, background:isActive?col:"transparent", color:isActive?"#fff":col, fontSize:"0.82rem", fontWeight:600, fontFamily:"'Pixelify Sans','Press Start 2P',monospace", boxShadow:isActive?`3px 3px 0 ${col}44`:`2px 2px 0 ${col}44`, transition:"all 0.1s" }}>
+                {cat} ({cat==="All"?PROJECTS.length:PROJECTS.filter(p=>p.category===cat).length})
+              </button>
+            );
+          })}
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:"1.3rem" }}>
-          {filtered.map(p => <ProjectCard key={p.num} p={p}/>)}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:"1.2rem"}}>
+          {filtered.map(p=><ProjectCard key={p.num} p={p}/>)}
         </div>
       </div>
     </section>
@@ -2657,167 +1748,97 @@ function Projects() {
 }
 
 /* ─────────────── SKILLS ─────────────── */
-const SKILL_LEVELS = [
-  { name:"DSA / Competitive Programming", pct:92, cat:"CS Core" },
-  { name:"Node.js / Express",             pct:90, cat:"Backend" },
-  { name:"Python / FastAPI",              pct:88, cat:"Backend" },
-  { name:"MySQL / ACID Design",           pct:85, cat:"Backend" },
-  { name:"Redis / BullMQ",               pct:82, cat:"Backend" },
-  { name:"MongoDB",                       pct:82, cat:"Database" },
-  { name:"LangChain / RAG",              pct:80, cat:"AI/ML"   },
-  { name:"Scikit-learn / XGBoost",       pct:78, cat:"AI/ML"   },
-  { name:"Docker",                        pct:75, cat:"DevOps"  },
-  { name:"React / Frontend",             pct:72, cat:"Frontend" },
+const SKILL_LEVELS=[
+  {name:"DSA / Competitive Programming",pct:92,cat:"CS Core"},
+  {name:"Node.js / Express",pct:90,cat:"Backend"},
+  {name:"Python / FastAPI",pct:88,cat:"Backend"},
+  {name:"MySQL / ACID Design",pct:85,cat:"Backend"},
+  {name:"Redis / BullMQ",pct:82,cat:"Backend"},
+  {name:"MongoDB",pct:82,cat:"Database"},
+  {name:"LangChain / RAG",pct:80,cat:"AI/ML"},
+  {name:"Scikit-learn / XGBoost",pct:78,cat:"AI/ML"},
+  {name:"Docker",pct:75,cat:"DevOps"},
+  {name:"React / Frontend",pct:72,cat:"Frontend"},
 ];
 
-const SKILL_GROUPS = [
-  { icon:"💻", label:"Languages",     items:["Python","JavaScript","C","C++","Java","HTML","CSS"] },
-  { icon:"🌐", label:"Web Tech",      items:["Node.js","Express.js","FastAPI","React","Tailwind","REST APIs","Streamlit"] },
-  { icon:"🗄️", label:"Databases",    items:["MySQL","MongoDB","Redis","FAISS","SQLite3"] },
-  { icon:"🤖", label:"AI / ML",       items:["LangChain","HuggingFace","RAG","Vector DBs","Pandas","NumPy","XGBoost"] },
-  { icon:"🔧", label:"Tools",         items:["Docker","Git","GitHub","Postman","Cloudinary","Groq","Jupyter"] },
-  { icon:"🧠", label:"Core Concepts", items:["System Design","DSA","ACID","Caching","Rate Limiting","OOP","Auth & AuthZ"] },
+const SKILL_GROUPS=[
+  {icon:"💻",label:"Languages",items:["Python","JavaScript","C","C++","Java","HTML","CSS"]},
+  {icon:"🌐",label:"Web Tech",items:["Node.js","Express.js","FastAPI","React","Tailwind","REST","Streamlit"]},
+  {icon:"🗄️",label:"Databases",items:["MySQL","MongoDB","Redis","FAISS","SQLite3"]},
+  {icon:"🤖",label:"AI / ML",items:["LangChain","HuggingFace","RAG","VectorDBs","Pandas","NumPy","XGBoost"]},
+  {icon:"🔧",label:"Tools",items:["Docker","Git","GitHub","Postman","Cloudinary","Groq","Jupyter"]},
+  {icon:"🧠",label:"Concepts",items:["System Design","DSA","ACID","Caching","Rate Limiting","OOP","Auth"]},
 ];
 
 function SkillBar({ name, pct, cat }) {
   const [vis, setVis] = useState(false);
   const ref = useRef(null);
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.3 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-  const catC = { Backend:C.v, "AI/ML":"#0EA5E9", Database:"#10B981", DevOps:C.accent, Frontend:"#F59E0B", "CS Core":C.vDeep };
-  const col = catC[cat] || C.v;
+  useEffect(()=>{ const obs=new IntersectionObserver(([e])=>{ if(e.isIntersecting)setVis(true); },{threshold:0.3}); if(ref.current)obs.observe(ref.current); return ()=>obs.disconnect(); },[]);
+  const catC={Backend:"#7C3AED","AI/ML":"#06B6D4",Database:"#10B981",DevOps:"#F59E0B",Frontend:"#EF4444","CS Core":"#A855F7"};
+  const col=catC[cat]||"#7C3AED";
   return (
-    <div ref={ref} style={{ marginBottom:"1.2rem" }}>
-      <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"0.4rem" }}>
-        <span style={{ fontSize:"0.85rem", fontWeight:600, color:C.ink }}>{name}</span>
-        <div style={{ display:"flex", alignItems:"center", gap:"0.5rem" }}>
-          <span className="mono" style={{ fontSize:"0.6rem", color:col, fontWeight:700, background:`${col}18`, padding:"0.1rem 0.5rem", borderRadius:4 }}>{cat}</span>
-          <span className="mono" style={{ fontSize:"0.72rem", color:C.muted }}>{pct}%</span>
+    <div ref={ref} style={{marginBottom:"1.1rem"}}>
+      <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
+        <span style={{fontSize:"0.75rem",fontWeight:600,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{name}</span>
+        <div style={{display:"flex",alignItems:"center",gap:"0.4rem"}}>
+          <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:col,fontWeight:700,background:`${col}18`,padding:"0.08rem 0.4rem",border:`1px solid ${col}`}}>{cat}</span>
+          <span style={{fontFamily:"'Space Mono','Share Tech Mono',monospace",fontSize:"0.7rem",color:"var(--muted)"}}>{pct}%</span>
         </div>
       </div>
-      <div style={{ height:6, background:"rgba(13,148,136,0.08)", borderRadius:3, overflow:"hidden" }}>
-        <div style={{
-          height:"100%", borderRadius:3,
-          background:`linear-gradient(90deg,${col},${col}99)`,
-          width: vis ? `${pct}%` : "0%",
-          transition:"width 1.3s cubic-bezier(0.16,1,0.3,1)",
-          transitionDelay: vis ? "0.2s" : "0s",
-        }}/>
+      <div style={{height:10,background:"rgba(124,58,237,0.07)",border:"2px solid rgba(124,58,237,0.18)",borderRadius:0}}>
+        <div style={{height:"100%",background:`linear-gradient(90deg,${col},${col}cc)`,boxShadow:`0 0 6px ${col}66`,width:vis?`${pct}%`:"0%",transition:"width 1.3s cubic-bezier(0.25,1,0.5,1) 0.2s"}}/>
       </div>
     </div>
   );
 }
 
-/* ─────────────── FEATURE 10: RADIAL RING SKILL VIEW ─────────────── */
 function SkillRings() {
   const [vis, setVis] = useState(false);
   const ref = useRef(null);
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.2 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const rings = [
-    { name:"DSA / CP",    pct:92, col:"#0D9488", r:110 },
-    { name:"Node.js",     pct:90, col:"#38BDF8", r:92  },
-    { name:"Python",      pct:88, col:"#0EA5E9", r:74  },
-    { name:"MySQL/ACID",  pct:85, col:"#10B981", r:56  },
-    { name:"Redis",       pct:82, col:"#F59E0B", r:38  },
-    { name:"LangChain",   pct:80, col:"#EF4444", r:20  },
+  useEffect(()=>{ const obs=new IntersectionObserver(([e])=>{ if(e.isIntersecting)setVis(true); },{threshold:0.2}); if(ref.current)obs.observe(ref.current); return ()=>obs.disconnect(); },[]);
+  const rings=[
+    {name:"DSA / CP",pct:92,col:"#7C3AED",r:110},
+    {name:"Node.js",pct:90,col:"#06B6D4",r:92},
+    {name:"Python",pct:88,col:"#10B981",r:74},
+    {name:"MySQL/ACID",pct:85,col:"#F59E0B",r:56},
+    {name:"Redis",pct:82,col:"#EF4444",r:38},
+    {name:"LangChain",pct:80,col:"#A855F7",r:20},
   ];
-
-  const cx = 130, cy = 130;
-  const circumference = (r) => 2 * Math.PI * r;
-  const dash = (pct, r) => (pct / 100) * circumference(r);
-
+  const cx=130,cy=130;
+  const circumference=(r)=>2*Math.PI*r;
+  const dash=(pct,r)=>(pct/100)*circumference(r);
   return (
-    <div ref={ref} style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"4rem", alignItems:"center" }} className="grid2">
-      {/* SVG Rings */}
-      <div style={{ display:"flex", justifyContent:"center" }}>
-        <svg width="260" height="260" viewBox="0 0 260 260" style={{ overflow:"visible" }}>
-          {/* Background rings */}
-          {rings.map(({ r }) => (
-            <circle key={`bg-${r}`} cx={cx} cy={cy} r={r}
-              fill="none" stroke="rgba(13,148,136,0.08)" strokeWidth="8"
-            />
-          ))}
-          {/* Animated foreground rings */}
-          {rings.map(({ pct, col, r, name }) => {
-            const c = circumference(r);
-            const d = dash(pct, r);
-            return (
-              <circle key={name} cx={cx} cy={cy} r={r}
-                fill="none"
-                stroke={col}
-                strokeWidth="8"
-                strokeLinecap="round"
-                strokeDasharray={`${vis ? d : 0} ${c}`}
-                strokeDashoffset={c * 0.25}  /* start from top */
-                style={{
-                  transition: vis ? `stroke-dasharray 1.4s cubic-bezier(0.16,1,0.3,1) ${(rings.findIndex(x=>x.r===r)) * 0.1}s` : "none",
-                  filter:`drop-shadow(0 0 6px ${col}66)`,
-                  transform:"rotate(-90deg)",
-                  transformOrigin:`${cx}px ${cy}px`,
-                }}
-              />
-            );
+    <div ref={ref} style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"3rem",alignItems:"center"}} className="grid2">
+      <div style={{display:"flex",justifyContent:"center"}}>
+        <svg width="260" height="260" viewBox="0 0 260 260" style={{overflow:"visible"}}>
+          {rings.map(({r})=><circle key={`bg-${r}`} cx={cx} cy={cy} r={r} fill="none" stroke="rgba(124,58,237,0.1)" strokeWidth="8" strokeDasharray="4,2"/>)}
+          {rings.map(({pct,col,r,name})=>{
+            const c=circumference(r); const d=dash(pct,r);
+            return <circle key={name} cx={cx} cy={cy} r={r} fill="none" stroke={col} strokeWidth="8" strokeLinecap="square" strokeDasharray={`${vis?d:0} ${c}`} strokeDashoffset={c*0.25} style={{transition:vis?`stroke-dasharray 1.4s ease ${(rings.findIndex(x=>x.r===r))*0.1}s`:"none",transform:"rotate(-90deg)",transformOrigin:`${cx}px ${cy}px`}}/>;
           })}
-          {/* Center text */}
-          <text x={cx} y={cy - 8} textAnchor="middle" fill="var(--ink)" fontSize="22" fontWeight="800" fontFamily="'Syne',sans-serif">87%</text>
-          <text x={cx} y={cy + 10} textAnchor="middle" fill="var(--muted)" fontSize="9" fontFamily="'JetBrains Mono',monospace">avg proficiency</text>
+          <text x={cx} y={cy-8} textAnchor="middle" fill="var(--ink)" fontSize="24" fontWeight="800" fontFamily="'Pixelify Sans','Press Start 2P',monospace">87%</text>
+          <text x={cx} y={cy+12} textAnchor="middle" fill="var(--muted)" fontSize="8" fontFamily="'Space Mono','Share Tech Mono',monospace">AVG SKILL</text>
         </svg>
       </div>
-
-      {/* Legend */}
-      <div style={{ display:"flex", flexDirection:"column", gap:"0.85rem" }}>
-        {rings.map(({ name, pct, col }, i) => (
-          <div key={name} style={{
-            display:"flex", alignItems:"center", gap:"1rem",
-            padding:"0.65rem 0.9rem",
-            background:"var(--paper)",
-            border:"1px solid rgba(13,148,136,0.08)",
-            borderLeft:`3px solid ${col}`,
-            borderRadius:10,
-            transition:"transform 0.2s, box-shadow 0.2s",
-            animation: vis ? `tagIn 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s both` : "none",
-          }}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translateX(4px)";e.currentTarget.style.boxShadow=`0 4px 16px ${col}20`;}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="";}}
+      <div style={{display:"flex",flexDirection:"column",gap:"0.7rem"}}>
+        {rings.map(({name,pct,col},i)=>(
+          <div key={name} style={{display:"flex",alignItems:"center",gap:"0.8rem",padding:"0.6rem 0.8rem",background:"var(--paper)",border:`2px solid ${col}`,boxShadow:`3px 3px 0 ${col}`,animation:vis?`tagIn 0.5s ease ${i*0.08}s both`:"none",transition:"transform 0.1s"}}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translateX(4px)";e.currentTarget.style.filter="brightness(1.05)"}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.filter=""}}
           >
-            {/* Mini ring */}
-            <svg width="32" height="32" viewBox="0 0 32 32" style={{ flexShrink:0 }}>
-              <circle cx="16" cy="16" r="12" fill="none" stroke="rgba(13,148,136,0.1)" strokeWidth="3"/>
-              <circle cx="16" cy="16" r="12" fill="none" stroke={col} strokeWidth="3"
-                strokeLinecap="round"
-                strokeDasharray={`${vis ? (pct/100)*75.4 : 0} 75.4`}
-                style={{
-                  transition: vis ? `stroke-dasharray 1.4s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s` : "none",
-                  transform:"rotate(-90deg)", transformOrigin:"16px 16px",
-                  filter:`drop-shadow(0 0 3px ${col}88)`,
-                }}
-              />
+            <svg width="30" height="30" viewBox="0 0 30 30" style={{flexShrink:0}}>
+              <circle cx="15" cy="15" r="11" fill="none" stroke="rgba(124,58,237,0.1)" strokeWidth="3"/>
+              <circle cx="15" cy="15" r="11" fill="none" stroke={col} strokeWidth="3" strokeLinecap="square" strokeDasharray={`${vis?(pct/100)*69:0} 69`} style={{transition:vis?`stroke-dasharray 1.4s ease ${i*0.1}s`:"none",transform:"rotate(-90deg)",transformOrigin:"15px 15px"}}/>
             </svg>
-            <div style={{ flex:1 }}>
-              <div style={{ fontSize:"0.85rem", fontWeight:700, color:"var(--ink)" }}>{name}</div>
-              <div style={{ height:3, background:"rgba(13,148,136,0.08)", borderRadius:2, marginTop:"0.3rem" }}>
-                <div style={{
-                  height:"100%", width: vis ? `${pct}%` : "0%",
-                  background:`linear-gradient(90deg,${col},${col}88)`,
-                  borderRadius:2,
-                  transition: vis ? `width 1.4s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s` : "none",
-                }}/>
+            <div style={{flex:1}}>
+              <div style={{fontSize:"0.78rem",fontWeight:700,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{name}</div>
+              <div style={{height:3,background:"rgba(124,58,237,0.08)",marginTop:"0.3rem"}}>
+                <div style={{height:"100%",width:vis?`${pct}%`:"0%",background:col,transition:vis?`width 1.4s ease ${i*0.08}s`:"none"}}/>
               </div>
             </div>
-            <span className="mono" style={{ fontSize:"0.78rem", fontWeight:800, color:col, minWidth:"2.2rem", textAlign:"right" }}>{pct}%</span>
+            <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:col,minWidth:"2rem",textAlign:"right"}}>{pct}%</span>
           </div>
         ))}
-        <p style={{ fontSize:"0.75rem", color:"var(--muted)", marginTop:"0.5rem", lineHeight:1.7, fontStyle:"italic" }}>
-          Each ring represents real project depth, not just familiarity.
-        </p>
       </div>
     </div>
   );
@@ -2825,145 +1846,114 @@ function SkillRings() {
 
 function Skills() {
   const [tab, setTab] = useState("bars");
+  const TABS=[["bars","SKILL BARS"],["tags","TECH TAGS"],["radar","RADAR"],["rings","RINGS"]];
   return (
-    <section id="skills" style={{ padding:"8rem 4rem", background:C.bg, position:"relative", overflow:"hidden" }} className="sec-pad">
-      <div className="float-bg" style={{ position:"absolute", inset:0, pointerEvents:"none" }}>
-        {[
-          { Icon:Monitor,    top:"10%", left:"90%", sz:34, anim:"iconDrift  10s ease-in-out infinite", delay:"0s",   col:C.v      },
-          { Icon:FlaskConical,top:"60%",left:"3%",  sz:30, anim:"iconDriftB 8s  ease-in-out infinite", delay:"1.5s", col:C.accent },
-          { Icon:Bot,        top:"85%", left:"85%", sz:32, anim:"iconDriftC 12s ease-in-out infinite", delay:"3s",   col:C.vLight },
-          { Icon:Database,   top:"30%", left:"96%", sz:28, anim:"iconDrift  9s  ease-in-out infinite", delay:"2s",   col:C.v      },
-          { Icon:Cpu,        top:"78%", left:"48%", sz:30, anim:"iconDriftD 11s ease-in-out infinite", delay:"4s",   col:C.accent },
-          { Icon:Activity,   top:"5%",  left:"40%", sz:26, anim:"iconDriftB 13s ease-in-out infinite", delay:"2.5s", col:C.vLight },
-          { Icon:Shield,     top:"92%", left:"25%", sz:28, anim:"iconDriftC 9s  ease-in-out infinite", delay:"1s",   col:C.v      },
-        ].map(({Icon,top,left,sz,anim,delay,col},i) => (
-          <div key={i} style={{ position:"absolute", top, left, opacity:0.08, animation:anim, animationDelay:delay, color:col }}><Icon size={sz} strokeWidth={1} /></div>
-        ))}
-      </div>
-      <div style={{ maxWidth:1060, margin:"0 auto", position:"relative", zIndex:1 }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Skills
+    <section id="skills" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden",backgroundImage:"radial-gradient(ellipse 60% 50% at 90% 50%, rgba(6,182,212,0.05) 0%, transparent 60%)"}} className="sec-pad">
+      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(124,58,237,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.05) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none"}}/>
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>SKILLS
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
-          My <span className="grad">toolkit</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+          MY <span className="grad">TOOLKIT</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"2rem", lineHeight:1.8 }}>Technologies and concepts I reach for every day.</p>
-        <div className="rv d3" style={{ display:"flex", gap:"0.4rem", marginBottom:"2.5rem", flexWrap:"wrap" }}>
-          {[["bars","Proficiency Bars"],["tags","Tech Tags"],["radar","Radar Chart"],["rings","Skill Rings"]].map(([k,l]) => (
-            <button key={k} onClick={()=>setTab(k)} style={{
-              padding:"0.45rem 1.3rem", borderRadius:100, cursor:"pointer",
-              fontSize:"0.78rem", fontWeight:600, fontFamily:"'Syne',sans-serif",
-              border: tab===k ? "none" : `1px solid rgba(13,148,136,0.18)`,
-              background: tab===k ? C.v : "transparent",
-              color: tab===k ? "#fff" : C.muted, transition:"all 0.2s",
-            }}>{l}</button>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"1.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Technologies I reach for every day.</p>
+        <div className="rv d3" style={{display:"flex",gap:"0.4rem",marginBottom:"2rem",flexWrap:"wrap"}}>
+          {TABS.map(([k,l])=>(
+            <button key={k} onClick={()=>setTab(k)} style={{padding:"0.4rem 1rem",cursor:"pointer",border:`2px solid #7C3AED`,background:tab===k?"#7C3AED":"transparent",color:tab===k?"#fff":"#7C3AED",fontSize:"0.78rem",fontWeight:600,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",boxShadow:tab===k?"3px 3px 0 #4C1D95":"2px 2px 0 #4C1D95",transition:"all 0.1s"}}>{l}</button>
           ))}
         </div>
-        {tab === "bars" && (
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 4rem" }} className="grid2 skill-bar-grid">
-            {SKILL_LEVELS.map(s => <SkillBar key={s.name} {...s}/>)}
+        {tab==="bars"&&(
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 4rem"}} className="grid2 skill-bar-grid">
+            {SKILL_LEVELS.map(s=><SkillBar key={s.name} {...s}/>)}
           </div>
         )}
-        {tab === "tags" && (
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:"1.2rem" }}>
-            {SKILL_GROUPS.map((s, i) => (
-              <div key={s.label} style={{
-                background:C.paper, border:`1px solid rgba(13,148,136,0.08)`, borderRadius:14, padding:"1.5rem",
-                animation:`tagIn 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s both`,
-              }}>
-                <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", marginBottom:"1rem" }}>
-                  <div style={{ width:36, height:36, borderRadius:10, background:C.vPale, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1rem" }}>{s.icon}</div>
-                  <div style={{ fontSize:"0.9rem", fontWeight:700, color:C.ink }}>{s.label}</div>
-                </div>
-                <div style={{ display:"flex", flexWrap:"wrap", gap:"0.4rem" }}>
-                  {s.items.map(t => <span key={t} className="chip" style={{fontSize:"0.74rem"}}>{t}</span>)}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {tab === "radar" && (
-          <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"3rem", alignItems:"center" }} className="grid2">
-            <SkillRadar />
-            <div>
-              {[
-                { label:"Backend",  val:90, col:"#0D9488" },
-                { label:"DSA / CP", val:92, col:"#38BDF8" },
-                { label:"AI / ML",  val:80, col:"#0EA5E9" },
-                { label:"Databases",val:85, col:"#10B981" },
-                { label:"DevOps",   val:75, col:"#F59E0B" },
-                { label:"Frontend", val:72, col:"#EF4444" },
-              ].map(s => (
-                <div key={s.label} style={{ marginBottom:"1rem" }}>
-                  <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"0.35rem" }}>
-                    <span style={{ fontSize:"0.82rem", fontWeight:700, color:C.ink }}>{s.label}</span>
-                    <span className="mono" style={{ fontSize:"0.72rem", color:s.col, fontWeight:700 }}>{s.val}%</span>
+        {tab==="tags"&&(
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:"1rem"}}>
+            {SKILL_GROUPS.map((s,i)=>{
+              const GCOLS=["#7C3AED","#06B6D4","#10B981","#F59E0B","#EF4444","#A855F7"];
+              const gc=GCOLS[i%GCOLS.length];
+              return (
+                <div key={s.label} style={{background:"var(--paper)",border:`2px solid ${gc}`,padding:"1.2rem",boxShadow:`4px 4px 0 ${gc}`,animation:`tagIn 0.5s ease ${i*0.07}s both`}}>
+                  <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"0.8rem"}}>
+                    <div style={{width:32,height:32,background:`${gc}18`,border:`2px solid ${gc}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.9rem",boxShadow:`2px 2px 0 ${gc}`}}>{s.icon}</div>
+                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",fontWeight:700,color:"var(--ink)"}}>{s.label}</div>
                   </div>
-                  <div style={{ height:6, background:"rgba(13,148,136,0.08)", borderRadius:3 }}>
-                    <div style={{ height:"100%", width:`${s.val}%`, background:`linear-gradient(90deg,${s.col},${s.col}88)`, borderRadius:3, transition:"width 1s ease" }}/>
+                  <div style={{display:"flex",flexWrap:"wrap",gap:"0.35rem"}}>
+                    {s.items.map(t=><span key={t} className="chip" style={{fontSize:"0.65rem",borderColor:gc,color:gc,boxShadow:`2px 2px 0 ${gc}`}}>{t}</span>)}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+        {tab==="radar"&&(
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"3rem",alignItems:"center"}} className="grid2">
+            <SkillRadar/>
+            <div>
+              {[{label:"Backend",val:90,col:"#7C3AED"},{label:"DSA / CP",val:92,col:"#06B6D4"},{label:"AI / ML",val:80,col:"#10B981"},{label:"Databases",val:85,col:"#F59E0B"},{label:"DevOps",val:75,col:"#EF4444"},{label:"Frontend",val:72,col:"#A855F7"}].map(s=>(
+                <div key={s.label} style={{marginBottom:"0.8rem"}}>
+                  <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
+                    <span style={{fontSize:"0.9rem",fontWeight:700,color:"var(--ink)",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{s.label}</span>
+                    <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",color:s.col,fontWeight:700}}>{s.val}%</span>
+                  </div>
+                  <div style={{height:6,background:"rgba(124,58,237,0.08)",border:`1px solid ${s.col}44`}}>
+                    <div style={{height:"100%",width:`${s.val}%`,background:s.col,transition:"width 1s ease"}}/>
                   </div>
                 </div>
               ))}
-              <p style={{ fontSize:"0.78rem", color:C.muted, marginTop:"1.5rem", lineHeight:1.7, fontStyle:"italic" }}>
-                Ratings reflect hands-on project experience, not just course completion.
-              </p>
             </div>
           </div>
         )}
-        {tab === "rings" && <SkillRings />}
+        {tab==="rings"&&<SkillRings/>}
       </div>
     </section>
   );
 }
 
 /* ─────────────── ACHIEVEMENTS ─────────────── */
-const ACHIEVEMENTS = [
-  { icon:"🏆", title:"Dean's Excellence Award",  desc:"Received across multiple semesters for maintaining a 9.0+ CGPA at Manipal University Jaipur.", col:"#F59E0B" },
-  { icon:"🔥", title:"900+ DSA Problems",        desc:"Consistent problem solving on LeetCode, Codeforces, and other competitive platforms.", col:C.v },
-  { icon:"⚡", title:"Top 0.3% on LeetCode",    desc:"Ranked globally in the top 0.3% of all LeetCode users worldwide through daily practice.", col:"#0EA5E9" },
-  { icon:"🚀", title:"MUJHackX Round 2",         desc:"Qualified for Round 2 among 1300+ participants at MUJHackX at Manipal University Jaipur.", col:"#10B981" },
+const ACHIEVEMENTS=[
+  {icon:"🏆",title:"DEAN'S EXCELLENCE AWARD",desc:"Received across multiple semesters for maintaining a 9.0+ CGPA at Manipal University Jaipur.",col:"#F59E0B"},
+  {icon:"🔥",title:"900+ DSA PROBLEMS",desc:"Consistent problem solving on LeetCode, Codeforces, and other competitive platforms.",col:"#7C3AED"},
+  {icon:"⚡",title:"TOP 0.3% LEETCODE",desc:"Ranked globally in the top 0.3% of all LeetCode users worldwide. Beats 99.7%.",col:"#06B6D4"},
+  {icon:"🚀",title:"MUJHACKX ROUND 2",desc:"Qualified for Round 2 among 1300+ participants at MUJHackX hackathon.",col:"#10B981"},
 ];
 
 function Achievements() {
   return (
-    <section id="achievements" style={{ padding:"8rem 4rem", background:C.bg2 }} className="sec-pad">
-      <div style={{ maxWidth:1060, margin:"0 auto" }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Achievements
+    <section id="achievements" style={{padding:"8rem 4rem",background:"var(--bg2)",backgroundImage:"radial-gradient(ellipse 50% 60% at 10% 80%, rgba(124,58,237,0.06) 0%, transparent 60%)"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>ACHIEVEMENTS
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
-          Milestones & <span className="grad">recognition</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+          MILESTONES & <span className="grad">RECOGNITION</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"3rem", lineHeight:1.8 }}>Consistent performance across academics, competitive programming, and hackathons.</p>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))", gap:"1.3rem" }}>
-          {ACHIEVEMENTS.map((a,i) => (
-            <div key={a.title} className={`rv d${i+1}`} style={{
-              background:C.paper, border:`1px solid rgba(13,148,136,0.08)`, borderRadius:16, padding:"2rem",
-              position:"relative", overflow:"hidden", transition:"transform 0.25s, box-shadow 0.25s",
-            }}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-6px)";e.currentTarget.style.boxShadow=`0 20px 56px ${a.col}22`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="";}}
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Consistent performance across academics, CP, and hackathons.</p>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:"1.2rem"}}>
+          {ACHIEVEMENTS.map((a,i)=>(
+            <div key={a.title} className={`rv d${i+1}`} style={{background:"var(--paper)",border:`3px solid ${a.col}`,padding:"1.8rem",boxShadow:`5px 5px 0 ${a.col}`,position:"relative",overflow:"hidden",transition:"transform 0.1s,box-shadow 0.1s"}}
+              onMouseEnter={e=>{e.currentTarget.style.transform="translate(-2px,-2px)";e.currentTarget.style.boxShadow=`7px 7px 0 ${a.col}`;}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`5px 5px 0 ${a.col}`;}}
             >
-              <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:a.col, borderRadius:"16px 16px 0 0" }}/>
-              <div style={{ fontSize:"2.4rem", marginBottom:"1rem" }}>{a.icon}</div>
-              <div style={{ fontSize:"1rem", fontWeight:800, color:C.ink, marginBottom:"0.5rem" }}>{a.title}</div>
-              <div style={{ fontSize:"0.84rem", color:C.muted, lineHeight:1.75 }}>{a.desc}</div>
+              <div style={{fontSize:"2rem",marginBottom:"0.8rem"}}>{a.icon}</div>
+              <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)",marginBottom:"0.5rem",lineHeight:1.6}}>{a.title}</div>
+              <div style={{fontSize:"0.8rem",color:"var(--muted)",lineHeight:1.75,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{a.desc}</div>
             </div>
           ))}
         </div>
-
-        {/* LeetCode stat card */}
-        <div className="rv d5" style={{ marginTop:"2rem", background:"#0F172A", borderRadius:18, padding:"2.5rem", display:"flex", alignItems:"center", gap:"3rem", flexWrap:"wrap" }}>
+        {/* LeetCode stat */}
+        <div className="rv d5" style={{marginTop:"1.5rem",background:"#1a0a2e",border:"3px solid #7C3AED",padding:"2rem",display:"flex",alignItems:"center",gap:"3rem",flexWrap:"wrap",boxShadow:"6px 6px 0 #7C3AED"}}>
           <div>
-            <div className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.4)", letterSpacing:"2px", textTransform:"uppercase", marginBottom:"0.6rem" }}>LeetCode Stats</div>
-            <div className="serif" style={{ fontSize:"3.5rem", fontWeight:400, color:"#fff", letterSpacing:"-2px", fontStyle:"italic" }}>Top <span style={{color:C.vLight}}>0.3%</span></div>
-            <div style={{ color:"rgba(255,255,255,0.5)", fontSize:"0.85rem", marginTop:"0.3rem" }}>Global Rank · 900+ Problems</div>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"rgba(255,255,255,0.4)",letterSpacing:"2px",marginBottom:"0.5rem"}}>LEETCODE STATS</div>
+            <div style={{fontFamily:"'VT323',monospace",fontSize:"3rem",color:"#fff",letterSpacing:"-1px",lineHeight:1}}>TOP <span style={{color:"#A78BFA"}}>0.3%</span></div>
+            <div style={{color:"rgba(255,255,255,0.5)",fontSize:"0.75rem",marginTop:"0.2rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Global Rank · 900+ Problems</div>
           </div>
-          <div style={{ display:"flex", gap:"2.5rem", flexWrap:"wrap" }}>
-            {[["900+","Problems Solved"],["Top 0.3%","Global Rank"],["All Levels","Easy · Med · Hard"]].map(([n,l]) => (
-              <div key={l} style={{ textAlign:"center" }}>
-                <div className="mono" style={{ fontSize:"1.3rem", color:C.vLight, fontWeight:500 }}>{n}</div>
-                <div style={{ fontSize:"0.72rem", color:"rgba(255,255,255,0.4)", marginTop:"0.2rem" }}>{l}</div>
+          <div style={{display:"flex",gap:"2rem",flexWrap:"wrap"}}>
+            {[["900+","PROBLEMS"],["TOP 0.3%","GLOBAL RANK"],["ALL LEVELS","EASY-MED-HARD"]].map(([n,l])=>(
+              <div key={l} style={{textAlign:"center"}}>
+                <div style={{fontFamily:"'VT323',monospace",fontSize:"1.5rem",color:"#A78BFA",fontWeight:500}}>{n}</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"rgba(255,255,255,0.4)",marginTop:"0.2rem"}}>{l}</div>
               </div>
             ))}
           </div>
@@ -2974,72 +1964,43 @@ function Achievements() {
 }
 
 /* ─────────────── BLOG ─────────────── */
-const BLOGS = [
-  {
-    num: "01",
-    title: "Building a Real-Time Stock Trading Backend with Redis & BullMQ",
-    excerpt: "A deep-dive into designing a high-performance trading system — how Redis Sorted Sets power sub-50ms leaderboards, how BullMQ handles repeatable price jobs, and how MySQL row-level locking keeps concurrent trades ACID-safe.",
-    tags: ["Node.js", "Redis", "BullMQ", "System Design"],
-    date: "Jan 2025",
-    readTime: "8 min read",
-    col: "#0D9488",
-    href: "#",
-  },
-  {
-    num: "02",
-    title: "RAG from Scratch: Building an AI Discord Bot with LangChain & FAISS",
-    excerpt: "How I built a retrieval-augmented generation bot that ingests PDFs and web pages, creates per-guild persistent vector stores, and answers contextual questions using Groq's Llama 3.3 — all inside Discord.",
-    tags: ["LangChain", "FAISS", "RAG", "Python", "Groq"],
-    date: "Feb 2025",
-    readTime: "11 min read",
-    col: "#0EA5E9",
-    href: "#",
-  },
+const BLOGS=[
+  {num:"01",title:"Building a Real-Time Stock Trading Backend with Redis & BullMQ",excerpt:"A deep-dive into designing a high-performance trading system — Redis Sorted Sets, BullMQ price jobs, and ACID-safe concurrent trades.",tags:["Node.js","Redis","BullMQ","System Design"],date:"JAN 2025",readTime:"8 MIN",col:"#7C3AED",href:"#"},
+  {num:"02",title:"RAG from Scratch: Building an AI Discord Bot with LangChain & FAISS",excerpt:"How I built a retrieval-augmented generation bot that ingests PDFs and web pages, per-guild vector stores, and answers via Groq Llama 3.3.",tags:["LangChain","FAISS","RAG","Python","Groq"],date:"FEB 2025",readTime:"11 MIN",col:"#06B6D4",href:"#"},
 ];
 
 function Blog() {
   return (
-    <section id="blog" className="sec-pad sec-transition" style={{ padding:"8rem 4rem", background:C.bg2 }}>
-      <div style={{ maxWidth:1060, margin:"0 auto" }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Writing
+    <section id="blog" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg2)"}}>
+      <div style={{maxWidth:1060,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>WRITING
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
-          Blog & <span className="grad">Articles</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+          BLOG & <span className="grad">ARTICLES</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"3rem", lineHeight:1.8 }}>
-          Writing about things I build — the problems, the design decisions, and what I learned.
-        </p>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"1.5rem" }} className="grid2">
-          {BLOGS.map((b, i) => (
-            <a key={b.num} href={b.href} className={`rv d${i+1}`} style={{
-              display:"block", textDecoration:"none",
-              background:C.paper, border:`1px solid rgba(13,148,136,0.1)`,
-              borderRadius:16, padding:"2rem", position:"relative", overflow:"hidden",
-              transition:"transform 0.25s, box-shadow 0.25s",
-              boxShadow:"0 2px 20px rgba(13,148,136,0.05)",
-            }}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-6px)";e.currentTarget.style.boxShadow=`0 20px 56px ${b.col}22`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 20px rgba(13,148,136,0.05)";}}
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Writing about what I build — problems, design decisions, learnings.</p>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"1.2rem"}} className="grid2">
+          {BLOGS.map((b,i)=>(
+            <a key={b.num} href={b.href} className={`rv d${i+1} shimmer-hover`} style={{display:"block",textDecoration:"none",background:"var(--paper)",border:`3px solid ${b.col}`,padding:"1.8rem",position:"relative",overflow:"hidden",boxShadow:`5px 5px 0 ${b.col}`,transition:"all 0.1s"}}
+              onMouseEnter={e=>{e.currentTarget.style.transform="translate(-2px,-2px)";e.currentTarget.style.boxShadow=`7px 7px 0 ${b.col}`;}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`5px 5px 0 ${b.col}`;}}
             >
-              {/* Top accent line */}
-              <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg,${b.col},${b.col}88)`, borderRadius:"16px 16px 0 0" }}/>
-              <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:"1.2rem" }}>
-                <span className="mono" style={{ fontSize:"0.65rem", color:C.muted }}>/{b.num}</span>
-                <div style={{ display:"flex", gap:"0.6rem", alignItems:"center" }}>
-                  <span className="mono" style={{ fontSize:"0.62rem", color:C.muted }}>{b.date}</span>
-                  <span style={{ width:3, height:3, borderRadius:"50%", background:C.muted, display:"inline-block" }}/>
-                  <span className="mono" style={{ fontSize:"0.62rem", color:b.col, fontWeight:700 }}>{b.readTime}</span>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"1rem"}}>
+                <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"var(--muted)"}}>#{b.num}</span>
+                <div style={{display:"flex",gap:"0.5rem",alignItems:"center"}}>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)"}}>{b.date}</span>
+                  <span style={{width:4,height:4,background:"var(--muted)",display:"inline-block"}}/>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:b.col,fontWeight:700}}>{b.readTime}</span>
                 </div>
               </div>
-              <h3 style={{ fontSize:"1rem", fontWeight:800, color:C.ink, lineHeight:1.4, marginBottom:"0.8rem" }}>{b.title}</h3>
-              <p style={{ fontSize:"0.82rem", color:C.muted, lineHeight:1.75, marginBottom:"1.2rem" }}>{b.excerpt}</p>
-              <div style={{ display:"flex", flexWrap:"wrap", gap:"0.35rem", marginBottom:"1.2rem" }}>
-                {b.tags.map(t => <span key={t} className="chip" style={{ fontSize:"0.68rem" }}>{t}</span>)}
+              <h3 style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.65rem",fontWeight:800,color:"var(--ink)",lineHeight:1.7,marginBottom:"0.7rem"}}>{b.title}</h3>
+              <p style={{fontSize:"0.9rem",color:"var(--muted)",lineHeight:1.8,marginBottom:"1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{b.excerpt}</p>
+              <div style={{display:"flex",flexWrap:"wrap",gap:"0.3rem",marginBottom:"1rem"}}>
+                {b.tags.map(t=><span key={t} className="chip" style={{fontSize:"0.6rem",borderColor:b.col,color:b.col,boxShadow:`2px 2px 0 ${b.col}`}}>{t}</span>)}
               </div>
-              <div style={{ display:"flex", alignItems:"center", gap:"0.4rem", fontSize:"0.8rem", fontWeight:700, color:b.col }}>
-                Read article
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+              <div style={{display:"flex",alignItems:"center",gap:"0.3rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",fontWeight:700,color:b.col}}>
+                READ &gt;&gt;
               </div>
             </a>
           ))}
@@ -3050,102 +2011,65 @@ function Blog() {
 }
 
 /* ─────────────── TIMELINE ─────────────── */
-const TIMELINE_EVENTS = [
-  { year:"2023", month:"Aug", icon:"🎓", title:"Started B.Tech CSE", sub:"Manipal University Jaipur", desc:"Began Computer Science degree. Immediately dove into DSA and competitive programming.", col:"#0D9488" },
-  { year:"2023", month:"Dec", icon:"🏆", title:"TLE Eliminators — CP Level 1", sub:"Competitive Programming", desc:"Completed Level 1 of TLE Eliminators' competitive programming course. Foundation in C++ and algorithmic thinking.", col:"#38BDF8" },
-  { year:"2024", month:"Mar", icon:"⭐", title:"Dean's Excellence Award — Sem 1", sub:"9.05 CGPA", desc:"Awarded Dean's Excellence for outstanding academic performance in the first semester.", col:"#F59E0B" },
-  { year:"2024", month:"Jun", icon:"📜", title:"Oracle DB & GeeksforGeeks OOP", sub:"Certifications", desc:"Completed Oracle Database Design & Foundations and OOP in Java from GeeksforGeeks.", col:"#0EA5E9" },
-  { year:"2024", month:"Aug", icon:"🔥", title:"500+ DSA Problems Solved", sub:"LeetCode · Codeforces", desc:"Hit the 500 problem milestone. Moved into medium-hard difficulty consistently.", col:"#10B981" },
-  { year:"2024", month:"Nov", icon:"🥋", title:"TLE Eliminators — CP Level 2 & 3", sub:"Advanced Algorithms", desc:"Completed Levels 2 & 3 covering advanced graph theory, segment trees, and DP optimizations.", col:"#0D9488" },
-  { year:"2025", month:"Jan", icon:"🎩", title:"Red Hat Sysadmin I & II + NPTEL DAA", sub:"Dual Certifications", desc:"Earned Red Hat System Administration I & II and NPTEL's Design and Analysis of Algorithms certificate.", col:"#C53030" },
-  { year:"2025", month:"Feb", icon:"🚀", title:"MUJHackX Round 2 Qualifier", sub:"1300+ participants", desc:"Qualified for Round 2 at MUJHackX, competing among 1300+ participants from across the university.", col:"#38BDF8" },
-  { year:"2025", month:"Mar", icon:"⚡", title:"LeetCode Top 0.3% Globally", sub:"Beats 99.7%", desc:"Surpassed 900+ problems. Ranked in the top 0.3% of all LeetCode users worldwide.", col:"#FFA116" },
-  { year:"2025", month:"Jun", icon:"💼", title:"Web Dev Intern — Indavis Lifesciences", sub:"Haridwar · On-site", desc:"First professional internship. Maintained and updated the company website under real business constraints.", col:"#0EA5E9" },
+const TIMELINE_EVENTS=[
+  {year:"2023",month:"AUG",icon:"🎓",title:"Started B.Tech CSE",sub:"Manipal University Jaipur",desc:"Began CS degree. Immediately dove into DSA and competitive programming.",col:"#7C3AED"},
+  {year:"2023",month:"DEC",icon:"🏆",title:"TLE Eliminators CP Level 1",sub:"Competitive Programming",desc:"Foundation in C++ and algorithmic thinking. Level 1 completed.",col:"#06B6D4"},
+  {year:"2024",month:"MAR",icon:"⭐",title:"Dean's Excellence — Sem 1",sub:"9.05 CGPA",desc:"Awarded Dean's Excellence for outstanding academic performance.",col:"#F59E0B"},
+  {year:"2024",month:"JUN",icon:"📜",title:"Oracle DB + GFG OOP Certs",sub:"Certifications",desc:"Completed Oracle Database Design & OOP in Java from GeeksforGeeks.",col:"#10B981"},
+  {year:"2024",month:"AUG",icon:"🔥",title:"500+ DSA Problems Solved",sub:"LeetCode + Codeforces",desc:"Hit 500 milestone. Moved to medium-hard consistently.",col:"#EF4444"},
+  {year:"2024",month:"NOV",icon:"🥋",title:"TLE Eliminators Level 2 & 3",sub:"Advanced Algorithms",desc:"Advanced graph theory, segment trees, DP optimizations.",col:"#7C3AED"},
+  {year:"2025",month:"JAN",icon:"🎩",title:"Red Hat Sysadmin + NPTEL DAA",sub:"Dual Certifications",desc:"Red Hat Sysadmin I & II + NPTEL Design & Analysis of Algorithms.",col:"#EF4444"},
+  {year:"2025",month:"FEB",icon:"🚀",title:"MUJHackX Round 2",sub:"1300+ participants",desc:"Top performers among 1300+ participants at MUJHackX.",col:"#06B6D4"},
+  {year:"2025",month:"MAR",icon:"⚡",title:"LeetCode Top 0.3%",sub:"Beats 99.7%",desc:"900+ problems. Ranked top 0.3% globally.",col:"#F59E0B"},
+  {year:"2025",month:"JUN",icon:"💼",title:"Web Dev Intern — Indavis",sub:"Haridwar · On-site",desc:"First professional internship. Real business constraints.",col:"#10B981"},
 ];
 
 function Timeline() {
   return (
-    <section id="timeline" className="sec-pad sec-transition" style={{ padding:"8rem 4rem", background:C.bg }}>
-      <div style={{ maxWidth:860, margin:"0 auto" }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Journey
+    <section id="timeline" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg)",backgroundImage:"radial-gradient(ellipse 80% 60% at 50% 100%, rgba(124,58,237,0.06) 0%, transparent 60%)"}}>
+      <div style={{maxWidth:860,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>JOURNEY
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink, marginBottom:"0.7rem" }}>
-          My <span className="grad">timeline</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:700,color:"var(--ink)",marginBottom:"0.8rem",lineHeight:1.3,letterSpacing:"1px"}}>
+          MY <span className="grad">TIMELINE</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"3.5rem", lineHeight:1.8 }}>
-          From day one at MUJ to where I am now — every milestone that shaped me.
-        </p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"3rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>From day one at MUJ to where I am now.</p>
 
-        <div style={{ position:"relative" }}>
-          {/* Central line */}
-          <div style={{ position:"absolute", left:"50%", top:0, bottom:0, width:2, background:"linear-gradient(to bottom, transparent, rgba(13,148,136,0.3) 5%, rgba(13,148,136,0.3) 95%, transparent)", transform:"translateX(-50%)" }} className="hide-mob"/>
-          {/* Mobile line */}
-          <div style={{ position:"absolute", left:20, top:0, bottom:0, width:2, background:"rgba(13,148,136,0.2)" }} className="show-mob"/>
+        <div style={{position:"relative"}}>
+          <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:3,background:"linear-gradient(to bottom,transparent,#7C3AED 5%,#7C3AED 95%,transparent)",transform:"translateX(-50%)"}} className="hide-mob"/>
+          <div style={{position:"absolute",left:20,top:0,bottom:0,width:3,background:"#7C3AED44"}} className="show-mob"/>
 
-          {TIMELINE_EVENTS.map((ev, i) => {
-            const isLeft = i % 2 === 0;
+          {TIMELINE_EVENTS.map((ev,i)=>{
+            const isLeft=i%2===0;
             return (
-              <div key={i} className={`rv d${(i % 5) + 1}`} style={{
-                display:"flex", justifyContent: isLeft ? "flex-start" : "flex-end",
-                marginBottom:"2rem", position:"relative",
-              }}>
-                {/* Dot on line */}
-                <div style={{
-                  position:"absolute", left:"calc(50% - 18px)", top:"1.2rem",
-                  width:36, height:36, borderRadius:"50%",
-                  background:`linear-gradient(135deg,${ev.col},${ev.col}bb)`,
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  fontSize:"1rem", zIndex:2,
-                  boxShadow:`0 0 0 4px var(--bg), 0 0 0 6px ${ev.col}44`,
-                }} className="hide-mob">{ev.icon}</div>
-                {/* Mobile dot */}
-                <div style={{
-                  position:"absolute", left:9, top:"1.2rem",
-                  width:24, height:24, borderRadius:"50%",
-                  background:`linear-gradient(135deg,${ev.col},${ev.col}bb)`,
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  fontSize:"0.7rem", zIndex:2,
-                  boxShadow:`0 0 0 3px var(--bg), 0 0 0 5px ${ev.col}44`,
-                }} className="show-mob">{ev.icon}</div>
+              <div key={i} className={`rv d${(i%5)+1}`} style={{display:"flex",justifyContent:isLeft?"flex-start":"flex-end",marginBottom:"1.5rem",position:"relative"}}>
+                {/* Dot */}
+                <div style={{position:"absolute",left:"calc(50% - 16px)",top:"1rem",width:32,height:32,background:ev.col,border:`3px solid var(--bg)`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.9rem",zIndex:2,boxShadow:`3px 3px 0 ${ev.col}66, 0 0 15px ${ev.col}55`,outline:`3px solid ${ev.col}`,outlineOffset:"2px"}} className="hide-mob">{ev.icon}</div>
+                <div style={{position:"absolute",left:8,top:"1rem",width:24,height:24,background:ev.col,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.65rem",zIndex:2}} className="show-mob">{ev.icon}</div>
 
                 {/* Card */}
-                <div style={{
-                  width:"45%", background:C.paper,
-                  border:`1px solid rgba(13,148,136,0.1)`,
-                  borderRadius:14, padding:"1.3rem 1.5rem",
-                  boxShadow:"0 2px 16px rgba(13,148,136,0.06)",
-                  marginLeft: isLeft ? "0" : "auto",
-                  borderLeft: isLeft ? `3px solid ${ev.col}` : "1px solid rgba(13,148,136,0.1)",
-                  borderRight: !isLeft ? `3px solid ${ev.col}` : "1px solid rgba(13,148,136,0.1)",
-                  transition:"transform 0.25s, box-shadow 0.25s",
-                }}
-                  onMouseEnter={e=>{e.currentTarget.style.transform="scale(1.02)";e.currentTarget.style.boxShadow=`0 8px 32px ${ev.col}22`;}}
-                  onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 16px rgba(13,148,136,0.06)";}}
+                <div style={{width:"44%",background:"var(--paper)",border:`2px solid ${ev.col}`,padding:"1.1rem 1.3rem",boxShadow:`4px 4px 0 ${ev.col}`,marginLeft:isLeft?"0":"auto",transition:"transform 0.1s"}}
+                  onMouseEnter={e=>e.currentTarget.style.transform="scale(1.02)"}
+                  onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.filter=""}}
                   className="hide-mob"
                 >
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"0.5rem" }}>
-                    <div style={{ fontSize:"0.88rem", fontWeight:800, color:C.ink, lineHeight:1.3 }}>{ev.title}</div>
-                    <span className="mono" style={{ fontSize:"0.6rem", color:ev.col, background:`${ev.col}15`, padding:"0.18rem 0.55rem", borderRadius:100, fontWeight:700, whiteSpace:"nowrap", marginLeft:"0.5rem", flexShrink:0 }}>{ev.month} {ev.year}</span>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"0.3rem"}}>
+                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",fontWeight:800,color:"var(--ink)",lineHeight:1.5}}>{ev.title}</div>
+                    <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:ev.col,background:`${ev.col}15`,padding:"0.15rem 0.4rem",fontWeight:700,whiteSpace:"nowrap",marginLeft:"0.4rem",flexShrink:0,border:`1px solid ${ev.col}`,boxShadow:`1px 1px 0 ${ev.col}`}}>{ev.month} {ev.year}</span>
                   </div>
-                  <div style={{ fontSize:"0.75rem", color:ev.col, fontWeight:600, marginBottom:"0.5rem" }}>{ev.sub}</div>
-                  <div style={{ fontSize:"0.78rem", color:C.muted, lineHeight:1.65 }}>{ev.desc}</div>
+                  <div style={{fontSize:"0.7rem",color:ev.col,fontWeight:600,marginBottom:"0.4rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{ev.sub}</div>
+                  <div style={{fontSize:"0.86rem",color:"var(--muted)",lineHeight:1.7,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{ev.desc}</div>
                 </div>
 
                 {/* Mobile card */}
-                <div style={{
-                  marginLeft:"2.8rem", flex:1,
-                  background:C.paper, border:`1px solid rgba(13,148,136,0.1)`,
-                  borderLeft:`3px solid ${ev.col}`,
-                  borderRadius:12, padding:"1rem 1.2rem",
-                  boxShadow:"0 2px 12px rgba(13,148,136,0.05)",
-                }} className="show-mob">
-                  <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:"0.3rem" }}>
-                    <div style={{ fontSize:"0.85rem", fontWeight:800, color:C.ink }}>{ev.title}</div>
-                    <span className="mono" style={{ fontSize:"0.58rem", color:ev.col, background:`${ev.col}15`, padding:"0.15rem 0.45rem", borderRadius:100, fontWeight:700, whiteSpace:"nowrap", marginLeft:"0.4rem" }}>{ev.month} '{ev.year.slice(2)}</span>
+                <div style={{marginLeft:"2.8rem",flex:1,background:"var(--paper)",border:`2px solid ${ev.col}`,padding:"0.9rem 1rem",boxShadow:`3px 3px 0 ${ev.col}`}} className="show-mob">
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"0.2rem"}}>
+                    <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",fontWeight:800,color:"var(--ink)",lineHeight:1.6}}>{ev.title}</div>
+                    <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:ev.col,padding:"0.1rem 0.35rem",border:`1px solid ${ev.col}`,whiteSpace:"nowrap",marginLeft:"0.3rem"}}>{ev.month} {ev.year.slice(2)}</span>
                   </div>
-                  <div style={{ fontSize:"0.72rem", color:ev.col, fontWeight:600, marginBottom:"0.35rem" }}>{ev.sub}</div>
-                  <div style={{ fontSize:"0.76rem", color:C.muted, lineHeight:1.6 }}>{ev.desc}</div>
+                  <div style={{fontSize:"0.68rem",color:ev.col,fontWeight:600,marginBottom:"0.3rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{ev.sub}</div>
+                  <div style={{fontSize:"0.72rem",color:"var(--muted)",lineHeight:1.6,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{ev.desc}</div>
                 </div>
               </div>
             );
@@ -3157,97 +2081,68 @@ function Timeline() {
 }
 
 /* ─────────────── CURRENTLY LEARNING ─────────────── */
-const LEARNING = [
-  { icon:"🐹", name:"Go (Golang)", desc:"Building high-concurrency backend services. Focusing on goroutines, channels, and building REST APIs with Gin.", progress:40, col:"#00ACD7", status:"Active" },
-  { icon:"☸️", name:"Kubernetes", desc:"Container orchestration, deployments, services, and scaling stateful applications. Following CKA prep path.", progress:30, col:"#326CE5", status:"Active" },
-  { icon:"🦀", name:"Rust", desc:"Systems programming, memory safety, and ownership model. Working through The Book + small CLI tools.", progress:20, col:"#CE422B", status:"Started" },
-  { icon:"📡", name:"gRPC & Protobuf", desc:"High-performance inter-service communication for microservices. Building on top of my existing Node.js backend experience.", progress:45, col:"#4285F4", status:"Active" },
-  { icon:"🔭", name:"Apache Kafka", desc:"Event-driven architecture, distributed messaging, and stream processing for large-scale backend pipelines.", progress:25, col:"#000000", status:"Started" },
-  { icon:"🧠", name:"LLM Fine-tuning", desc:"Supervised fine-tuning of open-source models (Mistral/Llama) for domain-specific RAG applications.", progress:35, col:"#10B981", status:"Active" },
+const LEARNING=[
+  {icon:"🐹",name:"Go (Golang)",desc:"High-concurrency backends. Goroutines, channels, REST APIs with Gin.",progress:40,col:"#00ACD7",status:"ACTIVE"},
+  {icon:"☸️",name:"Kubernetes",desc:"Container orchestration, deployments, services, scaling stateful apps.",progress:30,col:"#326CE5",status:"ACTIVE"},
+  {icon:"🦀",name:"Rust",desc:"Systems programming, memory safety, ownership model. Working through The Book.",progress:20,col:"#CE422B",status:"STARTED"},
+  {icon:"📡",name:"gRPC & Protobuf",desc:"High-performance inter-service communication for microservices.",progress:45,col:"#4285F4",status:"ACTIVE"},
+  {icon:"🔭",name:"Apache Kafka",desc:"Event-driven architecture, distributed messaging, stream processing.",progress:25,col:"#7C3AED",status:"STARTED"},
+  {icon:"🧠",name:"LLM Fine-tuning",desc:"SFT of open-source models (Mistral/Llama) for domain-specific RAG.",progress:35,col:"#10B981",status:"ACTIVE"},
 ];
 
 function CurrentlyLearning() {
   return (
-    <section id="learning" className="sec-pad sec-transition" style={{ padding:"8rem 4rem", background:C.bg2, position:"relative", overflow:"hidden" }}>
-      {/* Subtle animated bg orb */}
-      <div style={{ position:"absolute", top:"-10%", right:"-5%", width:400, height:400, borderRadius:"50%", background:`radial-gradient(circle,rgba(13,148,136,0.07) 0%,transparent 70%)`, pointerEvents:"none", animation:"floatUp 12s ease-in-out infinite" }}/>
-      <div style={{ maxWidth:1060, margin:"0 auto", position:"relative", zIndex:1 }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.v, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.v, display:"inline-block" }}/>Currently Learning
+    <section id="learning" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg2)"}}>
+      <div style={{maxWidth:1060,margin:"0 auto"}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#7C3AED",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#7C3AED",display:"inline-block"}}/>LEARNING
         </div>
-        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", flexWrap:"wrap", gap:"1rem", marginBottom:"0.7rem" }}>
-          <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.2rem,4vw,3rem)", fontWeight:400, letterSpacing:"-1.5px", fontStyle:"italic", color:C.ink }}>
-            What I'm <span className="grad">exploring</span> now
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap",gap:"1rem",marginBottom:"0.6rem"}}>
+          <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.1rem,2.5vw,1.6rem)",fontWeight:400,color:"var(--ink)",lineHeight:1.5}}>
+            CURRENTLY <span className="grad">EXPLORING</span>
           </h2>
-          <div className="rv d2" style={{ display:"flex", alignItems:"center", gap:"0.5rem", padding:"0.4rem 1rem", background:C.vPale, border:"1px solid rgba(13,148,136,0.2)", borderRadius:100, animation:"learnPulse 2.5s ease-in-out infinite" }}>
-            <div style={{ width:7, height:7, borderRadius:"50%", background:"#10B981", animation:"pulse2 1.5s ease-in-out infinite" }}/>
-            <span className="mono" style={{ fontSize:"0.65rem", color:C.v, fontWeight:700, letterSpacing:"1px" }}>LEARNING IN PROGRESS</span>
+          <div className="rv d2" style={{display:"flex",alignItems:"center",gap:"0.4rem",padding:"0.35rem 0.8rem",background:"var(--vPale)",border:"2px solid #7C3AED",boxShadow:"2px 2px 0 #7C3AED",animation:"learnPulse 2.5s ease-in-out infinite"}}>
+            <div style={{width:7,height:7,background:"#10B981",animation:"pulse2 1.5s ease-in-out infinite"}}/>
+            <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"#7C3AED",fontWeight:700,letterSpacing:"1px"}}>IN PROGRESS</span>
           </div>
         </div>
-        <p className="rv d2" style={{ fontSize:"0.95rem", color:C.muted, marginBottom:"3rem", lineHeight:1.8 }}>
-          Going deeper into backend infrastructure, systems programming, and advanced AI — the stack of a senior backend engineer.
-        </p>
+        <p className="rv d2" style={{fontSize:"0.92rem",color:"var(--muted)",marginBottom:"2.5rem",lineHeight:1.85,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>Going deeper into infra, systems programming, and advanced AI.</p>
 
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))", gap:"1.3rem" }}>
-          {LEARNING.map((item, i) => (
-            <div key={item.name} className={`rv d${(i % 4) + 1}`} style={{
-              background:C.paper, border:`1px solid rgba(13,148,136,0.1)`,
-              borderRadius:16, padding:"1.6rem",
-              boxShadow:"0 2px 20px rgba(13,148,136,0.05)",
-              transition:"transform 0.25s, box-shadow 0.25s",
-              position:"relative", overflow:"hidden",
-            }}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-5px)";e.currentTarget.style.boxShadow=`0 16px 48px ${item.col}18`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="0 2px 20px rgba(13,148,136,0.05)";}}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(290px,1fr))",gap:"1.1rem"}}>
+          {LEARNING.map((item,i)=>(
+            <div key={item.name} className={`rv d${(i%4)+1}`} style={{background:"var(--paper)",border:`2px solid ${item.col}`,padding:"1.4rem",boxShadow:`4px 4px 0 ${item.col}`,transition:"all 0.1s",position:"relative"}}
+              onMouseEnter={e=>{e.currentTarget.style.transform="translate(-2px,-2px)";e.currentTarget.style.boxShadow=`6px 6px 0 ${item.col}`;}}
+              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`4px 4px 0 ${item.col}`;}}
             >
-              {/* Status badge */}
-              <div style={{
-                position:"absolute", top:"1rem", right:"1rem",
-                fontSize:"0.58rem", padding:"0.15rem 0.55rem", borderRadius:100,
-                background: item.status === "Active" ? "rgba(16,185,129,0.12)" : "rgba(245,158,11,0.12)",
-                color: item.status === "Active" ? "#059669" : "#B45309",
-                fontFamily:"'JetBrains Mono',monospace", fontWeight:700,
-              }}>{item.status}</div>
+              <div style={{position:"absolute",top:"0.8rem",right:"0.8rem",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",padding:"0.15rem 0.4rem",background:item.status==="ACTIVE"?"rgba(16,185,129,0.12)":"rgba(245,158,11,0.12)",color:item.status==="ACTIVE"?"#059669":"#B45309",border:`1px solid ${item.status==="ACTIVE"?"#10B981":"#F59E0B"}`}}>{item.status}</div>
 
-              <div style={{ display:"flex", gap:"0.9rem", alignItems:"flex-start", marginBottom:"1rem" }}>
-                <div style={{
-                  width:44, height:44, borderRadius:12,
-                  background:`${item.col}15`, border:`1.5px solid ${item.col}30`,
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  fontSize:"1.4rem", flexShrink:0,
-                }}>{item.icon}</div>
+              <div style={{display:"flex",gap:"0.8rem",alignItems:"flex-start",marginBottom:"0.8rem"}}>
+                <div style={{width:40,height:40,background:`${item.col}15`,border:`2px solid ${item.col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.2rem",flexShrink:0,boxShadow:`2px 2px 0 ${item.col}`}}>{item.icon}</div>
                 <div>
-                  <div style={{ fontSize:"0.95rem", fontWeight:800, color:C.ink }}>{item.name}</div>
-                  <div className="mono" style={{ fontSize:"0.62rem", color:item.col, marginTop:"0.15rem", fontWeight:600 }}>{item.progress}% through</div>
+                  <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.6rem",fontWeight:800,color:"var(--ink)",lineHeight:1.5}}>{item.name}</div>
+                  <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:item.col,marginTop:"0.15rem",fontWeight:600}}>{item.progress}% THROUGH</div>
                 </div>
               </div>
 
-              <p style={{ fontSize:"0.8rem", color:C.muted, lineHeight:1.7, marginBottom:"1.1rem" }}>{item.desc}</p>
+              <p style={{fontSize:"0.78rem",color:"var(--muted)",lineHeight:1.7,marginBottom:"1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{item.desc}</p>
 
-              {/* Progress bar */}
               <div>
-                <div style={{ display:"flex", justifyContent:"space-between", marginBottom:"0.4rem" }}>
-                  <span style={{ fontSize:"0.68rem", color:C.muted, fontFamily:"'JetBrains Mono',monospace" }}>Progress</span>
-                  <span style={{ fontSize:"0.68rem", color:item.col, fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>{item.progress}%</span>
+                <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"var(--muted)"}}>PROGRESS</span>
+                  <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:item.col,fontWeight:700}}>{item.progress}%</span>
                 </div>
-                <div style={{ height:5, background:"rgba(13,148,136,0.08)", borderRadius:3, overflow:"hidden" }}>
-                  <div style={{
-                    height:"100%", borderRadius:3,
-                    background:`linear-gradient(90deg,${item.col},${item.col}aa)`,
-                    width:`${item.progress}%`,
-                    transition:"width 1.2s cubic-bezier(0.16,1,0.3,1)",
-                  }}/>
+                <div style={{height:8,background:"rgba(124,58,237,0.08)",border:`2px solid ${item.col}`}}>
+                  <div style={{height:"100%",background:`linear-gradient(90deg,${item.col},${item.col}bb)`,boxShadow:`0 0 8px ${item.col}55`,width:`${item.progress}%`,transition:"width 1.2s cubic-bezier(0.25,1,0.5,1)"}}/>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom note */}
-        <div className="rv d5" style={{ marginTop:"2.5rem", padding:"1.2rem 1.8rem", background:C.vPale, border:"1px solid rgba(13,148,136,0.15)", borderRadius:12, display:"flex", alignItems:"center", gap:"1rem" }}>
-          <span style={{ fontSize:"1.3rem" }}>💡</span>
-          <span style={{ fontSize:"0.85rem", color:C.inkMid, lineHeight:1.6 }}>
-            <strong>Goal for 2025–26:</strong> Ship production-grade services in Go, get comfortable with Kubernetes deployments, and contribute to an open-source backend project.
+        <div className="rv d5" style={{marginTop:"2rem",padding:"1rem 1.5rem",background:"var(--vPale)",border:"2px solid #7C3AED",boxShadow:"3px 3px 0 #7C3AED",display:"flex",alignItems:"center",gap:"0.8rem"}}>
+          <span style={{fontSize:"1.2rem"}}>💡</span>
+          <span style={{fontFamily:"'Space Mono','Share Tech Mono',monospace",fontSize:"0.82rem",color:"var(--inkMid)",lineHeight:1.6}}>
+            <strong style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.82rem",color:"#7C3AED"}}>GOAL 2025-26:</strong> Ship prod-grade services in Go, get comfortable with K8s, contribute to open-source.
           </span>
         </div>
       </div>
@@ -3258,71 +2153,56 @@ function CurrentlyLearning() {
 /* ─────────────── CONTACT ─────────────── */
 function Contact() {
   const [copied, setCopied] = useState(false);
-  const copy = () => {
-    navigator.clipboard.writeText("armanphaugat20@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-  const LINKS = [
-    { icon:"✉️", label:"Email",    value:"armanphaugat20@gmail.com", href:"mailto:armanphaugat20@gmail.com" },
-    { icon:"📱", label:"Phone",    value:"+91-9306115772",            href:"tel:+919306115772" },
-    { icon:"🐙", label:"GitHub",   value:"github.com/armanphaugat",       href:"https://github.com/armanphaugat" },
-    { icon:"💼", label:"LinkedIn", value:"linkedin.com/in/armanphaugat05", href:"https://www.linkedin.com/in/armanphaugat05/" },
-    { icon:"🧩", label:"LeetCode", value:"Top 0.3% · armanphaugat20",     href:"https://leetcode.com/u/armanphaugat20" },
+  const copy=()=>{ navigator.clipboard.writeText("armanphaugat20@gmail.com"); setCopied(true); setTimeout(()=>setCopied(false),2000); };
+  const LINKS=[
+    {icon:"✉️",label:"EMAIL",value:"armanphaugat20@gmail.com",href:"mailto:armanphaugat20@gmail.com",col:"#7C3AED"},
+    {icon:"📱",label:"PHONE",value:"+91-9306115772",href:"tel:+919306115772",col:"#06B6D4"},
+    {icon:"🐙",label:"GITHUB",value:"github.com/armanphaugat",href:"https://github.com/armanphaugat",col:"#10B981"},
+    {icon:"💼",label:"LINKEDIN",value:"linkedin.com/in/armanphaugat05",href:"https://www.linkedin.com/in/armanphaugat05/",col:"#0A66C2"},
+    {icon:"🧩",label:"LEETCODE",value:"Top 0.3% · armanphaugat20",href:"https://leetcode.com/u/armanphaugat20",col:"#FFA116"},
   ];
   return (
-    <section id="contact" style={{ padding:"9rem 4rem", background:`linear-gradient(160deg,${C.vDeep} 0%,#083a35 50%,#020e0c 100%)`, position:"relative", overflow:"hidden" }}>
-      <div style={{ position:"absolute", top:-150, right:-150, width:500, height:500, borderRadius:"50%", background:"radial-gradient(circle,rgba(232,121,249,0.15) 0%,transparent 70%)", pointerEvents:"none" }}/>
-      <div style={{ position:"absolute", bottom:-100, left:-100, width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle,rgba(13,148,136,0.2) 0%,transparent 70%)", pointerEvents:"none" }}/>
-      <div style={{ maxWidth:1060, margin:"0 auto", position:"relative", zIndex:1 }}>
-        <div className="rv mono" style={{ fontSize:"0.68rem", color:C.vLight, letterSpacing:"3px", textTransform:"uppercase", marginBottom:"1rem", display:"flex", alignItems:"center", gap:"0.8rem" }}>
-          <span style={{ width:22, height:1, background:C.vLight, display:"inline-block" }}/>Get In Touch
+    <section id="contact" style={{padding:"9rem 4rem",background:"#05000c",position:"relative",overflow:"hidden",backgroundImage:"radial-gradient(ellipse 70% 60% at 50% 0%, rgba(124,58,237,0.15) 0%, transparent 60%)"}}>
+      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(124,58,237,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.06) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none"}}/>
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
+        <div className="rv" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",color:"#A78BFA",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:"#A78BFA",display:"inline-block"}}/>CONTACT
         </div>
-        <h2 className="rv d1 serif" style={{ fontSize:"clamp(2.8rem,6vw,5rem)", fontWeight:400, letterSpacing:"-2px", color:"#fff", marginBottom:"0.8rem", lineHeight:1.05, fontStyle:"italic" }}>
-          Let's <span style={{color:C.vLight}}>connect</span>
+        <h2 className="rv d1" style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"clamp(1.8rem,5vw,3.5rem)",fontWeight:700,color:"#fff",marginBottom:"0.8rem",lineHeight:1.2}}>
+          LETS <span style={{color:"#A78BFA"}}>CONNECT</span>
         </h2>
-        <p className="rv d2" style={{ fontSize:"1rem", color:"rgba(255,255,255,0.55)", maxWidth:480, marginBottom:"3.5rem", lineHeight:1.85 }}>
-          Whether it's a summer internship, a project collab, or a conversation about tech — reach out and I'll get back fast.
+        <p className="rv d2" style={{fontSize:"0.85rem",color:"rgba(255,255,255,0.5)",maxWidth:480,marginBottom:"3rem",lineHeight:1.9,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+          Internship, project collab, or tech talk — reach out and I'll reply fast.
         </p>
-        {/* Email CTA with copy */}
-        <div className="rv d3 contact-email-row" style={{ display:"flex", gap:"1rem", alignItems:"center", marginBottom:"3rem", flexWrap:"wrap" }}>
-          <div style={{ background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.12)", borderRadius:10, padding:"1rem 1.5rem", flex:1, minWidth:260 }}>
-            <div className="mono" style={{ fontSize:"0.62rem", color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"1.5px", marginBottom:"0.2rem" }}>Primary Email</div>
-            <div style={{ fontSize:"1rem", color:"#fff", fontWeight:600 }}>armanphaugat20@gmail.com</div>
+
+        {/* Email CTA */}
+        <div className="rv d3 contact-email-row" style={{display:"flex",gap:"0.8rem",alignItems:"center",marginBottom:"2.5rem",flexWrap:"wrap"}}>
+          <div style={{background:"rgba(255,255,255,0.05)",border:"2px solid rgba(255,255,255,0.15)",padding:"0.9rem 1.3rem",flex:1,minWidth:260}}>
+            <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"rgba(255,255,255,0.35)",letterSpacing:"1.5px",marginBottom:"0.2rem"}}>PRIMARY EMAIL</div>
+            <div style={{fontSize:"0.9rem",color:"#fff",fontWeight:600,fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>armanphaugat20@gmail.com</div>
           </div>
-          <button onClick={copy} style={{
-            padding:"1rem 1.8rem", background: copied ? "#10B981" : C.v, color:"#fff",
-            border:"none", borderRadius:10, cursor:"pointer", fontSize:"0.85rem", fontWeight:700,
-            fontFamily:"'Syne',sans-serif", transition:"background 0.3s", whiteSpace:"nowrap",
-          }}>{copied ? "✓ Copied!" : "Copy Email"}</button>
-          <a href="mailto:armanphaugat20@gmail.com" style={{
-            padding:"1rem 1.8rem", background:"rgba(255,255,255,0.1)", color:"#fff",
-            border:"1px solid rgba(255,255,255,0.2)", borderRadius:10, textDecoration:"none",
-            fontSize:"0.85rem", fontWeight:700, whiteSpace:"nowrap", transition:"background 0.2s",
-          }}
-            onMouseEnter={e=>e.currentTarget.style.background="rgba(255,255,255,0.18)"}
-            onMouseLeave={e=>e.currentTarget.style.background="rgba(255,255,255,0.1)"}
-          >Open Mail App →</a>
+          <button onClick={copy} className="px-btn" style={{padding:"0.9rem 1.5rem",background:copied?"#10B981":"#7C3AED",color:"#fff",border:"none",cursor:"pointer",fontSize:"0.82rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",transition:"background 0.2s",boxShadow:"3px 3px 0 #4C1D95",whiteSpace:"nowrap"}}>{copied?"COPIED!":"COPY EMAIL"}</button>
+          <a href="mailto:armanphaugat20@gmail.com" className="px-btn" style={{padding:"0.9rem 1.5rem",background:"rgba(255,255,255,0.08)",color:"#fff",border:"2px solid rgba(255,255,255,0.2)",textDecoration:"none",fontSize:"0.82rem",fontWeight:700,fontFamily:"'Pixelify Sans','Press Start 2P',monospace",whiteSpace:"nowrap",boxShadow:"3px 3px 0 rgba(255,255,255,0.1)"}}>OPEN MAIL &gt;&gt;</a>
         </div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:"1rem" }}>
-          {LINKS.map((l,i) => (
-            <a key={l.label} href={l.href} target={l.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
-              className={`rv d${i+1}`}
-              style={{ display:"flex", alignItems:"center", gap:"1rem", padding:"1.2rem 1.4rem", background:"rgba(255,255,255,0.04)", border:"1px solid rgba(255,255,255,0.08)", borderRadius:12, textDecoration:"none", color:"#fff", transition:"background 0.2s, border-color 0.2s, transform 0.2s" }}
-              onMouseEnter={e=>{e.currentTarget.style.background="rgba(13,148,136,0.2)";e.currentTarget.style.borderColor="rgba(13,148,136,0.4)";e.currentTarget.style.transform="translateY(-3px)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.04)";e.currentTarget.style.borderColor="rgba(255,255,255,0.08)";e.currentTarget.style.transform="";}}
+
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:"0.8rem"}}>
+          {LINKS.map((l,i)=>(
+            <a key={l.label} href={l.href} target={l.href.startsWith("http")?"_blank":undefined} rel="noreferrer" className={`rv d${i+1} shimmer-hover`}
+              style={{display:"flex",alignItems:"center",gap:"0.8rem",padding:"1rem 1.2rem",background:"rgba(255,255,255,0.03)",border:`2px solid ${l.col}`,textDecoration:"none",color:"#fff",boxShadow:`3px 3px 0 ${l.col}44`,transition:"all 0.1s"}}
+              onMouseEnter={e=>{e.currentTarget.style.background=`${l.col}20`;e.currentTarget.style.transform="translate(-2px,-2px)";e.currentTarget.style.boxShadow=`5px 5px 0 ${l.col}66`;}}
+              onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.03)";e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`3px 3px 0 ${l.col}44`;}}
             >
-              <div style={{ fontSize:"1.3rem", flexShrink:0 }}>{l.icon}</div>
+              <div style={{fontSize:"1.2rem",flexShrink:0}}>{l.icon}</div>
               <div>
-                <div className="mono" style={{ fontSize:"0.6rem", color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"1.2px", marginBottom:"0.1rem" }}>{l.label}</div>
-                <div style={{ fontSize:"0.82rem", fontWeight:600, wordBreak:"break-all" }}>{l.value}</div>
+                <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.72rem",color:"rgba(255,255,255,0.35)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:"0.1rem"}}>{l.label}</div>
+                <div style={{fontSize:"0.85rem",fontWeight:600,wordBreak:"break-all",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>{l.value}</div>
               </div>
             </a>
           ))}
         </div>
-        {/* Availability */}
-        <div className="rv d5" style={{ marginTop:"3rem" }}>
-          <AvailabilityWidget />
+
+        <div className="rv d5" style={{marginTop:"2.5rem"}}>
+          <AvailabilityWidget/>
         </div>
       </div>
     </section>
@@ -3331,70 +2211,58 @@ function Contact() {
 
 /* ─────────────── FOOTER ─────────────── */
 function Footer() {
+  const FCOLS=["#7C3AED","#06B6D4","#10B981","#F59E0B","#EF4444","#A855F7"];
   return (
-    <footer style={{ background:"#020e0c", borderTop:"1px solid rgba(13,148,136,0.12)" }}>
-      {/* Main footer body */}
-      <div style={{ maxWidth:1060, margin:"0 auto", padding:"3rem 2rem 2rem", display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:"3rem" }} className="footer-grid">
-        {/* Brand col */}
+    <footer style={{background:"linear-gradient(180deg,#050008 0%,#020005 100%)",borderTop:"3px solid #7C3AED",boxShadow:"0 -4px 30px rgba(124,58,237,0.15)"}}>
+      <div className="px-divider"/>
+      <div style={{maxWidth:1060,margin:"0 auto",padding:"2.5rem 2rem 2rem",display:"grid",gridTemplateColumns:"2fr 1fr 1fr",gap:"3rem"}} className="footer-grid">
         <div>
-          <div style={{ display:"flex", alignItems:"center", gap:"0.8rem", marginBottom:"1rem" }}>
-            <div style={{ width:34, height:34, borderRadius:9, background:`linear-gradient(135deg,${C.v},${C.accent})`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <span style={{ color:"#fff", fontSize:"0.8rem", fontWeight:800 }}>AP</span>
+          <div style={{display:"flex",alignItems:"center",gap:"0.8rem",marginBottom:"0.8rem"}}>
+            <div style={{width:32,height:32,background:"#7C3AED",border:"2px solid #A78BFA",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"3px 3px 0 #A78BFA"}}>
+              <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",color:"#fff",fontSize:"0.95rem",fontWeight:800}}>AP</span>
             </div>
-            <span style={{ fontSize:"1rem", fontWeight:800, color:"#fff" }}>Arman Phaugat</span>
+            <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.65rem",fontWeight:800,color:"#fff"}}>ARMAN PHAUGAT</span>
           </div>
-          <p style={{ fontSize:"0.8rem", color:"rgba(255,255,255,0.35)", lineHeight:1.8, maxWidth:280, marginBottom:"1.2rem" }}>
-            Backend & AI/ML Engineer · 3rd Year B.Tech CSE · Manipal University Jaipur · Building fast, scalable systems.
+          <p style={{fontSize:"0.85rem",color:"rgba(255,255,255,0.45)",lineHeight:1.85,maxWidth:280,marginBottom:"1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
+            Backend & AI/ML Engineer · 3rd Year CSE · MUJ · Building fast, scalable systems.
           </p>
-          <div style={{ display:"flex", gap:"0.7rem" }}>
-            {[
-              { href:"https://github.com/armanphaugat", label:"GitHub", svg:<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg> },
-              { href:"https://www.linkedin.com/in/armanphaugat05/", label:"LinkedIn", svg:<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
-              { href:"https://leetcode.com/u/armanphaugat20", label:"LeetCode", svg:<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg> },
-            ].map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" title={s.label} style={{
-                width:34, height:34, borderRadius:8,
-                background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.08)",
-                display:"flex", alignItems:"center", justifyContent:"center",
-                transition:"background 0.2s, transform 0.2s",
-              }}
-                onMouseEnter={e=>{e.currentTarget.style.background="rgba(13,148,136,0.3)";e.currentTarget.style.transform="translateY(-2px)";}}
-                onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.06)";e.currentTarget.style.transform="";}}
-              >{s.svg}</a>
+          <div style={{display:"flex",gap:"0.5rem"}}>
+            {[{href:"https://github.com/armanphaugat",label:"GH"},{href:"https://www.linkedin.com/in/armanphaugat05/",label:"LI"},{href:"https://leetcode.com/u/armanphaugat20",label:"LC"}].map((s,i)=>(
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" style={{width:32,height:32,background:"rgba(255,255,255,0.04)",border:`2px solid ${FCOLS[i]}`,display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",color:"#fff",fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",boxShadow:`2px 2px 0 ${FCOLS[i]}`,transition:"all 0.1s"}}
+                onMouseEnter={e=>{e.currentTarget.style.background=`${FCOLS[i]}30`;e.currentTarget.style.transform="translate(-1px,-1px)";}}
+                onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.04)";e.currentTarget.style.transform="";}}
+              >{s.label}</a>
             ))}
           </div>
         </div>
 
-        {/* Quick links */}
         <div>
-          <div style={{ fontSize:"0.7rem", fontWeight:700, color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"2px", fontFamily:"'JetBrains Mono',monospace", marginBottom:"1rem" }}>Navigate</div>
-          {["About","Experience","Projects","Skills","Blog","Timeline","Contact"].map(s => (
-            <a key={s} href={`#${s.toLowerCase()}`} style={{ display:"block", fontSize:"0.82rem", color:"rgba(255,255,255,0.45)", textDecoration:"none", marginBottom:"0.55rem", transition:"color 0.2s" }}
-              onMouseEnter={e=>e.currentTarget.style.color="#5EEAD4"}
-              onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,0.45)"}
-            >{s}</a>
+          <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",fontWeight:700,color:"rgba(255,255,255,0.35)",letterSpacing:"2px",marginBottom:"0.8rem"}}>NAVIGATE</div>
+          {["About","Experience","Projects","Skills","Blog","Timeline","Contact"].map((s,i)=>(
+            <a key={s} href={`#${s.toLowerCase()}`} style={{display:"block",fontFamily:"'Space Mono','Share Tech Mono',monospace",fontSize:"0.88rem",color:"rgba(255,255,255,0.5)",textDecoration:"none",marginBottom:"0.45rem",transition:"color 0.1s"}}
+              onMouseEnter={e=>e.currentTarget.style.color=FCOLS[i%FCOLS.length]}
+              onMouseLeave={e=>e.currentTarget.style.color="rgba(255,255,255,0.4)"}
+            >&gt; {s}</a>
           ))}
         </div>
 
-        {/* Status & fun fact */}
         <div>
-          <div style={{ fontSize:"0.7rem", fontWeight:700, color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"2px", fontFamily:"'JetBrains Mono',monospace", marginBottom:"1rem" }}>Status</div>
-          <div className="status-available" style={{ marginBottom:"1rem", width:"fit-content" }}>
+          <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.9rem",fontWeight:700,color:"rgba(255,255,255,0.35)",letterSpacing:"2px",marginBottom:"0.8rem"}}>STATUS</div>
+          <div className="status-available" style={{marginBottom:"0.8rem",width:"fit-content"}}>
             <div className="status-ping"/>
-            <span style={{ fontSize:"0.68rem", color:"#10B981", fontWeight:700, fontFamily:"'JetBrains Mono',monospace" }}>OPEN TO WORK</span>
+            <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",color:"#10B981",fontWeight:700}}>OPEN TO WORK</span>
           </div>
-          <div style={{ fontSize:"0.78rem", color:"rgba(255,255,255,0.35)", lineHeight:1.7, marginBottom:"1.2rem" }}>
+          <div style={{fontSize:"0.72rem",color:"rgba(255,255,255,0.3)",lineHeight:1.7,marginBottom:"1rem",fontFamily:"'Space Mono','Share Tech Mono',monospace"}}>
             Available for internships & projects.<br/>Backend · AI/ML · Full Stack
           </div>
-          <div style={{ fontSize:"0.7rem", fontWeight:700, color:"rgba(255,255,255,0.4)", textTransform:"uppercase", letterSpacing:"2px", fontFamily:"'JetBrains Mono',monospace", marginBottom:"0.6rem" }}>Dev thought</div>
-          <FunFactsTicker />
+          <div style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.75rem",fontWeight:700,color:"rgba(255,255,255,0.3)",marginBottom:"0.5rem"}}>DEV THOUGHT</div>
+          <FunFactsTicker/>
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div style={{ borderTop:"1px solid rgba(255,255,255,0.05)", padding:"1.2rem 2rem", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:"0.5rem", maxWidth:1060, margin:"0 auto" }}>
-        <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>© 2025 Arman Phaugat · All rights reserved</span>
-        <span className="mono" style={{ fontSize:"0.65rem", color:"rgba(255,255,255,0.18)" }}>Built with React · Press <span style={{color:"rgba(13,148,136,0.7)"}}>?</span> for shortcuts · <span style={{color:"rgba(13,148,136,0.7)"}}>` </span>for terminal</span>
+      <div style={{borderTop:"2px solid rgba(255,255,255,0.05)",padding:"1rem 2rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"0.4rem",maxWidth:1060,margin:"0 auto"}}>
+        <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:"rgba(255,255,255,0.25)"}}>© 2025 ARMAN PHAUGAT · ALL RIGHTS RESERVED</span>
+        <span style={{fontFamily:"'Pixelify Sans','Press Start 2P',monospace",fontSize:"0.8rem",color:"rgba(255,255,255,0.25)"}}>BUILT WITH REACT · <span style={{color:"rgba(124,58,237,0.6)"}}>?</span>=SHORTCUTS · <span style={{color:"rgba(124,58,237,0.6)"}}>` </span>=TERMINAL</span>
       </div>
     </footer>
   );
@@ -3409,85 +2277,66 @@ export default function App() {
   useReveal();
   useSectionTransitions();
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
-  }, [dark]);
+  useEffect(()=>{ document.documentElement.setAttribute("data-theme",dark?"dark":"light"); },[dark]);
 
-  // Keyboard shortcut: backtick ` opens terminal
-  useEffect(() => {
-    const fn = (e) => {
-      if (e.key === "`" && !loading) {
-        setShowTerminal(p => !p);
-      }
-    };
-    window.addEventListener("keydown", fn);
-    return () => window.removeEventListener("keydown", fn);
-  }, [loading]);
+  useEffect(()=>{
+    const fn=(e)=>{ if(e.key==="`"&&!loading)setShowTerminal(p=>!p); };
+    window.addEventListener("keydown",fn);
+    return ()=>window.removeEventListener("keydown",fn);
+  },[loading]);
 
   return (
     <>
       <style>{G}</style>
+      <div className="scanlines"/>
 
-      {/* ── Terminal Easter Egg ── */}
-      {showTerminal && <TerminalEasterEgg onClose={() => setShowTerminal(false)} />}
+      {showTerminal&&<TerminalEasterEgg onClose={()=>setShowTerminal(false)}/>}
 
-      {/* Global overlays & utilities */}
-      <ScrollProgressBar />
-      <SpotlightGlow />
-      <MouseTrail />
-      <KonamiConfetti />
-      <KeyboardShortcuts />
-      <ToastContainer />
-      <FloatingConnectCTA />
-      <Cursor />
-      <SectionProgress />
-      <BackToTop />
+      <ScrollProgressBar/>
+      <MouseTrail/>
+      <KonamiConfetti/>
+      <KeyboardShortcuts/>
+      <ToastContainer/>
+      <FloatingConnectCTA/>
+      <Cursor/>
+      <SectionProgress/>
+      <BackToTop/>
 
-      {/* Terminal trigger button (bottom-left) */}
-      <button
-          onClick={() => setShowTerminal(p => !p)}
-          title="Open terminal (` key)"
-          style={{
-            position:"fixed", bottom:"2rem", left:"2rem",
-            width:44, height:44, borderRadius:12, zIndex:800,
-            background: showTerminal
-              ? "linear-gradient(135deg,#0D9488,#38BDF8)"
-              : "var(--paper)",
-            border: showTerminal
-              ? "none"
-              : "1.5px solid rgba(13,148,136,0.25)",
-            cursor:"pointer",
-            display:"flex", alignItems:"center", justifyContent:"center",
-            boxShadow: showTerminal
-              ? "0 4px 24px rgba(13,148,136,0.45)"
-              : "0 2px 16px rgba(0,0,0,0.08)",
-            transition:"all 0.25s cubic-bezier(0.16,1,0.3,1)",
-          }}
-          onMouseEnter={e => { if (!showTerminal) { e.currentTarget.style.background="linear-gradient(135deg,#0D9488,#38BDF8)"; e.currentTarget.style.border="none"; e.currentTarget.style.boxShadow="0 4px 24px rgba(13,148,136,0.45)"; }}}
-          onMouseLeave={e => { if (!showTerminal) { e.currentTarget.style.background="var(--paper)"; e.currentTarget.style.border="1.5px solid rgba(13,148,136,0.25)"; e.currentTarget.style.boxShadow="0 2px 16px rgba(0,0,0,0.08)"; }}}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-            stroke={showTerminal ? "#fff" : "#0D9488"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
-          </svg>
-        </button>
+      {/* Terminal trigger button */}
+      <button onClick={()=>setShowTerminal(p=>!p)} title="Open terminal (` key)" style={{
+        position:"fixed", bottom:"2rem", left:"2rem",
+        width:44, height:44, zIndex:800,
+        background:showTerminal?"#7C3AED":"var(--paper)",
+        border:"3px solid #7C3AED",
+        cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center",
+        boxShadow:showTerminal?"5px 5px 0 #4C1D95":"3px 3px 0 #7C3AED",
+        transition:"all 0.1s",
+        fontFamily:"'Pixelify Sans','Press Start 2P',monospace",
+      }}
+        onMouseEnter={e=>{if(!showTerminal){e.currentTarget.style.background="#7C3AED";e.currentTarget.style.transform="translate(-1px,-1px)";}}}
+        onMouseLeave={e=>{if(!showTerminal){e.currentTarget.style.background="var(--paper)";e.currentTarget.style.transform="";}}}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={showTerminal?"#fff":"#7C3AED"} strokeWidth="2.5" strokeLinecap="square" strokeLinejoin="miter">
+          <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+      </button>
 
-      <Nav dark={dark} setDark={setDark} />
+      <Nav dark={dark} setDark={setDark}/>
       <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Experience />
-        <Resume />
-        <Projects />
-        <Skills />
-        <Achievements />
-        <Blog />
-        <Timeline />
-        <CurrentlyLearning />
-        <Contact />
+        <Hero/>
+        <Marquee/>
+        <About/>
+        <Experience/>
+        <Resume/>
+        <Projects/>
+        <Skills/>
+        <Achievements/>
+        <Blog/>
+        <Timeline/>
+        <CurrentlyLearning/>
+        <Contact/>
       </main>
-      <Footer />
+      <Footer/>
     </>
   );
 }
