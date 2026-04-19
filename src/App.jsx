@@ -1219,7 +1219,7 @@ function ParticleCanvas() {
 /* ─────────────── HERO ─────────────── */
 function Hero() {
   const [typed, setTyped] = useState("");
-  const words=["Backend Engineer","System Designer","AI / ML Builder","Competitive Programmer","Full Stack Dev"];
+  const words=["Backend Engineer","System Design Enthusiast","AI / ML Builder","Competitive Programmer","Full Stack Dev"];
   useEffect(()=>{
     let idx=0,dir=1,wi=0;
     const iv=setInterval(()=>{
