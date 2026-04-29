@@ -47,19 +47,15 @@ const Work = () => {
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.slice(0, 3).map((tag, idx) => (
+                  {project.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 rounded-full border border-purple-500/30"
+                      className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-full border border-purple-400 hover:border-purple-300 transition-all duration-200"
+                      title={tag}
                     >
                       {tag}
                     </span>
                   ))}
-                  {project.tags.length > 3 && (
-                    <span className="px-3 py-1 text-xs font-medium bg-gray-800 text-gray-400 rounded-full">
-                      +{project.tags.length - 3}
-                    </span>
-                  )}
                 </div>
 
                 {/* Links */}
