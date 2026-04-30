@@ -39,19 +39,21 @@ const G = `
     --glow-v:   rgba(27,58,138,0.14);
     --glow-c:   rgba(46,95,201,0.12);
   }
+
+  /* ── DARK MODE: Black + Red ── */
   [data-theme="dark"] {
-    --bg:       #07091A;
-    --bg2:      #0C0F28;
-    --paper:    #10163A;
-    --ink:      #F0EDE6;
-    --inkMid:   #A8C0F0;
-    --vPale:    #0E1A40;
-    --muted:    #8A9DC0;
-    --glow-v:   rgba(46,95,201,0.2);
-    --glow-c:   rgba(46,95,201,0.15);
+    --bg:     #0F1117;
+    --bg2:    #161B27;
+  --paper:  #1C2333;
+  --ink:    #E8EAF0;
+  --inkMid: #6B7FD4;
+  --vPale:  #1E2A4A;
+  --muted:  #8892B0;
+    --glow-v:   rgba(107,127,212,0.2);
+    --glow-c:   rgba(124,158,255,0.15);
   }
 
-  [data-theme="dark"] body { background: #07091A; color: #F0EDE6; }
+  [data-theme="dark"] body { background: #0F1117; color: #7C9EFF; }
 
   :root {
     --card-hover: #0E1A40;
@@ -61,10 +63,10 @@ const G = `
     --pixel-border: 3px solid;
   }
   [data-theme="dark"] {
-    --card-hover: #0E1A40;
-    --filter-active-bg: #1B3A8A;
+    --card-hover: #1C2333;
+    --filter-active-bg: #6B7FD4;
     --filter-active-color: #ffffff;
-    --section-divider: rgba(46,95,201,0.2);
+    --section-divider: rgba(107,127,212,0.2);
   }
 
   @keyframes darkToggle    { from{transform:rotate(-30deg) scale(0.7);opacity:0} to{transform:rotate(0deg) scale(1);opacity:1} }
@@ -104,6 +106,7 @@ const G = `
   @keyframes cardRise     { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
   @keyframes glowPulse    { 0%,100%{box-shadow:0 0 8px rgba(27,58,138,0.3),4px 4px 0 #1B3A8A} 50%{box-shadow:0 0 20px rgba(27,58,138,0.5),4px 4px 0 #1B3A8A} }
   @keyframes heroGlow     { 0%,100%{text-shadow:5px 5px 0 rgba(27,58,138,0.12),0 0 40px rgba(27,58,138,0.08)} 50%{text-shadow:5px 5px 0 rgba(27,58,138,0.18),0 0 60px rgba(27,58,138,0.14)} }
+  @keyframes heroGlowRed  { 0%,100%{text-shadow:5px 5px 0 rgba(255,51,51,0.18),0 0 40px rgba(255,51,51,0.12)} 50%{text-shadow:5px 5px 0 rgba(255,51,51,0.28),0 0 60px rgba(107,127,212,0.2)} }
   @keyframes dotMatrix    { 0%{opacity:0.3} 50%{opacity:1} 100%{opacity:0.3} }
   @keyframes avatarFloat  { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-10px)} }
   @keyframes pixelRain    { 0%{transform:translateY(-20px);opacity:0} 10%{opacity:1} 90%{opacity:0.6} 100%{transform:translateY(100vh);opacity:0} }
@@ -182,7 +185,6 @@ const G = `
   .hide-mob { display: flex; }
   .show-mob { display: none; }
 
-  /* ── Noise overlay (replaces scanlines) ── */
   .noise-overlay {
     position: fixed;
     inset: 0;
@@ -192,9 +194,8 @@ const G = `
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 180px 180px;
   }
-  [data-theme="dark"] .noise-overlay { opacity: 0.04; }
+  [data-theme="dark"] .noise-overlay { opacity: 0.05; }
 
-  /* ── Floating orbs ── */
   .orb {
     position: absolute;
     border-radius: 50%;
@@ -248,6 +249,9 @@ const G = `
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: repeating-linear-gradient(180deg,#1B3A8A 0,#1B3A8A 6px,#2E5FC9 6px,#2E5FC9 12px); border-left: 2px solid var(--bg); }
 
+  /* Dark mode scrollbar — red */
+  [data-theme="dark"] ::-webkit-scrollbar-thumb { background: repeating-linear-gradient(180deg,#6B7FD4 0,#6B7FD4 6px,#7C9EFF 6px,#7C9EFF 12px); }
+
   .display { font-family: 'Playfair Display', Georgia, serif; }
   .pixel   { font-family: 'Press Start 2P', monospace; }
   .vt      { font-family: 'JetBrains Mono', monospace; }
@@ -260,6 +264,9 @@ const G = `
   .d5 { transition-delay: 0.40s; }
 
   .grad { background: linear-gradient(135deg, #1B3A8A 0%, #2E5FC9 40%, #5B8FE8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* Dark mode gradient — red */
+  [data-theme="dark"] .grad { background: linear-gradient(135deg,#A78BFA 0%,#7C9EFF 40%,#6B7FD4 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
   .px-card {
     border: 2px solid #1B3A8A;
@@ -304,23 +311,41 @@ const G = `
     box-shadow: 0 2px 8px rgba(27,58,138,0.18);
   }
 
-  [data-theme="dark"] .px-card { box-shadow: 5px 5px 0 #2E5FC9, 0 0 14px rgba(46,95,201,0.1); border-color: #2E5FC9; }
-  [data-theme="dark"] .px-card:hover { box-shadow: 9px 9px 0 #2E5FC9, 0 0 28px rgba(46,95,201,0.22); border-color: #5B8FE8; }
-  [data-theme="dark"] .chip { border-color: #2E5FC9; box-shadow: 2px 2px 0 #2E5FC9; color: #A8C0F0; }
-  [data-theme="dark"] .chip:hover { background: #2E5FC9; color: #fff; }
-  [data-theme="dark"] .btt-btn { border-color: #2E5FC9; box-shadow: 4px 4px 0 #2E5FC9; }
-  [data-theme="dark"] .toast { border-color: #2E5FC9; box-shadow: 4px 4px 0 #2E5FC9; }
-  [data-theme="dark"] .kbd-hint { border-color: #2E5FC9; box-shadow: 3px 3px 0 #2E5FC9; }
-  [data-theme="dark"] .kbd-key { border-color: #2E5FC9; box-shadow: 2px 2px 0 #2E5FC9; color: #A8C0F0; }
-  [data-theme="dark"] .status-available { border-color: #2A7A5E; box-shadow: 2px 2px 0 #2A7A5E; }
-  [data-theme="dark"] .scroll-bar { background: repeating-linear-gradient(90deg,#2E5FC9 0,#2E5FC9 8px,#5B8FE8 8px,#5B8FE8 16px,#E8A44A 16px,#E8A44A 24px,#D94F3D 24px,#D94F3D 32px); }
-  [data-theme="dark"] nav { background: rgba(7,9,26,0.92) !important; backdrop-filter:blur(12px) saturate(1.5); -webkit-backdrop-filter:blur(12px) saturate(1.5); }
-  [data-theme="dark"] select, [data-theme="dark"] input, [data-theme="dark"] textarea { background: #0E1A40; color: #F0EDE6; border-color: rgba(46,95,201,0.4); }
-  [data-theme="dark"] .mob-menu { background: #07091A; }
-  [data-theme="dark"] .mob-menu a { color: #E8E4DC; }
-  [data-theme="dark"] .mob-menu a:hover { color: #5B8FE8; }
-  [data-theme="dark"] .grad { background: linear-gradient(135deg,#A8C0F0 0%,#C8D8F8 40%,#E8A44A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  [data-theme="dark"] .nav-link::after { background: linear-gradient(90deg,#5B8FE8,#A8C0F0); }
+  /* Dark mode px-divider — red shades */
+  [data-theme="dark"] .px-divider {
+    background: repeating-linear-gradient(90deg,
+      #6B7FD4 0,#6B7FD4 10px,
+      #7C9EFF 10px,#7C9EFF 16px,
+      #A78BFA 16px,#A78BFA 26px,
+      #1E2A4A 26px,#1E2A4A 36px,
+      #7C9EFF 36px,#7C9EFF 46px,
+      #6B7FD4 46px,#6B7FD4 56px,
+      transparent 56px,transparent 66px);
+    box-shadow: 0 2px 8px rgba(255,51,51,0.25);
+  }
+
+  /* ── DARK MODE OVERRIDES ── */
+  [data-theme="dark"] .px-card { box-shadow: 5px 5px 0 #6B7FD4, 0 0 14px rgba(255,51,51,0.12); border-color: #6B7FD4; }
+  [data-theme="dark"] .px-card:hover { box-shadow: 9px 9px 0 #7C9EFF, 0 0 28px rgba(255,51,51,0.22); border-color: #A78BFA; }
+  [data-theme="dark"] .chip { border-color: #6B7FD4; box-shadow: 2px 2px 0 #6B7FD4; color: #A78BFA; background: #1C2333; }
+  [data-theme="dark"] .chip:hover { background: #6B7FD4; color: #fff; }
+  [data-theme="dark"] .btt-btn { background: linear-gradient(135deg,#6B7FD4,#1E2A4A); border-color: #6B7FD4; box-shadow: 4px 4px 0 #1E2A4A; }
+  [data-theme="dark"] .toast { border-color: #6B7FD4; box-shadow: 4px 4px 0 #6B7FD4; background: #111111; color: #7C9EFF; }
+  [data-theme="dark"] .kbd-hint { border-color: #6B7FD4; box-shadow: 3px 3px 0 #6B7FD4; color: #8892B0; background: #111111; }
+  [data-theme="dark"] .kbd-key { border-color: #6B7FD4; box-shadow: 2px 2px 0 #6B7FD4; color: #A78BFA; background: #1C2333; }
+  [data-theme="dark"] .status-available { border-color: #6B7FD4; box-shadow: 2px 2px 0 #6B7FD4; background: rgba(107,127,212,0.1); }
+  [data-theme="dark"] .status-ping { background: #7C9EFF; box-shadow: 0 0 6px rgba(124,158,255,0.7)); }
+  [data-theme="dark"] .status-ping::before { background: #7C9EFF; }
+  [data-theme="dark"] .scroll-bar { background: repeating-linear-gradient(90deg,#6B7FD4 0,#6B7FD4 8px,#7C9EFF 8px,#7C9EFF 16px,#A78BFA 16px,#A78BFA 24px,#1E2A4A 24px,#1E2A4A 32px); box-shadow: 0 1px 8px rgba(107,127,212,0.5); }
+  [data-theme="dark"] nav { background: rgba(15,17,23,0.95) !important; backdrop-filter:blur(12px) saturate(1.5); -webkit-backdrop-filter:blur(12px) saturate(1.5); border-bottom-color: #6B7FD4 !important; box-shadow: 0 2px 0 #6B7FD4 !important; }
+  [data-theme="dark"] select, [data-theme="dark"] input, [data-theme="dark"] textarea { background: #1C2333; color: #7C9EFF; border-color: rgba(107,127,212,0.5); }
+  [data-theme="dark"] .mob-menu { background: #0F1117; }
+  [data-theme="dark"] .mob-menu a { color: #7C9EFF; }
+  [data-theme="dark"] .mob-menu a:hover { color: #A78BFA; }
+  [data-theme="dark"] .nav-link::after { background: linear-gradient(90deg,#6B7FD4,#A78BFA); }
+  [data-theme="dark"] .progress-dot { background: rgba(107,127,212,0.15); border-color: rgba(107,127,212,0.35); }
+  [data-theme="dark"] .progress-dot.active { background: #6B7FD4; border-color: #7C9EFF; box-shadow: 3px 3px 0 #1E2A4A, 0 0 8px rgba(107,127,212,0.5); }
+  [data-theme="dark"] .progress-dot:hover:not(.active) { background: rgba(107,127,212,0.35); }
 
   .shimmer-hover {
     position: relative; overflow: hidden;
@@ -339,11 +364,11 @@ const G = `
 /* ─────────────── FLOATING ORBS BACKGROUND ─────────────── */
 function FloatingOrbs({ dark = false }) {
   const orbs = [
-    { w: 600, h: 600, top: "-10%", left: "30%", col: dark ? "rgba(46,95,201,0.09)" : "rgba(27,58,138,0.07)", anim: "orbDrift1 14s ease-in-out infinite", delay: "0s" },
-    { w: 420, h: 420, top: "40%",  left: "-8%", col: dark ? "rgba(91,143,232,0.07)" : "rgba(46,95,201,0.05)", anim: "orbDrift2 18s ease-in-out infinite", delay: "2s" },
-    { w: 340, h: 340, top: "60%",  left: "75%", col: dark ? "rgba(232,164,74,0.06)" : "rgba(232,164,74,0.04)", anim: "orbDrift3 12s ease-in-out infinite", delay: "4s" },
-    { w: 260, h: 260, top: "5%",   left: "78%", col: dark ? "rgba(42,122,94,0.07)"  : "rgba(42,122,94,0.04)",  anim: "orbDrift1 16s ease-in-out infinite", delay: "6s" },
-    { w: 200, h: 200, top: "80%",  left: "50%", col: dark ? "rgba(27,58,138,0.06)"  : "rgba(27,58,138,0.04)",  anim: "orbDrift2 20s ease-in-out infinite", delay: "1s" },
+    { w: 600, h: 600, top: "-10%", left: "30%", col: dark ? "rgba(107,127,212,0.07)" : "rgba(27,58,138,0.07)", anim: "orbDrift1 14s ease-in-out infinite", delay: "0s" },
+    { w: 420, h: 420, top: "40%",  left: "-8%", col: dark ? "rgba(204,0,0,0.05)" : "rgba(46,95,201,0.05)", anim: "orbDrift2 18s ease-in-out infinite", delay: "2s" },
+    { w: 340, h: 340, top: "60%",  left: "75%", col: dark ? "rgba(255,102,102,0.05)" : "rgba(232,164,74,0.04)", anim: "orbDrift3 12s ease-in-out infinite", delay: "4s" },
+    { w: 260, h: 260, top: "5%",   left: "78%", col: dark ? "rgba(153,0,0,0.06)" : "rgba(42,122,94,0.04)", anim: "orbDrift1 16s ease-in-out infinite", delay: "6s" },
+    { w: 200, h: 200, top: "80%",  left: "50%", col: dark ? "rgba(255,51,51,0.04)" : "rgba(27,58,138,0.04)", anim: "orbDrift2 20s ease-in-out infinite", delay: "1s" },
   ];
   return (
     <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
@@ -633,12 +658,15 @@ function ScrollProgressBar() {
 /* ─────────────── MOUSE TRAIL ─────────────── */
 function MouseTrail() {
   useEffect(() => {
-    const COLORS = ["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E"];
+    const isDark = () => document.documentElement.getAttribute("data-theme") === "dark";
+    const COLORS_LIGHT = ["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E"];
+    const COLORS_DARK  = ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA"];
     let count = 0;
     const fn = (e) => {
       if (count++ % 3 !== 0) return;
       const el = document.createElement("div");
       const size = 5;
+      const COLORS = isDark() ? COLORS_DARK : COLORS_LIGHT;
       el.style.cssText = `position:fixed;pointer-events:none;z-index:9997;width:${size}px;height:${size}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};left:${e.clientX-size/2}px;top:${e.clientY-size/2}px;animation:sparkle 0.5s ease both;`;
       document.body.appendChild(el);
       setTimeout(()=>el.remove(), 600);
@@ -657,7 +685,10 @@ function KonamiConfetti() {
     const fn = (e) => {
       seq.current = [...seq.current, e.keyCode].slice(-10);
       if (seq.current.join(",") === CODE.join(",")) {
-        const COLORS = ["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E","#5B8FE8"];
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        const COLORS = isDark
+          ? ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA","#7C9EFF"]
+          : ["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E","#5B8FE8"];
         for (let i=0; i<80; i++) {
           const el = document.createElement("div");
           const size = Math.random()*10+5;
@@ -967,8 +998,9 @@ function ProjectStatsBar() {
 }
 
 /* ─────────────── CURSOR ─────────────── */
-function Cursor() {
+function Cursor({ dark }) {
   const dot=useRef(null); const trail=useRef(null);
+  const cursorColor = dark ? "#7C9EFF" : "#1B3A8A";
   useEffect(()=>{
     let tx=0,ty=0;
     const onMove=(e)=>{
@@ -982,8 +1014,8 @@ function Cursor() {
   },[]);
   return (
     <>
-      <div ref={dot} style={{position:"fixed",width:7,height:7,background:"#1B3A8A",transform:"translate(-50%,-50%)",pointerEvents:"none",zIndex:9999}}/>
-      <div ref={trail} style={{position:"fixed",width:18,height:18,border:"2px solid #1B3A8A",transform:"translate(-50%,-50%)",pointerEvents:"none",zIndex:9998,opacity:.45}}/>
+      <div ref={dot} style={{position:"fixed",width:7,height:7,background:cursorColor,transform:"translate(-50%,-50%)",pointerEvents:"none",zIndex:9999}}/>
+      <div ref={trail} style={{position:"fixed",width:18,height:18,border:`2px solid ${cursorColor}`,transform:"translate(-50%,-50%)",pointerEvents:"none",zIndex:9998,opacity:.45}}/>
     </>
   );
 }
@@ -1026,6 +1058,9 @@ function Nav({ dark, setDark }) {
   const links=["About","Experience","Resume","Projects","Skills","Timeline","Contact"];
   const closeMenu=()=>setMenuOpen(false);
 
+  const navAccent = dark ? "#6B7FD4" : "#1B3A8A";
+  const navAccentShadow = dark ? "#1E2A4A" : "#0A0F2E";
+
   const barStyle=(open,which)=>({
     display:"block",width:22,height:2,background:"var(--ink)",
     transformOrigin:"center",transition:"transform 0.3s, opacity 0.3s",
@@ -1037,30 +1072,30 @@ function Nav({ dark, setDark }) {
     <>
       <div className={`mob-menu${menuOpen?" open":""}`}>
         {links.map(l=><a key={l} href={`#${l.toLowerCase()}`} onClick={closeMenu}>{l}</a>)}
-        <button onClick={()=>setDark(d=>!d)} style={{ background:"none", border:"2px solid #1B3A8A", padding:"0.6rem 1.4rem", cursor:"pointer", fontSize:"0.9rem", display:"flex", alignItems:"center", gap:"0.5rem", fontFamily:"'DM Sans', system-ui, sans-serif", fontWeight:600, color:"var(--ink)", boxShadow:"3px 3px 0 #1B3A8A" }}>
+        <button onClick={()=>setDark(d=>!d)} style={{ background:"none", border:`2px solid ${navAccent}`, padding:"0.6rem 1.4rem", cursor:"pointer", fontSize:"0.9rem", display:"flex", alignItems:"center", gap:"0.5rem", fontFamily:"'DM Sans', system-ui, sans-serif", fontWeight:600, color:"var(--ink)", boxShadow:`3px 3px 0 ${navAccent}` }}>
           <span key={dark?"m":"s"} style={{animation:"darkToggle 0.3s ease both"}}>{dark?"☀️":"🌙"}</span>
           {dark?"Light mode":"Dark mode"}
         </button>
       </div>
 
-      <nav style={{ position:"fixed", top:0, left:0, right:0, zIndex:600, display:"flex", alignItems:"center", justifyContent:"space-between", padding:scrolled||menuOpen?"0.8rem 2rem":"1.2rem 2rem", background:scrolled||menuOpen?"var(--bg)":"transparent", borderBottom:scrolled?"2px solid #1B3A8A":"2px solid transparent", boxShadow:scrolled?"0 2px 0 #1B3A8A":"none", transition:"all 0.25s ease", fontFamily:"'DM Sans', system-ui, sans-serif" }}>
+      <nav style={{ position:"fixed", top:0, left:0, right:0, zIndex:600, display:"flex", alignItems:"center", justifyContent:"space-between", padding:scrolled||menuOpen?"0.8rem 2rem":"1.2rem 2rem", background:scrolled||menuOpen?"var(--bg)":"transparent", borderBottom:scrolled?`2px solid ${navAccent}`:"2px solid transparent", boxShadow:scrolled?`0 2px 0 ${navAccent}`:"none", transition:"all 0.25s ease", fontFamily:"'DM Sans', system-ui, sans-serif" }}>
         <div style={{display:"flex",alignItems:"center",gap:"0.7rem"}}>
-          <div style={{width:32,height:32,background:"#1B3A8A",border:"2px solid #0A0F2E",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"3px 3px 0 #0A0F2E"}}>
+          <div style={{width:32,height:32,background:navAccent,border:`2px solid ${navAccentShadow}`,display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`3px 3px 0 ${navAccentShadow}`}}>
             <span style={{color:"#fff",fontSize:"0.75rem",fontWeight:700,fontFamily:"'Press Start 2P', monospace"}}>AP</span>
           </div>
-          <span style={{fontSize:"0.95rem",color:"#1B3A8A",fontWeight:600,fontFamily:"'Playfair Display', Georgia, serif",fontStyle:"italic"}}>arman<span style={{color:C.muted,fontStyle:"normal"}}>.exe</span></span>
+          <span style={{fontSize:"0.95rem",color:navAccent,fontWeight:600,fontFamily:"'Playfair Display', Georgia, serif",fontStyle:"italic"}}>arman<span style={{color:"var(--muted)",fontStyle:"normal"}}>.exe</span></span>
         </div>
         <div className="hide-mob" style={{display:"flex",gap:"1.8rem"}}>
           {links.map(l=>(
-            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link" style={{color:C.inkMid,fontSize:"0.95rem",fontWeight:500,letterSpacing:"0.3px"}}
-              onMouseEnter={e=>e.currentTarget.style.color="#1B3A8A"}
-              onMouseLeave={e=>e.currentTarget.style.color=C.inkMid}
+            <a key={l} href={`#${l.toLowerCase()}`} className="nav-link" style={{color:"var(--inkMid)",fontSize:"0.95rem",fontWeight:500,letterSpacing:"0.3px"}}
+              onMouseEnter={e=>e.currentTarget.style.color=navAccent}
+              onMouseLeave={e=>e.currentTarget.style.color="var(--inkMid)"}
             >{l}</a>
           ))}
         </div>
         <div className="hide-mob" style={{display:"flex",gap:"0.5rem",alignItems:"center"}}>
           <ThemeAccentPicker/>
-          <button onClick={()=>setDark(d=>!d)} title="Toggle theme" style={{ width:34, height:34, background:"var(--vPale)", border:"2px solid #1B3A8A", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"2px 2px 0 #1B3A8A", transition:"all 0.1s" }}
+          <button onClick={()=>setDark(d=>!d)} title="Toggle theme" style={{ width:34, height:34, background:"var(--vPale)", border:`2px solid ${navAccent}`, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:`2px 2px 0 ${navAccent}`, transition:"all 0.1s" }}
             onMouseEnter={e=>e.currentTarget.style.transform="translate(-1px,-1px)"}
             onMouseLeave={e=>{e.currentTarget.style.transform="";}}
           >
@@ -1078,13 +1113,13 @@ function Nav({ dark, setDark }) {
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
           </a>
-          <a href="mailto:armanphaugat20@gmail.com" style={{ padding:"0.55rem 1.1rem", background:"#1B3A8A", color:"#fff", border:"2px solid #0A0F2E", fontSize:"0.92rem", fontWeight:600, textDecoration:"none", boxShadow:"3px 3px 0 #0A0F2E", transition:"all 0.1s", whiteSpace:"nowrap" }}
-            onMouseEnter={e=>{e.currentTarget.style.transform="translate(-1px,-1px)";e.currentTarget.style.boxShadow="4px 4px 0 #0A0F2E";}}
-            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow="3px 3px 0 #0A0F2E";}}
+          <a href="mailto:armanphaugat20@gmail.com" style={{ padding:"0.55rem 1.1rem", background:navAccent, color:"#fff", border:`2px solid ${navAccentShadow}`, fontSize:"0.92rem", fontWeight:600, textDecoration:"none", boxShadow:`3px 3px 0 ${navAccentShadow}`, transition:"all 0.1s", whiteSpace:"nowrap" }}
+            onMouseEnter={e=>{e.currentTarget.style.transform="translate(-1px,-1px)";e.currentTarget.style.boxShadow=`4px 4px 0 ${navAccentShadow}`;}}
+            onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`3px 3px 0 ${navAccentShadow}`;}}
           >Hire me ▶</a>
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" style={{ padding:"0.55rem 1.1rem", background:"transparent", color:"#1B3A8A", border:"2px solid #1B3A8A", fontSize:"0.92rem", fontWeight:600, textDecoration:"none", display:"flex", alignItems:"center", gap:"0.4rem", animation:"resumePulse 2.5s ease-in-out infinite", boxShadow:"3px 3px 0 #1B3A8A", whiteSpace:"nowrap" }}
-            onMouseEnter={e=>{e.currentTarget.style.background="#1B3A8A";e.currentTarget.style.color="#fff";}}
-            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color="#1B3A8A";}}
+          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" style={{ padding:"0.55rem 1.1rem", background:"transparent", color:navAccent, border:`2px solid ${navAccent}`, fontSize:"0.92rem", fontWeight:600, textDecoration:"none", display:"flex", alignItems:"center", gap:"0.4rem", animation:"resumePulse 2.5s ease-in-out infinite", boxShadow:`3px 3px 0 ${navAccent}`, whiteSpace:"nowrap" }}
+            onMouseEnter={e=>{e.currentTarget.style.background=navAccent;e.currentTarget.style.color="#fff";}}
+            onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=navAccent;}}
           >
             <Download size={12} strokeWidth={2.5}/>CV
           </a>
@@ -1145,7 +1180,7 @@ function SectionProgress() {
       {SECTIONS.map((id,i)=>(
         <div key={id} style={{position:"relative",display:"flex",alignItems:"center",gap:"0.4rem"}}>
           {active===i && (
-            <div style={{ position:"absolute", right:"calc(100% + 0.5rem)", background:"var(--paper)", border:"2px solid #1B3A8A", padding:"0.15rem 0.5rem", fontSize:"0.8rem", fontFamily:"'DM Sans', system-ui, sans-serif", color:"#1B3A8A", whiteSpace:"nowrap", fontWeight:600, animation:"backTopIn 0.2s ease both", boxShadow:"2px 2px 0 #1B3A8A" }}>{SECTION_LABELS[i]}</div>
+            <div style={{ position:"absolute", right:"calc(100% + 0.5rem)", background:"var(--paper)", border:"2px solid var(--inkMid)", padding:"0.15rem 0.5rem", fontSize:"0.8rem", fontFamily:"'DM Sans', system-ui, sans-serif", color:"var(--inkMid)", whiteSpace:"nowrap", fontWeight:600, animation:"backTopIn 0.2s ease both", boxShadow:"2px 2px 0 var(--inkMid)" }}>{SECTION_LABELS[i]}</div>
           )}
           <div className={`progress-dot${active===i?" active":""}`} onClick={()=>document.getElementById(id)?.scrollIntoView({behavior:"smooth"})} title={SECTION_LABELS[i]}/>
         </div>
@@ -1167,7 +1202,7 @@ function BackToTop() {
 }
 
 /* ─────────────── PARTICLE CANVAS ─────────────── */
-function ParticleCanvas() {
+function ParticleCanvas({ dark }) {
   const canvasRef = useRef(null);
   useEffect(()=>{
     const canvas=canvasRef.current; if(!canvas) return;
@@ -1176,7 +1211,9 @@ function ParticleCanvas() {
     const resize=()=>{ canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; };
     resize();
     window.addEventListener("resize",resize);
-    const COLORS=["#1B3A8A","#2E5FC9","#5B8FE8","#E8A44A","#D94F3D","#2A7A5E"];
+    const COLORS = dark
+      ? ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA","#7C9EFF"]
+      : ["#1B3A8A","#2E5FC9","#5B8FE8","#E8A44A","#D94F3D","#2A7A5E"];
     const pts=Array.from({length:50},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,r:Math.random()*2+1,col:COLORS[Math.floor(Math.random()*COLORS.length)]}));
     const draw=()=>{
       ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -1195,7 +1232,7 @@ function ParticleCanvas() {
             ctx.beginPath();
             ctx.moveTo(pts[i].x,pts[i].y);
             ctx.lineTo(pts[j].x,pts[j].y);
-            ctx.strokeStyle=`rgba(27,58,138,${0.07*(1-dist/90)})`;
+            ctx.strokeStyle= dark ? `rgba(255,51,51,${0.07*(1-dist/90)})` : `rgba(27,58,138,${0.07*(1-dist/90)})`;
             ctx.lineWidth=0.5;
             ctx.stroke();
           }
@@ -1205,68 +1242,12 @@ function ParticleCanvas() {
     };
     draw();
     return ()=>{ cancelAnimationFrame(animId); window.removeEventListener("resize",resize); };
-  },[]);
+  },[dark]);
   return <canvas ref={canvasRef} style={{position:"absolute",inset:0,width:"100%",height:"100%",opacity:0.45}}/>;
 }
 
-/* ─────────────── PIXEL RAIN ─────────────── */
-function PixelRain() {
-  const canvasRef = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let animId;
-    const resize = () => { canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; };
-    resize();
-    window.addEventListener("resize", resize);
-    const COLS_COLORS = ["#1B3A8A","#2E5FC9","#5B8FE8","#A8C0F0","#2A7A5E","#E8A44A"];
-    const CHARS = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ".split("");
-    const CELL  = 16;
-    const cols  = Math.floor(1920 / CELL);
-    const drops = Array.from({ length: cols }, () => ({
-      y: -Math.random() * 60, speed: 0.18 + Math.random() * 0.28,
-      col: COLS_COLORS[Math.floor(Math.random() * COLS_COLORS.length)],
-      char: CHARS[Math.floor(Math.random() * CHARS.length)],
-      len: 8 + Math.floor(Math.random() * 16), bright: Math.random() > 0.92,
-    }));
-    let frame = 0;
-    const draw = () => {
-      frame++;
-      ctx.fillStyle = "rgba(7, 9, 26, 0.18)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      drops.forEach((d, i) => {
-        const x = i * CELL;
-        if (x > canvas.width) return;
-        for (let t = 0; t < d.len; t++) {
-          const ty = (d.y - t) * CELL;
-          if (ty < 0 || ty > canvas.height) continue;
-          const alpha = (1 - t / d.len) * (t === 0 ? 1 : 0.6 - t * 0.04);
-          const col = t === 0 ? (d.bright ? "#ffffff" : d.col + "ff") : d.col + Math.floor(alpha * 180).toString(16).padStart(2,"0");
-          ctx.fillStyle = col;
-          ctx.font = `bold ${CELL - 2}px 'JetBrains Mono', monospace`;
-          ctx.fillText(d.char, x + 2, ty);
-        }
-        d.y += d.speed;
-        if (frame % 8 === 0) d.char = CHARS[Math.floor(Math.random() * CHARS.length)];
-        if (d.y * CELL > canvas.height + d.len * CELL) {
-          d.y=-d.len-Math.random()*30; d.speed=0.18+Math.random()*0.28;
-          d.col=COLS_COLORS[Math.floor(Math.random()*COLS_COLORS.length)];
-          d.len=8+Math.floor(Math.random()*16); d.bright=Math.random()>0.92;
-        }
-      });
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
-  }, []);
-  return (
-    <canvas ref={canvasRef} style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.4, pointerEvents:"none", zIndex:0 }}/>
-  );
-}
-
 /* ─────────────── HERO ─────────────── */
-function Hero() {
+function Hero({ dark }) {
   const [typed, setTyped] = useState("");
   const words=["Backend Engineer","System Designer","AI / ML Builder","Competitive Programmer","Full Stack Dev"];
   useEffect(()=>{
@@ -1279,49 +1260,52 @@ function Hero() {
     return ()=>clearInterval(iv);
   },[]);
 
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accent2 = dark ? "#6B7FD4" : "#2E5FC9";
+  const accentShadow = dark ? "#1E2A4A" : "#0A0F2E";
+
   return (
-    <section id="hero" className="hero-sec" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"9rem 4rem 5rem", position:"relative", overflow:"hidden", background:"var(--bg)", backgroundImage:"radial-gradient(ellipse 80% 50% at 50% -10%, rgba(27,58,138,0.08) 0%, transparent 70%)" }}>
-      {/* Floating orbs replace grid */}
-      <FloatingOrbs />
+    <section id="hero" className="hero-sec" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"9rem 4rem 5rem", position:"relative", overflow:"hidden", background:"var(--bg)", backgroundImage: dark ? "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(107,127,212,0.07) 0%, transparent 70%)" : "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(27,58,138,0.08) 0%, transparent 70%)" }}>
+      <FloatingOrbs dark={dark} />
 
       <div className="float-bg" style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
-        {[{Icon:Zap,top:"12%",left:"5%",sz:32,anim:"iconDrift 7s ease-in-out infinite",delay:"0s",col:"#1B3A8A"},{Icon:Code2,top:"25%",left:"90%",sz:28,anim:"iconDriftB 9s ease-in-out infinite",delay:"1.2s",col:"#2E5FC9"},{Icon:Database,top:"55%",left:"88%",sz:26,anim:"iconDrift 11s ease-in-out infinite",delay:"2.1s",col:"#E8A44A"},{Icon:Server,top:"70%",left:"6%",sz:30,anim:"iconDriftC 8s ease-in-out infinite",delay:"0.7s",col:"#D94F3D"},{Icon:BrainCircuit,top:"88%",left:"40%",sz:28,anim:"iconDrift 13s ease-in-out infinite",delay:"4.1s",col:"#2A7A5E"},{Icon:Terminal,top:"15%",left:"74%",sz:24,anim:"iconDriftC 10s ease-in-out infinite",delay:"2.8s",col:"#1B3A8A"},{Icon:Bot,top:"5%",left:"48%",sz:28,anim:"iconDriftC 8s ease-in-out infinite",delay:"3.0s",col:"#2E5FC9"}].map(({Icon,top,left,sz,anim,delay,col},i)=>(
-          <div key={i} style={{position:"absolute",top,left,opacity:0.1,animation:anim,animationDelay:delay,color:col}}><Icon size={sz} strokeWidth={1.5}/></div>
+        {[{Icon:Zap,top:"12%",left:"5%",sz:32,anim:"iconDrift 7s ease-in-out infinite",delay:"0s",col:accent},{Icon:Code2,top:"25%",left:"90%",sz:28,anim:"iconDriftB 9s ease-in-out infinite",delay:"1.2s",col:accent2},{Icon:Database,top:"55%",left:"88%",sz:26,anim:"iconDrift 11s ease-in-out infinite",delay:"2.1s",col:dark?"#A78BFA":"#E8A44A"},{Icon:Server,top:"70%",left:"6%",sz:30,anim:"iconDriftC 8s ease-in-out infinite",delay:"0.7s",col:dark?"#1E2A4A":"#D94F3D"},{Icon:BrainCircuit,top:"88%",left:"40%",sz:28,anim:"iconDrift 13s ease-in-out infinite",delay:"4.1s",col:dark?"#6B7FD4":"#2A7A5E"},{Icon:Terminal,top:"15%",left:"74%",sz:24,anim:"iconDriftC 10s ease-in-out infinite",delay:"2.8s",col:accent},{Icon:Bot,top:"5%",left:"48%",sz:28,anim:"iconDriftC 8s ease-in-out infinite",delay:"3.0s",col:accent2}].map(({Icon,top,left,sz,anim,delay,col},i)=>(
+          <div key={i} style={{position:"absolute",top,left,opacity:0.12,animation:anim,animationDelay:delay,color:col}}><Icon size={sz} strokeWidth={1.5}/></div>
         ))}
       </div>
 
       <div style={{maxWidth:1060,margin:"0 auto",width:"100%",position:"relative",zIndex:1}}>
         <div className="rv" style={{display:"flex",alignItems:"center",gap:"1rem",marginBottom:"1.4rem",flexWrap:"wrap"}}>
-          <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1rem",color:"#1B3A8A",letterSpacing:"1px",display:"flex",alignItems:"center",gap:"0.8rem",fontWeight:500}}>
-            <span style={{display:"inline-block",width:28,height:3,background:"linear-gradient(90deg,#1B3A8A,#2E5FC9)"}}/>
+          <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1rem",color:accent,letterSpacing:"1px",display:"flex",alignItems:"center",gap:"0.8rem",fontWeight:500}}>
+            <span style={{display:"inline-block",width:28,height:3,background:`linear-gradient(90deg,${accent},${accent2})`}}/>
             3rd Year CSE · MUJ · 2023–2027
           </div>
           <div className="status-available">
             <div className="status-ping"/>
-            <span style={{fontSize:"0.95rem",color:"#2A7A5E",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif"}}>Open to work</span>
+            <span style={{fontSize:"0.95rem",color:dark?"#7C9EFF":"#2A7A5E",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif"}}>Open to work</span>
           </div>
         </div>
 
-        <h1 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(2.8rem,6vw,5.5rem)",fontWeight:600,lineHeight:1.1,marginBottom:"0.9rem",letterSpacing:"-1px",color:"var(--ink)",animation:"heroGlow 4s ease-in-out infinite"}}>
+        <h1 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(2.8rem,6vw,5.5rem)",fontWeight:600,lineHeight:1.1,marginBottom:"0.9rem",letterSpacing:"-1px",color:"var(--ink)",animation: dark ? "heroGlowRed 4s ease-in-out infinite" : "heroGlow 4s ease-in-out infinite"}}>
           Arman<br/>
           <span className="grad" style={{display:"inline-block"}}>Phaugat</span>
         </h1>
 
         <div className="rv d2" style={{marginBottom:"1.5rem",height:"2.2rem",display:"flex",alignItems:"center"}}>
           <span style={{fontSize:"1.4rem",color:"var(--muted)",fontFamily:"'JetBrains Mono', monospace",letterSpacing:"0.3px",fontWeight:400}}>
-            › {typed}<span style={{animation:"blink 1s infinite",display:"inline-block",color:"#1B3A8A"}}>_</span>
+            › {typed}<span style={{animation:"blink 1s infinite",display:"inline-block",color:accent}}>_</span>
           </span>
         </div>
 
         <p className="rv d3" style={{fontSize:"1.05rem",color:"var(--muted)",maxWidth:540,lineHeight:1.9,marginBottom:"2.5rem",fontFamily:"'DM Sans', system-ui, sans-serif",fontWeight:400}}>
           Building fast backends, shipping ML models, crafting AI-powered apps.<br/>
-          Top <strong style={{color:"#1B3A8A",fontWeight:600}}>0.3% LeetCode</strong> · <strong style={{color:"#2E5FC9",fontWeight:600}}>9.05 CGPA</strong> · <strong style={{color:"#E8A44A",fontWeight:600}}>900+ DSA</strong> solved.
+          Top <strong style={{color:accent,fontWeight:600}}>0.3% LeetCode</strong> · <strong style={{color:accent2,fontWeight:600}}>9.05 CGPA</strong> · <strong style={{color:dark?"#A78BFA":"#E8A44A",fontWeight:600}}>900+ DSA</strong> solved.
         </p>
 
         <div className="rv d4 hero-ctarow" style={{display:"flex",gap:"0.8rem",flexWrap:"wrap",marginBottom:"3.5rem"}}>
           {[
-            {href:"#projects",label:"View Projects →",bg:"#1B3A8A",color:"#fff",shadow:"#0A0F2E"},
-            {href:"#contact",label:"Let's Talk",bg:"transparent",color:"var(--ink)",shadow:"#1B3A8A",bord:"#1B3A8A"},
+            {href:"#projects",label:"View Projects →",bg:accent,color:"#fff",shadow:accentShadow},
+            {href:"#contact",label:"Let's Talk",bg:"transparent",color:"var(--ink)",shadow:accent,bord:accent},
             {href:"https://github.com/armanphaugat",label:"GitHub",bg:"#1e293b",color:"#fff",shadow:"#0f172a"},
             {href:"https://www.linkedin.com/in/armanphaugat05/",label:"LinkedIn",bg:"#0A66C2",color:"#fff",shadow:"#004182"},
             {href:"https://leetcode.com/u/armanphaugat20",label:"LeetCode",bg:"#E8A44A",color:"#fff",shadow:"#B87A2A"},
@@ -1332,12 +1316,12 @@ function Hero() {
               boxShadow:`4px 4px 0 ${shadow}`, display:"inline-flex", alignItems:"center", gap:"0.4rem",
             }}>{label}</a>
           ))}
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="px-btn" style={{ padding:"0.8rem 1.5rem", background:"transparent", color:"#1B3A8A", border:"2px solid #1B3A8A", fontSize:"0.92rem", fontWeight:600, textDecoration:"none", fontFamily:"'DM Sans', system-ui, sans-serif", boxShadow:"4px 4px 0 #1B3A8A", display:"inline-flex", alignItems:"center", gap:"0.4rem", animation:"resumePulse 2.5s ease-in-out infinite" }}>
+          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="px-btn" style={{ padding:"0.8rem 1.5rem", background:"transparent", color:accent, border:`2px solid ${accent}`, fontSize:"0.92rem", fontWeight:600, textDecoration:"none", fontFamily:"'DM Sans', system-ui, sans-serif", boxShadow:`4px 4px 0 ${accent}`, display:"inline-flex", alignItems:"center", gap:"0.4rem", animation:"resumePulse 2.5s ease-in-out infinite" }}>
             <Download size={12} strokeWidth={2.5}/>Resume
           </a>
         </div>
 
-        <div className="rv" style={{display:"flex",gap:"0",borderTop:"1.5px solid rgba(27,58,138,0.18)",paddingTop:"2rem",marginTop:"0.5rem",flexWrap:"wrap"}}>
+        <div className="rv" style={{display:"flex",gap:"0",borderTop:`1.5px solid ${dark?"rgba(107,127,212,0.2)":"rgba(27,58,138,0.18)"}`,paddingTop:"2rem",marginTop:"0.5rem",flexWrap:"wrap"}}>
           <AnimatedStat value="9.05" label="CGPA — Dean's Award"/>
           <AnimatedStat value="900+" label="DSA Problems"/>
           <AnimatedStat value="10+" label="Projects Built"/>
@@ -1352,16 +1336,19 @@ function Hero() {
 }
 
 /* ─────────────── MARQUEE ─────────────── */
-function Marquee() {
+function Marquee({ dark }) {
   const items=["Node.js","Redis","MySQL","BullMQ","Python","FastAPI","LangChain","FAISS","MongoDB","Docker","XGBoost","Streamlit","Pygame","React","Scikit-learn","RAG","HuggingFace","JWT","Pandas","Groq","System Design","ACID"];
   const doubled=[...items,...items];
-  const COLS=["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E","#5B8FE8"];
+  const COLS = dark
+    ? ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA","#7C9EFF"]
+    : ["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E","#5B8FE8"];
+  const borderCol = dark ? "#6B7FD4" : "#1B3A8A";
   return (
-    <div style={{background:"linear-gradient(135deg,#07091A 0%,#0C0F28 50%,#07091A 100%)",padding:"0.9rem 0",overflow:"hidden",borderTop:"2px solid #1B3A8A",borderBottom:"2px solid #1B3A8A",boxShadow:"0 4px 20px rgba(27,58,138,0.18),0 -4px 20px rgba(27,58,138,0.18)"}}>
+    <div style={{background: dark ? "linear-gradient(135deg,#0F1117 0%,#0a0000 50%,#0F1117 100%)" : "linear-gradient(135deg,#07091A 0%,#0C0F28 50%,#07091A 100%)",padding:"0.9rem 0",overflow:"hidden",borderTop:`2px solid ${borderCol}`,borderBottom:`2px solid ${borderCol}`,boxShadow: dark ? `0 4px 20px rgba(255,51,51,0.18),0 -4px 20px rgba(255,51,51,0.18)` : "0 4px 20px rgba(27,58,138,0.18),0 -4px 20px rgba(27,58,138,0.18)"}}>
       <div style={{display:"flex",animation:"marquee 28s linear infinite",width:"max-content"}}>
         {doubled.map((item,i)=>(
           <span key={i} style={{color:COLS[i%COLS.length],fontSize:"0.92rem",letterSpacing:"1px",padding:"0 1.8rem",display:"flex",alignItems:"center",gap:"1.5rem",fontFamily:"'JetBrains Mono', monospace",fontWeight:500}}>
-            {item}<span style={{color:"rgba(27,58,138,0.5)",fontSize:"0.7rem"}}>■</span>
+            {item}<span style={{color: dark ? "rgba(107,127,212,0.5)" : "rgba(27,58,138,0.5)",fontSize:"0.7rem"}}>■</span>
           </span>
         ))}
       </div>
@@ -1370,29 +1357,32 @@ function Marquee() {
 }
 
 /* ─────────────── ABOUT ─────────────── */
-function About() {
+function About({ dark }) {
   const cardRef = useRef(null);
   useTilt(cardRef);
-  const COLORS_CYCLE=["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E"];
+  const COLORS_CYCLE = dark
+    ? ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA"]
+    : ["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E"];
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accent2 = dark ? "#6B7FD4" : "#2E5FC9";
   return (
     <section id="about" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}} className="sec-pad">
-      {/* Floating orbs — secondary color set */}
       <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
-        <div className="orb" style={{width:500,height:500,top:"-5%",right:"-5%",background:"radial-gradient(circle,rgba(46,95,201,0.06) 0%,transparent 70%)",animation:"orbDrift2 16s ease-in-out infinite"}}/>
-        <div className="orb" style={{width:350,height:350,bottom:"10%",left:"5%",background:"radial-gradient(circle,rgba(42,122,94,0.05) 0%,transparent 70%)",animation:"orbDrift1 20s ease-in-out infinite 3s"}}/>
+        <div className="orb" style={{width:500,height:500,top:"-5%",right:"-5%",background: dark ? "radial-gradient(circle,rgba(255,51,51,0.05) 0%,transparent 70%)" : "radial-gradient(circle,rgba(46,95,201,0.06) 0%,transparent 70%)",animation:"orbDrift2 16s ease-in-out infinite"}}/>
+        <div className="orb" style={{width:350,height:350,bottom:"10%",left:"5%",background: dark ? "radial-gradient(circle,rgba(204,0,0,0.04) 0%,transparent 70%)" : "radial-gradient(circle,rgba(42,122,94,0.05) 0%,transparent 70%)",animation:"orbDrift1 20s ease-in-out infinite 3s"}}/>
       </div>
 
       <div style={{maxWidth:1060,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:"4rem",alignItems:"start",position:"relative",zIndex:1}} className="grid2">
         <div>
-          <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.8rem",fontWeight:400}}>
-            <span style={{width:20,height:3,background:"#1B3A8A",display:"inline-block",boxShadow:"2px 2px 0 #0A0F2E"}}/>ABOUT ME
+          <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"3px",textTransform:"uppercase",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.8rem",fontWeight:400}}>
+            <span style={{width:20,height:3,background:accent,display:"inline-block",boxShadow:`2px 2px 0 ${dark?"#1E2A4A":"#0A0F2E"}`}}/>ABOUT ME
           </div>
           <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.6rem,3vw,2.6rem)",fontWeight:600,lineHeight:1.2,marginBottom:"1.5rem",color:"var(--ink)"}}>
             Passionate about<br/><span className="grad">Systems & Scale</span>
           </h2>
           <div className="rv d2" style={{fontSize:"1rem",color:"var(--muted)",lineHeight:2,fontFamily:"'DM Sans', system-ui, sans-serif",fontWeight:400}}>
             <p style={{marginBottom:"1rem"}}>I'm a <strong style={{color:"var(--ink)",fontWeight:600}}>3rd-year CS student</strong> at Manipal University Jaipur who builds things that work fast, scale cleanly, and solve real problems.</p>
-            <p style={{marginBottom:"1rem"}}>Core focus: backend engineering — <strong style={{color:"#1B3A8A",fontWeight:600}}>Node.js, Redis, BullMQ, MySQL</strong> — plus AI apps with <strong style={{color:"#2E5FC9",fontWeight:600}}>LangChain, FAISS, and Groq</strong>. ML models with Scikit-learn and XGBoost.</p>
+            <p style={{marginBottom:"1rem"}}>Core focus: backend engineering — <strong style={{color:accent,fontWeight:600}}>Node.js, Redis, BullMQ, MySQL</strong> — plus AI apps with <strong style={{color:accent2,fontWeight:600}}>LangChain, FAISS, and Groq</strong>. ML models with Scikit-learn and XGBoost.</p>
             <p>I solve 900+ DSA problems because I genuinely love finding elegant solutions to hard problems.</p>
           </div>
           <div className="rv d3" style={{display:"flex",gap:"0.5rem",marginTop:"1.5rem",flexWrap:"wrap"}}>
@@ -1404,14 +1394,14 @@ function About() {
 
         <div ref={cardRef} className="rv d2 px-card" style={{background:"var(--paper)",padding:"2rem",willChange:"transform",transition:"transform 0.15s ease"}}>
           {[
-            ["🎓","Education","B.Tech CSE · 3rd Year","MUJ · 2023–2027","#1B3A8A"],
-            ["📍","Location","Jaipur, Rajasthan","India","#2E5FC9"],
-            ["🏅","CGPA","9.05 / 10","Dean's Excellence Award","#E8A44A"],
-            ["⚡","Focus","Backend · AI/ML","Node.js · Python · Sys Design","#D94F3D"],
-            ["🧩","Competitive","LeetCode Top 0.3%","900+ problems solved","#2A7A5E"],
-            ["🚀","Hackathon","MUJHackX Round 2","1300+ participants","#1B3A8A"],
+            ["🎓","Education","B.Tech CSE · 3rd Year","MUJ · 2023–2027",COLORS_CYCLE[0]],
+            ["📍","Location","Jaipur, Rajasthan","India",COLORS_CYCLE[1]],
+            ["🏅","CGPA","9.05 / 10","Dean's Excellence Award",COLORS_CYCLE[2]],
+            ["⚡","Focus","Backend · AI/ML","Node.js · Python · Sys Design",COLORS_CYCLE[3]],
+            ["🧩","Competitive","LeetCode Top 0.3%","900+ problems solved",COLORS_CYCLE[4]],
+            ["🚀","Hackathon","MUJHackX Round 2","1300+ participants",COLORS_CYCLE[0]],
           ].map(([ico,label,val,sub,col],i)=>(
-            <div key={label} style={{display:"flex",gap:"0.9rem",alignItems:"flex-start",padding:"0.8rem 0",borderBottom:i<5?`1px solid rgba(27,58,138,0.07)`:"none"}}>
+            <div key={label} style={{display:"flex",gap:"0.9rem",alignItems:"flex-start",padding:"0.8rem 0",borderBottom:i<5?`1px solid ${dark?"rgba(107,127,212,0.08)":"rgba(27,58,138,0.07)"}`:"none"}}>
               <div style={{width:32,height:32,background:`${col}12`,border:`2px solid ${col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.9rem",flexShrink:0,boxShadow:`2px 2px 0 ${col}`}}>{ico}</div>
               <div>
                 <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.8rem",color:"var(--muted)",textTransform:"uppercase",letterSpacing:"1px",marginBottom:"0.15rem",fontWeight:500}}>{label}</div>
@@ -1430,12 +1420,14 @@ function About() {
 }
 
 /* ─────────────── EXPERIENCE ─────────────── */
-function Experience() {
+function Experience({ dark }) {
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accentShadow = dark ? "#1E2A4A" : "#0A0F2E";
   return (
     <section id="experience" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden"}} className="sec-pad">
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>EXPERIENCE
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>EXPERIENCE
         </div>
         <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:600,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.3}}>
           Where I've <span className="grad">Worked</span>
@@ -1445,20 +1437,20 @@ function Experience() {
         <div className="rv d3 px-card" style={{background:"var(--paper)",padding:"2rem"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:"1rem",marginBottom:"1.2rem"}}>
             <div style={{display:"flex",gap:"1rem",alignItems:"center"}}>
-              <div style={{width:48,height:48,background:"var(--bg2)",border:"2px solid #1B3A8A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.3rem",flexShrink:0,boxShadow:"3px 3px 0 #1B3A8A"}}>🏥</div>
+              <div style={{width:48,height:48,background:"var(--bg2)",border:`2px solid ${accent}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.3rem",flexShrink:0,boxShadow:`3px 3px 0 ${accent}`}}>🏥</div>
               <div>
                 <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1.05rem",fontWeight:600,color:"var(--ink)"}}>Web Dev Intern</div>
-                <div style={{fontSize:"0.92rem",color:"#1B3A8A",fontWeight:500,fontFamily:"'DM Sans', system-ui, sans-serif"}}>Indavis Lifesciences, Haridwar</div>
+                <div style={{fontSize:"0.92rem",color:accent,fontWeight:500,fontFamily:"'DM Sans', system-ui, sans-serif"}}>Indavis Lifesciences, Haridwar</div>
               </div>
             </div>
             <div style={{textAlign:"right"}}>
-              <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.88rem",color:"#1B3A8A",background:"var(--vPale)",padding:"0.3rem 0.8rem",display:"inline-block",border:"2px solid #1B3A8A",boxShadow:"2px 2px 0 #1B3A8A",fontWeight:500}}>Jun–Jul 2025</span>
+              <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.88rem",color:accent,background:"var(--vPale)",padding:"0.3rem 0.8rem",display:"inline-block",border:`2px solid ${accent}`,boxShadow:`2px 2px 0 ${accent}`,fontWeight:500}}>Jun–Jul 2025</span>
               <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.85rem",color:"var(--inkMid)",marginTop:"0.3rem"}}>Full-time · On-site</div>
             </div>
           </div>
           {["Maintained and updated the company website ensuring smooth performance and content accuracy.","Collaborated with cross-functional teams to align website updates with brand guidelines and business objectives."].map((b,i)=>(
             <div key={i} style={{display:"flex",gap:"0.6rem",fontSize:"0.97rem",color:"var(--muted)",marginBottom:"0.55rem",lineHeight:1.75,fontFamily:"'DM Sans', system-ui, sans-serif"}}>
-              <span style={{color:"#1B3A8A",flexShrink:0}}>▸</span>{b}
+              <span style={{color:accent,flexShrink:0}}>▸</span>{b}
             </div>
           ))}
           <div style={{marginTop:"1.2rem",display:"flex",gap:"0.4rem",flexWrap:"wrap"}}>
@@ -1466,7 +1458,7 @@ function Experience() {
           </div>
         </div>
 
-        <div className="rv d4 otw-banner" style={{marginTop:"1.5rem",background:"linear-gradient(135deg,#07091A 0%,#0C0F28 100%)",border:"2px solid #1B3A8A",padding:"2rem",boxShadow:"7px 7px 0 #1B3A8A",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem"}}>
+        <div className="rv d4 otw-banner" style={{marginTop:"1.5rem",background: dark ? "linear-gradient(135deg,#0F1117 0%,#0a0000 100%)" : "linear-gradient(135deg,#07091A 0%,#0C0F28 100%)",border:`2px solid ${accent}`,padding:"2rem",boxShadow:`7px 7px 0 ${accent}`,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem"}}>
           <div>
             <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.9rem",color:"rgba(240,237,230,0.5)",letterSpacing:"1px",marginBottom:"0.5rem",fontWeight:500}}>Currently seeking</div>
             <div style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"1.4rem",fontWeight:600,color:"#F0EDE6",marginBottom:"0.5rem",lineHeight:1.4}}>Summer Internship 2026</div>
@@ -1480,18 +1472,22 @@ function Experience() {
 }
 
 /* ─────────────── RESUME ─────────────── */
-function Resume() {
+function Resume({ dark }) {
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accent2 = dark ? "#6B7FD4" : "#2E5FC9";
+  const accentShadow = dark ? "#1E2A4A" : "#0A0F2E";
+  const vPaleStyle = dark ? "rgba(107,127,212,0.1)" : "var(--vPale)";
   return (
     <section id="resume" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden"}} className="sec-pad">
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>RESUME
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>RESUME
         </div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap",gap:"1.5rem",marginBottom:"3rem"}}>
           <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,2.5vw,2rem)",fontWeight:600,color:"var(--ink)",lineHeight:1.3}}>
             Curriculum <span className="grad">Vitae</span>
           </h2>
-          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="rv d2 px-btn" style={{padding:"0.8rem 1.5rem",background:"#1B3A8A",color:"#fff",border:"2px solid #0A0F2E",textDecoration:"none",fontSize:"0.95rem",fontWeight:600,display:"flex",alignItems:"center",gap:"0.5rem",boxShadow:"4px 4px 0 #0A0F2E",animation:"resumePulse 2.5s ease-in-out infinite",fontFamily:"'DM Sans', system-ui, sans-serif"}}>
+          <a href="/ARMANRESUME.pdf" download="ARMANRESUME.pdf" className="rv d2 px-btn" style={{padding:"0.8rem 1.5rem",background:accent,color:"#fff",border:`2px solid ${accentShadow}`,textDecoration:"none",fontSize:"0.95rem",fontWeight:600,display:"flex",alignItems:"center",gap:"0.5rem",boxShadow:`4px 4px 0 ${accentShadow}`,animation:"resumePulse 2.5s ease-in-out infinite",fontFamily:"'DM Sans', system-ui, sans-serif"}}>
             <Download size={14} strokeWidth={2.5}/>Download PDF
           </a>
         </div>
@@ -1500,22 +1496,22 @@ function Resume() {
           <div style={{display:"flex",flexDirection:"column",gap:"1.5rem"}}>
             <div className="rv px-card shimmer-hover" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1rem"}}>
-                <div style={{width:28,height:28,background:"var(--vPale)",border:"2px solid #1B3A8A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #1B3A8A"}}>👤</div>
+                <div style={{width:28,height:28,background:vPaleStyle,border:`2px solid ${accent}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${accent}`}}>👤</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.6rem",fontWeight:400,color:"var(--ink)"}}>SUMMARY</div>
               </div>
               <p style={{fontSize:"0.97rem",color:"var(--muted)",lineHeight:1.9,fontFamily:"'DM Sans', system-ui, sans-serif"}}>
-                Passionate <strong style={{color:"var(--ink)",fontWeight:600}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at MUJ, maintaining a <strong style={{color:"#1B3A8A",fontWeight:600}}>9.05 CGPA</strong> with the Dean's Excellence Award. Builds high-performance systems with <strong style={{color:"#1B3A8A",fontWeight:600}}>Node.js, Redis, and MySQL</strong>. Ranked in the <strong style={{color:"#2E5FC9",fontWeight:600}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved.
+                Passionate <strong style={{color:"var(--ink)",fontWeight:600}}>Backend & AI/ML Engineer</strong> in my 3rd year of B.Tech CSE at MUJ, maintaining a <strong style={{color:accent,fontWeight:600}}>9.05 CGPA</strong> with the Dean's Excellence Award. Builds high-performance systems with <strong style={{color:accent,fontWeight:600}}>Node.js, Redis, and MySQL</strong>. Ranked in the <strong style={{color:accent2,fontWeight:600}}>top 0.3% globally on LeetCode</strong> with 900+ problems solved.
               </p>
               <div style={{display:"flex",gap:"0.4rem",flexWrap:"wrap",marginTop:"1rem"}}>
                 {["Backend","AI/ML","Open to Work"].map((t,i)=>(
-                  <span key={t} style={{padding:"0.25rem 0.7rem",background:`${["#1B3A8A","#2E5FC9","#2A7A5E"][i]}10`,border:`2px solid ${["#1B3A8A","#2E5FC9","#2A7A5E"][i]}`,fontSize:"0.88rem",color:["#1B3A8A","#2E5FC9","#2A7A5E"][i],fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif"}}>{t}</span>
+                  <span key={t} style={{padding:"0.25rem 0.7rem",background:dark?`rgba(107,127,212,0.1)`:`${["#1B3A8A","#2E5FC9","#2A7A5E"][i]}10`,border:`2px solid ${dark?["#7C9EFF","#6B7FD4","#A78BFA"][i]:["#1B3A8A","#2E5FC9","#2A7A5E"][i]}`,fontSize:"0.88rem",color:dark?["#7C9EFF","#6B7FD4","#A78BFA"][i]:["#1B3A8A","#2E5FC9","#2A7A5E"][i],fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif"}}>{t}</span>
                 ))}
               </div>
             </div>
 
             <div className="rv px-card shimmer-hover" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.8rem",marginBottom:"1.2rem"}}>
-                <div style={{width:38,height:38,background:"linear-gradient(135deg,#1B3A8A,#2E5FC9)",border:"2px solid #0A0F2E",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"3px 3px 0 #0A0F2E"}}>
+                <div style={{width:38,height:38,background:dark?"linear-gradient(135deg,#6B7FD4,#1E2A4A)":"linear-gradient(135deg,#1B3A8A,#2E5FC9)",border:`2px solid ${accentShadow}`,display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`3px 3px 0 ${accentShadow}`}}>
                   <span style={{color:"#fff",fontSize:"0.6rem",fontWeight:700,fontFamily:"'Press Start 2P', monospace"}}>AP</span>
                 </div>
                 <div>
@@ -1531,41 +1527,41 @@ function Resume() {
                 ["🧩","leetcode.com/u/armanphaugat20","https://leetcode.com/u/armanphaugat20"],
                 ["📍","Jaipur, Rajasthan, India",null],
               ].map(([icon,label,href])=>(
-                <div key={label} style={{display:"flex",gap:"0.7rem",alignItems:"center",padding:"0.45rem 0",borderBottom:"1px solid rgba(27,58,138,0.06)"}}>
+                <div key={label} style={{display:"flex",gap:"0.7rem",alignItems:"center",padding:"0.45rem 0",borderBottom:`1px solid ${dark?"rgba(107,127,212,0.06)":"rgba(27,58,138,0.06)"}`}}>
                   <span style={{fontSize:"0.9rem",flexShrink:0}}>{icon}</span>
-                  {href?<a href={href} target={href.startsWith("http")?"_blank":undefined} rel="noreferrer" style={{fontSize:"0.92rem",color:"#1B3A8A",textDecoration:"none",fontFamily:"'DM Sans', system-ui, sans-serif",wordBreak:"break-all",fontWeight:500}}>{label}</a>:<span style={{fontSize:"0.92rem",color:"var(--muted)",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{label}</span>}
+                  {href?<a href={href} target={href.startsWith("http")?"_blank":undefined} rel="noreferrer" style={{fontSize:"0.92rem",color:accent,textDecoration:"none",fontFamily:"'DM Sans', system-ui, sans-serif",wordBreak:"break-all",fontWeight:500}}>{label}</a>:<span style={{fontSize:"0.92rem",color:"var(--muted)",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{label}</span>}
                 </div>
               ))}
             </div>
 
             <div className="rv d1 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
-                <div style={{width:28,height:28,background:"rgba(232,164,74,0.12)",border:"2px solid #E8A44A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #E8A44A"}}>🎓</div>
+                <div style={{width:28,height:28,background:dark?"rgba(255,51,51,0.12)":"rgba(232,164,74,0.12)",border:`2px solid ${dark?"#7C9EFF":"#E8A44A"}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${dark?"#7C9EFF":"#E8A44A"}`}}>🎓</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.58rem",fontWeight:400,color:"var(--ink)"}}>EDUCATION</div>
               </div>
-              <div style={{borderLeft:"3px solid #1B3A8A",paddingLeft:"1rem"}}>
+              <div style={{borderLeft:`3px solid ${accent}`,paddingLeft:"1rem"}}>
                 <div style={{fontSize:"1rem",fontWeight:600,color:"var(--ink)",fontFamily:"'DM Sans', system-ui, sans-serif"}}>B.Tech in Computer Science</div>
-                <div style={{fontSize:"0.95rem",color:"#1B3A8A",fontWeight:500,marginTop:"0.2rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Manipal University Jaipur</div>
+                <div style={{fontSize:"0.95rem",color:accent,fontWeight:500,marginTop:"0.2rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Manipal University Jaipur</div>
                 <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.88rem",color:"var(--muted)",marginTop:"0.2rem"}}>2023–2027 · Jaipur</div>
                 <div style={{marginTop:"0.6rem",display:"flex",gap:"0.4rem",flexWrap:"wrap"}}>
-                  <span style={{padding:"0.3rem 0.75rem",background:"var(--vPale)",color:"#1B3A8A",fontSize:"0.88rem",fontWeight:600,border:"2px solid #1B3A8A",fontFamily:"'JetBrains Mono', monospace",boxShadow:"2px 2px 0 #1B3A8A"}}>9.05 CGPA</span>
-                  <span style={{padding:"0.3rem 0.75rem",background:"rgba(232,164,74,0.1)",color:"#8B5E1A",fontSize:"0.88rem",fontWeight:600,border:"2px solid #E8A44A",fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:"2px 2px 0 #E8A44A"}}>Dean's Award</span>
+                  <span style={{padding:"0.3rem 0.75rem",background:vPaleStyle,color:accent,fontSize:"0.88rem",fontWeight:600,border:`2px solid ${accent}`,fontFamily:"'JetBrains Mono', monospace",boxShadow:`2px 2px 0 ${accent}`}}>9.05 CGPA</span>
+                  <span style={{padding:"0.3rem 0.75rem",background:dark?"rgba(107,127,212,0.1)":"rgba(232,164,74,0.1)",color:dark?"#7C9EFF":"#8B5E1A",fontSize:"0.88rem",fontWeight:600,border:`2px solid ${dark?"#6B7FD4":"#E8A44A"}`,fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:`2px 2px 0 ${dark?"#6B7FD4":"#E8A44A"}`}}>Dean's Award</span>
                 </div>
               </div>
             </div>
 
             <div className="rv d2 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
-                <div style={{width:28,height:28,background:"rgba(232,164,74,0.12)",border:"2px solid #E8A44A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #E8A44A"}}>⭐</div>
+                <div style={{width:28,height:28,background:dark?"rgba(255,51,51,0.12)":"rgba(232,164,74,0.12)",border:`2px solid ${dark?"#7C9EFF":"#E8A44A"}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${dark?"#7C9EFF":"#E8A44A"}`}}>⭐</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.58rem",fontWeight:400,color:"var(--ink)"}}>ACHIEVEMENTS</div>
               </div>
               {[
-                {icon:"🏅",text:"Dean's Excellence Award — 9.0+ CGPA multiple semesters",col:"#E8A44A"},
-                {icon:"⚡",text:"LeetCode Top 0.3% — Global rank, beats 99.7%",col:"#1B3A8A"},
-                {icon:"🚀",text:"MUJHackX Round 2 — Top among 1300+ participants",col:"#2A7A5E"},
-                {icon:"💡",text:"900+ DSA problems solved across platforms",col:"#2E5FC9"},
+                {icon:"🏅",text:"Dean's Excellence Award — 9.0+ CGPA multiple semesters",col:dark?"#7C9EFF":"#E8A44A"},
+                {icon:"⚡",text:"LeetCode Top 0.3% — Global rank, beats 99.7%",col:accent},
+                {icon:"🚀",text:"MUJHackX Round 2 — Top among 1300+ participants",col:dark?"#6B7FD4":"#2A7A5E"},
+                {icon:"💡",text:"900+ DSA problems solved across platforms",col:accent2},
               ].map(({icon,text,col})=>(
-                <div key={text} style={{display:"flex",gap:"0.7rem",alignItems:"flex-start",padding:"0.5rem 0",borderBottom:"1px solid rgba(27,58,138,0.06)"}}>
+                <div key={text} style={{display:"flex",gap:"0.7rem",alignItems:"flex-start",padding:"0.5rem 0",borderBottom:`1px solid ${dark?"rgba(107,127,212,0.06)":"rgba(27,58,138,0.06)"}`}}>
                   <span style={{fontSize:"0.9rem",flexShrink:0}}>{icon}</span>
                   <span style={{fontSize:"0.95rem",color:"var(--muted)",lineHeight:1.65,fontFamily:"'DM Sans', system-ui, sans-serif"}}>{text}</span>
                 </div>
@@ -1574,18 +1570,18 @@ function Resume() {
 
             <div className="rv d3 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
-                <div style={{width:28,height:28,background:"rgba(46,95,201,0.12)",border:"2px solid #2E5FC9",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #2E5FC9"}}>📜</div>
+                <div style={{width:28,height:28,background:dark?"rgba(255,51,51,0.12)":"rgba(46,95,201,0.12)",border:`2px solid ${accent2}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${accent2}`}}>📜</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.58rem",fontWeight:400,color:"var(--ink)"}}>CERTIFICATIONS</div>
               </div>
               {[
                 {org:"TLE Eliminators",icon:"🥋",col:"#D94F3D",name:"CP Level 1, 2 & 3",issued:"Dec 2023",skills:["C++","DSA","Algorithms"],badge:"3 certs"},
-                {org:"NPTEL",icon:"🎓",col:"#1B3A8A",name:"Design & Analysis of Algorithms",issued:"Jan 2025",skills:["C++","Algorithm Design"],badge:"Verified"},
+                {org:"NPTEL",icon:"🎓",col:accent,name:"Design & Analysis of Algorithms",issued:"Jan 2025",skills:["C++","Algorithm Design"],badge:"Verified"},
                 {org:"Red Hat",icon:"🎩",col:"#C53030",name:"Sysadmin I & II",issued:"Jan 2025",skills:["Linux","RHEL","Shell"],badge:"2 certs"},
-                {org:"Coursera",icon:"📡",col:"#2D3748",name:"RAG Course",issued:"2024",skills:["LangChain","FAISS","RAG"],badge:"Verified"},
-                {org:"GeeksforGeeks",icon:"💚",col:"#2A7A5E",name:"OOP with Java",issued:"Aug 2024",skills:["Java","OOP"],badge:"Verified"},
+                {org:"Coursera",icon:"📡",col:dark?"#7C9EFF":"#2D3748",name:"RAG Course",issued:"2024",skills:["LangChain","FAISS","RAG"],badge:"Verified"},
+                {org:"GeeksforGeeks",icon:"💚",col:dark?"#6B7FD4":"#2A7A5E",name:"OOP with Java",issued:"Aug 2024",skills:["Java","OOP"],badge:"Verified"},
                 {org:"Oracle",icon:"🔴",col:"#C05621",name:"Database Design",issued:"Aug 2024",skills:["SQL","DB Design"],badge:"2 certs"},
               ].map(({org,icon,col,name,issued,skills,badge},i)=>(
-                <div key={name} style={{display:"flex",gap:"0.8rem",alignItems:"flex-start",padding:"0.8rem 0",borderBottom:i<5?"1px solid rgba(27,58,138,0.06)":"none"}}>
+                <div key={name} style={{display:"flex",gap:"0.8rem",alignItems:"flex-start",padding:"0.8rem 0",borderBottom:i<5?`1px solid ${dark?"rgba(107,127,212,0.06)":"rgba(27,58,138,0.06)"}`:"none"}}>
                   <div style={{width:34,height:34,background:`${col}12`,border:`2px solid ${col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1rem",flexShrink:0,boxShadow:`2px 2px 0 ${col}`}}>{icon}</div>
                   <div style={{flex:1,minWidth:0}}>
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:"0.4rem",flexWrap:"wrap"}}>
@@ -1597,7 +1593,7 @@ function Resume() {
                     </div>
                     <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.82rem",color:"var(--inkMid)",marginTop:"0.2rem"}}>Issued {issued}</div>
                     <div style={{display:"flex",flexWrap:"wrap",gap:"0.25rem",marginTop:"0.4rem"}}>
-                      {skills.map(s=><span key={s} style={{fontSize:"0.85rem",padding:"0.12rem 0.4rem",background:"var(--vPale)",color:"#1B3A8A",border:"1px solid #1B3A8A",fontFamily:"'DM Sans', system-ui, sans-serif",fontWeight:500}}>{s}</span>)}
+                      {skills.map(s=><span key={s} style={{fontSize:"0.85rem",padding:"0.12rem 0.4rem",background:vPaleStyle,color:accent,border:`1px solid ${accent}`,fontFamily:"'DM Sans', system-ui, sans-serif",fontWeight:500}}>{s}</span>)}
                     </div>
                   </div>
                 </div>
@@ -1608,21 +1604,21 @@ function Resume() {
           <div style={{display:"flex",flexDirection:"column",gap:"1.5rem"}}>
             <div className="rv px-card shimmer-hover" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
-                <div style={{width:28,height:28,background:"rgba(27,58,138,0.12)",border:"2px solid #1B3A8A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #1B3A8A"}}>💼</div>
+                <div style={{width:28,height:28,background:dark?"rgba(255,51,51,0.12)":"rgba(27,58,138,0.12)",border:`2px solid ${accent}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${accent}`}}>💼</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.58rem",fontWeight:400,color:"var(--ink)"}}>WORK EXPERIENCE</div>
               </div>
-              <div style={{borderLeft:"3px solid #1B3A8A",paddingLeft:"1rem"}}>
+              <div style={{borderLeft:`3px solid ${accent}`,paddingLeft:"1rem"}}>
                 <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:"0.4rem"}}>
                   <div>
                     <div style={{fontSize:"1rem",fontWeight:600,color:"var(--ink)",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Web Dev Intern</div>
-                    <div style={{fontSize:"0.92rem",color:"#1B3A8A",fontWeight:500,marginTop:"0.1rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Indavis Lifesciences, Haridwar</div>
+                    <div style={{fontSize:"0.92rem",color:accent,fontWeight:500,marginTop:"0.1rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Indavis Lifesciences, Haridwar</div>
                   </div>
-                  <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.82rem",color:"#1B3A8A",background:"var(--vPale)",padding:"0.2rem 0.5rem",border:"1px solid #1B3A8A",fontWeight:500}}>Jun–Jul 2025</span>
+                  <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.82rem",color:accent,background:vPaleStyle,padding:"0.2rem 0.5rem",border:`1px solid ${accent}`,fontWeight:500}}>Jun–Jul 2025</span>
                 </div>
                 <ul style={{listStyle:"none",marginTop:"0.8rem",display:"flex",flexDirection:"column",gap:"0.4rem"}}>
                   {["Maintained and updated company website, smooth performance + content accuracy","Collaborated with cross-functional teams aligning updates with brand guidelines","Managed content workflows, consistent brand representation across web pages"].map((b,i)=>(
                     <li key={i} style={{display:"flex",gap:"0.4rem",fontSize:"0.95rem",color:"var(--muted)",lineHeight:1.65,fontFamily:"'DM Sans', system-ui, sans-serif"}}>
-                      <span style={{color:"#1B3A8A",flexShrink:0}}>▸</span>{b}
+                      <span style={{color:accent,flexShrink:0}}>▸</span>{b}
                     </li>
                   ))}
                 </ul>
@@ -1631,16 +1627,16 @@ function Resume() {
 
             <div className="rv d1 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
-                <div style={{width:28,height:28,background:"rgba(46,95,201,0.12)",border:"2px solid #2E5FC9",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #2E5FC9"}}>🛠️</div>
+                <div style={{width:28,height:28,background:dark?"rgba(255,51,51,0.12)":"rgba(46,95,201,0.12)",border:`2px solid ${accent2}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${accent2}`}}>🛠️</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.58rem",fontWeight:400,color:"var(--ink)"}}>TECH SKILLS</div>
               </div>
               {[
-                {label:"Languages",items:["Python","JavaScript","C","C++","Java","HTML","CSS"],col:"#1B3A8A"},
-                {label:"Backend",items:["Node.js","Express","FastAPI","REST","JWT","Argon2"],col:"#2E5FC9"},
-                {label:"Databases",items:["MySQL","MongoDB","Redis","FAISS","SQLite3"],col:"#2A7A5E"},
-                {label:"AI/ML",items:["LangChain","HuggingFace","RAG","XGBoost","Scikit-learn"],col:"#E8A44A"},
-                {label:"DevOps",items:["Docker","Git","GitHub","Postman","BullMQ"],col:"#D94F3D"},
-                {label:"Concepts",items:["System Design","DSA","ACID","Caching","Rate Limiting"],col:"#1B3A8A"},
+                {label:"Languages",items:["Python","JavaScript","C","C++","Java","HTML","CSS"],col:accent},
+                {label:"Backend",items:["Node.js","Express","FastAPI","REST","JWT","Argon2"],col:accent2},
+                {label:"Databases",items:["MySQL","MongoDB","Redis","FAISS","SQLite3"],col:dark?"#A78BFA":"#2A7A5E"},
+                {label:"AI/ML",items:["LangChain","HuggingFace","RAG","XGBoost","Scikit-learn"],col:dark?"#7C9EFF":"#E8A44A"},
+                {label:"DevOps",items:["Docker","Git","GitHub","Postman","BullMQ"],col:dark?"#1E2A4A":"#D94F3D"},
+                {label:"Concepts",items:["System Design","DSA","ACID","Caching","Rate Limiting"],col:accent},
               ].map(({label,items,col})=>(
                 <div key={label} style={{marginBottom:"0.8rem"}}>
                   <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.82rem",color:col,textTransform:"uppercase",letterSpacing:"1px",marginBottom:"0.4rem",fontWeight:500}}>› {label}</div>
@@ -1653,7 +1649,7 @@ function Resume() {
 
             <div className="rv d2 px-card" style={{background:"var(--paper)",padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.6rem",marginBottom:"1.2rem"}}>
-                <div style={{width:28,height:28,background:"rgba(232,164,74,0.12)",border:"2px solid #E8A44A",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:"2px 2px 0 #E8A44A"}}>🚀</div>
+                <div style={{width:28,height:28,background:dark?"rgba(255,51,51,0.12)":"rgba(232,164,74,0.12)",border:`2px solid ${dark?"#7C9EFF":"#E8A44A"}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.85rem",boxShadow:`2px 2px 0 ${dark?"#7C9EFF":"#E8A44A"}`}}>🚀</div>
                 <div style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.58rem",fontWeight:400,color:"var(--ink)"}}>KEY PROJECTS</div>
               </div>
               {[
@@ -1662,12 +1658,12 @@ function Resume() {
                 {name:"Video Streaming & User Mgmt",tech:"Node.js · MongoDB · Cloudinary",points:["HLS transcoding via ffmpeg","JWT access/refresh token lifecycle","MongoDB aggregation pipelines"]},
                 {name:"Cricket Score Predictor",tech:"Python · XGBoost · Streamlit",points:["3 XGBoost models: IPL, T20, ODI","Live CricAPI integration","Format-specific feature engineering"]},
               ].map(({name,tech,points},i)=>(
-                <div key={name} style={{padding:"0.8rem 0",borderBottom:i<3?"1px solid rgba(27,58,138,0.06)":"none"}}>
+                <div key={name} style={{padding:"0.8rem 0",borderBottom:i<3?`1px solid ${dark?"rgba(107,127,212,0.06)":"rgba(27,58,138,0.06)"}`:"none"}}>
                   <div style={{fontSize:"0.97rem",fontWeight:600,color:"var(--ink)",marginBottom:"0.15rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{name}</div>
-                  <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.82rem",color:"#1B3A8A",marginBottom:"0.4rem",fontWeight:500}}>{tech}</div>
+                  <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.82rem",color:accent,marginBottom:"0.4rem",fontWeight:500}}>{tech}</div>
                   {points.map((p,j)=>(
                     <div key={j} style={{display:"flex",gap:"0.4rem",fontSize:"0.92rem",color:"var(--muted)",lineHeight:1.6,marginBottom:"0.15rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>
-                      <span style={{color:"#1B3A8A",flexShrink:0}}>›</span>{p}
+                      <span style={{color:accent,flexShrink:0}}>›</span>{p}
                     </div>
                   ))}
                 </div>
@@ -1676,14 +1672,14 @@ function Resume() {
           </div>
         </div>
 
-        <div className="rv d4" style={{marginTop:"2rem",background:"#07091A",border:"2px solid #1B3A8A",padding:"1.8rem 2rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem",boxShadow:"6px 6px 0 #1B3A8A"}}>
+        <div className="rv d4" style={{marginTop:"2rem",background: dark ? "#0F1117" : "#07091A",border:`2px solid ${accent}`,padding:"1.8rem 2rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"1.5rem",boxShadow:`6px 6px 0 ${accent}`}}>
           <div>
             <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"rgba(240,237,230,0.4)",letterSpacing:"1px",marginBottom:"0.3rem",fontWeight:500}}>Ready to hire?</div>
             <div style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"1.2rem",fontWeight:600,color:"#F0EDE6",lineHeight:1.4}}>Download Full PDF Resume</div>
             <div style={{fontSize:"0.88rem",color:"rgba(240,237,230,0.4)",marginTop:"0.2rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Updated 2025 · ARMANRESUME.pdf</div>
           </div>
           <div style={{display:"flex",gap:"0.8rem",flexWrap:"wrap"}}>
-            <a href="/ARMANRESUME.pdf" download className="px-btn" style={{padding:"0.8rem 1.5rem",background:"#1B3A8A",color:"#fff",border:"2px solid #5B8FE8",textDecoration:"none",fontWeight:600,fontSize:"0.95rem",display:"flex",alignItems:"center",gap:"0.5rem",fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:"3px 3px 0 #5B8FE8"}}>
+            <a href="/ARMANRESUME.pdf" download className="px-btn" style={{padding:"0.8rem 1.5rem",background:accent,color:"#fff",border:`2px solid ${dark?"#A78BFA":"#5B8FE8"}`,textDecoration:"none",fontWeight:600,fontSize:"0.95rem",display:"flex",alignItems:"center",gap:"0.5rem",fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:`3px 3px 0 ${dark?"#A78BFA":"#5B8FE8"}`}}>
               <Download size={13} strokeWidth={2.5}/>Download
             </a>
             <a href="mailto:armanphaugat20@gmail.com" className="px-btn" style={{padding:"0.8rem 1.5rem",background:"rgba(255,255,255,0.07)",color:"#fff",border:"2px solid rgba(255,255,255,0.18)",textDecoration:"none",fontWeight:600,fontSize:"0.95rem",fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:"3px 3px 0 rgba(255,255,255,0.12)"}}>Contact →</a>
@@ -1710,14 +1706,15 @@ const PROJECTS=[
 ];
 
 const CAT_COLORS={Backend:"#1B3A8A","AI/ML":"#2E5FC9",Frontend:"#2A7A5E",Game:"#E8A44A"};
+const CAT_COLORS_DARK={Backend:"#7C9EFF","AI/ML":"#6B7FD4",Frontend:"#A78BFA",Game:"#1E2A4A"};
 const CATEGORIES=["All","Backend","AI/ML","Frontend","Game"];
 
-function ProjectCard({ p }) {
+function ProjectCard({ p, dark }) {
   const [hov, setHov] = useState(false);
   const displayCategory = Array.isArray(p.categories) ? p.categories[0] : p.category;
-  const cc=CAT_COLORS[displayCategory]||"#1B3A8A";
+  const cc = dark ? (CAT_COLORS_DARK[displayCategory]||"#7C9EFF") : (CAT_COLORS[displayCategory]||"#1B3A8A");
   return (
-    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ background:hov?"#0C0F28":"var(--paper)", border:`2px solid ${cc}`, boxShadow:hov?`7px 7px 0 ${cc}`:`3px 3px 0 ${cc}`, padding:"1.6rem", transition:"all 0.1s", transform:hov?"translate(-4px,-4px)":"translate(0,0)", display:"flex", flexDirection:"column", cursor:"default" }}>
+    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ background:hov?(dark?"#0a0000":"#0C0F28"):"var(--paper)", border:`2px solid ${cc}`, boxShadow:hov?`7px 7px 0 ${cc}`:`3px 3px 0 ${cc}`, padding:"1.6rem", transition:"all 0.1s", transform:hov?"translate(-4px,-4px)":"translate(0,0)", display:"flex", flexDirection:"column", cursor:"default" }}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"0.8rem"}}>
         <div style={{display:"flex",gap:"0.4rem",alignItems:"center"}}>
           <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.85rem",color:hov?"rgba(240,237,230,0.55)":"var(--inkMid)",fontWeight:500}}>#{p.num}</span>
@@ -1742,10 +1739,10 @@ function ProjectCard({ p }) {
         ))}
       </div>
       {(p.youtube||p.webapp||p.website||p.discord)&&(
-        <div style={{display:"flex",flexWrap:"wrap",gap:"0.4rem",paddingTop:"0.8rem",borderTop:`2px solid ${hov?"rgba(255,255,255,0.07)":"rgba(27,58,138,0.1)"}`}}>
+        <div style={{display:"flex",flexWrap:"wrap",gap:"0.4rem",paddingTop:"0.8rem",borderTop:`2px solid ${hov?"rgba(255,255,255,0.07)":dark?"rgba(107,127,212,0.1)":"rgba(27,58,138,0.1)"}`}}>
           {p.youtube&&<a href={p.youtube} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#D94F3D",color:"#fff",textDecoration:"none",fontSize:"0.88rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",border:"2px solid #A83020",boxShadow:"2px 2px 0 #A83020"}}>Demo</a>}
-          {p.webapp&&<a href={p.webapp} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#1B3A8A",color:"#fff",textDecoration:"none",fontSize:"0.88rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",border:"2px solid #0A0F2E",boxShadow:"2px 2px 0 #0A0F2E"}}>Live</a>}
-          {p.website&&<a href={p.website} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#2E5FC9",color:"#fff",textDecoration:"none",fontSize:"0.88rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",border:"2px solid #1B3A8A",boxShadow:"2px 2px 0 #1B3A8A"}}>Site</a>}
+          {p.webapp&&<a href={p.webapp} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:dark?"#6B7FD4":"#1B3A8A",color:"#fff",textDecoration:"none",fontSize:"0.88rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",border:`2px solid ${dark?"#1E2A4A":"#0A0F2E"}`,boxShadow:`2px 2px 0 ${dark?"#1E2A4A":"#0A0F2E"}`}}>Live</a>}
+          {p.website&&<a href={p.website} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:dark?"#7C9EFF":"#2E5FC9",color:"#fff",textDecoration:"none",fontSize:"0.88rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",border:`2px solid ${dark?"#6B7FD4":"#1B3A8A"}`,boxShadow:`2px 2px 0 ${dark?"#6B7FD4":"#1B3A8A"}`}}>Site</a>}
           {p.discord&&<a href={p.discord} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()} className="px-btn" style={{flex:1,minWidth:"80px",textAlign:"center",padding:"0.4rem 0.6rem",background:"#5865f2",color:"#fff",textDecoration:"none",fontSize:"0.88rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",border:"2px solid #4752c4",boxShadow:"2px 2px 0 #4752c4"}}>Add Bot</a>}
         </div>
       )}
@@ -1753,8 +1750,9 @@ function ProjectCard({ p }) {
   );
 }
 
-function Projects() {
+function Projects({ dark }) {
   const [active, setActive] = useState("All");
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
   const filtered=active==="All"?PROJECTS:PROJECTS.filter(p=>{
     const cats = Array.isArray(p.categories) ? p.categories : [p.category];
     return cats.includes(active);
@@ -1762,8 +1760,8 @@ function Projects() {
   return (
     <section id="projects" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}} className="sec-pad">
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>PROJECTS
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>PROJECTS
         </div>
         <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:600,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.3}}>
           Things I've <span className="grad">Built</span>
@@ -1772,7 +1770,7 @@ function Projects() {
         <ProjectStatsBar/>
         <div className="rv d3" style={{display:"flex",gap:"0.5rem",flexWrap:"wrap",marginBottom:"2rem"}}>
           {CATEGORIES.map(cat=>{
-            const col=CAT_COLORS[cat]||"#1B3A8A";
+            const col = dark ? (CAT_COLORS_DARK[cat]||"#7C9EFF") : (CAT_COLORS[cat]||"#1B3A8A");
             const isActive=active===cat;
             return (
               <button key={cat} onClick={()=>setActive(cat)} style={{ padding:"0.4rem 1rem", cursor:"pointer", border:`2px solid ${col}`, background:isActive?col:"transparent", color:isActive?"#fff":col, fontSize:"0.9rem", fontWeight:600, fontFamily:"'DM Sans', system-ui, sans-serif", boxShadow:isActive?`3px 3px 0 ${col}44`:`2px 2px 0 ${col}44`, transition:"all 0.1s" }}>
@@ -1785,7 +1783,7 @@ function Projects() {
           })}
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:"1.2rem"}}>
-          {filtered.map(p=><ProjectCard key={p.num} p={p}/>)}
+          {filtered.map(p=><ProjectCard key={p.num} p={p} dark={dark}/>)}
         </div>
       </div>
     </section>
@@ -1815,11 +1813,13 @@ const SKILL_GROUPS=[
   {icon:"🧠",label:"Concepts",items:["System Design","DSA","ACID","Caching","Rate Limiting","OOP","Auth"]},
 ];
 
-function SkillBar({ name, pct, cat }) {
+function SkillBar({ name, pct, cat, dark }) {
   const [vis, setVis] = useState(false);
   const ref = useRef(null);
   useEffect(()=>{ const obs=new IntersectionObserver(([e])=>{ if(e.isIntersecting)setVis(true); },{threshold:0.3}); if(ref.current)obs.observe(ref.current); return ()=>obs.disconnect(); },[]);
-  const catC={Backend:"#1B3A8A","AI/ML":"#2E5FC9",Database:"#2A7A5E",DevOps:"#E8A44A",Frontend:"#D94F3D","CS Core":"#5B8FE8"};
+  const catCLight={Backend:"#1B3A8A","AI/ML":"#2E5FC9",Database:"#2A7A5E",DevOps:"#E8A44A",Frontend:"#D94F3D","CS Core":"#5B8FE8"};
+  const catCDark={Backend:"#7C9EFF","AI/ML":"#6B7FD4",Database:"#A78BFA",DevOps:"#7C9EFF",Frontend:"#1E2A4A","CS Core":"#60A5FA"};
+  const catC = dark ? catCDark : catCLight;
   const col=catC[cat]||"#1B3A8A";
   return (
     <div ref={ref} style={{marginBottom:"1.1rem"}}>
@@ -1830,18 +1830,25 @@ function SkillBar({ name, pct, cat }) {
           <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.85rem",color:"var(--muted)",fontWeight:500}}>{pct}%</span>
         </div>
       </div>
-      <div style={{height:9,background:"rgba(27,58,138,0.06)",border:"2px solid rgba(27,58,138,0.15)"}}>
+      <div style={{height:9,background:dark?"rgba(107,127,212,0.06)":"rgba(27,58,138,0.06)",border:`2px solid ${dark?"rgba(124,158,255,0.15)":"rgba(27,58,138,0.15)"}`}}>
         <div style={{height:"100%",background:`linear-gradient(90deg,${col},${col}cc)`,width:vis?`${pct}%`:"0%",transition:"width 1.3s cubic-bezier(0.25,1,0.5,1) 0.2s"}}/>
       </div>
     </div>
   );
 }
 
-function SkillRings() {
+function SkillRings({ dark }) {
   const [vis, setVis] = useState(false);
   const ref = useRef(null);
   useEffect(()=>{ const obs=new IntersectionObserver(([e])=>{ if(e.isIntersecting)setVis(true); },{threshold:0.2}); if(ref.current)obs.observe(ref.current); return ()=>obs.disconnect(); },[]);
-  const rings=[
+  const rings = dark ? [
+    {name:"DSA / CP",pct:92,col:"#7C9EFF",r:110},
+    {name:"Node.js",pct:90,col:"#6B7FD4",r:92},
+    {name:"Python",pct:88,col:"#A78BFA",r:74},
+    {name:"MySQL/ACID",pct:85,col:"#1E2A4A",r:56},
+    {name:"Redis",pct:82,col:"#60A5FA",r:38},
+    {name:"LangChain",pct:80,col:"#7C9EFF",r:20},
+  ] : [
     {name:"DSA / CP",pct:92,col:"#1B3A8A",r:110},
     {name:"Node.js",pct:90,col:"#2E5FC9",r:92},
     {name:"Python",pct:88,col:"#2A7A5E",r:74},
@@ -1856,7 +1863,7 @@ function SkillRings() {
     <div ref={ref} style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"3rem",alignItems:"center"}} className="grid2">
       <div style={{display:"flex",justifyContent:"center"}}>
         <svg width="260" height="260" viewBox="0 0 260 260" style={{overflow:"visible"}}>
-          {rings.map(({r})=><circle key={`bg-${r}`} cx={cx} cy={cy} r={r} fill="none" stroke="rgba(27,58,138,0.08)" strokeWidth="8" strokeDasharray="4,2"/>)}
+          {rings.map(({r})=><circle key={`bg-${r}`} cx={cx} cy={cy} r={r} fill="none" stroke={dark?"rgba(107,127,212,0.08)":"rgba(27,58,138,0.08)"} strokeWidth="8" strokeDasharray="4,2"/>)}
           {rings.map(({pct,col,r,name})=>{
             const c=circumference(r); const d=dash(pct,r);
             return <circle key={name} cx={cx} cy={cy} r={r} fill="none" stroke={col} strokeWidth="8" strokeLinecap="square" strokeDasharray={`${vis?d:0} ${c}`} strokeDashoffset={c*0.25} style={{transition:vis?`stroke-dasharray 1.4s ease ${(rings.findIndex(x=>x.r===r))*0.1}s`:"none",transform:"rotate(-90deg)",transformOrigin:`${cx}px ${cy}px`}}/>;
@@ -1872,12 +1879,12 @@ function SkillRings() {
             onMouseLeave={e=>{e.currentTarget.style.transform="";}}
           >
             <svg width="30" height="30" viewBox="0 0 30 30" style={{flexShrink:0}}>
-              <circle cx="15" cy="15" r="11" fill="none" stroke="rgba(27,58,138,0.1)" strokeWidth="3"/>
+              <circle cx="15" cy="15" r="11" fill="none" stroke={dark?"rgba(107,127,212,0.1)":"rgba(27,58,138,0.1)"} strokeWidth="3"/>
               <circle cx="15" cy="15" r="11" fill="none" stroke={col} strokeWidth="3" strokeLinecap="square" strokeDasharray={`${vis?(pct/100)*69:0} 69`} style={{transition:vis?`stroke-dasharray 1.4s ease ${i*0.1}s`:"none",transform:"rotate(-90deg)",transformOrigin:"15px 15px"}}/>
             </svg>
             <div style={{flex:1}}>
               <div style={{fontSize:"0.95rem",fontWeight:500,color:"var(--ink)",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{name}</div>
-              <div style={{height:3,background:"rgba(27,58,138,0.07)",marginTop:"0.3rem"}}>
+              <div style={{height:3,background:dark?"rgba(107,127,212,0.07)":"rgba(27,58,138,0.07)",marginTop:"0.3rem"}}>
                 <div style={{height:"100%",width:vis?`${pct}%`:"0%",background:col,transition:vis?`width 1.4s ease ${i*0.08}s`:"none"}}/>
               </div>
             </div>
@@ -1889,20 +1896,24 @@ function SkillRings() {
   );
 }
 
-function Skills() {
+function Skills({ dark }) {
   const [tab, setTab] = useState("bars");
   const TABS=[["bars","Skill Bars"],["tags","Tech Tags"],["radar","Radar"],["rings","Rings"]];
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accentShadow = dark ? "#1E2A4A" : "#0A0F2E";
+  const GCOLS = dark
+    ? ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA","#7C9EFF"]
+    : ["#1B3A8A","#2E5FC9","#2A7A5E","#E8A44A","#D94F3D","#5B8FE8"];
   return (
     <section id="skills" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden"}} className="sec-pad">
-      {/* Floating orbs for Skills section */}
       <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
-        <div className="orb" style={{width:450,height:450,top:"20%",right:"-8%",background:"radial-gradient(circle,rgba(232,164,74,0.05) 0%,transparent 70%)",animation:"orbDrift3 18s ease-in-out infinite"}}/>
-        <div className="orb" style={{width:380,height:380,bottom:"5%",left:"-5%",background:"radial-gradient(circle,rgba(27,58,138,0.06) 0%,transparent 70%)",animation:"orbDrift1 22s ease-in-out infinite 5s"}}/>
+        <div className="orb" style={{width:450,height:450,top:"20%",right:"-8%",background: dark ? "radial-gradient(circle,rgba(255,51,51,0.04) 0%,transparent 70%)" : "radial-gradient(circle,rgba(232,164,74,0.05) 0%,transparent 70%)",animation:"orbDrift3 18s ease-in-out infinite"}}/>
+        <div className="orb" style={{width:380,height:380,bottom:"5%",left:"-5%",background: dark ? "radial-gradient(circle,rgba(204,0,0,0.05) 0%,transparent 70%)" : "radial-gradient(circle,rgba(27,58,138,0.06) 0%,transparent 70%)",animation:"orbDrift1 22s ease-in-out infinite 5s"}}/>
       </div>
 
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>SKILLS
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>SKILLS
         </div>
         <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:600,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.3}}>
           My <span className="grad">Toolkit</span>
@@ -1910,18 +1921,17 @@ function Skills() {
         <p className="rv d2" style={{fontSize:"1rem",color:"var(--muted)",marginBottom:"1.5rem",lineHeight:1.8,fontFamily:"'DM Sans', system-ui, sans-serif"}}>Technologies I reach for every day.</p>
         <div className="rv d3" style={{display:"flex",gap:"0.4rem",marginBottom:"2rem",flexWrap:"wrap"}}>
           {TABS.map(([k,l])=>(
-            <button key={k} onClick={()=>setTab(k)} style={{padding:"0.4rem 1rem",cursor:"pointer",border:"2px solid #1B3A8A",background:tab===k?"#1B3A8A":"transparent",color:tab===k?"#fff":"#1B3A8A",fontSize:"0.92rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:tab===k?"3px 3px 0 #0A0F2E":"2px 2px 0 #0A0F2E",transition:"all 0.1s"}}>{l}</button>
+            <button key={k} onClick={()=>setTab(k)} style={{padding:"0.4rem 1rem",cursor:"pointer",border:`2px solid ${accent}`,background:tab===k?accent:"transparent",color:tab===k?"#fff":accent,fontSize:"0.92rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",boxShadow:tab===k?`3px 3px 0 ${accentShadow}`:`2px 2px 0 ${accentShadow}`,transition:"all 0.1s"}}>{l}</button>
           ))}
         </div>
         {tab==="bars"&&(
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0 4rem"}} className="grid2 skill-bar-grid">
-            {SKILL_LEVELS.map(s=><SkillBar key={s.name} {...s}/>)}
+            {SKILL_LEVELS.map(s=><SkillBar key={s.name} {...s} dark={dark}/>)}
           </div>
         )}
         {tab==="tags"&&(
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:"1rem"}}>
             {SKILL_GROUPS.map((s,i)=>{
-              const GCOLS=["#1B3A8A","#2E5FC9","#2A7A5E","#E8A44A","#D94F3D","#5B8FE8"];
               const gc=GCOLS[i%GCOLS.length];
               return (
                 <div key={s.label} style={{background:"var(--paper)",border:`2px solid ${gc}`,padding:"1.2rem",boxShadow:`4px 4px 0 ${gc}`,animation:`tagIn 0.5s ease ${i*0.07}s both`}}>
@@ -1930,7 +1940,7 @@ function Skills() {
                     <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1rem",fontWeight:600,color:"var(--ink)"}}>{s.label}</div>
                   </div>
                   <div style={{display:"flex",flexWrap:"wrap",gap:"0.35rem"}}>
-                    {s.items.map(t=><span key={t} className="chip" style={{fontSize:"0.85rem",borderColor:gc,color:gc,boxShadow:`2px 2px 0 ${gc}`}}>{t}</span>)}
+                    {s.items.map(t=><span key={t} className="chip" style={{fontSize:"0.85rem",borderColor:gc,color:gc,boxShadow:`2px 2px 0 ${gc}`,background:`${gc}10`}}>{t}</span>)}
                   </div>
                 </div>
               );
@@ -1941,13 +1951,17 @@ function Skills() {
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"3rem",alignItems:"center"}} className="grid2">
             <SkillRadar/>
             <div>
-              {[{label:"Backend",val:90,col:"#1B3A8A"},{label:"DSA / CP",val:92,col:"#2E5FC9"},{label:"AI / ML",val:80,col:"#2A7A5E"},{label:"Databases",val:85,col:"#E8A44A"},{label:"DevOps",val:75,col:"#D94F3D"},{label:"Frontend",val:72,col:"#5B8FE8"}].map(s=>(
+              {(dark ? [
+                {label:"Backend",val:90,col:"#7C9EFF"},{label:"DSA / CP",val:92,col:"#6B7FD4"},{label:"AI / ML",val:80,col:"#A78BFA"},{label:"Databases",val:85,col:"#1E2A4A"},{label:"DevOps",val:75,col:"#60A5FA"},{label:"Frontend",val:72,col:"#7C9EFF"}
+              ] : [
+                {label:"Backend",val:90,col:"#1B3A8A"},{label:"DSA / CP",val:92,col:"#2E5FC9"},{label:"AI / ML",val:80,col:"#2A7A5E"},{label:"Databases",val:85,col:"#E8A44A"},{label:"DevOps",val:75,col:"#D94F3D"},{label:"Frontend",val:72,col:"#5B8FE8"}
+              ]).map(s=>(
                 <div key={s.label} style={{marginBottom:"0.8rem"}}>
                   <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
                     <span style={{fontSize:"1rem",fontWeight:500,color:"var(--ink)",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{s.label}</span>
                     <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.88rem",color:s.col,fontWeight:500}}>{s.val}%</span>
                   </div>
-                  <div style={{height:6,background:"rgba(27,58,138,0.07)",border:`1px solid ${s.col}33`}}>
+                  <div style={{height:6,background:dark?"rgba(107,127,212,0.07)":"rgba(27,58,138,0.07)",border:`1px solid ${s.col}33`}}>
                     <div style={{height:"100%",width:`${s.val}%`,background:s.col,transition:"width 1s ease"}}/>
                   </div>
                 </div>
@@ -1955,26 +1969,34 @@ function Skills() {
             </div>
           </div>
         )}
-        {tab==="rings"&&<SkillRings/>}
+        {tab==="rings"&&<SkillRings dark={dark}/>}
       </div>
     </section>
   );
 }
 
 /* ─────────────── ACHIEVEMENTS ─────────────── */
-const ACHIEVEMENTS=[
+const ACHIEVEMENTS_LIGHT=[
   {icon:"🏆",title:"Dean's Excellence Award",desc:"Received across multiple semesters for maintaining a 9.0+ CGPA at Manipal University Jaipur.",col:"#E8A44A"},
   {icon:"🔥",title:"900+ DSA Problems",desc:"Consistent problem solving on LeetCode, Codeforces, and other competitive platforms.",col:"#1B3A8A"},
   {icon:"⚡",title:"Top 0.3% LeetCode",desc:"Ranked globally in the top 0.3% of all LeetCode users worldwide. Beats 99.7%.",col:"#2E5FC9"},
   {icon:"🚀",title:"MUJHackX Round 2",desc:"Qualified for Round 2 among 1300+ participants at MUJHackX hackathon.",col:"#2A7A5E"},
 ];
+const ACHIEVEMENTS_DARK=[
+  {icon:"🏆",title:"Dean's Excellence Award",desc:"Received across multiple semesters for maintaining a 9.0+ CGPA at Manipal University Jaipur.",col:"#7C9EFF"},
+  {icon:"🔥",title:"900+ DSA Problems",desc:"Consistent problem solving on LeetCode, Codeforces, and other competitive platforms.",col:"#6B7FD4"},
+  {icon:"⚡",title:"Top 0.3% LeetCode",desc:"Ranked globally in the top 0.3% of all LeetCode users worldwide. Beats 99.7%.",col:"#A78BFA"},
+  {icon:"🚀",title:"MUJHackX Round 2",desc:"Qualified for Round 2 among 1300+ participants at MUJHackX hackathon.",col:"#1E2A4A"},
+];
 
-function Achievements() {
+function Achievements({ dark }) {
+  const ACHIEVEMENTS = dark ? ACHIEVEMENTS_DARK : ACHIEVEMENTS_LIGHT;
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
   return (
     <section id="achievements" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}} className="sec-pad">
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>ACHIEVEMENTS
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>ACHIEVEMENTS
         </div>
         <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:600,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.3}}>
           Milestones & <span className="grad">Recognition</span>
@@ -1992,16 +2014,16 @@ function Achievements() {
             </div>
           ))}
         </div>
-        <div className="rv d5" style={{marginTop:"1.5rem",background:"#07091A",border:"2px solid #1B3A8A",padding:"2rem",display:"flex",alignItems:"center",gap:"3rem",flexWrap:"wrap",boxShadow:"6px 6px 0 #1B3A8A"}}>
+        <div className="rv d5" style={{marginTop:"1.5rem",background: dark ? "#0F1117" : "#07091A",border:`2px solid ${accent}`,padding:"2rem",display:"flex",alignItems:"center",gap:"3rem",flexWrap:"wrap",boxShadow:`6px 6px 0 ${accent}`}}>
           <div>
             <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.9rem",color:"rgba(240,237,230,0.4)",letterSpacing:"1px",marginBottom:"0.5rem",fontWeight:500}}>LeetCode stats</div>
-            <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"2.5rem",color:"#F0EDE6",letterSpacing:"-1px",lineHeight:1,fontWeight:500}}>TOP <span style={{color:"#A8C0F0"}}>0.3%</span></div>
+            <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"2.5rem",color:"#F0EDE6",letterSpacing:"-1px",lineHeight:1,fontWeight:500}}>TOP <span style={{color: dark ? "#A78BFA" : "#A8C0F0"}}>0.3%</span></div>
             <div style={{color:"rgba(240,237,230,0.45)",fontSize:"0.9rem",marginTop:"0.3rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>Global Rank · 900+ Problems</div>
           </div>
           <div style={{display:"flex",gap:"2rem",flexWrap:"wrap"}}>
             {[["900+","Problems"],["Top 0.3%","Global Rank"],["All levels","Easy–Med–Hard"]].map(([n,l])=>(
               <div key={l} style={{textAlign:"center"}}>
-                <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"1.5rem",color:"#A8C0F0",fontWeight:500}}>{n}</div>
+                <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"1.5rem",color: dark ? "#A78BFA" : "#A8C0F0",fontWeight:500}}>{n}</div>
                 <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"rgba(240,237,230,0.4)",marginTop:"0.2rem"}}>{l}</div>
               </div>
             ))}
@@ -2026,12 +2048,15 @@ const TIMELINE_EVENTS=[
   {year:"2025",month:"Jun",icon:"💼",title:"Web Dev Intern — Indavis",sub:"Haridwar · On-site",desc:"First professional internship. Real business constraints.",col:"#2A7A5E"},
 ];
 
-function Timeline() {
+const TIMELINE_COLS_DARK=["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA","#7C9EFF","#1E2A4A","#6B7FD4","#A78BFA","#7C9EFF"];
+
+function Timeline({ dark }) {
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
   return (
     <section id="timeline" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg)"}}>
       <div style={{maxWidth:860,margin:"0 auto"}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>JOURNEY
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>JOURNEY
         </div>
         <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,3vw,2.2rem)",fontWeight:600,color:"var(--ink)",marginBottom:"0.9rem",lineHeight:1.3}}>
           My <span className="grad">Timeline</span>
@@ -2039,35 +2064,36 @@ function Timeline() {
         <p className="rv d2" style={{fontSize:"1rem",color:"var(--muted)",marginBottom:"3rem",lineHeight:1.8,fontFamily:"'DM Sans', system-ui, sans-serif"}}>From day one at MUJ to where I am now.</p>
 
         <div style={{position:"relative"}}>
-          <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:2,background:"linear-gradient(to bottom,transparent,#1B3A8A 5%,#1B3A8A 95%,transparent)",transform:"translateX(-50%)"}} className="hide-mob"/>
-          <div style={{position:"absolute",left:20,top:0,bottom:0,width:2,background:"#1B3A8A33"}} className="show-mob"/>
+          <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:2,background: dark ? `linear-gradient(to bottom,transparent,#6B7FD4 5%,#6B7FD4 95%,transparent)` : `linear-gradient(to bottom,transparent,#1B3A8A 5%,#1B3A8A 95%,transparent)`,transform:"translateX(-50%)"}} className="hide-mob"/>
+          <div style={{position:"absolute",left:20,top:0,bottom:0,width:2,background: dark ? "#6B7FD433" : "#1B3A8A33"}} className="show-mob"/>
 
           {TIMELINE_EVENTS.map((ev,i)=>{
+            const col = dark ? TIMELINE_COLS_DARK[i] : ev.col;
             const isLeft=i%2===0;
             return (
               <div key={i} className={`rv d${(i%5)+1}`} style={{display:"flex",justifyContent:isLeft?"flex-start":"flex-end",marginBottom:"1.5rem",position:"relative"}}>
-                <div style={{position:"absolute",left:"calc(50% - 16px)",top:"1rem",width:32,height:32,background:ev.col,border:"3px solid var(--bg)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.9rem",zIndex:2,boxShadow:`3px 3px 0 ${ev.col}55, 0 0 14px ${ev.col}44`,outline:`3px solid ${ev.col}`,outlineOffset:"2px"}} className="hide-mob">{ev.icon}</div>
-                <div style={{position:"absolute",left:8,top:"1rem",width:24,height:24,background:ev.col,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.65rem",zIndex:2}} className="show-mob">{ev.icon}</div>
+                <div style={{position:"absolute",left:"calc(50% - 16px)",top:"1rem",width:32,height:32,background:col,border:"3px solid var(--bg)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.9rem",zIndex:2,boxShadow:`3px 3px 0 ${col}55, 0 0 14px ${col}44`,outline:`3px solid ${col}`,outlineOffset:"2px"}} className="hide-mob">{ev.icon}</div>
+                <div style={{position:"absolute",left:8,top:"1rem",width:24,height:24,background:col,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.65rem",zIndex:2}} className="show-mob">{ev.icon}</div>
 
-                <div style={{width:"44%",background:"var(--paper)",border:`2px solid ${ev.col}`,padding:"1.1rem 1.3rem",boxShadow:`4px 4px 0 ${ev.col}`,marginLeft:isLeft?"0":"auto",transition:"transform 0.1s"}}
+                <div style={{width:"44%",background:"var(--paper)",border:`2px solid ${col}`,padding:"1.1rem 1.3rem",boxShadow:`4px 4px 0 ${col}`,marginLeft:isLeft?"0":"auto",transition:"transform 0.1s"}}
                   onMouseEnter={e=>e.currentTarget.style.transform="scale(1.02)"}
                   onMouseLeave={e=>{e.currentTarget.style.transform="";}}
                   className="hide-mob"
                 >
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"0.3rem"}}>
                     <div style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"1rem",fontWeight:600,color:"var(--ink)",lineHeight:1.4}}>{ev.title}</div>
-                    <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.8rem",color:ev.col,background:`${ev.col}10`,padding:"0.15rem 0.4rem",fontWeight:500,whiteSpace:"nowrap",marginLeft:"0.4rem",flexShrink:0,border:`1px solid ${ev.col}`,boxShadow:`1px 1px 0 ${ev.col}`}}>{ev.month} {ev.year}</span>
+                    <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.8rem",color:col,background:`${col}10`,padding:"0.15rem 0.4rem",fontWeight:500,whiteSpace:"nowrap",marginLeft:"0.4rem",flexShrink:0,border:`1px solid ${col}`,boxShadow:`1px 1px 0 ${col}`}}>{ev.month} {ev.year}</span>
                   </div>
-                  <div style={{fontSize:"0.88rem",color:ev.col,fontWeight:500,marginBottom:"0.4rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{ev.sub}</div>
+                  <div style={{fontSize:"0.88rem",color:col,fontWeight:500,marginBottom:"0.4rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{ev.sub}</div>
                   <div style={{fontSize:"0.92rem",color:"var(--muted)",lineHeight:1.7,fontFamily:"'DM Sans', system-ui, sans-serif"}}>{ev.desc}</div>
                 </div>
 
-                <div style={{marginLeft:"2.8rem",flex:1,background:"var(--paper)",border:`2px solid ${ev.col}`,padding:"0.9rem 1rem",boxShadow:`3px 3px 0 ${ev.col}`}} className="show-mob">
+                <div style={{marginLeft:"2.8rem",flex:1,background:"var(--paper)",border:`2px solid ${col}`,padding:"0.9rem 1rem",boxShadow:`3px 3px 0 ${col}`}} className="show-mob">
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"0.2rem"}}>
                     <div style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"0.97rem",fontWeight:600,color:"var(--ink)",lineHeight:1.5}}>{ev.title}</div>
-                    <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.78rem",color:ev.col,padding:"0.1rem 0.35rem",border:`1px solid ${ev.col}`,whiteSpace:"nowrap",marginLeft:"0.3rem",fontWeight:500}}>{ev.month} {ev.year.slice(2)}</span>
+                    <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.78rem",color:col,padding:"0.1rem 0.35rem",border:`1px solid ${col}`,whiteSpace:"nowrap",marginLeft:"0.3rem",fontWeight:500}}>{ev.month} {ev.year.slice(2)}</span>
                   </div>
-                  <div style={{fontSize:"0.85rem",color:ev.col,fontWeight:500,marginBottom:"0.3rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{ev.sub}</div>
+                  <div style={{fontSize:"0.85rem",color:col,fontWeight:500,marginBottom:"0.3rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{ev.sub}</div>
                   <div style={{fontSize:"0.88rem",color:"var(--muted)",lineHeight:1.65,fontFamily:"'DM Sans', system-ui, sans-serif"}}>{ev.desc}</div>
                 </div>
               </div>
@@ -2081,67 +2107,72 @@ function Timeline() {
 
 /* ─────────────── CURRENTLY LEARNING ─────────────── */
 const LEARNING=[
-  {icon:"🐹",name:"Go (Golang)",desc:"High-concurrency backends. Goroutines, channels, REST APIs with Gin.",progress:40,col:"#00ACD7",status:"Active"},
-  {icon:"☸️",name:"Kubernetes",desc:"Container orchestration, deployments, services, scaling stateful apps.",progress:30,col:"#326CE5",status:"Active"},
-  {icon:"🦀",name:"Rust",desc:"Systems programming, memory safety, ownership model. Working through The Book.",progress:20,col:"#CE422B",status:"Started"},
-  {icon:"📡",name:"gRPC & Protobuf",desc:"High-performance inter-service communication for microservices.",progress:45,col:"#1B3A8A",status:"Active"},
-  {icon:"🔭",name:"Apache Kafka",desc:"Event-driven architecture, distributed messaging, stream processing.",progress:25,col:"#2E5FC9",status:"Started"},
-  {icon:"🧠",name:"LLM Fine-tuning",desc:"SFT of open-source models (Mistral/Llama) for domain-specific RAG.",progress:35,col:"#2A7A5E",status:"Active"},
+  {icon:"🐹",name:"Go (Golang)",desc:"High-concurrency backends. Goroutines, channels, REST APIs with Gin.",progress:40,col:"#00ACD7",colDark:"#7C9EFF",status:"Active"},
+  {icon:"☸️",name:"Kubernetes",desc:"Container orchestration, deployments, services, scaling stateful apps.",progress:30,col:"#326CE5",colDark:"#6B7FD4",status:"Active"},
+  {icon:"🦀",name:"Rust",desc:"Systems programming, memory safety, ownership model. Working through The Book.",progress:20,col:"#CE422B",colDark:"#A78BFA",status:"Started"},
+  {icon:"📡",name:"gRPC & Protobuf",desc:"High-performance inter-service communication for microservices.",progress:45,col:"#1B3A8A",colDark:"#7C9EFF",status:"Active"},
+  {icon:"🔭",name:"Apache Kafka",desc:"Event-driven architecture, distributed messaging, stream processing.",progress:25,col:"#2E5FC9",colDark:"#1E2A4A",status:"Started"},
+  {icon:"🧠",name:"LLM Fine-tuning",desc:"SFT of open-source models (Mistral/Llama) for domain-specific RAG.",progress:35,col:"#2A7A5E",colDark:"#6B7FD4",status:"Active"},
 ];
 
-function CurrentlyLearning() {
+function CurrentlyLearning({ dark }) {
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accent2 = dark ? "#6B7FD4" : "#2E5FC9";
   return (
     <section id="learning" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}}>
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>LEARNING
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:accent,letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background:accent,display:"inline-block"}}/>LEARNING
         </div>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-end",flexWrap:"wrap",gap:"1rem",marginBottom:"0.6rem"}}>
           <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(1.4rem,2.5vw,2rem)",fontWeight:600,color:"var(--ink)",lineHeight:1.3}}>
             Currently <span className="grad">Exploring</span>
           </h2>
-          <div className="rv d2" style={{display:"flex",alignItems:"center",gap:"0.4rem",padding:"0.35rem 0.8rem",background:"var(--vPale)",border:"2px solid #1B3A8A",boxShadow:"2px 2px 0 #1B3A8A",animation:"learnPulse 2.5s ease-in-out infinite"}}>
-            <div style={{width:7,height:7,background:"#2A7A5E",animation:"pulse2 1.5s ease-in-out infinite"}}/>
-            <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"#1B3A8A",fontWeight:600}}>In progress</span>
+          <div className="rv d2" style={{display:"flex",alignItems:"center",gap:"0.4rem",padding:"0.35rem 0.8rem",background:"var(--vPale)",border:`2px solid ${accent}`,boxShadow:`2px 2px 0 ${accent}`,animation:"learnPulse 2.5s ease-in-out infinite"}}>
+            <div style={{width:7,height:7,background:dark?"#7C9EFF":"#2A7A5E",animation:"pulse2 1.5s ease-in-out infinite"}}/>
+            <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:accent,fontWeight:600}}>In progress</span>
           </div>
         </div>
         <p className="rv d2" style={{fontSize:"1rem",color:"var(--inkMid)",marginBottom:"2.5rem",lineHeight:1.8,fontFamily:"'DM Sans', system-ui, sans-serif"}}>Going deeper into infra, systems programming, and advanced AI.</p>
 
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(290px,1fr))",gap:"1.1rem"}}>
-          {LEARNING.map((item,i)=>(
-            <div key={item.name} className={`rv d${(i%4)+1}`} style={{background:"var(--paper)",border:`2px solid ${item.col}`,padding:"1.4rem",boxShadow:`4px 4px 0 ${item.col}`,transition:"all 0.1s",position:"relative"}}
-              onMouseEnter={e=>{e.currentTarget.style.transform="translate(-2px,-2px)";e.currentTarget.style.boxShadow=`6px 6px 0 ${item.col}`;}}
-              onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`4px 4px 0 ${item.col}`;}}
-            >
-              <div style={{position:"absolute",top:"0.8rem",right:"0.8rem",fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.82rem",fontWeight:600,padding:"0.15rem 0.5rem",background:item.status==="Active"?"rgba(42,122,94,0.1)":"rgba(232,164,74,0.1)",color:item.status==="Active"?"#2A7A5E":"#B8832A",border:`1px solid ${item.status==="Active"?"#2A7A5E":"#E8A44A"}`}}>{item.status}</div>
+          {LEARNING.map((item,i)=>{
+            const col = dark ? item.colDark : item.col;
+            return (
+              <div key={item.name} className={`rv d${(i%4)+1}`} style={{background:"var(--paper)",border:`2px solid ${col}`,padding:"1.4rem",boxShadow:`4px 4px 0 ${col}`,transition:"all 0.1s",position:"relative"}}
+                onMouseEnter={e=>{e.currentTarget.style.transform="translate(-2px,-2px)";e.currentTarget.style.boxShadow=`6px 6px 0 ${col}`;}}
+                onMouseLeave={e=>{e.currentTarget.style.transform="";e.currentTarget.style.boxShadow=`4px 4px 0 ${col}`;}}
+              >
+                <div style={{position:"absolute",top:"0.8rem",right:"0.8rem",fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.82rem",fontWeight:600,padding:"0.15rem 0.5rem",background:item.status==="Active"?dark?"rgba(107,127,212,0.1)":"rgba(42,122,94,0.1)":"rgba(232,164,74,0.1)",color:item.status==="Active"?dark?"#7C9EFF":"#2A7A5E":"#B8832A",border:`1px solid ${item.status==="Active"?dark?"#6B7FD4":"#2A7A5E":"#E8A44A"}`}}>{item.status}</div>
 
-              <div style={{display:"flex",gap:"0.8rem",alignItems:"flex-start",marginBottom:"0.8rem"}}>
-                <div style={{width:40,height:40,background:`${item.col}12`,border:`2px solid ${item.col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.2rem",flexShrink:0,boxShadow:`2px 2px 0 ${item.col}`}}>{item.icon}</div>
+                <div style={{display:"flex",gap:"0.8rem",alignItems:"flex-start",marginBottom:"0.8rem"}}>
+                  <div style={{width:40,height:40,background:`${col}12`,border:`2px solid ${col}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"1.2rem",flexShrink:0,boxShadow:`2px 2px 0 ${col}`}}>{item.icon}</div>
+                  <div>
+                    <div style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"1rem",fontWeight:600,color:"var(--ink)",lineHeight:1.4}}>{item.name}</div>
+                    <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.88rem",color:col,marginTop:"0.15rem",fontWeight:500}}>{item.progress}% through</div>
+                  </div>
+                </div>
+
+                <p style={{fontSize:"0.92rem",color:"var(--muted)",lineHeight:1.7,marginBottom:"1rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{item.desc}</p>
+
                 <div>
-                  <div style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"1rem",fontWeight:600,color:"var(--ink)",lineHeight:1.4}}>{item.name}</div>
-                  <div style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.88rem",color:item.col,marginTop:"0.15rem",fontWeight:500}}>{item.progress}% through</div>
+                  <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
+                    <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"var(--inkMid)",fontWeight:500}}>Progress</span>
+                    <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.85rem",color:col,fontWeight:500}}>{item.progress}%</span>
+                  </div>
+                  <div style={{height:8,background:dark?"rgba(107,127,212,0.06)":"rgba(27,58,138,0.06)",border:`2px solid ${col}`}}>
+                    <div style={{height:"100%",background:`linear-gradient(90deg,${col},${col}bb)`,width:`${item.progress}%`,transition:"width 1.2s cubic-bezier(0.25,1,0.5,1)"}}/>
+                  </div>
                 </div>
               </div>
-
-              <p style={{fontSize:"0.92rem",color:"var(--muted)",lineHeight:1.7,marginBottom:"1rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>{item.desc}</p>
-
-              <div>
-                <div style={{display:"flex",justifyContent:"space-between",marginBottom:"0.4rem"}}>
-                  <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"var(--inkMid)",fontWeight:500}}>Progress</span>
-                  <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.85rem",color:item.col,fontWeight:500}}>{item.progress}%</span>
-                </div>
-                <div style={{height:8,background:"rgba(27,58,138,0.06)",border:`2px solid ${item.col}`}}>
-                  <div style={{height:"100%",background:`linear-gradient(90deg,${item.col},${item.col}bb)`,width:`${item.progress}%`,transition:"width 1.2s cubic-bezier(0.25,1,0.5,1)"}}/>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        <div className="rv d5" style={{marginTop:"2rem",padding:"1rem 1.5rem",background:"var(--vPale)",border:"2px solid #1B3A8A",boxShadow:"3px 3px 0 #1B3A8A",display:"flex",alignItems:"center",gap:"0.8rem"}}>
+        <div className="rv d5" style={{marginTop:"2rem",padding:"1rem 1.5rem",background:"var(--vPale)",border:`2px solid ${accent}`,boxShadow:`3px 3px 0 ${accent}`,display:"flex",alignItems:"center",gap:"0.8rem"}}>
           <span style={{fontSize:"1.2rem"}}>💡</span>
           <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1rem",color:"var(--ink)",lineHeight:1.65}}>
-            <strong style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1rem",color:"#1B3A8A",fontWeight:600}}>Goal 2025–26:</strong> Ship prod-grade services in Go, get comfortable with K8s, contribute to open-source.
+            <strong style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"1rem",color:accent,fontWeight:600}}>Goal 2025–26:</strong> Ship prod-grade services in Go, get comfortable with K8s, contribute to open-source.
           </span>
         </div>
       </div>
@@ -2150,42 +2181,43 @@ function CurrentlyLearning() {
 }
 
 /* ─────────────── CONTACT ─────────────── */
-function Contact() {
+function Contact({ dark }) {
   const [copied, setCopied] = useState(false);
   const copy=()=>{ navigator.clipboard.writeText("armanphaugat20@gmail.com"); setCopied(true); setTimeout(()=>setCopied(false),2000); };
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const accent2 = dark ? "#6B7FD4" : "#2E5FC9";
   const LINKS=[
-    {icon:"✉️",label:"Email",value:"armanphaugat20@gmail.com",href:"mailto:armanphaugat20@gmail.com",col:"#1B3A8A"},
-    {icon:"📱",label:"Phone",value:"+91-9306115772",href:"tel:+919306115772",col:"#2E5FC9"},
-    {icon:"🐙",label:"GitHub",value:"github.com/armanphaugat",href:"https://github.com/armanphaugat",col:"#2A7A5E"},
+    {icon:"✉️",label:"Email",value:"armanphaugat20@gmail.com",href:"mailto:armanphaugat20@gmail.com",col:accent},
+    {icon:"📱",label:"Phone",value:"+91-9306115772",href:"tel:+919306115772",col:accent2},
+    {icon:"🐙",label:"GitHub",value:"github.com/armanphaugat",href:"https://github.com/armanphaugat",col:dark?"#A78BFA":"#2A7A5E"},
     {icon:"💼",label:"LinkedIn",value:"linkedin.com/in/armanphaugat05",href:"https://www.linkedin.com/in/armanphaugat05/",col:"#0A66C2"},
-    {icon:"🧩",label:"LeetCode",value:"Top 0.3% · armanphaugat20",href:"https://leetcode.com/u/armanphaugat20",col:"#E8A44A"},
+    {icon:"🧩",label:"LeetCode",value:"Top 0.3% · armanphaugat20",href:"https://leetcode.com/u/armanphaugat20",col:dark?"#7C9EFF":"#E8A44A"},
   ];
   return (
-    <section id="contact" style={{padding:"9rem 4rem",background:"#07091A",position:"relative",overflow:"hidden",backgroundImage:"radial-gradient(ellipse 70% 60% at 50% 0%, rgba(27,58,138,0.14) 0%, transparent 60%)"}}>
-      {/* Dark-mode orbs for contact */}
+    <section id="contact" style={{padding:"9rem 4rem",background: dark ? "#0F1117" : "#07091A",position:"relative",overflow:"hidden",backgroundImage: dark ? "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(107,127,212,0.1) 0%, transparent 60%)" : "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(27,58,138,0.14) 0%, transparent 60%)"}}>
       <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
-        <div className="orb" style={{width:550,height:550,top:"-15%",left:"20%",background:"radial-gradient(circle,rgba(46,95,201,0.1) 0%,transparent 70%)",animation:"orbDrift1 16s ease-in-out infinite"}}/>
-        <div className="orb" style={{width:380,height:380,bottom:"5%",right:"5%",background:"radial-gradient(circle,rgba(232,164,74,0.07) 0%,transparent 70%)",animation:"orbDrift2 20s ease-in-out infinite 3s"}}/>
-        <div className="orb" style={{width:280,height:280,top:"50%",left:"-5%",background:"radial-gradient(circle,rgba(42,122,94,0.08) 0%,transparent 70%)",animation:"orbDrift3 14s ease-in-out infinite 6s"}}/>
+        <div className="orb" style={{width:550,height:550,top:"-15%",left:"20%",background: dark ? "radial-gradient(circle,rgba(107,127,212,0.08) 0%,transparent 70%)" : "radial-gradient(circle,rgba(46,95,201,0.1) 0%,transparent 70%)",animation:"orbDrift1 16s ease-in-out infinite"}}/>
+        <div className="orb" style={{width:380,height:380,bottom:"5%",right:"5%",background: dark ? "radial-gradient(circle,rgba(204,0,0,0.06) 0%,transparent 70%)" : "radial-gradient(circle,rgba(232,164,74,0.07) 0%,transparent 70%)",animation:"orbDrift2 20s ease-in-out infinite 3s"}}/>
+        <div className="orb" style={{width:280,height:280,top:"50%",left:"-5%",background: dark ? "radial-gradient(circle,rgba(107,127,212,0.06) 0%,transparent 70%)" : "radial-gradient(circle,rgba(42,122,94,0.08) 0%,transparent 70%)",animation:"orbDrift3 14s ease-in-out infinite 6s"}}/>
       </div>
 
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
-        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#5B8FE8",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
-          <span style={{width:16,height:3,background:"#5B8FE8",display:"inline-block"}}/>CONTACT
+        <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color: dark ? "#A78BFA" : "#5B8FE8",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
+          <span style={{width:16,height:3,background: dark ? "#A78BFA" : "#5B8FE8",display:"inline-block"}}/>CONTACT
         </div>
         <h2 className="rv d1" style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"clamp(2rem,4.5vw,3.5rem)",fontWeight:600,color:"#F0EDE6",marginBottom:"0.8rem",lineHeight:1.2}}>
-          Let's <span style={{color:"#A8C0F0"}}>Connect</span>
+          Let's <span style={{color: dark ? "#A78BFA" : "#A8C0F0"}}>Connect</span>
         </h2>
         <p className="rv d2" style={{fontSize:"1rem",color:"rgba(240,237,230,0.5)",maxWidth:480,marginBottom:"3rem",lineHeight:1.9,fontFamily:"'DM Sans', system-ui, sans-serif"}}>
           Internship, project collab, or tech talk — reach out and I'll reply fast.
         </p>
 
         <div className="rv d3 contact-email-row" style={{display:"flex",gap:"0.8rem",alignItems:"center",marginBottom:"2.5rem",flexWrap:"wrap"}}>
-          <div style={{background:"rgba(255,255,255,0.04)",border:"2px solid rgba(255,255,255,0.12)",padding:"0.9rem 1.3rem",flex:1,minWidth:260}}>
+          <div style={{background:"rgba(255,255,255,0.04)",border:`2px solid ${dark?"rgba(107,127,212,0.2)":"rgba(255,255,255,0.12)"}`,padding:"0.9rem 1.3rem",flex:1,minWidth:260}}>
             <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.85rem",color:"rgba(240,237,230,0.45)",letterSpacing:"1px",marginBottom:"0.3rem",fontWeight:500}}>Primary email</div>
             <div style={{fontSize:"1rem",color:"#F0EDE6",fontWeight:500,fontFamily:"'JetBrains Mono', monospace"}}>armanphaugat20@gmail.com</div>
           </div>
-          <button onClick={copy} className="px-btn" style={{padding:"0.9rem 1.5rem",background:copied?"#2A7A5E":"#1B3A8A",color:"#fff",border:"none",cursor:"pointer",fontSize:"0.95rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",transition:"background 0.2s",boxShadow:"3px 3px 0 #0A0F2E",whiteSpace:"nowrap"}}>{copied?"Copied! ✓":"Copy email"}</button>
+          <button onClick={copy} className="px-btn" style={{padding:"0.9rem 1.5rem",background:copied?dark?"#1E2A4A":"#2A7A5E":accent,color:"#fff",border:"none",cursor:"pointer",fontSize:"0.95rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",transition:"background 0.2s",boxShadow:"3px 3px 0 #0A0F2E",whiteSpace:"nowrap"}}>{copied?"Copied! ✓":"Copy email"}</button>
           <a href="mailto:armanphaugat20@gmail.com" className="px-btn" style={{padding:"0.9rem 1.5rem",background:"rgba(255,255,255,0.06)",color:"#fff",border:"2px solid rgba(255,255,255,0.18)",textDecoration:"none",fontSize:"0.95rem",fontWeight:600,fontFamily:"'DM Sans', system-ui, sans-serif",whiteSpace:"nowrap",boxShadow:"3px 3px 0 rgba(255,255,255,0.1)"}}>Open mail →</a>
         </div>
 
@@ -2214,15 +2246,18 @@ function Contact() {
 }
 
 /* ─────────────── FOOTER ─────────────── */
-function Footer() {
-  const FCOLS=["#1B3A8A","#2E5FC9","#2A7A5E","#E8A44A","#D94F3D","#5B8FE8"];
+function Footer({ dark }) {
+  const accent = dark ? "#7C9EFF" : "#1B3A8A";
+  const FCOLS = dark
+    ? ["#7C9EFF","#6B7FD4","#A78BFA","#1E2A4A","#60A5FA","#7C9EFF"]
+    : ["#1B3A8A","#2E5FC9","#2A7A5E","#E8A44A","#D94F3D","#5B8FE8"];
   return (
-    <footer style={{background:"linear-gradient(180deg,#07091A 0%,#04060F 100%)",borderTop:"2px solid #1B3A8A",boxShadow:"0 -4px 30px rgba(27,58,138,0.12)"}}>
+    <footer style={{background: dark ? "linear-gradient(180deg,#0F1117 0%,#0F1117 100%)" : "linear-gradient(180deg,#07091A 0%,#04060F 100%)",borderTop:`2px solid ${accent}`,boxShadow:`0 -4px 30px ${dark?"rgba(255,51,51,0.12)":"rgba(27,58,138,0.12)"}`}}>
       <div className="px-divider"/>
       <div style={{maxWidth:1060,margin:"0 auto",padding:"2.5rem 2rem 2rem",display:"grid",gridTemplateColumns:"2fr 1fr 1fr",gap:"3rem"}} className="footer-grid">
         <div>
           <div style={{display:"flex",alignItems:"center",gap:"0.8rem",marginBottom:"0.8rem"}}>
-            <div style={{width:32,height:32,background:"#1B3A8A",border:"2px solid #5B8FE8",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"3px 3px 0 #5B8FE8"}}>
+            <div style={{width:32,height:32,background:accent,border:`2px solid ${dark?"#A78BFA":"#5B8FE8"}`,display:"flex",alignItems:"center",justifyContent:"center",boxShadow:`3px 3px 0 ${dark?"#A78BFA":"#5B8FE8"}`}}>
               <span style={{fontFamily:"'Press Start 2P', monospace",color:"#fff",fontSize:"0.72rem",fontWeight:400}}>AP</span>
             </div>
             <span style={{fontFamily:"'Playfair Display', Georgia, serif",fontSize:"1.05rem",fontWeight:600,color:"#F0EDE6",fontStyle:"italic"}}>Arman Phaugat</span>
@@ -2254,7 +2289,7 @@ function Footer() {
           <div style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.82rem",fontWeight:600,color:"rgba(240,237,230,0.3)",letterSpacing:"2px",marginBottom:"0.8rem",textTransform:"uppercase"}}>Status</div>
           <div className="status-available" style={{marginBottom:"0.8rem",width:"fit-content"}}>
             <div className="status-ping"/>
-            <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"#2A7A5E",fontWeight:600}}>Open to work</span>
+            <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:dark?"#7C9EFF":"#2A7A5E",fontWeight:600}}>Open to work</span>
           </div>
           <div style={{fontSize:"0.92rem",color:"rgba(240,237,230,0.5)",lineHeight:1.8,marginBottom:"1rem",fontFamily:"'DM Sans', system-ui, sans-serif"}}>
             Available for internships & projects.<br/>Backend · AI/ML · Full Stack
@@ -2266,11 +2301,13 @@ function Footer() {
 
       <div style={{borderTop:"1px solid rgba(255,255,255,0.05)",padding:"1rem 2rem",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:"0.4rem",maxWidth:1060,margin:"0 auto"}}>
         <span style={{fontFamily:"'DM Sans', system-ui, sans-serif",fontSize:"0.88rem",color:"rgba(240,237,230,0.22)"}}>© 2025 Arman Phaugat · All rights reserved</span>
-        <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.85rem",color:"rgba(240,237,230,0.22)"}}>Built with React · <span style={{color:"rgba(27,58,138,0.6)"}}>?</span> = shortcuts · <span style={{color:"rgba(27,58,138,0.6)"}}>`</span> = terminal</span>
+        <span style={{fontFamily:"'JetBrains Mono', monospace",fontSize:"0.85rem",color:"rgba(240,237,230,0.22)"}}>Built with React · <span style={{color: dark ? "rgba(107,127,212,0.5)" : "rgba(27,58,138,0.6)"}}>?</span> = shortcuts · <span style={{color: dark ? "rgba(107,127,212,0.5)" : "rgba(27,58,138,0.6)"}}>`</span> = terminal</span>
       </div>
     </footer>
   );
 }
+
+
 
 /* ─────────────── APP ─────────────── */
 export default function App() {
