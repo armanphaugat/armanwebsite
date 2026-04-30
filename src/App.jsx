@@ -38,7 +38,6 @@ const G = `
     --muted:    #4A5568;
     --glow-v:   rgba(27,58,138,0.14);
     --glow-c:   rgba(46,95,201,0.12);
-    --grid-col: rgba(27,58,138,0.04);
   }
   [data-theme="dark"] {
     --bg:       #07091A;
@@ -50,7 +49,6 @@ const G = `
     --muted:    #8A9DC0;
     --glow-v:   rgba(46,95,201,0.2);
     --glow-c:   rgba(46,95,201,0.15);
-    --grid-col: rgba(46,95,201,0.07);
   }
 
   [data-theme="dark"] body { background: #07091A; color: #F0EDE6; }
@@ -90,7 +88,6 @@ const G = `
   @keyframes termCursor    { 0%,100%{opacity:1} 50%{opacity:0} }
   @keyframes termLineIn    { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
   @keyframes pixelBlink    { 0%,49%{opacity:1} 50%,100%{opacity:0} }
-  @keyframes scanline      { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
   @keyframes marquee       { from{transform:translateX(0)} to{transform:translateX(-50%)} }
   @keyframes tagIn         { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
   @keyframes floatUp       { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-12px)} }
@@ -103,15 +100,16 @@ const G = `
   @keyframes blink         { 0%,100%{opacity:1} 50%{opacity:0} }
   @keyframes neonFlicker   { 0%,100%{opacity:1} 92%{opacity:1} 93%{opacity:0.6} 94%{opacity:1} }
   @keyframes pixelPop      { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
-  @keyframes gridPulse    { 0%,100%{opacity:0.6} 50%{opacity:1} }
   @keyframes shimmer      { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
   @keyframes cardRise     { from{opacity:0;transform:translateY(20px) scale(0.97)} to{opacity:1;transform:translateY(0) scale(1)} }
   @keyframes glowPulse    { 0%,100%{box-shadow:0 0 8px rgba(27,58,138,0.3),4px 4px 0 #1B3A8A} 50%{box-shadow:0 0 20px rgba(27,58,138,0.5),4px 4px 0 #1B3A8A} }
-  @keyframes scanlineMove { 0%{transform:translateY(-100vh)} 100%{transform:translateY(100vh)} }
   @keyframes heroGlow     { 0%,100%{text-shadow:5px 5px 0 rgba(27,58,138,0.12),0 0 40px rgba(27,58,138,0.08)} 50%{text-shadow:5px 5px 0 rgba(27,58,138,0.18),0 0 60px rgba(27,58,138,0.14)} }
   @keyframes dotMatrix    { 0%{opacity:0.3} 50%{opacity:1} 100%{opacity:0.3} }
   @keyframes avatarFloat  { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-10px)} }
   @keyframes pixelRain    { 0%{transform:translateY(-20px);opacity:0} 10%{opacity:1} 90%{opacity:0.6} 100%{transform:translateY(100vh);opacity:0} }
+  @keyframes orbDrift1    { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.05)} 66%{transform:translate(-20px,15px) scale(0.97)} }
+  @keyframes orbDrift2    { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-25px,20px) scale(1.08)} 70%{transform:translate(18px,-10px) scale(0.95)} }
+  @keyframes orbDrift3    { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,25px) scale(1.03)} }
 
   .sec-transition { opacity:0; transform:translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
   .sec-transition.visible { opacity:1; transform:translateY(0); }
@@ -183,6 +181,26 @@ const G = `
 
   .hide-mob { display: flex; }
   .show-mob { display: none; }
+
+  /* ── Noise overlay (replaces scanlines) ── */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9996;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+  [data-theme="dark"] .noise-overlay { opacity: 0.04; }
+
+  /* ── Floating orbs ── */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+  }
 
   @media(max-width: 768px) {
     body { cursor: auto; }
@@ -272,23 +290,6 @@ const G = `
     filter: brightness(0.92);
   }
 
-  .scanlines {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9996;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.012) 3px, rgba(0,0,0,0.012) 4px);
-  }
-  .scanlines::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, rgba(27,58,138,0.03), transparent);
-    animation: scanlineMove 8s linear infinite;
-    pointer-events: none;
-  }
-
   .px-divider {
     height: 5px;
     background: repeating-linear-gradient(90deg,
@@ -335,6 +336,30 @@ const G = `
   .shimmer-hover:hover::before { left: 150%; }
 `;
 
+/* ─────────────── FLOATING ORBS BACKGROUND ─────────────── */
+function FloatingOrbs({ dark = false }) {
+  const orbs = [
+    { w: 600, h: 600, top: "-10%", left: "30%", col: dark ? "rgba(46,95,201,0.09)" : "rgba(27,58,138,0.07)", anim: "orbDrift1 14s ease-in-out infinite", delay: "0s" },
+    { w: 420, h: 420, top: "40%",  left: "-8%", col: dark ? "rgba(91,143,232,0.07)" : "rgba(46,95,201,0.05)", anim: "orbDrift2 18s ease-in-out infinite", delay: "2s" },
+    { w: 340, h: 340, top: "60%",  left: "75%", col: dark ? "rgba(232,164,74,0.06)" : "rgba(232,164,74,0.04)", anim: "orbDrift3 12s ease-in-out infinite", delay: "4s" },
+    { w: 260, h: 260, top: "5%",   left: "78%", col: dark ? "rgba(42,122,94,0.07)"  : "rgba(42,122,94,0.04)",  anim: "orbDrift1 16s ease-in-out infinite", delay: "6s" },
+    { w: 200, h: 200, top: "80%",  left: "50%", col: dark ? "rgba(27,58,138,0.06)"  : "rgba(27,58,138,0.04)",  anim: "orbDrift2 20s ease-in-out infinite", delay: "1s" },
+  ];
+  return (
+    <div style={{ position:"absolute", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden" }}>
+      {orbs.map((o, i) => (
+        <div key={i} className="orb" style={{
+          width: o.w, height: o.h,
+          top: o.top, left: o.left,
+          background: `radial-gradient(circle, ${o.col} 0%, transparent 70%)`,
+          animation: o.anim,
+          animationDelay: o.delay,
+        }}/>
+      ))}
+    </div>
+  );
+}
+
 /* ─────────────── PAGE LOADER ─────────────── */
 function PageLoader({ onDone }) {
   const [progress, setProgress] = useState(0);
@@ -379,7 +404,6 @@ function PageLoader({ onDone }) {
       animation: exit ? "loaderFadeOut 0.4s ease both" : "none",
       fontFamily: "'Press Start 2P', monospace",
     }}>
-      <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(27,58,138,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(27,58,138,0.06) 1px,transparent 1px)", backgroundSize:"32px 32px", pointerEvents:"none" }}/>
       <div style={{ position:"relative", zIndex:1, width:"min(480px,90vw)" }}>
         <div style={{ textAlign:"center", marginBottom:"2rem" }}>
           <div style={{ display:"inline-block", padding:"1rem 2rem", border:"3px solid #1B3A8A", boxShadow:"5px 5px 0 #1B3A8A", marginBottom:"1rem", background:"#0E1A40" }}>
@@ -1257,8 +1281,10 @@ function Hero() {
 
   return (
     <section id="hero" className="hero-sec" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:"9rem 4rem 5rem", position:"relative", overflow:"hidden", background:"var(--bg)", backgroundImage:"radial-gradient(ellipse 80% 50% at 50% -10%, rgba(27,58,138,0.08) 0%, transparent 70%)" }}>
+      {/* Floating orbs replace grid */}
+      <FloatingOrbs />
+
       <div className="float-bg" style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
-        <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(27,58,138,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(27,58,138,0.04) 1px,transparent 1px)",backgroundSize:"48px 48px",zIndex:0}}/>
         {[{Icon:Zap,top:"12%",left:"5%",sz:32,anim:"iconDrift 7s ease-in-out infinite",delay:"0s",col:"#1B3A8A"},{Icon:Code2,top:"25%",left:"90%",sz:28,anim:"iconDriftB 9s ease-in-out infinite",delay:"1.2s",col:"#2E5FC9"},{Icon:Database,top:"55%",left:"88%",sz:26,anim:"iconDrift 11s ease-in-out infinite",delay:"2.1s",col:"#E8A44A"},{Icon:Server,top:"70%",left:"6%",sz:30,anim:"iconDriftC 8s ease-in-out infinite",delay:"0.7s",col:"#D94F3D"},{Icon:BrainCircuit,top:"88%",left:"40%",sz:28,anim:"iconDrift 13s ease-in-out infinite",delay:"4.1s",col:"#2A7A5E"},{Icon:Terminal,top:"15%",left:"74%",sz:24,anim:"iconDriftC 10s ease-in-out infinite",delay:"2.8s",col:"#1B3A8A"},{Icon:Bot,top:"5%",left:"48%",sz:28,anim:"iconDriftC 8s ease-in-out infinite",delay:"3.0s",col:"#2E5FC9"}].map(({Icon,top,left,sz,anim,delay,col},i)=>(
           <div key={i} style={{position:"absolute",top,left,opacity:0.1,animation:anim,animationDelay:delay,color:col}}><Icon size={sz} strokeWidth={1.5}/></div>
         ))}
@@ -1350,7 +1376,12 @@ function About() {
   const COLORS_CYCLE=["#1B3A8A","#2E5FC9","#E8A44A","#D94F3D","#2A7A5E"];
   return (
     <section id="about" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}} className="sec-pad">
-      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(27,58,138,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(27,58,138,0.03) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none"}}/>
+      {/* Floating orbs — secondary color set */}
+      <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
+        <div className="orb" style={{width:500,height:500,top:"-5%",right:"-5%",background:"radial-gradient(circle,rgba(46,95,201,0.06) 0%,transparent 70%)",animation:"orbDrift2 16s ease-in-out infinite"}}/>
+        <div className="orb" style={{width:350,height:350,bottom:"10%",left:"5%",background:"radial-gradient(circle,rgba(42,122,94,0.05) 0%,transparent 70%)",animation:"orbDrift1 20s ease-in-out infinite 3s"}}/>
+      </div>
+
       <div style={{maxWidth:1060,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:"4rem",alignItems:"start",position:"relative",zIndex:1}} className="grid2">
         <div>
           <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"3px",textTransform:"uppercase",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.8rem",fontWeight:400}}>
@@ -1401,8 +1432,8 @@ function About() {
 /* ─────────────── EXPERIENCE ─────────────── */
 function Experience() {
   return (
-    <section id="experience" style={{padding:"8rem 4rem",background:"var(--bg)"}} className="sec-pad">
-      <div style={{maxWidth:1060,margin:"0 auto"}}>
+    <section id="experience" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>EXPERIENCE
         </div>
@@ -1451,8 +1482,8 @@ function Experience() {
 /* ─────────────── RESUME ─────────────── */
 function Resume() {
   return (
-    <section id="resume" style={{padding:"8rem 4rem",background:"var(--bg)"}} className="sec-pad">
-      <div style={{maxWidth:1060,margin:"0 auto"}}>
+    <section id="resume" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>RESUME
         </div>
@@ -1729,8 +1760,8 @@ function Projects() {
     return cats.includes(active);
   });
   return (
-    <section id="projects" style={{padding:"8rem 4rem",background:"var(--bg2)"}} className="sec-pad">
-      <div style={{maxWidth:1060,margin:"0 auto"}}>
+    <section id="projects" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>PROJECTS
         </div>
@@ -1863,7 +1894,12 @@ function Skills() {
   const TABS=[["bars","Skill Bars"],["tags","Tech Tags"],["radar","Radar"],["rings","Rings"]];
   return (
     <section id="skills" style={{padding:"8rem 4rem",background:"var(--bg)",position:"relative",overflow:"hidden"}} className="sec-pad">
-      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(27,58,138,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(27,58,138,0.03) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none"}}/>
+      {/* Floating orbs for Skills section */}
+      <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
+        <div className="orb" style={{width:450,height:450,top:"20%",right:"-8%",background:"radial-gradient(circle,rgba(232,164,74,0.05) 0%,transparent 70%)",animation:"orbDrift3 18s ease-in-out infinite"}}/>
+        <div className="orb" style={{width:380,height:380,bottom:"5%",left:"-5%",background:"radial-gradient(circle,rgba(27,58,138,0.06) 0%,transparent 70%)",animation:"orbDrift1 22s ease-in-out infinite 5s"}}/>
+      </div>
+
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>SKILLS
@@ -1935,8 +1971,8 @@ const ACHIEVEMENTS=[
 
 function Achievements() {
   return (
-    <section id="achievements" style={{padding:"8rem 4rem",background:"var(--bg2)"}} className="sec-pad">
-      <div style={{maxWidth:1060,margin:"0 auto"}}>
+    <section id="achievements" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}} className="sec-pad">
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>ACHIEVEMENTS
         </div>
@@ -2055,8 +2091,8 @@ const LEARNING=[
 
 function CurrentlyLearning() {
   return (
-    <section id="learning" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg2)"}}>
-      <div style={{maxWidth:1060,margin:"0 auto"}}>
+    <section id="learning" className="sec-pad sec-transition" style={{padding:"8rem 4rem",background:"var(--bg2)",position:"relative",overflow:"hidden"}}>
+      <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#1B3A8A",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#1B3A8A",display:"inline-block"}}/>LEARNING
         </div>
@@ -2126,7 +2162,13 @@ function Contact() {
   ];
   return (
     <section id="contact" style={{padding:"9rem 4rem",background:"#07091A",position:"relative",overflow:"hidden",backgroundImage:"radial-gradient(ellipse 70% 60% at 50% 0%, rgba(27,58,138,0.14) 0%, transparent 60%)"}}>
-      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(27,58,138,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(27,58,138,0.05) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none"}}/>
+      {/* Dark-mode orbs for contact */}
+      <div style={{position:"absolute",inset:0,pointerEvents:"none",zIndex:0,overflow:"hidden"}}>
+        <div className="orb" style={{width:550,height:550,top:"-15%",left:"20%",background:"radial-gradient(circle,rgba(46,95,201,0.1) 0%,transparent 70%)",animation:"orbDrift1 16s ease-in-out infinite"}}/>
+        <div className="orb" style={{width:380,height:380,bottom:"5%",right:"5%",background:"radial-gradient(circle,rgba(232,164,74,0.07) 0%,transparent 70%)",animation:"orbDrift2 20s ease-in-out infinite 3s"}}/>
+        <div className="orb" style={{width:280,height:280,top:"50%",left:"-5%",background:"radial-gradient(circle,rgba(42,122,94,0.08) 0%,transparent 70%)",animation:"orbDrift3 14s ease-in-out infinite 6s"}}/>
+      </div>
+
       <div style={{maxWidth:1060,margin:"0 auto",position:"relative",zIndex:1}}>
         <div className="rv" style={{fontFamily:"'Press Start 2P', monospace",fontSize:"0.7rem",color:"#5B8FE8",letterSpacing:"2px",marginBottom:"1rem",display:"flex",alignItems:"center",gap:"0.6rem"}}>
           <span style={{width:16,height:3,background:"#5B8FE8",display:"inline-block"}}/>CONTACT
@@ -2250,7 +2292,9 @@ export default function App() {
   return (
     <>
       <style>{G}</style>
-      <div className="scanlines"/>
+
+      {/* Film grain noise overlay — replaces scanlines */}
+      <div className="noise-overlay"/>
 
       {showTerminal&&<TerminalEasterEgg onClose={()=>setShowTerminal(false)}/>}
 
