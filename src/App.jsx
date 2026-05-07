@@ -53,6 +53,7 @@ const G = `
   @keyframes terminal-blink { 0%,100%{opacity:1} 50%{opacity:0} }
   @keyframes orbit { from{transform:rotate(0deg) translateX(140px) rotate(0deg)} to{transform:rotate(360deg) translateX(140px) rotate(-360deg)} }
   @keyframes ripple { 0%{transform:scale(1);opacity:0.5} 100%{transform:scale(2.5);opacity:0} }
+  @keyframes mobile-menu-in { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
 
   .reveal { opacity:0; transform:translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
@@ -137,6 +138,20 @@ const G = `
   }
   .nav-link:hover { color: var(--primary); }
   .nav-link:hover::after { width: 100%; }
+
+  .mob-nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--txt-dim);
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    display: block;
+  }
+  .mob-nav-link:hover { color: var(--primary); background: rgba(221,183,255,0.06); }
 
   .btn-primary {
     display: inline-flex;
@@ -257,7 +272,7 @@ const G = `
     z-index: 9999;
     pointer-events: none;
     opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height%3D'100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 200px 200px;
   }
 
@@ -299,10 +314,65 @@ const G = `
     animation: float 10s ease-in-out infinite 3s;
   }
 
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 1rem;
+    right: 1rem;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(221,183,255,0.2);
+    border-radius: 12px;
+    padding: 0.75rem;
+    animation: mobile-menu-in 0.2s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(221,183,255,0.04);
+    z-index: 490;
+  }
+  .mobile-menu.open { display: block; }
+
+  .mob-divider {
+    height: 1px;
+    background: rgba(221,183,255,0.1);
+    margin: 0.5rem 0;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border: 1px solid rgba(221,183,255,0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    padding: 0;
+  }
+  .hamburger:hover { border-color: rgba(221,183,255,0.5); background: rgba(221,183,255,0.06); }
+  .hamburger span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
   @media (max-width: 768px) {
     .hide-mob { display: none !important; }
     .col-mob-1 { grid-template-columns: 1fr !important; }
     .mob-col { flex-direction: column !important; }
+    .hamburger { display: flex; }
   }
 `;
 
@@ -337,12 +407,30 @@ function useReveal() {
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
-  const links = [["#about","About"],["#projects","Projects"],["#skills","Toolkit"],["#timeline","Journey"],["#contact","Contact"]];
+
+  // Close menu on scroll
+  useEffect(() => {
+    const fn = () => { if (menuOpen) setMenuOpen(false); };
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
+  }, [menuOpen]);
+
+  const links = [
+    ["#about", "About"],
+    ["#projects", "Projects"],
+    ["#skills", "Toolkit"],
+    ["#timeline", "Journey"],
+    ["#contact", "Contact"],
+  ];
+
+  const handleMobLink = () => setMenuOpen(false);
+
   return (
     <header style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 500,
@@ -356,7 +444,9 @@ function Nav() {
         maxWidth: 1200, margin: "0 auto",
         padding: "1.1rem 2rem",
         display: "flex", alignItems: "center", justifyContent: "space-between",
+        position: "relative",
       }}>
+        {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
           <div style={{
             width: 28, height: 28,
@@ -370,14 +460,61 @@ function Nav() {
           }}>AP</div>
           <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "0.85rem", letterSpacing: "0.08em", color: "var(--primary)", textTransform: "uppercase" }}>ARMAN.EXE</span>
         </div>
+
+        {/* Desktop nav links */}
         <div className="hide-mob" style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
           {links.map(([href, label]) => (
             <a key={href} href={href} className="nav-link">{label}</a>
           ))}
         </div>
+
+        {/* Desktop resume button */}
         <a href="/ARMANRESUME.pdf" download className="hide-mob btn-primary" style={{ padding: "0.5rem 1.2rem", fontSize: "0.72rem" }}>
-          Resume.pdf
+          ↓ Resume.pdf
         </a>
+
+        {/* Hamburger (mobile only) */}
+        <button
+          className={`hamburger${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
+
+        {/* Mobile dropdown menu */}
+        <div className={`mobile-menu${menuOpen ? " open" : ""}`}>
+          {links.map(([href, label]) => (
+            <a key={href} href={href} className="mob-nav-link" onClick={handleMobLink}>{label}</a>
+          ))}
+          <div className="mob-divider" />
+          {/* Resume download — prominent in mobile menu */}
+          <a
+            href="/ARMANRESUME.pdf"
+            download
+            onClick={handleMobLink}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              margin: "0.25rem 0 0.25rem",
+              padding: "0.85rem 1.2rem",
+              background: "var(--primary)",
+              color: "var(--on-pri)",
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: "0.78rem",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              borderRadius: 8,
+              transition: "opacity 0.2s",
+            }}
+          >
+            ↓ Download Resume
+          </a>
+        </div>
       </nav>
     </header>
   );
@@ -404,7 +541,6 @@ function Hero() {
       <div className="orb1" />
       <div className="orb2" />
 
-      {/* Status badge */}
       <div className="reveal" style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", marginBottom: "2rem", zIndex: 1 }}>
         <div style={{ position: "relative", width: 8, height: 8 }}>
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--secondary)", boxShadow: "0 0 8px var(--secondary)" }} />
@@ -413,14 +549,12 @@ function Hero() {
         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "var(--secondary)", letterSpacing: "0.1em" }}>STATUS: AVAILABLE_FOR_OPPORTUNITIES</span>
       </div>
 
-      {/* Headline */}
       <h1 className="reveal reveal-d1" style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(2.8rem,6vw,5.5rem)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.04em", marginBottom: "1.2rem", zIndex: 1, maxWidth: 860 }}>
         Architecting{" "}
         <span style={{ background: "linear-gradient(135deg, var(--primary), rgba(221,183,255,0.6))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Scalable</span>
         {" "}Intelligent Systems.
       </h1>
 
-      {/* Typed subtitle */}
       <div className="reveal reveal-d2" style={{ marginBottom: "1.5rem", height: "2rem", zIndex: 1, display: "flex", alignItems: "center" }}>
         <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "1.1rem", color: "var(--txt-dim)" }}>
           {">"} {typed}<span className="terminal-cursor" />
@@ -439,7 +573,6 @@ function Hero() {
         <a href="https://leetcode.com/u/armanphaugat20" target="_blank" rel="noreferrer" className="btn-ghost" style={{ borderColor: "rgba(76,215,246,0.2)", color: "var(--secondary)" }}>LeetCode</a>
       </div>
 
-      {/* Stats bar */}
       <div className="reveal reveal-d4" style={{
         display: "grid", gridTemplateColumns: "repeat(4,1fr)",
         border: "1px solid var(--border)", zIndex: 1,
@@ -497,7 +630,6 @@ function About() {
         </div>
 
         <div className="reveal reveal-d2">
-          {/* System specs card */}
           <div className="glass glow-p" style={{ borderRadius: 12, padding: "1.8rem", marginBottom: "1.2rem" }}>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--primary)", marginBottom: "1.2rem", letterSpacing: "0.1em" }}>SYSTEM_SPECS.LOG</div>
             {[["Education","B.Tech CSE · MUJ · 2023–2027"],["Location","Jaipur, Rajasthan, India"],["CGPA","9.05 / 10 · Dean's Excellence Award"],["Focus","Backend · AI/ML · Sys Design"],["LeetCode","Top 0.3% · 900+ Problems"],["Hackathon","MUJHackX Round 2 · 1300+ participants"],["Internship","Indavis Lifesciences · Jun–Jul 2025"]].map(([k, v]) => (
@@ -508,7 +640,6 @@ function About() {
             ))}
           </div>
 
-          {/* LeetCode stats card */}
           <div className="glass" style={{ borderRadius: 12, padding: "1.5rem", background: "linear-gradient(135deg, rgba(17,17,17,0.9), rgba(25,10,40,0.9))", border: "1px solid rgba(221,183,255,0.2)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "1rem" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" fill="#FFA116"/></svg>
@@ -545,7 +676,7 @@ function Experience() {
         Where I've <span style={{ color: "var(--primary)" }}>Shipped</span>
       </h2>
 
-      <div className="reveal reveal-d2 glass glow-p" style={{ borderRadius: 12, padding: "2.5rem", display: "grid", gridTemplateColumns: "auto 1fr", gap: "2rem", alignItems: "start" }} className="col-mob-1 reveal reveal-d2 glass glow-p">
+      <div className="reveal reveal-d2 glass glow-p" style={{ borderRadius: 12, padding: "2.5rem", display: "grid", gridTemplateColumns: "auto 1fr", gap: "2rem", alignItems: "start" }}>
         <div style={{ minWidth: 180 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.78rem", color: "var(--primary)", marginBottom: "0.3rem" }}>JUN – JUL 2025</div>
           <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.68rem", color: "var(--txt-dim)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Full-Time · On-site</div>
@@ -566,7 +697,6 @@ function Experience() {
         </div>
       </div>
 
-      {/* Seeking banner */}
       <div className="reveal reveal-d3" style={{
         marginTop: "1.5rem",
         background: "linear-gradient(135deg, rgba(25,10,40,0.9), rgba(10,30,40,0.9))",
@@ -587,9 +717,6 @@ function Experience() {
 }
 
 /* ─── PROJECT CARD ─── */
-const CAT_GLOW = { Backend: "glow-p", "AI/ML": "glow-s", Frontend: "glow-p", Game: "glow-s", Android: "glow-p" };
-const CAT_COL = { Backend: "var(--primary)", "AI/ML": "var(--secondary)", Frontend: "var(--primary)", Game: "var(--secondary)", Android: "var(--primary)" };
-
 const PROJECTS = [
   { num:"01", name:"Real Time Stock Trading Backend", tag:"SYSTEM_ARCHITECTURE", category:"Backend", tagline:"High-concurrency order engine · live leaderboards · ACID-safe concurrency", highlights:["Redis Sorted Sets → <50ms leaderboard queries","BullMQ price engine with 30-min scheduled jobs","JWT auth + Token Bucket rate limiter","MySQL row-level locking for concurrent trades"], tech:["Node.js","Express","MySQL","Redis","BullMQ","Docker","Argon2"], youtube:"https://www.youtube.com/watch?v=IcetVmIat-w" },
   { num:"02", name:"RAG Discord Bot", tag:"ARTIFICIAL_INTELLIGENCE", category:"AI/ML", tagline:"FastAPI + LangChain · per-guild FAISS · Groq Llama 3.3", highlights:["Per-guild persistent FAISS vector stores with isolation","LCEL chain → Groq Llama 3.3 inference with rate limiting","PDF parsing + web scraping indexing pipeline","Multi-server permission gating + async handlers"], tech:["Python","FastAPI","LangChain","FAISS","Discord.py","Groq","HuggingFace"], discord:"https://discord.com/oauth2/authorize?client_id=1463510548808208415" },
@@ -675,7 +802,6 @@ function Projects() {
         <span className="reveal reveal-d1" style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "var(--txt-dim)" }}>COUNT: {PROJECTS.length}_MODULES</span>
       </div>
 
-      {/* Filter */}
       <div className="reveal reveal-d2" style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
         {cats.map(cat => {
           const isAI = cat === "AI/ML";
@@ -724,15 +850,6 @@ const SKILL_GROUPS = [
   { label: "Concepts", items: ["System Design","DSA","ACID","Caching","Rate Limiting","OOP"], type: "s" },
 ];
 
-const LEARNING = [
-  { name: "Go (Golang)", desc: "High-concurrency backends. Goroutines, channels, REST APIs with Gin.", pct: 40 },
-  { name: "Kubernetes", desc: "Container orchestration, deployments, services, scaling stateful apps.", pct: 30 },
-  { name: "Rust", desc: "Systems programming, memory safety, ownership. Working through The Book.", pct: 20 },
-  { name: "gRPC & Protobuf", desc: "High-performance inter-service communication for microservices.", pct: 45 },
-  { name: "Apache Kafka", desc: "Event-driven architecture, distributed messaging, stream processing.", pct: 25 },
-  { name: "LLM Fine-tuning", desc: "SFT of open-source models (Mistral/Llama) for domain-specific RAG.", pct: 35 },
-];
-
 function SkillBar({ name, pct, type, delay }) {
   const [vis, setVis] = useState(false);
   const ref = useRef(null);
@@ -764,8 +881,9 @@ function Skills() {
         My <span style={{ color: "var(--primary)" }}>Toolkit</span>
       </h2>
 
+      {/* Only 2 tabs now — "Currently Exploring" removed */}
       <div className="reveal reveal-d2" style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
-        {[["bars","Skill Bars"],["tags","Tech Tags"],["learning","Currently Exploring"]].map(([k, l]) => (
+        {[["bars","Skill Bars"],["tags","Tech Tags"]].map(([k, l]) => (
           <button key={k} onClick={() => setTab(k)} style={{
             padding: "0.4rem 1rem", cursor: "pointer",
             fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", letterSpacing: "0.08em",
@@ -785,7 +903,7 @@ function Skills() {
 
       {tab === "tags" && (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "1rem" }}>
-          {SKILL_GROUPS.map((g, i) => (
+          {SKILL_GROUPS.map((g) => (
             <div key={g.label} className={`glass ${g.type === "s" ? "glow-s" : "glow-p"}`} style={{ borderRadius: 10, padding: "1.4rem" }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.72rem", color: g.type === "s" ? "var(--secondary)" : "var(--primary)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.9rem" }}>{">"} {g.label}</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
@@ -793,26 +911,6 @@ function Skills() {
               </div>
             </div>
           ))}
-        </div>
-      )}
-
-      {tab === "learning" && (
-        <div>
-          <p className="reveal" style={{ fontSize: "0.9rem", color: "var(--txt-dim)", marginBottom: "1.8rem" }}>
-            <span style={{ color: "var(--secondary)" }}>{">"}</span> status: active_growth &nbsp;|&nbsp; focus: cloud_native_scaling
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(290px,1fr))", gap: "1rem" }}>
-            {LEARNING.map((item, i) => (
-              <div key={item.name} className="glass glow-s reveal" style={{ borderRadius: 10, padding: "1.4rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.6rem" }}>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.95rem" }}>{item.name}</div>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.75rem", color: "var(--secondary)" }}>{item.pct}%</span>
-                </div>
-                <p style={{ fontSize: "0.83rem", color: "var(--txt-dim)", lineHeight: 1.65, marginBottom: "0.9rem" }}>{item.desc}</p>
-                <div className="skill-bar"><div className="skill-bar-fill-s" style={{ width: `${item.pct}%` }} /></div>
-              </div>
-            ))}
-          </div>
         </div>
       )}
     </section>
@@ -842,9 +940,7 @@ function Timeline() {
       </h2>
 
       <div style={{ position: "relative", maxWidth: 800, paddingLeft: "2rem" }}>
-        {/* vertical line */}
         <div style={{ position: "absolute", left: 0, top: 8, bottom: 0, width: 1, background: "linear-gradient(to bottom, transparent, rgba(221,183,255,0.25) 5%, rgba(221,183,255,0.15) 95%, transparent)" }} />
-
         {TIMELINE.map((ev, i) => (
           <div key={i} className="reveal" style={{ position: "relative", marginBottom: "2.5rem" }}>
             {ev.active ? <div className="timeline-dot-active" /> : <div className="timeline-dot" />}
@@ -861,6 +957,51 @@ function Timeline() {
   );
 }
 
+/* ─── ACHIEVEMENTS ─── */
+function Achievements() {
+  return (
+    <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 2rem 8rem" }}>
+      <div className="reveal section-label" style={{ marginBottom: "1rem" }}>06 // RECOGNITION</div>
+      <h2 className="reveal reveal-d1" style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.5rem,2.5vw,2.2rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "2.5rem" }}>
+        Milestones &amp; <span style={{ color: "var(--primary)" }}>Awards</span>
+      </h2>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: "1.2rem" }}>
+        {[
+          { icon: "🏆", title: "Dean's Excellence Award", desc: "Received across multiple semesters for maintaining 9.0+ CGPA at MUJ.", type: "p" },
+          { icon: "⚡", title: "Top 0.3% LeetCode", desc: "Ranked globally in the top 0.3% of all LeetCode users. Beats 99.7%.", type: "s" },
+          { icon: "🔥", title: "900+ DSA Problems", desc: "Consistent competitive programming on LeetCode, Codeforces, and GFG.", type: "p" },
+          { icon: "🚀", title: "MUJHackX Round 2", desc: "Qualified for Round 2 among 1300+ participants at MUJHackX.", type: "s" },
+        ].map((a) => (
+          <div key={a.title} className={`reveal glass ${a.type === "s" ? "glow-s" : "glow-p"}`} style={{ borderRadius: 12, padding: "1.8rem", transition: "transform 0.2s" }}
+            onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
+            onMouseLeave={e => e.currentTarget.style.transform = ""}
+          >
+            <div style={{ fontSize: "2rem", marginBottom: "0.9rem" }}>{a.icon}</div>
+            <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "1rem", letterSpacing: "-0.01em", marginBottom: "0.5rem" }}>{a.title}</div>
+            <div style={{ fontSize: "0.88rem", color: "var(--txt-dim)", lineHeight: 1.7 }}>{a.desc}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="reveal" style={{ marginTop: "1.5rem", background: "linear-gradient(135deg, rgba(15,5,30,0.95), rgba(5,15,25,0.95))", border: "1px solid rgba(221,183,255,0.2)", borderRadius: 12, padding: "2rem 2.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "2rem", boxShadow: "0 0 40px rgba(221,183,255,0.05)" }}>
+        <div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--txt-dim)", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>LEETCODE_STATS</div>
+          <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900, fontSize: "3rem", color: "var(--primary)", letterSpacing: "-0.04em", lineHeight: 1 }}>TOP <span style={{ color: "rgba(221,183,255,0.5)" }}>0.3%</span></div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.78rem", color: "var(--txt-dim)", marginTop: "0.4rem" }}>Global Rank · 900+ Problems · Beats 99.7%</div>
+        </div>
+        <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
+          {[["900+","Problems"],["Top 0.3%","Global Rank"],["120+","Max Streak"]].map(([n, l]) => (
+            <div key={l} style={{ textAlign: "center" }}>
+              <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "1.6rem", color: "rgba(221,183,255,0.7)", letterSpacing: "-0.02em" }}>{n}</div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--txt-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: "0.2rem" }}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── CONTACT ─── */
 function Contact() {
   const [copied, setCopied] = useState(false);
@@ -870,7 +1011,7 @@ function Contact() {
     <section id="contact" style={{ background: "linear-gradient(180deg, var(--bg) 0%, rgba(15,5,30,0.95) 50%, var(--bg) 100%)", padding: "6rem 0", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(221,183,255,0.06) 0%, transparent 60%)", pointerEvents: "none" }} />
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 2rem" }}>
-        <div className="reveal section-label" style={{ marginBottom: "1rem" }}>06 // ESTABLISH_CONNECTION</div>
+        <div className="reveal section-label" style={{ marginBottom: "1rem" }}>07 // ESTABLISH_CONNECTION</div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }} className="col-mob-1">
           <div>
@@ -881,18 +1022,16 @@ function Contact() {
               Currently seeking Software Engineering Internships for 2026. Let's discuss how I can contribute to your engineering team — Backend, AI/ML, or Full Stack.
             </p>
 
-            {/* Email row */}
             <div className="reveal reveal-d3" style={{ display: "flex", gap: "0.8rem", marginBottom: "2rem", flexWrap: "wrap", alignItems: "center" }}>
               <div className="glass" style={{ padding: "0.8rem 1.2rem", borderRadius: 8, flex: 1, minWidth: 220 }}>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.68rem", color: "var(--txt-dim)", marginBottom: "0.2rem" }}>PRIMARY_EMAIL</div>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.85rem" }}>armanphaugat20@gmail.com</div>
               </div>
-              <button onClick={copy} className="btn-primary" style={{ padding: "0.8rem 1.2rem", borderRadius: 8, whiteSpace: "nowrap", background: copied ? "var(--secondary)" : "var(--primary)", color: copied ? "var(--on-pri)" : "var(--on-pri)" }}>
+              <button onClick={copy} className="btn-primary" style={{ padding: "0.8rem 1.2rem", borderRadius: 8, whiteSpace: "nowrap", background: copied ? "var(--secondary)" : "var(--primary)", color: "var(--on-pri)" }}>
                 {copied ? "Copied ✓" : "Copy Email"}
               </button>
             </div>
 
-            {/* Social links */}
             <div className="reveal reveal-d4" style={{ display: "flex", flexDirection: "column", gap: "0.7rem" }}>
               {[
                 { icon: "✉️", label: "Email", value: "armanphaugat20@gmail.com", href: "mailto:armanphaugat20@gmail.com", type: "p" },
@@ -914,7 +1053,6 @@ function Contact() {
             </div>
           </div>
 
-          {/* Availability card */}
           <div className="reveal reveal-d2">
             <div className="glass glow-p" style={{ borderRadius: 12, padding: "2rem", marginBottom: "1.2rem" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.5rem" }}>
@@ -937,7 +1075,6 @@ function Contact() {
               </a>
             </div>
 
-            {/* Terminal-style card */}
             <div className="glass" style={{ borderRadius: 12, padding: "1.5rem", fontFamily: "'JetBrains Mono', monospace", fontSize: "0.78rem", lineHeight: 2, background: "rgba(5,5,10,0.9)" }}>
               <div style={{ display: "flex", gap: "0.4rem", marginBottom: "0.8rem" }}>
                 {["#cc4444","#e8a44a","#2a7a5e"].map(c => <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />)}
@@ -979,52 +1116,6 @@ function Footer() {
         </div>
       </div>
     </footer>
-  );
-}
-
-/* ─── ACHIEVEMENTS ─── */
-function Achievements() {
-  return (
-    <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 2rem 8rem" }}>
-      <div className="reveal section-label" style={{ marginBottom: "1rem" }}>06 // RECOGNITION</div>
-      <h2 className="reveal reveal-d1" style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(1.5rem,2.5vw,2.2rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "2.5rem" }}>
-        Milestones &amp; <span style={{ color: "var(--primary)" }}>Awards</span>
-      </h2>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: "1.2rem" }}>
-        {[
-          { icon: "🏆", title: "Dean's Excellence Award", desc: "Received across multiple semesters for maintaining 9.0+ CGPA at MUJ.", type: "p" },
-          { icon: "⚡", title: "Top 0.3% LeetCode", desc: "Ranked globally in the top 0.3% of all LeetCode users. Beats 99.7%.", type: "s" },
-          { icon: "🔥", title: "900+ DSA Problems", desc: "Consistent competitive programming on LeetCode, Codeforces, and GFG.", type: "p" },
-          { icon: "🚀", title: "MUJHackX Round 2", desc: "Qualified for Round 2 among 1300+ participants at MUJHackX.", type: "s" },
-        ].map((a, i) => (
-          <div key={a.title} className={`reveal glass ${a.type === "s" ? "glow-s" : "glow-p"}`} style={{ borderRadius: 12, padding: "1.8rem", transition: "transform 0.2s" }}
-            onMouseEnter={e => e.currentTarget.style.transform = "translateY(-4px)"}
-            onMouseLeave={e => e.currentTarget.style.transform = ""}
-          >
-            <div style={{ fontSize: "2rem", marginBottom: "0.9rem" }}>{a.icon}</div>
-            <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "1rem", letterSpacing: "-0.01em", marginBottom: "0.5rem" }}>{a.title}</div>
-            <div style={{ fontSize: "0.88rem", color: "var(--txt-dim)", lineHeight: 1.7 }}>{a.desc}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* LeetCode mega stat */}
-      <div className="reveal" style={{ marginTop: "1.5rem", background: "linear-gradient(135deg, rgba(15,5,30,0.95), rgba(5,15,25,0.95))", border: "1px solid rgba(221,183,255,0.2)", borderRadius: 12, padding: "2rem 2.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "2rem", boxShadow: "0 0 40px rgba(221,183,255,0.05)" }}>
-        <div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.7rem", color: "var(--txt-dim)", letterSpacing: "0.12em", marginBottom: "0.5rem" }}>LEETCODE_STATS</div>
-          <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 900, fontSize: "3rem", color: "var(--primary)", letterSpacing: "-0.04em", lineHeight: 1 }}>TOP <span style={{ color: "rgba(221,183,255,0.5)" }}>0.3%</span></div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.78rem", color: "var(--txt-dim)", marginTop: "0.4rem" }}>Global Rank · 900+ Problems · Beats 99.7%</div>
-        </div>
-        <div style={{ display: "flex", gap: "2.5rem", flexWrap: "wrap" }}>
-          {[["900+","Problems"],["Top 0.3%","Global Rank"],["120+","Max Streak"]].map(([n, l]) => (
-            <div key={l} style={{ textAlign: "center" }}>
-              <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 800, fontSize: "1.6rem", color: "rgba(221,183,255,0.7)", letterSpacing: "-0.02em" }}>{n}</div>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.65rem", color: "var(--txt-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: "0.2rem" }}>{l}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
