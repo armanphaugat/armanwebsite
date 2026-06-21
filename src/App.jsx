@@ -1040,7 +1040,10 @@ function VaultBotFlagship() {
               <div><span style={{ color: "rgba(181,110,255,0.7)" }}>bullmq</span>     → API key worker (5 min cycle)</div>
             </div>
             <div style={{ color: "var(--vault-gold)", marginTop: "0.3rem" }}>$ wc -l **/*.py **/*.jsx **/*.js</div>
-            <div style={{ color: "var(--primary)", paddingLeft: "1rem" }}>Codebase: 12,806 lines · Dev & Founder: Arman Phaugat · Co-Founder: Aayushi Chhabra<span className="terminal-cursor" /></div>
+            <div style={{ paddingLeft:"1rem" }}>
+                <div><span style={{ color:"var(--cyan)" }}>Arman Phaugat</span>{"   "}→ Founder &amp; Lead Architect</div>
+                <div><span className="term-result">Aayushi Chhabra</span> → Co-Founder & Core Contributor (Frontend · Backend · AI)</div>
+              </div>
           </div>
 
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
