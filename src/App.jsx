@@ -1040,7 +1040,7 @@ function VaultBotFlagship() {
               <div><span style={{ color: "rgba(181,110,255,0.7)" }}>bullmq</span>     → API key worker (5 min cycle)</div>
             </div>
             <div style={{ color: "var(--vault-gold)", marginTop: "0.3rem" }}>$ wc -l **/*.py **/*.jsx **/*.js</div>
-            <div style={{ color: "var(--primary)", paddingLeft: "1rem" }}>12,806 total lines · sole author: Arman Phaugat<span className="terminal-cursor" /></div>
+            <div style={{ color: "var(--primary)", paddingLeft: "1rem" }}>Codebase: 12,806 lines · Dev & Founder: Arman Phaugat · Co-Founder: Aayushi Chhabra<span className="terminal-cursor" /></div>
           </div>
 
           <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -1301,7 +1301,6 @@ function Timeline() {
   );
 }
 
-/* ─── ACHIEVEMENTS ─── */
 function Achievements() {
   return (
     <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 2rem 8rem" }}>
